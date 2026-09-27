@@ -66,7 +66,18 @@ export function AuthScreen({ register = false }: { register?: boolean }) {
     {register && <AuthTextField label="Họ và tên" icon="person-outline" value={name} onChangeText={value => editField('name', value)} autoCapitalize="words" autoComplete="name" error={errors.name} editable={!busy && formReady} />}
     <AuthTextField label="Địa chỉ email" icon="mail-outline" value={email} onChangeText={value => editField('email', value)} keyboardType="email-address" autoComplete="email" error={errors.email} editable={!busy && formReady} returnKeyType="next" onSubmitEditing={() => passwordRef.current?.focus()} />
     <AuthTextField label="Mật khẩu" icon="lock-closed-outline" value={password} onChangeText={value => editField('password', value)} secureTextEntry autoComplete={register ? 'new-password' : 'current-password'} error={errors.password} editable={!busy && formReady} inputRef={passwordRef} returnKeyType={register ? 'next' : 'go'} onSubmitEditing={() => register ? confirmRef.current?.focus() : void submit()} />
-    {register && <><PasswordStrength password={password} /><Text style={{ color: C.muted, fontSize: 12, marginBottom: 16 }}>{t('Sử dụng từ 8 đến 128 ký tự. Thanh đánh giá chỉ mang tính gợi ý.')}</Text><AuthTextField label="Xác nhận mật khẩu" icon="shield-checkmark-outline" value={confirm} onChangeText={value => editField('confirm', value)} secureTextEntry autoComplete="new-password" error={errors.confirm} editable={!busy && formReady} inputRef={confirmRef} returnKeyType="go" onSubmitEditing={() => void submit()} /><LanguageSelector value={language} onChange={v => { if (!busy) chooseLanguage(v as Language); }} /></>}
+    {register && <>
+      <PasswordStrength password={password} />
+      <Text style={{ color: C.muted, fontSize: 12, marginBottom: 16 }}>{t('Sử dụng từ 8 đến 128 ký tự. Thanh đánh giá chỉ mang tính gợi ý.')}</Text>
+      <AuthTextField label="Xác nhận mật khẩu" icon="shield-checkmark-outline" value={confirm}
+        onChangeText={value => editField('confirm', value)} secureTextEntry autoComplete="new-password"
+        error={errors.confirm || (confirm && confirm !== password ? 'Mật khẩu xác nhận chưa khớp.' : '')}
+        editable={!busy && formReady} inputRef={confirmRef} returnKeyType="go" onSubmitEditing={() => void submit()} />
+      {!!confirm && confirm === password && <Text accessibilityLiveRegion="polite" style={{ color: C.success, fontSize: 12, marginBottom: 16 }}>
+        {t('Mật khẩu xác nhận đã khớp.')}
+      </Text>}
+      <LanguageSelector value={language} onChange={v => { if (!busy) chooseLanguage(v as Language); }} />
+    </>}
     {!!error && <Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={{ color: C.danger, backgroundColor: C.dangerSoft, padding: 14, borderRadius: 12, marginBottom: 16 }}>{t(error)}</Text>}
     {!!sessionNotice && <Text accessibilityRole="alert" style={{ color: C.danger }}>{t(sessionNotice)}</Text>}
     <PrimaryButton title={register ? 'Tạo tài khoản' : 'Đăng nhập'} loading={busy || !formReady} onPress={() => void submit()} icon="arrow-forward" />

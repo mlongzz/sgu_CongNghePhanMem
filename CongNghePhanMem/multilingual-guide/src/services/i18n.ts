@@ -359,6 +359,7 @@ const copy: Record<string, readonly [string, string, string]> = {
   'Vui lòng nhập email.': ['Enter your email.', 'Saisissez votre e-mail.', 'メールアドレスを入力してください。'],
   'Vui lòng nhập mật khẩu.': ['Enter your password.', 'Saisissez votre mot de passe.', 'パスワードを入力してください。'],
   'Mật khẩu xác nhận chưa khớp.': ['Passwords do not match.', 'Les mots de passe ne correspondent pas.', 'パスワードが一致しません。'],
+  'Mật khẩu xác nhận đã khớp.': ['Passwords match.', 'Les mots de passe correspondent.', 'パスワードが一致しています。'],
   'XIN CHÀO, NHÀ KHÁM PHÁ ✨': ['HELLO, EXPLORER ✨', 'BONJOUR, EXPLORATEUR ✨', 'ようこそ、旅人さん ✨'],
   'Sẵn sàng đi đâu?': ['Where to next?', 'Où allons-nous ?', '次はどこへ？'],
   'Khám phá hành trình và điểm dừng →': ['Explore journeys and stops →', 'Découvrir les parcours et étapes →', 'コースと立ち寄り先を探す →'],
