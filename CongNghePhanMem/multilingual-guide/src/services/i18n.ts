@@ -6,6 +6,8 @@ import type { Language } from '../data/places';
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
 // diagnostics and content supplied by a provider retain their original language.
 const copy: Record<string, readonly [string, string, string]> = {
+  'Bạn có thay đổi chưa lưu.': ['You have unsaved changes.', 'Vous avez des modifications non enregistrées.', '未保存の変更があります。'],
+  'Khôi phục thông tin đã lưu': ['Restore saved details', 'Rétablir les informations enregistrées', '保存済みの情報に戻す'],
   ...journeyCopy,
   ...presenceCopy,
   ...reviewCopy,

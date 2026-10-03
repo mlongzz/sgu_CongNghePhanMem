@@ -14,24 +14,33 @@ function AccountForm() {
   const { token, user, authLoading, setLanguage, updateProfile } = useApp();
   const [name, setName] = useState(user?.full_name ?? ''); const [email, setEmail] = useState(user?.email ?? ''); const [language, chooseLanguage] = useState(user?.language ?? 'vi');
   const [busy, setBusy] = useState(false); const [error, setError] = useState(''); const [notice, setNotice] = useState('');
+  const changed = name !== (user?.full_name ?? '') || email !== (user?.email ?? '') || language !== (user?.language ?? 'vi');
+  const reset = () => {
+    if (busy) return;
+    setName(user?.full_name ?? ''); setEmail(user?.email ?? ''); chooseLanguage(user?.language ?? 'vi');
+    setError(''); setNotice('');
+  };
   const save = async () => {
-    if (!token || !user || busy) return;
+    if (!token || !user || busy || !changed) return;
     if (!name.trim() || Array.from(name.trim()).length > 100 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { setError('Nhập tên từ 1–100 ký tự và email hợp lệ.'); return; }
     setBusy(true); setError(''); setNotice('');
     try {
       const result = await apiFetch<UserResponse>(`/users/${user.id}`, { token, method: 'PUT', body: JSON.stringify({ full_name: name.trim(), email: email.trim(), language }) });
-      updateProfile(result); setLanguage(language as Language); setNotice('Đã cập nhật hồ sơ.');
+      updateProfile(result); setLanguage(result.language as Language);
+      setName(result.full_name); setEmail(result.email); chooseLanguage(result.language); setNotice('Đã cập nhật hồ sơ.');
     } catch (e) { setError(e instanceof Error ? e.message : 'Không lưu được hồ sơ.'); }
     finally { setBusy(false); }
   };
   if (authLoading) return <LoadingState />;
   if (!token) return <Redirect href="/login" />;
   return <Screen title="Hồ sơ tài khoản"><View style={panel}>
-    <AuthTextField label="Họ và tên" value={name} onChangeText={setName} autoComplete="name" autoCapitalize="words" editable={!busy} />
-    <AuthTextField label="Email" value={email} onChangeText={setEmail} autoComplete="email" keyboardType="email-address" editable={!busy} />
-    <LanguageSelector value={language} onChange={v => { if (!busy) chooseLanguage(v); }} />
+    <AuthTextField label="Họ và tên" value={name} onChangeText={value => { setName(value); setError(''); setNotice(''); }} autoComplete="name" autoCapitalize="words" editable={!busy} />
+    <AuthTextField label="Email" value={email} onChangeText={value => { setEmail(value); setError(''); setNotice(''); }} autoComplete="email" keyboardType="email-address" editable={!busy} />
+    <LanguageSelector value={language} onChange={v => { if (!busy) { chooseLanguage(v); setError(''); setNotice(''); } }} />
+    {changed && <Text accessibilityLiveRegion="polite">{t('Bạn có thay đổi chưa lưu.')}</Text>}
     <ErrorMessage message={error} />{!!notice && <Text accessibilityRole="alert">{t(notice)}</Text>}
-    <PrimaryButton title="Lưu hồ sơ" loading={busy} onPress={() => void save()} />
+    <PrimaryButton title="Lưu hồ sơ" loading={busy} disabled={!changed} onPress={() => void save()} />
+    <PrimaryButton title="Khôi phục thông tin đã lưu" variant="outline" disabled={busy || !changed} onPress={reset} />
   </View><PresencePrivacy token={token}/></Screen>;
 }
 
