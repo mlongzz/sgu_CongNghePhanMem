@@ -32,3 +32,18 @@ test('empty searches preserve order and objects; special characters are literal 
   assert.deepEqual(places.map(p => p.id), ['1', '2', '3']);
   assert.equal(subject.filterSavedPlaces([], 'sach').length, 0);
 });
+
+test('name sorting handles numbers, supports reverse order and never changes stored order', () => {
+  const rows = [{ id: 1, title: 'Điểm 10' }, { id: 2, title: 'Điểm 2' }, { id: 3, title: 'Điểm 1' }];
+  assert.deepEqual(subject.sortSavedPlaces(rows, 'name-asc').map(p => p.id), [3, 2, 1]);
+  assert.deepEqual(subject.sortSavedPlaces(rows, 'name-desc').map(p => p.id), [1, 2, 3]);
+  assert.deepEqual(rows.map(p => p.id), [1, 2, 3]);
+  assert.equal(subject.sortSavedPlaces(rows, 'saved'), rows);
+});
+
+test('equal names retain their saved order and sorting composes with searching', () => {
+  const rows = [{ id: 1, title: 'Bảo tàng' }, { id: 2, title: 'bảo tàng' }];
+  assert.deepEqual(subject.sortSavedPlaces(rows, 'name-desc').map(p => p.id), [1, 2]);
+  const filtered = subject.filterSavedPlaces(places, 'quan 1');
+  assert.equal(subject.sortSavedPlaces(filtered, 'name-asc', 'en')[0], places[0]);
+});

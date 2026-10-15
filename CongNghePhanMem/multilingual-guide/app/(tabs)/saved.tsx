@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { PlaceCard, EmptyState } from '../../src/components/UI';
 import { LoadingState, ErrorMessage } from '../../src/components/Screen';
@@ -11,14 +11,15 @@ import { validateBackendPlace } from '../../src/services/nearby';
 import type { Place } from '../../src/data/places';
 import { C } from '../../src/theme/colors';
 import { useI18n } from '../../src/hooks/useI18n';
-import { filterSavedPlaces } from '../../src/services/savedList';
+import { filterSavedPlaces, sortSavedPlaces, type SavedSort } from '../../src/services/savedList';
 export default function Saved() {
   const { favorites, findPlace, favoriteError, favoritesLoading, refreshFavorites, token } = useApp();
-  const { t } = useI18n();
+  const { t, language } = useI18n();
   const [result, setResult] = useState<{ key: string; places: Place[] } | null>(null);
   const [error, setError] = useState(''); const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState(0);
   const [query, setQuery] = useState('');
+  const [sort, setSort] = useState<SavedSort>('saved');
   const key = favorites.join(',');
   useFocusEffect(useCallback(() => { if (token) void refreshFavorites(); }, [token, refreshFavorites]));
   useEffect(() => {
@@ -34,7 +35,7 @@ export default function Saved() {
     return () => { alive = false; controller.abort(); };
   }, [key, favorites, findPlace, retry]);
   const places = result?.key === key ? result.places : [];
-  const visiblePlaces = filterSavedPlaces(places, query);
+  const visiblePlaces = sortSavedPlaces(filterSavedPlaces(places, query), sort, language);
   return <SafeAreaView style={s.safe}><ScrollView contentContainerStyle={s.page}>
     <View style={s.icon}><Ionicons name="heart" size={21} color={C.primary} /></View>
     <Text style={s.subtitle}>{t('BỘ SƯU TẬP CỦA BẠN')}</Text><Text style={s.title}>{t('Địa điểm yêu thích')}</Text>
@@ -44,6 +45,14 @@ export default function Saved() {
       value={query} onChangeText={setQuery} returnKeyType="search" autoCorrect={false}
       style={{ marginTop: 18, marginBottom: 10, padding: 14, minHeight: 48, borderWidth: 1, borderColor: C.border, borderRadius: 12, backgroundColor: C.white, color: C.ink }} />
     {!!query && <PrimaryButton title="Xóa từ khóa" variant="outline" onPress={() => setQuery('')} />}
+    <Text style={s.info}>{t('Sắp xếp địa điểm yêu thích')}</Text>
+    <View accessibilityRole="radiogroup" accessibilityLabel={t('Sắp xếp địa điểm yêu thích')} style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginVertical: 12 }}>
+      {([['saved', 'Thứ tự lưu'], ['name-asc', 'Tên A–Z'], ['name-desc', 'Tên Z–A']] as const).map(([value, label]) =>
+        <Pressable key={value} accessibilityRole="radio" accessibilityState={{ checked: sort === value }}
+          onPress={() => setSort(value)} style={{ padding: 12, minHeight: 44, borderRadius: 12, borderWidth: 1, borderColor: C.border, backgroundColor: sort === value ? C.primarySoft : C.white }}>
+          <Text style={{ color: C.ink }}>{t(label)}</Text>
+        </Pressable>)}
+    </View>
     <ErrorMessage message={error || favoriteError} />
     {(loading || favoritesLoading) ? <LoadingState /> : visiblePlaces.length ? <View style={s.list}>{visiblePlaces.map(p => <PlaceCard key={p.id} place={p} wide />)}</View> : places.length ? <EmptyState icon="search-outline" title="Không tìm thấy địa điểm phù hợp" text="Thử tên hoặc địa chỉ khác." /> : !(error || favoriteError) && <EmptyState icon="heart-outline" title="Chưa có điểm đến yêu thích" text="Nhấn vào biểu tượng trái tim tại các địa điểm để lưu và quay lại." />}
     <PrimaryButton title="Tải lại" variant="outline" disabled={loading || favoritesLoading} onPress={() => { void refreshFavorites(); setRetry(v => v + 1); }} />

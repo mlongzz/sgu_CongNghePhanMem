@@ -6,6 +6,10 @@ import type { Language } from '../data/places';
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
 // diagnostics and content supplied by a provider retain their original language.
 const copy: Record<string, readonly [string, string, string]> = {
+  'Sắp xếp địa điểm yêu thích': ['Sort saved places', 'Trier les favoris', 'お気に入りを並べ替え'],
+  'Thứ tự lưu': ['Saved order', 'Ordre enregistré', '保存順'],
+  'Tên A–Z': ['Name A–Z', 'Nom A–Z', '名前 A–Z'],
+  'Tên Z–A': ['Name Z–A', 'Nom Z–A', '名前 Z–A'],
   'Tìm trong địa điểm yêu thích': ['Search saved places', 'Rechercher dans les favoris', 'お気に入りの場所を検索'],
   'Tìm theo tên hoặc địa chỉ': ['Search by name or address', 'Rechercher par nom ou adresse', '名前または住所で検索'],
   'Xóa từ khóa': ['Clear search', 'Effacer la recherche', '検索語を消去'],
