@@ -1,0 +1,17 @@
+.env
+
+# Local images, backup archives and pip cache
+uploads/
+.backups/
+.pip-cache/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.pytest_cache/
+.tools/
+.test-artifacts/
+cache/
