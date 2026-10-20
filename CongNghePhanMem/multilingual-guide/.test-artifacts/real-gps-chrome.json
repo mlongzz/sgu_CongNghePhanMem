@@ -1,0 +1,19 @@
+{
+  "browser": "chrome",
+  "realGeolocation": true,
+  "mockedCoordinates": false,
+  "secure": true,
+  "permission": "granted",
+  "success": false,
+  "ms": 40005,
+  "code": 3,
+  "error": "Timeout expired",
+  "requests": [
+    {
+      "enableHighAccuracy": false,
+      "timeout": 40000,
+      "maximumAge": 300000
+    }
+  ],
+  "consoleErrors": []
+}
