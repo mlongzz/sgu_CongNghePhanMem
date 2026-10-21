@@ -6,12 +6,12 @@ import { PrimaryButton } from '../src/components/auth';
 import { apiFetch, ApiError } from '../src/services/api';
 import { useApp } from '../src/context/AppContext';
 import { useI18n } from '../src/hooks/useI18n';
+import { resolveHistoryEntries, type HistoryEntry, type HistoryVisit } from '../src/services/historyEntries';
 
-type Visit = { id: number; place_id: number; visited_at: string; name?: string };
 export default function History() {
   const { t, language } = useI18n();
   const { token, authLoading, user } = useApp();
-  const [rows, setRows] = useState<Visit[]>([]); const [page, setPage] = useState(0);
+  const [rows, setRows] = useState<HistoryEntry[]>([]); const [page, setPage] = useState(0);
   const [busy, setBusy] = useState(false); const [error, setError] = useState(''); const [confirm, setConfirm] = useState(false);
   const seq = useRef(0);
   const request = useRef<AbortController | null>(null);
@@ -22,11 +22,10 @@ export default function History() {
     const controller = new AbortController(); request.current = controller;
     setBusy(true); setError('');
     try {
-      const visits = await apiFetch<Visit[]>(`/history?limit=20&offset=${page * 20}`, { token, signal: controller.signal });
-      const named = await Promise.all(visits.map(async row => {
-        try { const p = await apiFetch<{ name: string }>(`/places/${row.place_id}`, { signal: controller.signal }); return { ...row, name: p.name }; }
-        catch (e) { if (e instanceof ApiError && e.status === 404) return { ...row, name: 'Địa điểm đã được xóa' }; throw e; }
-      }));
+      const visits = await apiFetch<HistoryVisit[]>(`/history?limit=20&offset=${page * 20}`, { token, signal: controller.signal });
+      const named = await resolveHistoryEntries(visits,
+        async id => (await apiFetch<{ name: string }>(`/places/${id}`, { signal: controller.signal })).name,
+        error => error instanceof ApiError && error.status === 404);
       if (current === seq.current) setRows(named);
     } catch (e) { if (current === seq.current) setError(e instanceof Error ? e.message : 'Không tải được lịch sử.'); }
     finally { if (current === seq.current) setBusy(false); }
@@ -44,7 +43,13 @@ export default function History() {
   if (authLoading) return <LoadingState />;
   if (!token) return <Redirect href="/login" />;
   return <Screen title="Lịch sử khám phá"><Text>{user?.full_name}</Text><ErrorMessage message={error} />
-    {busy ? <LoadingState /> : rows.length ? rows.map(row => <Pressable accessibilityRole="button" key={row.id} style={panel} onPress={() => router.push(`/place/db-${row.place_id}`)}><Text style={{ fontWeight: '700' }}>{row.name}</Text><Text>{new Date(row.visited_at.endsWith('Z') || /[+-]\d\d:\d\d$/.test(row.visited_at) ? row.visited_at : row.visited_at + 'Z').toLocaleString(language === 'vi' ? 'vi-VN' : language === 'ja' ? 'ja-JP' : language === 'fr' ? 'fr-FR' : 'en-US')}</Text></Pressable>) : !error && <Text>{t('Chưa có lịch sử trong trang này.')}</Text>}
+    {!busy && rows.some(row => row.state === 'unavailable') && <Text accessibilityRole="alert">{t('Một số tên địa điểm chưa tải được. Bạn có thể tải lại.')}</Text>}
+    {busy ? <LoadingState /> : rows.length ? rows.map(row => <Pressable accessibilityRole="button" key={row.id} style={panel}
+      disabled={row.state === 'deleted'} accessibilityState={{ disabled: row.state === 'deleted' }}
+      onPress={() => router.push(`/place/db-${row.place_id}`)}>
+      <Text style={{ fontWeight: '700' }}>{row.state === 'available' ? row.name : t(row.name)}</Text>
+      <Text>{new Date(row.visited_at.endsWith('Z') || /[+-]\d\d:\d\d$/.test(row.visited_at) ? row.visited_at : row.visited_at + 'Z').toLocaleString(language === 'vi' ? 'vi-VN' : language === 'ja' ? 'ja-JP' : language === 'fr' ? 'fr-FR' : 'en-US')}</Text>
+    </Pressable>) : !error && <Text>{t('Chưa có lịch sử trong trang này.')}</Text>}
     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}><PrimaryButton title="← Trước" disabled={busy || page === 0} onPress={() => setPage(v => v - 1)} /><Text>Trang {page + 1}</Text><PrimaryButton title="Sau →" disabled={busy || rows.length < 20} onPress={() => setPage(v => v + 1)} /></View>
     <PrimaryButton title="Tải lại" disabled={busy} onPress={() => void load()} variant="outline" />
     <PrimaryButton title="Xóa lịch sử của tôi" disabled={busy} onPress={() => setConfirm(!confirm)} variant="outline" />

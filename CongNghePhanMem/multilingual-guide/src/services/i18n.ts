@@ -6,6 +6,8 @@ import type { Language } from '../data/places';
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
 // diagnostics and content supplied by a provider retain their original language.
 const copy: Record<string, readonly [string, string, string]> = {
+  'Không tải được tên địa điểm': ['Could not load the place name', 'Impossible de charger le nom du lieu', '場所の名前を読み込めません'],
+  'Một số tên địa điểm chưa tải được. Bạn có thể tải lại.': ['Some place names could not load. You can retry.', 'Certains noms de lieux sont indisponibles. Vous pouvez réessayer.', '一部の場所の名前を読み込めません。再読み込みできます。'],
   'Sắp xếp địa điểm yêu thích': ['Sort saved places', 'Trier les favoris', 'お気に入りを並べ替え'],
   'Thứ tự lưu': ['Saved order', 'Ordre enregistré', '保存順'],
   'Tên A–Z': ['Name A–Z', 'Nom A–Z', '名前 A–Z'],
