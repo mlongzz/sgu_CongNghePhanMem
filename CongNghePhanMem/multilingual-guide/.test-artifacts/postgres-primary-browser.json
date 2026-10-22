@@ -1,8 +1,0 @@
-{
-  "realPostgreSQL": true,
-  "simulatedPublicLandmarkGPS": true,
-  "officialPoiCount": 4,
-  "directOverpassRequests": 0,
-  "pageErrors": [],
-  "backendStatus": "FastAPI: Đã phản hồi · 4 POI chính thức."
-}

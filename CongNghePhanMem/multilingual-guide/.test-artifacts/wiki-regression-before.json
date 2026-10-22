@@ -1,8 +1,0 @@
-{
-  "simulatedPublicGPS": true,
-  "mockWikipedia": true,
-  "wikipediaVisible": true,
-  "detailEntryCount": 0,
-  "expectedDetailEntryCount": 1,
-  "regressionFailed": true
-}
