@@ -1,0 +1,25 @@
+{
+  "browser": "chrome",
+  "version": "155.0.8059.80",
+  "realGeolocation": true,
+  "mockedCoordinates": false,
+  "secure": true,
+  "permission": "granted",
+  "success": false,
+  "ms": 60016,
+  "error": "Chưa nhận được tọa độ sau hai lần thử GPS (mã GPS 3). Kiểm tra dịch vụ vị trí của thiết bị và kết nối mạng, rồi thử lại.",
+  "code": 3,
+  "requests": [
+    {
+      "enableHighAccuracy": false,
+      "timeout": 30000,
+      "maximumAge": 60000
+    },
+    {
+      "enableHighAccuracy": true,
+      "timeout": 30000,
+      "maximumAge": 60000
+    }
+  ],
+  "consoleErrors": []
+}

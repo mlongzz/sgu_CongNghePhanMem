@@ -1,0 +1,30 @@
+{
+  "publicLandmarkOnly": true,
+  "first": {
+    "radius": 3,
+    "force": false,
+    "ms": 28074,
+    "status": 504,
+    "retryAfter": "30",
+    "cors": "http://localhost:8081",
+    "detail": "Không tải được địa điểm OpenStreetMap. overpass.private.coffee phản hồi quá 14 giây. | overpass-api.de phản hồi quá 12 giây."
+  },
+  "repeat": {
+    "radius": 3,
+    "force": false,
+    "ms": 7,
+    "status": 504,
+    "retryAfter": "30",
+    "cors": "http://localhost:8081",
+    "detail": "Không tải được địa điểm OpenStreetMap. overpass.private.coffee tạm ngừng truy vấn sau lỗi kết nối hoặc phản hồi; thử lại sau 30 giây. | overpass-api.de tạm ngừng truy vấn sau lỗi kết nối hoặc phản hồi; thử lại sau 30 giây."
+  },
+  "changedRadiusForced": {
+    "radius": 5,
+    "force": true,
+    "ms": 6,
+    "status": 504,
+    "retryAfter": "30",
+    "cors": "http://localhost:8081",
+    "detail": "Không tải được địa điểm OpenStreetMap. overpass.private.coffee tạm ngừng truy vấn sau lỗi kết nối hoặc phản hồi; thử lại sau 30 giây. | overpass-api.de tạm ngừng truy vấn sau lỗi kết nối hoặc phản hồi; thử lại sau 30 giây."
+  }
+}

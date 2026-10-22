@@ -1,0 +1,98 @@
+{
+  "artifact": "dist",
+  "externalRequestsBlocked": true,
+  "cases": [
+    {
+      "route": "map",
+      "width": 320,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-map-320.png"
+    },
+    {
+      "route": "register",
+      "width": 320,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-register-320.png"
+    },
+    {
+      "route": "map",
+      "width": 390,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-map-390.png"
+    },
+    {
+      "route": "register",
+      "width": 390,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-register-390.png"
+    },
+    {
+      "route": "map",
+      "width": 768,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-map-768.png"
+    },
+    {
+      "route": "register",
+      "width": 768,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-register-768.png"
+    },
+    {
+      "route": "map",
+      "width": 1440,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-map-1440.png"
+    },
+    {
+      "route": "register",
+      "width": 1440,
+      "diagnostics": 0,
+      "overflow": false,
+      "pageErrors": [],
+      "screenshot": "release-register-1440.png"
+    }
+  ],
+  "languageChecks": [
+    {
+      "language": "en",
+      "auth": true,
+      "map": true,
+      "persistedAfterReload": true
+    },
+    {
+      "language": "fr",
+      "auth": true,
+      "map": true,
+      "persistedAfterReload": true
+    },
+    {
+      "language": "ja",
+      "auth": true,
+      "map": true,
+      "persistedAfterReload": true
+    },
+    {
+      "language": "vi",
+      "auth": true,
+      "map": true,
+      "persistedAfterReload": true
+    }
+  ],
+  "status": "PASS",
+  "recordedAt": "2026-10-21T09:54:44.865Z"
+}

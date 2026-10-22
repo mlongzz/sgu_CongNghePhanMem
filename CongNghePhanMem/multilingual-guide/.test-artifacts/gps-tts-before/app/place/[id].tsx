@@ -1,0 +1,57 @@
+import React, {useEffect,useState,useRef} from 'react';
+import {ActivityIndicator, Alert, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
+import {LinearGradient} from 'expo-linear-gradient';
+import {router,useLocalSearchParams} from 'expo-router';
+import {LANGS} from '../../src/data/places';
+import {useApp} from '../../src/context/AppContext';
+import {C} from '../../src/theme/colors';
+import PlaceImage from '../../src/components/PlaceImage';
+import PlaceReviews from '../../src/components/PlaceReviews';
+import {LanguageSelector} from '../../src/components/auth';
+import {apiFetch,getGuideContent} from '../../src/services/api';
+import {validateBackendPlace} from '../../src/services/nearby';
+import type {Place} from '../../src/data/places';
+export default function PlaceDetail(){
+ const {id}=useLocalSearchParams<{id:string}>();const {language,setLanguage,isFavorite,toggleFavorite,playingId,speak,stop,speechError,findPlace,drafts,isAdmin,token,user,favoriteError}=useApp();
+ const [placeLoading,setPlaceLoading]=useState(!!id?.startsWith('db-'));
+ const [placeError,setPlaceError]=useState('');
+ const [retry,setRetry]=useState(0);
+ const lastVisit=useRef("");
+ const [remotePlace,setRemotePlace]=useState<Place|null>(null);
+ const p=remotePlace?.id===id?remotePlace:findPlace(String(id??''));
+ useEffect(()=>{let active=true;
+   void Promise.resolve().then(()=>{if(active){setPlaceError('');setPlaceLoading(!!id?.startsWith('db-'));}});
+   if(id?.startsWith('db-')) { void apiFetch<unknown>(`/places/${Number(id.slice(3))}`).then(value=>{if(active)setRemotePlace(validateBackendPlace(value));}).catch(e=>{if(active)setPlaceError(e.message);}).finally(()=>{if(active)setPlaceLoading(false);}); }
+   return()=>{active=false;};
+ },[id,retry]);
+ useEffect(()=>{const key=`${user?.id}:${id}`;if(token&&id?.startsWith('db-')&&lastVisit.current!==key){lastVisit.current=key;void apiFetch(`/history/${Number(id.slice(3))}`,{token,method:'POST'}).catch(()=>{lastVisit.current='';});}},[id,token,user?.id]);
+ const [guideResult,setGuideResult]=useState<{id:string;language:string;content:string|null;error:string}|null>(null);
+ const serverGuide=guideResult?.id===p?.id&&guideResult?.language===language?guideResult.content:null;
+ const guideError=guideResult?.id===p?.id&&guideResult?.language===language?guideResult.error:'';
+ useEffect(()=>{let alive=true;if(p?.source==='backend'&&p.id.startsWith('db-')){const placeId=p.id;void getGuideContent(placeId.slice(3),language).then(g=>{if(alive)setGuideResult({id:placeId,language,content:g.content??null,error:''});}).catch(e=>{if(alive)setGuideResult({id:placeId,language,content:null,error:e.message});});}return()=>{alive=false;};},[p?.id,p?.source,language]);
+ useEffect(()=>()=>stop(),[id,stop]);
+ if(!p && placeLoading) return <SafeAreaView style={s.safe}><View style={s.missing}><ActivityIndicator color={C.primary}/><Text>Đang tải địa điểm…</Text></View></SafeAreaView>;
+ if(!p) return <SafeAreaView style={s.safe}><View style={s.missing}><Ionicons name="alert-circle-outline" color={C.primary} size={40}/><Text style={s.missingText}>{placeError || 'Không tìm thấy địa điểm'}</Text><Pressable onPress={()=>setRetry(v=>v+1)}><Text>Thử tải lại</Text></Pressable><Pressable onPress={()=>(router.canGoBack() ? router.back() : router.replace('/'))}><Text style={{color:C.primary,fontWeight:'800'}}>Quay lại</Text></Pressable></View></SafeAreaView>;
+ const playing=playingId===p.id;
+ const script=(isAdmin?drafts[p.id]?.[language]:undefined) || serverGuide || (p.source==='backend' ? (guideError || 'Đang tải thuyết minh…') : p.description[language]);
+ const spokenPlace={...p,description:{...p.description,[language]:script}};
+ const directions=()=>{void Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${p.latitude}%2C${p.longitude}&travelmode=walking`).catch(()=>Alert.alert('Lỗi','Không thể mở chỉ đường.'));};
+ return <View style={s.screen}><ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:120}}>
+ <View style={s.hero}><PlaceImage uri={p.image} label={p.title} style={StyleSheet.absoluteFill}/><LinearGradient colors={['rgba(7,24,35,.5)','transparent','rgba(10,36,43,.9)']} style={StyleSheet.absoluteFill}/>
+ <SafeAreaView style={s.heroActions}><Pressable onPress={()=>(router.canGoBack() ? router.back() : router.replace('/'))} style={s.action}><Ionicons name="arrow-back" size={22} color="#fff"/></Pressable><Pressable accessibilityRole="button" accessibilityLabel={isFavorite(p.id)?"Bỏ lưu địa điểm yêu thích":"Lưu địa điểm yêu thích"} onPress={()=>toggleFavorite(p.id)} style={s.action}><Ionicons name={isFavorite(p.id)?'heart':'heart-outline'} size={22} color={isFavorite(p.id)?'#FFB9A3':'#fff'}/></Pressable></SafeAreaView>
+ <View style={s.heroCaption}><Text style={s.location}><Ionicons name="location-outline" size={13} color="#B4F2E1"/> {p.district}</Text><Text style={s.title}>{p.title}</Text><Text style={s.description}>{p.subtitle[language]}</Text></View></View>
+ <View style={s.content}><View style={s.badges}><View style={s.badge}><Ionicons name="star" size={15} color="#EBAF3B"/><Text style={s.badgeText}>{p.rating>0?p.rating.toFixed(1):'Đang cập nhật'}</Text></View><View style={s.badge}><Ionicons name="headset-outline" size={16} color={C.primary}/><Text style={s.badgeText}>{p.duration > 0 ? `${p.duration} phút` : 'Âm thanh đa ngôn ngữ'}</Text></View><View style={s.badge}><Ionicons name="pricetag-outline" size={16} color={C.primary}/><Text style={s.badgeText}>{p.category}</Text></View></View>
+ <LanguageSelector value={language} onChange={v=>setLanguage(v as typeof language)}/>{!!favoriteError&&<Text accessibilityRole="alert" style={{color:C.danger}}>{favoriteError}</Text>}<Text style={s.section}>Câu chuyện của địa điểm</Text><Text style={s.body}>{script}</Text>
+ {!!guideError&&<Text style={{color:C.danger,marginBottom:18}}>{guideError}</Text>}
+ <View style={s.voiceCard}><View style={s.voiceIcon}><Ionicons name="headset" color={C.primary} size={27}/></View><View style={{flex:1}}><Text style={s.voiceName}>Hướng dẫn viên âm thanh</Text><Text style={s.voiceSub}>{LANGS.find(l=>l.key===language)?.flag} {LANGS.find(l=>l.key===language)?.label} • Giọng thuyết minh</Text></View><Ionicons name="musical-notes-outline" size={23} color={C.primary}/></View>
+ {speechError?<Text style={{color:C.danger,marginBottom:18}}>{speechError}</Text>:null}
+ {p.source==='osm'?<Text style={{color:C.muted,marginBottom:18,fontSize:11}}>Thông tin từ OpenStreetMap. Ảnh và lời giới thiệu ngắn có thể chỉ mang tính minh họa, chưa được quản trị viên duyệt.</Text>:null}
+ <Text style={s.section}>Vị trí</Text><Text style={s.body}>Khám phá địa điểm thực tế và mở ứng dụng chỉ đường để di chuyển đến đây.</Text>
+ <View style={s.address}><Ionicons name="navigate-circle-outline" size={26} color={C.primary}/><View style={{flex:1}}><Text style={s.addressName}>{p.district}</Text><Text style={s.coordinates}>{p.latitude.toFixed(4)}, {p.longitude.toFixed(4)}</Text></View><Pressable onPress={directions}><Ionicons name="open-outline" size={21} color={C.primary}/></Pressable></View>
+ {p.source==='backend'&&<PlaceReviews placeId={Number(p.id.slice(3))}/>}
+ </View></ScrollView>
+ <View style={s.bottom}><Pressable onPress={()=>speak(spokenPlace)} style={[s.listen,playing&&s.stop]}><Ionicons name={playing?'stop-circle-outline':'play-circle'} size={22} color="#fff"/><Text style={s.listenText}>{playing?'Dừng thuyết minh':'Nghe thuyết minh'}</Text></Pressable><Pressable onPress={directions} style={s.route}><Ionicons name="navigate-outline" size={22} color={C.primary}/></Pressable></View>
+ </View>;
+}
+const s=StyleSheet.create({screen:{flex:1,backgroundColor:C.paper},safe:{flex:1,backgroundColor:C.paper},hero:{height:390,backgroundColor:C.darkBlue},heroActions:{position:'absolute',left:18,right:18,top:5,flexDirection:'row',justifyContent:'space-between'},action:{width:43,height:43,borderRadius:16,backgroundColor:'rgba(12,34,43,.46)',justifyContent:'center',alignItems:'center'},heroCaption:{position:'absolute',bottom:34,left:22,right:22},location:{color:'#C8EFE6',fontWeight:'800',fontSize:12,marginBottom:10},title:{color:'#fff',fontSize:29,fontWeight:'900',lineHeight:36,letterSpacing:-.7},description:{color:'#EDF7F6',marginTop:7,fontSize:13},content:{backgroundColor:C.paper,borderTopLeftRadius:25,borderTopRightRadius:25,marginTop:-18,paddingTop:24,paddingHorizontal:22},badges:{flexDirection:'row',gap:8,flexWrap:'wrap',marginBottom:27},badge:{backgroundColor:C.white,borderColor:C.border,borderWidth:1,borderRadius:12,paddingHorizontal:12,paddingVertical:10,flexDirection:'row',alignItems:'center',gap:7},badgeText:{color:C.ink,fontWeight:'800',fontSize:11},section:{fontSize:19,fontWeight:'900',color:C.ink,marginBottom:12},body:{color:'#586D7B',fontSize:14,lineHeight:25,marginBottom:27},voiceCard:{flexDirection:'row',alignItems:'center',gap:12,backgroundColor:C.primarySoft,borderRadius:19,padding:15,marginBottom:31},voiceIcon:{width:48,height:48,backgroundColor:C.white,borderRadius:15,alignItems:'center',justifyContent:'center'},voiceName:{fontSize:13,fontWeight:'900',color:C.ink},voiceSub:{fontSize:11,color:C.muted,marginTop:5},address:{backgroundColor:C.white,borderRadius:17,padding:17,flexDirection:'row',alignItems:'center',gap:11,borderWidth:1,borderColor:C.border},addressName:{fontSize:12,fontWeight:'800',color:C.ink},coordinates:{fontSize:10,color:C.muted,marginTop:5},bottom:{position:'absolute',bottom:0,left:0,right:0,paddingHorizontal:18,paddingTop:12,paddingBottom:27,backgroundColor:'rgba(255,255,255,.98)',flexDirection:'row',gap:10,borderTopWidth:1,borderTopColor:C.border},listen:{flex:1,backgroundColor:C.primary,height:56,borderRadius:17,flexDirection:'row',alignItems:'center',justifyContent:'center',gap:9},stop:{backgroundColor:C.darkBlue},listenText:{color:'#fff',fontWeight:'900',fontSize:13},route:{height:56,width:57,backgroundColor:C.primarySoft,borderRadius:17,alignItems:'center',justifyContent:'center'},missing:{flex:1,alignItems:'center',justifyContent:'center',gap:15},missingText:{fontWeight:'900',fontSize:18,color:C.ink}});

@@ -1,0 +1,287 @@
+env: load .env
+env: export EXPO_PUBLIC_API_URL
+Starting project at C:\CongNghePhanMem\multilingual-guide
+React Compiler enabled
+Starting Metro Bundler
+
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Waiting on http://localhost:8081
+
+Logs for your project will appear below.
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| (node:13636) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+| (Use `node --trace-warnings ...` to show where the warning was created)
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| (node:13636) DeprecationWarning: Passing lineNumber and colNumber is deprecated to @babel/code-frame. Please use `codeFrameColumns`.
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| (node:13636) DeprecationWarning: Passing lineNumber and colNumber is deprecated to @babel/code-frame. Please use `codeFrameColumns`.
+λ Bundled 23307ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1052 modules)
+Web Bundled 24137ms node_modules\expo-router\entry.js (1012 modules)
+λ Bundled 39ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 564ms node_modules\expo-router\entry.js (1 module)
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+λ Bundled 62ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 392ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 10690ms node_modules\expo-router\entry.js (1018 modules)
+Web Bundled 1213ms node_modules\expo-router\entry.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web Bundled 1031ms node_modules\leaflet\dist\leaflet-src.js (1 module)
+Web Bundled 468ms node_modules\leaflet\dist\leaflet-src.js (1 module)
+λ Bundled 67ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 509ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 30ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 202ms node_modules\expo-router\entry.js (1 module)
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+λ Bundled 98769ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 102196ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 90ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundled 13021ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 32ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 19ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web  INFO  %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Web  LOG  Running application "main" with appParams:
+ {"hydrate": undefined, "rootTag": "#root"} 
+Development-level warnings: ON.
+Performance optimizations: OFF.
+Web  WARN  "shadow*" style props are deprecated. Use "boxShadow".
+Web Bundled 4ms node_modules\leaflet\dist\leaflet-src.js (1 module)
+Web Bundled 6717ms node_modules\expo-router\entry.js (1 module)
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:359:24):
+|   357 | 	}
+|   358 | .leaflet-control-layers-toggle {
+| > 359 | 	background-image: url(images/layers.png);
+|       | 	                      ^
+|   360 | 	width: 36px;
+|   361 | 	height: 36px;
+|   362 | 	}
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:364:24):
+|   362 | 	}
+|   363 | .leaflet-retina .leaflet-control-layers-toggle {
+| > 364 | 	background-image: url(images/layers-2x.png);
+|       | 	                      ^
+|   365 | 	background-size: 26px 26px;
+|   366 | 	}
+|   367 | .leaflet-touch .leaflet-control-layers-toggle {
+| Importing local resources in CSS is not supported yet. (node_modules\leaflet\dist\leaflet.css:407:24):
+|   405 | /* Default icon URLs */
+|   406 | .leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+| > 407 | 	background-image: url(images/marker-icon.png);
+|       | 	                      ^
+|   408 | 	}
+|   409 |
+|   410 |
+Web Bundled 108428ms node_modules\expo-router\entry.js (1 module)
+Web Bundled 64695ms node_modules\expo-router\entry.js (1 module)
+λ Bundled 115759ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)

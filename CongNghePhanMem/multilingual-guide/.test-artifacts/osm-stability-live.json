@@ -1,0 +1,12 @@
+{
+  "publicLandmarkOnly": true,
+  "forceRefresh": false,
+  "first": {
+    "ms": 26326,
+    "status": 504,
+    "cors": "http://localhost:8081",
+    "body": {
+      "detail": "Không tải được địa điểm OpenStreetMap. overpass.private.coffee phản hồi quá 14 giây. | overpass-api.de phản hồi quá 12 giây."
+    }
+  }
+}

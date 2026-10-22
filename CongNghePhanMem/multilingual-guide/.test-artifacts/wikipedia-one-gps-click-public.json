@@ -1,0 +1,18 @@
+{
+  "liveWikipedia": true,
+  "developmentMode": true,
+  "publicTestLandmark": true,
+  "approvedLocationTest": false,
+  "radiusKm": 3,
+  "manualMode": false,
+  "gpsMode": true,
+  "mockedCoordinates": true,
+  "initialHasLocation": false,
+  "gpsCalls": 1,
+  "statuses": [
+    200
+  ],
+  "markers": 50,
+  "summary": "Wikipedia: Đã phản hồi · 50 địa điểm đang hiển thị.",
+  "errors": []
+}

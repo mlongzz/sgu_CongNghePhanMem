@@ -1,0 +1,2089 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\CongNghePhanMem\\multilingual-guide\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--reporter=line,json"
+    ],
+    "configFile": "C:\\CongNghePhanMem\\multilingual-guide\\playwright.config.ts",
+    "rootDir": "C:/CongNghePhanMem/multilingual-guide/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/CongNghePhanMem/multilingual-guide/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/CongNghePhanMem/multilingual-guide/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\CongNghePhanMem\\multilingual-guide\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e",
+        "snapshotDir": "C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:8099",
+          "channel": "chrome",
+          "headless": true,
+          "trace": "retain-on-failure",
+          "screenshot": "only-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "admin-publication.spec.ts",
+      "file": "admin-publication.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "admin creates a draft, publishes, archives and restores without losing its record",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 17126,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true }) with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true }) with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\u001b[22m\n\n    at C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\admin-publication.spec.ts:17:78",
+                    "location": {
+                      "file": "C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\admin-publication.spec.ts",
+                      "column": 78,
+                      "line": 17
+                    },
+                    "snippet": "  15 |   await page.getByLabel('Kinh độ (-180…180)', { exact: true }).fill('106.6993');\n  16 |   await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();\n> 17 |   await expect(page.getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })).toBeVisible();\n     |                                                                              ^\n  18 |   const publicPlaces = async () => (await request.get('http://127.0.0.1:8765/places?limit=100')).json() as Promise<{ id: number; name: string }[]>;\n  19 |   expect((await publicPlaces()).some(row => row.name === name)).toBe(false);\n  20 |   const row = page.getByText(name, { exact: true }).locator('..');"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\admin-publication.spec.ts",
+                        "column": 78,
+                        "line": 17
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\nExpected: visible\nTimeout: 15000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true }) with timeout 15000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })\u001b[22m\n\n\n  15 |   await page.getByLabel('Kinh độ (-180…180)', { exact: true }).fill('106.6993');\n  16 |   await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();\n> 17 |   await expect(page.getByText('Đã lưu vào cơ sở dữ liệu.', { exact: true })).toBeVisible();\n     |                                                                              ^\n  18 |   const publicPlaces = async () => (await request.get('http://127.0.0.1:8765/places?limit=100')).json() as Promise<{ id: number; name: string }[]>;\n  19 |   expect((await publicPlaces()).some(row => row.name === name)).toBe(false);\n  20 |   const row = page.getByText(name, { exact: true }).locator('..');\n    at C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\admin-publication.spec.ts:17:78"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:02.421Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\admin-publication-admin-cr-6ba09-s-without-losing-its-record\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\admin-publication-admin-cr-6ba09-s-without-losing-its-record\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\admin-publication-admin-cr-6ba09-s-without-losing-its-record\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\admin-publication.spec.ts",
+                    "column": 78,
+                    "line": 17
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d6b2983af7e29b5a189e-37b2f15e3a25ffe3188a",
+          "file": "admin-publication.spec.ts",
+          "line": 4,
+          "column": 5
+        },
+        {
+          "title": "OSM import requires a reviewed preview and saves unpublished drafts idempotently",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1834,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:21.360Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d6b2983af7e29b5a189e-b4cd8877e678e2501087",
+          "file": "admin-publication.spec.ts",
+          "line": 36,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "application.spec.ts",
+      "file": "application.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "register, login, restore, favorites, review, history, profile, logout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6219,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:23.652Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-42840b886173a4d1705d",
+          "file": "application.spec.ts",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "title": "admin login, image upload and remove through the real backend",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2712,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:29.887Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-4734475ee26a0e32f8ca",
+          "file": "application.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "responsive authentication at mobile and desktop widths",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5114,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:32.618Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-7d8f7517c551c9bf92f1",
+          "file": "application.spec.ts",
+          "line": 79,
+          "column": 5
+        },
+        {
+          "title": "expired access token refreshes, invalid refresh clears the session",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1202,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:37.760Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-93356d43a2eb9825deb4",
+          "file": "application.spec.ts",
+          "line": 90,
+          "column": 5
+        },
+        {
+          "title": "GPS search uses actual coordinates and offline login shows an actionable error",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2139,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:38.976Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-dc5fa10a7ce48ce07972",
+          "file": "application.spec.ts",
+          "line": 103,
+          "column": 5
+        },
+        {
+          "title": "admin publishes narration and builds a journey from named places",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3066,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:41.128Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "ac4d568caf1644a25ff7-94f85173620dbf3b782e",
+          "file": "application.spec.ts",
+          "line": 117,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "gps-entry.spec.ts",
+      "file": "gps-entry.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "fresh page and reload need one GPS click, tolerate malformed settings and automatically show fallback places",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1808,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:44.237Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-808119037129413f812c",
+          "file": "gps-entry.spec.ts",
+          "line": 18,
+          "column": 5
+        },
+        {
+          "title": "one GPS click shows fallback places while FastAPI and OpenStreetMap are both pending",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1765,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:46.060Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-833168cec5cecdd0e163",
+          "file": "gps-entry.spec.ts",
+          "line": 46,
+          "column": 5
+        },
+        {
+          "title": "another GPS click waits for the new position before refreshing fallback places",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2668,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:47.854Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-ebbd655f604581139f0f",
+          "file": "gps-entry.spec.ts",
+          "line": 64,
+          "column": 5
+        },
+        {
+          "title": "denied GPS sends no POI request, gives a clear error and another GPS click can recover",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1811,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:50.551Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-9a6002c67c18bd5bf19e",
+          "file": "gps-entry.spec.ts",
+          "line": 107,
+          "column": 5
+        },
+        {
+          "title": "a GPS callback that never arrives ends loading through the watchdog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1331,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:52.402Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-1102712e2d92fcafe93d",
+          "file": "gps-entry.spec.ts",
+          "line": 129,
+          "column": 5
+        },
+        {
+          "title": "a transient GPS error retries with high accuracy and then displays the returned position",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1475,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:53.767Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-bdd9618e45e91cb49132",
+          "file": "gps-entry.spec.ts",
+          "line": 146,
+          "column": 5
+        },
+        {
+          "title": "permission progress is visible and a later approval continues the same GPS request",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1716,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:55.288Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-89ff3de20d9400b8e2a9",
+          "file": "gps-entry.spec.ts",
+          "line": 167,
+          "column": 5
+        },
+        {
+          "title": "cancel ignores the old GPS callback and a new click can obtain position",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1695,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:57.031Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-793899622bc538315127",
+          "file": "gps-entry.spec.ts",
+          "line": 190,
+          "column": 5
+        },
+        {
+          "title": "manual coordinates work without GPS, validate inputs and are labelled honestly",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1687,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:21:58.750Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-e23867434a0f9ae29b55",
+          "file": "gps-entry.spec.ts",
+          "line": 215,
+          "column": 5
+        },
+        {
+          "title": "late server settings cannot replace the radius the user already selected",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1868,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:00.464Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0e14769594a6a3626cc3-41a6997197fd1d82661a",
+          "file": "gps-entry.spec.ts",
+          "line": 236,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "gps-race.spec.ts",
+      "file": "gps-race.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "radius 3→5→1 while a fresh GPS fix is pending uses the last radius and returned coordinates",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1727,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:02.401Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "004e0be7016cdc46a7a1-629154d3332ad2d43a17",
+          "file": "gps-race.spec.ts",
+          "line": 42,
+          "column": 5
+        },
+        {
+          "title": "stale GPS reacquisition cannot be replaced by the old fix when radius changes again",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 864,
+                  "error": {
+                    "message": "Error: page.evaluate: TypeError: this.callbacks[index] is not a function\n    at Object.emit (<anonymous>:6:30)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:27)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)",
+                    "stack": "Error: page.evaluate: TypeError: this.callbacks[index] is not a function\n    at Object.emit (<anonymous>:6:30)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:27)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at Object.emit (<anonymous>:6:30)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:27)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at emit (C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\gps-race.spec.ts:39:14)\n    at C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\gps-race.spec.ts:69:9",
+                    "location": {
+                      "file": "<anonymous>",
+                      "column": 30,
+                      "line": 6
+                    }
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "<anonymous>",
+                        "column": 30,
+                        "line": 6
+                      },
+                      "message": "Error: page.evaluate: TypeError: this.callbacks[index] is not a function\n    at Object.emit (<anonymous>:6:30)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:27)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at Object.emit (<anonymous>:6:30)\n    at eval (eval at evaluate (:370:30), <anonymous>:4:27)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at emit (C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\gps-race.spec.ts:39:14)\n    at C:\\CongNghePhanMem\\multilingual-guide\\tests\\e2e\\gps-race.spec.ts:69:9"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:04.160Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\gps-race-stale-GPS-reacqui-59f8d-x-when-radius-changes-again\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\gps-race-stale-GPS-reacqui-59f8d-x-when-radius-changes-again\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\CongNghePhanMem\\multilingual-guide\\test-results\\gps-race-stale-GPS-reacqui-59f8d-x-when-radius-changes-again\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "<anonymous>",
+                    "column": 30,
+                    "line": 6
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "004e0be7016cdc46a7a1-c9763281041b8f3e2f69",
+          "file": "gps-race.spec.ts",
+          "line": 63,
+          "column": 5
+        },
+        {
+          "title": "leaving the map cancels a pending GPS request and ignores its callback after returning",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1498,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:08.979Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "004e0be7016cdc46a7a1-ddca104b8f1811fa72bf",
+          "file": "gps-race.spec.ts",
+          "line": 92,
+          "column": 5
+        },
+        {
+          "title": "moving GPS clears old official POI even when the new official lookup fails",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1448,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:11.013Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "004e0be7016cdc46a7a1-cddf41d6b0c9fbf471f7",
+          "file": "gps-race.spec.ts",
+          "line": 115,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "language.spec.ts",
+      "file": "language.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "globe changes navigation and authentication language and persists after reload",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2700,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:12.500Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "49def915946a04ed21ee-dace42d6bdc8eb554306",
+          "file": "language.spec.ts",
+          "line": 3,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "map-ux.spec.ts",
+      "file": "map-ux.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "clean mobile/desktop map keeps GPS accuracy, filtering and diagnostics opt-in",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3309,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:15.252Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3bb34a065d8e2344e2a-406147e30f01c257c14e",
+          "file": "map-ux.spec.ts",
+          "line": 15,
+          "column": 5
+        },
+        {
+          "title": "one failed source produces one gentle notice and preserves working POI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1737,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:18.597Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3bb34a065d8e2344e2a-6ef83779c4af21be22fb",
+          "file": "map-ux.spec.ts",
+          "line": 50,
+          "column": 5
+        },
+        {
+          "title": "dense marker clusters preserve an individually selected landmark",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1732,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:20.373Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f3bb34a065d8e2344e2a-bc450a3f3a71391f0dfe",
+          "file": "map-ux.spec.ts",
+          "line": 60,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "map.spec.ts",
+      "file": "map.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "the real FastAPI endpoints render both ID namespaces and the browser never calls Overpass",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1540,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:22.162Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-f57279004a4d6d4813b8",
+          "file": "map.spec.ts",
+          "line": 24,
+          "column": 5
+        },
+        {
+          "title": "GPS repeats and radius changes reuse cache, while a full reload still asks FastAPI without forcing refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3608,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:23.729Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-9608dffc5af79fb56530",
+          "file": "map.spec.ts",
+          "line": 43,
+          "column": 5
+        },
+        {
+          "title": "empty FastAPI response is complete while OSM is pending at 3 km",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2129,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:27.368Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-ddb1630146e4701e181c",
+          "file": "map.spec.ts",
+          "line": 73,
+          "column": 7
+        },
+        {
+          "title": "empty FastAPI response is complete while OSM is pending at 20 km",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1390,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:29.537Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-6c7ae285be8ecc708fc1",
+          "file": "map.spec.ts",
+          "line": 73,
+          "column": 7
+        },
+        {
+          "title": "OSM results appear while FastAPI is still pending",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1755,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:30.961Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-189d00f2389dcebb5c2f",
+          "file": "map.spec.ts",
+          "line": 101,
+          "column": 5
+        },
+        {
+          "title": "20 km search displays the five km coverage reported by FastAPI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1847,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:32.752Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-b5fbe0707c3fbe4c10c3",
+          "file": "map.spec.ts",
+          "line": 119,
+          "column": 5
+        },
+        {
+          "title": "proxy throttling ends loading and retry stays on FastAPI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2111,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:34.642Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-82f2aec965a077665010",
+          "file": "map.spec.ts",
+          "line": 142,
+          "column": 5
+        },
+        {
+          "title": "Web resolves the real nearby module, merges sources and renders matching Leaflet markers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1787,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:36.784Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-9d2172c062ea587f8a0b",
+          "file": "map.spec.ts",
+          "line": 159,
+          "column": 5
+        },
+        {
+          "title": "FastAPI reports provider failure without crashing and retry restores community markers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2086,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:38.604Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-9a16e97bd5bd00f9e0bd",
+          "file": "map.spec.ts",
+          "line": 179,
+          "column": 5
+        },
+        {
+          "title": "PostgreSQL POI lookup failure leaves the independent OSM endpoint available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1609,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:40.717Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-98ef1208251486dc9458",
+          "file": "map.spec.ts",
+          "line": 203,
+          "column": 5
+        },
+        {
+          "title": "saved OSM POI are clearly labeled, preserve official markers and recover only on another user search",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2703,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:42.350Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-a64f456156f3c2261fea",
+          "file": "map.spec.ts",
+          "line": 214,
+          "column": 5
+        },
+        {
+          "title": "both FastAPI POI endpoints fail while GPS, map and retry remain available",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1683,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:45.087Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-b9b865e1c6bf07f4a1c1",
+          "file": "map.spec.ts",
+          "line": 246,
+          "column": 5
+        },
+        {
+          "title": "empty results and malformed JSON have honest empty/error states",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1892,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:46.806Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-f3cd69b56c901fa46f55",
+          "file": "map.spec.ts",
+          "line": 259,
+          "column": 5
+        },
+        {
+          "title": "rapid radius changes requery FastAPI and discard a delayed OSM response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:48.726Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-f77d4b903318a556816b",
+          "file": "map.spec.ts",
+          "line": 275,
+          "column": 5
+        },
+        {
+          "title": "denied GPS leaves the Leaflet map usable and sends no POI query",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1330,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:51.615Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "2d8799038d2916f69765-b8bb8b1ce3e2010e0dc7",
+          "file": "map.spec.ts",
+          "line": 301,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "narration.spec.ts",
+      "file": "narration.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "regression: GPS Wikipedia marker opens detail and reads real extract with attribution; pause/resume/stop/reload work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2489,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:52.992Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-e7c9ebff8fb278d05feb",
+          "file": "narration.spec.ts",
+          "line": 68,
+          "column": 5
+        },
+        {
+          "title": "four languages select translated article text and matching voice/rate; changing language stops playback",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2951,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:55.515Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-7cede0a38967f773c17c",
+          "file": "narration.spec.ts",
+          "line": 86,
+          "column": 5
+        },
+        {
+          "title": "missing translation and empty content explain disabled playback without speaking metadata",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1772,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:22:58.515Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-c88f4b535b3f67adacb5",
+          "file": "narration.spec.ts",
+          "line": 101,
+          "column": 5
+        },
+        {
+          "title": "Wikipedia network errors allow retry and missing installed voice explains failure then recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2321,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:00.322Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-a7587cf081f2dd367fd4",
+          "file": "narration.spec.ts",
+          "line": 109,
+          "column": 5
+        },
+        {
+          "title": "long extract resumes into the next chunk and navigation stops it",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1992,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:02.672Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-28edeb7ce794c7e88f01",
+          "file": "narration.spec.ts",
+          "line": 125,
+          "column": 5
+        },
+        {
+          "title": "an installed alternate voice can be selected and language changes return to a matching automatic voice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2336,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:04.694Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-d0395a518b51072ab064",
+          "file": "narration.spec.ts",
+          "line": 138,
+          "column": 5
+        },
+        {
+          "title": "previously loaded attributed Wikipedia text remains playable after an offline reload with a cache notice",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2309,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:07.077Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-b2a7b66cc7382978d098",
+          "file": "narration.spec.ts",
+          "line": 154,
+          "column": 5
+        },
+        {
+          "title": "published PostgreSQL guide and meaningful OSM description both play through the same controls",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2551,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:09.415Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-92c70373f5146b13fff4",
+          "file": "narration.spec.ts",
+          "line": 168,
+          "column": 5
+        },
+        {
+          "title": "AutoGuide uses accurate live GPS, avoids repeats, rearms after exit/cooldown, and removes the actual browser watch",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1796,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:12.072Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "53f5f0794bf990da7fd3-cd61ac66942f777519bf",
+          "file": "narration.spec.ts",
+          "line": 186,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "wikipedia.spec.ts",
+      "file": "wikipedia.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "a GPS click automatically finds Wikipedia fallback places and keeps them separate from official POI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2051,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:13.941Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8ff1b6cfa283b67968d-8fcb358e13f8a742fcbc",
+          "file": "wikipedia.spec.ts",
+          "line": 25,
+          "column": 5
+        },
+        {
+          "title": "Wikipedia failure leaves other sources available and manual refresh recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1930,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:16.052Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8ff1b6cfa283b67968d-918caf6e1e1ca42e50f6",
+          "file": "wikipedia.spec.ts",
+          "line": 53,
+          "column": 5
+        },
+        {
+          "title": "changing radius discards stale Wikipedia data and disabling stops future queries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3261,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:18.011Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8ff1b6cfa283b67968d-e4ec1b60682a3283fdd1",
+          "file": "wikipedia.spec.ts",
+          "line": 65,
+          "column": 5
+        },
+        {
+          "title": "20 km Wikipedia search discloses its 10 km limit and uses that actual radius",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1779,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-21T04:23:21.315Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8ff1b6cfa283b67968d-282dbac4ca417fd6568f",
+          "file": "wikipedia.spec.ts",
+          "line": 101,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-21T04:21:01.560Z",
+    "duration": 143337.56100000002,
+    "expected": 52,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}
