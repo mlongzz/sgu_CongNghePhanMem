@@ -1,0 +1,2224 @@
+[
+  {
+    "requested_titles": [
+      "Chợ Bình Tây",
+      "Chợ Bình Điền",
+      "Chợ Kim Biên",
+      "Chợ An Đông",
+      "Chợ Hòa Bình",
+      "Chùa Giác Lâm",
+      "Chùa Giác Viên",
+      "Chùa Phụng Sơn",
+      "Chùa Vạn Phật",
+      "Chùa Bà Thiên Hậu (Thành phố Hồ Chí Minh)",
+      "Chùa Thiên Hậu (Thành phố Hồ Chí Minh)",
+      "Hội quán Nghĩa An",
+      "Hội quán Hà Chương",
+      "Hội quán Ôn Lăng",
+      "Hội quán Quỳnh Phủ",
+      "Nhà thờ Cha Tam",
+      "Nhà thờ Chợ Quán",
+      "Nhà thờ Jeanne d'Arc",
+      "Nhà thờ Ngã Sáu",
+      "Đình Bình Đông",
+      "Đình Minh Hương Gia Thạnh",
+      "Chùa Nam Phổ Đà",
+      "Chùa Từ Ân",
+      "Chùa Huê Lâm"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Chợ Bình Tây|Chợ Bình Điền|Chợ Kim Biên|Chợ An Đông|Chợ Hòa Bình|Chùa Giác Lâm|Chùa Giác Viên|Chùa Phụng Sơn|Chùa Vạn Phật|Chùa Bà Thiên Hậu (Thành phố Hồ Chí Minh)|Chùa Thiên Hậu (Thành phố Hồ Chí Minh)|Hội quán Nghĩa An|Hội quán Hà Chương|Hội quán Ôn Lăng|Hội quán Quỳnh Phủ|Nhà thờ Cha Tam|Nhà thờ Chợ Quán|Nhà thờ Jeanne d'Arc|Nhà thờ Ngã Sáu|Đình Bình Đông|Đình Minh Hương Gia Thạnh|Chùa Nam Phổ Đà|Chùa Từ Ân|Chùa Huê Lâm"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "redirects": [
+          {
+            "from": "Chợ Bình Điền",
+            "to": "Chợ đầu mối Bình Điền"
+          }
+        ],
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Chùa Huê Lâm",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Hu%C3%AA_L%C3%A2m",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Hu%C3%AA_L%C3%A2m&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Hu%C3%AA_L%C3%A2m"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Nam Phổ Đà",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Nam_Ph%E1%BB%95_%C4%90%C3%A0",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Nam_Ph%E1%BB%95_%C4%90%C3%A0&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Nam_Ph%E1%BB%95_%C4%90%C3%A0"
+          },
+          {
+            "ns": 0,
+            "title": "Nhà thờ Ngã Sáu",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Ng%C3%A3_S%C3%A1u",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_Ng%C3%A3_S%C3%A1u&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Ng%C3%A3_S%C3%A1u"
+          },
+          {
+            "ns": 0,
+            "title": "Nhà thờ Jeanne d'Arc",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Jeanne_d%27Arc",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_Jeanne_d%27Arc&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Jeanne_d%27Arc"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Thiên Hậu (Thành phố Hồ Chí Minh)",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Bà Thiên Hậu (Thành phố Hồ Chí Minh)",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%C3%A0_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_B%C3%A0_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%C3%A0_Thi%C3%AAn_H%E1%BA%ADu_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Vạn Phật",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%E1%BA%A1n_Ph%E1%BA%ADt",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_V%E1%BA%A1n_Ph%E1%BA%ADt&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%E1%BA%A1n_Ph%E1%BA%ADt"
+          },
+          {
+            "ns": 0,
+            "title": "Chợ Hòa Bình",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_H%C3%B2a_B%C3%ACnh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_H%C3%B2a_B%C3%ACnh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_H%C3%B2a_B%C3%ACnh"
+          },
+          {
+            "pageid": 12464,
+            "ns": 0,
+            "title": "Hội quán Quỳnh Phủ",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-05-21T05:15:52Z",
+            "lastrevid": 75098223,
+            "length": 543,
+            "fullurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_Qu%E1%BB%B3nh_Ph%E1%BB%A7",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=H%E1%BB%99i_qu%C3%A1n_Qu%E1%BB%B3nh_Ph%E1%BB%A7&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_Qu%E1%BB%B3nh_Ph%E1%BB%A7",
+            "pageprops": {
+              "disambiguation": "",
+              "wikibase_item": "Q118745344"
+            }
+          },
+          {
+            "pageid": 24865,
+            "ns": 0,
+            "title": "Chùa Giác Lâm",
+            "coordinates": [
+              {
+                "lat": 10.77944444,
+                "lon": 106.64916667,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:29Z",
+            "lastrevid": 74947174,
+            "length": 9761,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Gi%C3%A1c_L%C3%A2m",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Gi%C3%A1c_L%C3%A2m&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Gi%C3%A1c_L%C3%A2m",
+            "pageprops": {
+              "wikibase_item": "Q3360457"
+            }
+          },
+          {
+            "pageid": 24965,
+            "ns": 0,
+            "title": "Chùa Giác Viên",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74945365,
+            "length": 8556,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Gi%C3%A1c_Vi%C3%AAn",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Gi%C3%A1c_Vi%C3%AAn&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Gi%C3%A1c_Vi%C3%AAn",
+            "pageprops": {
+              "wikibase_item": "Q10748412"
+            }
+          },
+          {
+            "pageid": 61109,
+            "ns": 0,
+            "title": "Nhà thờ Cha Tam",
+            "coordinates": [
+              {
+                "lat": 10.752,
+                "lon": 106.653,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74531606,
+            "length": 11391,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Cha_Tam",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_Cha_Tam&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Cha_Tam",
+            "pageprops": {
+              "wikibase_item": "Q6837230"
+            }
+          },
+          {
+            "pageid": 89100,
+            "ns": 0,
+            "title": "Chùa Phụng Sơn",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74132011,
+            "length": 8204,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%E1%BB%A5ng_S%C6%A1n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Ph%E1%BB%A5ng_S%C6%A1n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%E1%BB%A5ng_S%C6%A1n",
+            "pageprops": {
+              "wikibase_item": "Q10748518"
+            }
+          },
+          {
+            "pageid": 241853,
+            "ns": 0,
+            "title": "Đình Minh Hương Gia Thạnh",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 75105168,
+            "length": 11001,
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_Minh_H%C6%B0%C6%A1ng_Gia_Th%E1%BA%A1nh",
+            "pageprops": {
+              "wikibase_item": "Q10840600"
+            }
+          },
+          {
+            "pageid": 243572,
+            "ns": 0,
+            "title": "Hội quán Ôn Lăng",
+            "coordinates": [
+              {
+                "lat": 10.7541,
+                "lon": 106.6596,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:34Z",
+            "lastrevid": 75345694,
+            "length": 16726,
+            "fullurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_%C3%94n_L%C4%83ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=H%E1%BB%99i_qu%C3%A1n_%C3%94n_L%C4%83ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_%C3%94n_L%C4%83ng",
+            "pageprops": {
+              "wikibase_item": "Q7268821"
+            }
+          },
+          {
+            "pageid": 244292,
+            "ns": 0,
+            "title": "Hội quán Hà Chương",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:34Z",
+            "lastrevid": 74473878,
+            "length": 9153,
+            "fullurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_H%C3%A0_Ch%C6%B0%C6%A1ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=H%E1%BB%99i_qu%C3%A1n_H%C3%A0_Ch%C6%B0%C6%A1ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_H%C3%A0_Ch%C6%B0%C6%A1ng",
+            "pageprops": {
+              "wikibase_item": "Q10772311"
+            }
+          },
+          {
+            "pageid": 1241704,
+            "ns": 0,
+            "title": "Đình Bình Đông",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-06-30T05:59:26Z",
+            "lastrevid": 74158466,
+            "length": 2825,
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%C3%ACnh_B%C3%ACnh_%C4%90%C3%B4ng",
+            "pageprops": {
+              "wikibase_item": "Q49055776"
+            }
+          },
+          {
+            "pageid": 1295206,
+            "ns": 0,
+            "title": "Chùa Từ Ân",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74528766,
+            "length": 13908,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_T%E1%BB%AB_%C3%82n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_T%E1%BB%AB_%C3%82n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_T%E1%BB%AB_%C3%82n",
+            "pageprops": {
+              "wikibase_item": "Q10748578"
+            }
+          },
+          {
+            "pageid": 1401830,
+            "ns": 0,
+            "title": "Nhà thờ Chợ Quán",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74528989,
+            "length": 12112,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Ch%E1%BB%A3_Qu%C3%A1n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_Ch%E1%BB%A3_Qu%C3%A1n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Ch%E1%BB%A3_Qu%C3%A1n",
+            "pageprops": {
+              "wikibase_item": "Q10800884"
+            }
+          },
+          {
+            "pageid": 1615160,
+            "ns": 0,
+            "title": "Chợ Kim Biên",
+            "coordinates": [
+              {
+                "lat": 10.749985,
+                "lon": 106.655923,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:52Z",
+            "lastrevid": 75365476,
+            "length": 1372,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_Kim_Bi%C3%AAn",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_Kim_Bi%C3%AAn&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_Kim_Bi%C3%AAn",
+            "pageprops": {
+              "wikibase_item": "Q10748778"
+            }
+          },
+          {
+            "pageid": 1639060,
+            "ns": 0,
+            "title": "Chợ Bình Tây",
+            "coordinates": [
+              {
+                "lat": 10.749375,
+                "lon": 106.651078,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:52Z",
+            "lastrevid": 75618890,
+            "length": 10067,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_B%C3%ACnh_T%C3%A2y",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_B%C3%ACnh_T%C3%A2y&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_B%C3%ACnh_T%C3%A2y",
+            "pageprops": {
+              "wikibase_item": "Q15265989"
+            }
+          },
+          {
+            "pageid": 1761129,
+            "ns": 0,
+            "title": "Hội quán Nghĩa An",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:50Z",
+            "lastrevid": 75345664,
+            "length": 14010,
+            "fullurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_Ngh%C4%A9a_An",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=H%E1%BB%99i_qu%C3%A1n_Ngh%C4%A9a_An&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/H%E1%BB%99i_qu%C3%A1n_Ngh%C4%A9a_An",
+            "pageprops": {
+              "wikibase_item": "Q11298063"
+            }
+          },
+          {
+            "pageid": 19512218,
+            "ns": 0,
+            "title": "Chợ đầu mối Bình Điền",
+            "coordinates": [
+              {
+                "lat": 10.702804,
+                "lon": 106.60979,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:29Z",
+            "lastrevid": 75313111,
+            "length": 5190,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_%C4%91%E1%BA%A7u_m%E1%BB%91i_B%C3%ACnh_%C4%90i%E1%BB%81n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_%C4%91%E1%BA%A7u_m%E1%BB%91i_B%C3%ACnh_%C4%90i%E1%BB%81n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_%C4%91%E1%BA%A7u_m%E1%BB%91i_B%C3%ACnh_%C4%90i%E1%BB%81n",
+            "pageprops": {
+              "wikibase_item": "Q32032941"
+            }
+          },
+          {
+            "pageid": 19512236,
+            "ns": 0,
+            "title": "Chợ An Đông",
+            "coordinates": [
+              {
+                "lat": 10.758101,
+                "lon": 106.672179,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:29Z",
+            "lastrevid": 75526975,
+            "length": 3415,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_An_%C4%90%C3%B4ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_An_%C4%90%C3%B4ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_An_%C4%90%C3%B4ng",
+            "pageprops": {
+              "wikibase_item": "Q32032749"
+            }
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    },
+    "language": "vi",
+    "endpoint": "https://vi.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-20T17:45:32.149530+00:00",
+    "fetched_at_evidence": "Original review bundle retrieval timestamp"
+  },
+  {
+    "requested_titles": [
+      "Chùa Sùng Đức",
+      "Chùa Tuyền Lâm",
+      "Chùa Bửu Sơn (Thành phố Hồ Chí Minh)",
+      "Dinh Độc Lập",
+      "Bưu điện trung tâm Sài Gòn",
+      "Nhà thờ chính tòa Đức Bà Sài Gòn",
+      "Chợ Bến Thành",
+      "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+      "Nhà hát Thành phố Hồ Chí Minh",
+      "Trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh",
+      "Thảo Cầm Viên Sài Gòn",
+      "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+      "Bảo tàng Thành phố Hồ Chí Minh",
+      "Bảo tàng Chứng tích chiến tranh",
+      "Chùa Ngọc Hoàng",
+      "Công viên Tao Đàn",
+      "Công viên 23 tháng 9",
+      "Đền thờ Vua Hùng (Thành phố Hồ Chí Minh)",
+      "Đường sách Thành phố Hồ Chí Minh",
+      "Thư viện Khoa học Tổng hợp Thành phố Hồ Chí Minh",
+      "Bảo tàng Tôn Đức Thắng",
+      "Bến Nhà Rồng",
+      "Chùa Xá Lợi",
+      "Chùa Vĩnh Nghiêm"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Chùa Sùng Đức|Chùa Tuyền Lâm|Chùa Bửu Sơn (Thành phố Hồ Chí Minh)|Dinh Độc Lập|Bưu điện trung tâm Sài Gòn|Nhà thờ chính tòa Đức Bà Sài Gòn|Chợ Bến Thành|Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh|Nhà hát Thành phố Hồ Chí Minh|Trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh|Thảo Cầm Viên Sài Gòn|Bảo tàng Lịch sử Thành phố Hồ Chí Minh|Bảo tàng Thành phố Hồ Chí Minh|Bảo tàng Chứng tích chiến tranh|Chùa Ngọc Hoàng|Công viên Tao Đàn|Công viên 23 tháng 9|Đền thờ Vua Hùng (Thành phố Hồ Chí Minh)|Đường sách Thành phố Hồ Chí Minh|Thư viện Khoa học Tổng hợp Thành phố Hồ Chí Minh|Bảo tàng Tôn Đức Thắng|Bến Nhà Rồng|Chùa Xá Lợi|Chùa Vĩnh Nghiêm"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "redirects": [
+          {
+            "from": "Bưu điện trung tâm Sài Gòn",
+            "to": "Bưu điện Sài Gòn"
+          }
+        ],
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Đường sách Thành phố Hồ Chí Minh",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_s%C3%A1ch_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%C6%B0%E1%BB%9Dng_s%C3%A1ch_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_s%C3%A1ch_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh"
+          },
+          {
+            "ns": 0,
+            "title": "Đền thờ Vua Hùng (Thành phố Hồ Chí Minh)",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_th%E1%BB%9D_Vua_H%C3%B9ng_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Bửu Sơn (Thành phố Hồ Chí Minh)",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%E1%BB%ADu_S%C6%A1n_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_B%E1%BB%ADu_S%C6%A1n_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%E1%BB%ADu_S%C6%A1n_(Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh)"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Tuyền Lâm",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tuy%E1%BB%81n_L%C3%A2m",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Tuy%E1%BB%81n_L%C3%A2m&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Tuy%E1%BB%81n_L%C3%A2m"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Sùng Đức",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_S%C3%B9ng_%C4%90%E1%BB%A9c",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_S%C3%B9ng_%C4%90%E1%BB%A9c&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_S%C3%B9ng_%C4%90%E1%BB%A9c"
+          },
+          {
+            "pageid": 7703,
+            "ns": 0,
+            "title": "Dinh Độc Lập",
+            "coordinates": [
+              {
+                "lat": 10.777108,
+                "lon": 106.695441,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:28Z",
+            "lastrevid": 75604266,
+            "length": 15164,
+            "fullurl": "https://vi.wikipedia.org/wiki/Dinh_%C4%90%E1%BB%99c_L%E1%BA%ADp",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Dinh_%C4%90%E1%BB%99c_L%E1%BA%ADp&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Dinh_%C4%90%E1%BB%99c_L%E1%BA%ADp",
+            "pageprops": {
+              "wikibase_item": "Q933384"
+            }
+          },
+          {
+            "pageid": 24486,
+            "ns": 0,
+            "title": "Chùa Xá Lợi",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:36Z",
+            "lastrevid": 75512845,
+            "length": 5421,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_X%C3%A1_L%E1%BB%A3i",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_X%C3%A1_L%E1%BB%A3i&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_X%C3%A1_L%E1%BB%A3i",
+            "pageprops": {
+              "wikibase_item": "Q1005868"
+            }
+          },
+          {
+            "pageid": 40515,
+            "ns": 0,
+            "title": "Bảo tàng Thành phố Hồ Chí Minh",
+            "coordinates": [
+              {
+                "lat": 10.77611111,
+                "lon": 106.69972222,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 75548069,
+            "length": 20177,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q864767"
+            }
+          },
+          {
+            "pageid": 51748,
+            "ns": 0,
+            "title": "Bến Nhà Rồng",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:30Z",
+            "lastrevid": 75540186,
+            "length": 13244,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%BFn_Nh%C3%A0_R%E1%BB%93ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%BFn_Nh%C3%A0_R%E1%BB%93ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%BFn_Nh%C3%A0_R%E1%BB%93ng",
+            "pageprops": {
+              "wikibase_item": "Q10743440"
+            }
+          },
+          {
+            "pageid": 52436,
+            "ns": 0,
+            "title": "Nhà thờ chính tòa Đức Bà Sài Gòn",
+            "coordinates": [
+              {
+                "lat": 10.779722,
+                "lon": 106.699167,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:30Z",
+            "lastrevid": 75598135,
+            "length": 34725,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n",
+            "pageprops": {
+              "wikibase_item": "Q428129"
+            }
+          },
+          {
+            "pageid": 53599,
+            "ns": 0,
+            "title": "Chợ Bến Thành",
+            "coordinates": [
+              {
+                "lat": 10.77252069,
+                "lon": 106.69801918,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 75383236,
+            "length": 17109,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_B%E1%BA%BFn_Th%C3%A0nh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_B%E1%BA%BFn_Th%C3%A0nh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_B%E1%BA%BFn_Th%C3%A0nh",
+            "pageprops": {
+              "wikibase_item": "Q3232879"
+            }
+          },
+          {
+            "pageid": 60586,
+            "ns": 0,
+            "title": "Nhà hát Thành phố Hồ Chí Minh",
+            "coordinates": [
+              {
+                "lat": 10.7767525,
+                "lon": 106.7032824,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 75444432,
+            "length": 14315,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q1949129"
+            }
+          },
+          {
+            "pageid": 60587,
+            "ns": 0,
+            "title": "Thảo Cầm Viên Sài Gòn",
+            "coordinates": [
+              {
+                "lat": 10.78805556,
+                "lon": 106.70472222,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-19T13:37:41Z",
+            "lastrevid": 75653109,
+            "length": 17010,
+            "fullurl": "https://vi.wikipedia.org/wiki/Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n",
+            "pageprops": {
+              "wikibase_item": "Q3162430"
+            }
+          },
+          {
+            "pageid": 63148,
+            "ns": 0,
+            "title": "Trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh",
+            "coordinates": [
+              {
+                "lat": 10.77638889,
+                "lon": 106.70111111,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 74505760,
+            "length": 13645,
+            "fullurl": "https://vi.wikipedia.org/wiki/Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q2227195"
+            }
+          },
+          {
+            "pageid": 79988,
+            "ns": 0,
+            "title": "Bảo tàng Chứng tích chiến tranh",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 75601789,
+            "length": 59181,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Ch%E1%BB%A9ng_t%C3%ADch_chi%E1%BA%BFn_tranh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_Ch%E1%BB%A9ng_t%C3%ADch_chi%E1%BA%BFn_tranh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Ch%E1%BB%A9ng_t%C3%ADch_chi%E1%BA%BFn_tranh",
+            "pageprops": {
+              "wikibase_item": "Q703871"
+            }
+          },
+          {
+            "pageid": 80559,
+            "ns": 0,
+            "title": "Bưu điện Sài Gòn",
+            "coordinates": [
+              {
+                "lat": 10.779884,
+                "lon": 106.699943,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:31Z",
+            "lastrevid": 74535115,
+            "length": 9271,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%C6%B0u_%C4%91i%E1%BB%87n_S%C3%A0i_G%C3%B2n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%C6%B0u_%C4%91i%E1%BB%87n_S%C3%A0i_G%C3%B2n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%C6%B0u_%C4%91i%E1%BB%87n_S%C3%A0i_G%C3%B2n",
+            "pageprops": {
+              "wikibase_item": "Q2227270"
+            }
+          },
+          {
+            "pageid": 86902,
+            "ns": 0,
+            "title": "Công viên Tao Đàn",
+            "coordinates": [
+              {
+                "lat": 10.774606,
+                "lon": 106.692484,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 75550621,
+            "length": 7838,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n",
+            "pageprops": {
+              "wikibase_item": "Q10752055"
+            }
+          },
+          {
+            "pageid": 87170,
+            "ns": 0,
+            "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:31Z",
+            "lastrevid": 75336557,
+            "length": 4430,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q2756351"
+            }
+          },
+          {
+            "pageid": 87236,
+            "ns": 0,
+            "title": "Chùa Ngọc Hoàng",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74670965,
+            "length": 6966,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng",
+            "pageprops": {
+              "wikibase_item": "Q6121304"
+            }
+          },
+          {
+            "pageid": 87318,
+            "ns": 0,
+            "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T16:05:22Z",
+            "lastrevid": 75647224,
+            "length": 13957,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q6941045"
+            }
+          },
+          {
+            "pageid": 93982,
+            "ns": 0,
+            "title": "Công viên 23 tháng 9",
+            "coordinates": [
+              {
+                "lat": 10.7694,
+                "lon": 106.6938,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:38Z",
+            "lastrevid": 74787183,
+            "length": 7274,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_23_th%C3%A1ng_9",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%C3%B4ng_vi%C3%AAn_23_th%C3%A1ng_9&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_23_th%C3%A1ng_9",
+            "pageprops": {
+              "wikibase_item": "Q10752046"
+            }
+          },
+          {
+            "pageid": 792474,
+            "ns": 0,
+            "title": "Chùa Vĩnh Nghiêm",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-09-26T03:15:50Z",
+            "lastrevid": 75588617,
+            "length": 383,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%C4%A9nh_Nghi%C3%AAm",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_V%C4%A9nh_Nghi%C3%AAm&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_V%C4%A9nh_Nghi%C3%AAm",
+            "pageprops": {
+              "disambiguation": "",
+              "wikibase_item": "Q10748587"
+            }
+          },
+          {
+            "pageid": 2302489,
+            "ns": 0,
+            "title": "Bảo tàng Tôn Đức Thắng",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74447047,
+            "length": 8840,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_T%C3%B4n_%C4%90%E1%BB%A9c_Th%E1%BA%AFng",
+            "pageprops": {
+              "wikibase_item": "Q16481256"
+            }
+          },
+          {
+            "pageid": 19787941,
+            "ns": 0,
+            "title": "Thư viện Khoa học Tổng hợp Thành phố Hồ Chí Minh",
+            "coordinates": [
+              {
+                "lat": 10.774934,
+                "lon": 106.698956,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:40Z",
+            "lastrevid": 75143165,
+            "length": 17665,
+            "fullurl": "https://vi.wikipedia.org/wiki/Th%C6%B0_vi%E1%BB%87n_Khoa_h%E1%BB%8Dc_T%E1%BB%95ng_h%E1%BB%A3p_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Th%C6%B0_vi%E1%BB%87n_Khoa_h%E1%BB%8Dc_T%E1%BB%95ng_h%E1%BB%A3p_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Th%C6%B0_vi%E1%BB%87n_Khoa_h%E1%BB%8Dc_T%E1%BB%95ng_h%E1%BB%A3p_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q56101301"
+            }
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    },
+    "language": "vi",
+    "endpoint": "https://vi.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-20T17:45:32.149530+00:00",
+    "fetched_at_evidence": "Original review bundle retrieval timestamp"
+  },
+  {
+    "requested_titles": [
+      "Chùa Ấn Quang",
+      "Việt Nam Quốc Tự",
+      "Lăng Ông Bà Chiểu",
+      "Nhà thờ Tân Định",
+      "Nhà thờ Huyện Sĩ",
+      "Nhà thờ Hạnh Thông Tây",
+      "Chợ Tân Định",
+      "Chùa Bà Ấn",
+      "Đền Sri Thenday Yuttha Panin",
+      "Tháp Bitexco Financial",
+      "Bến Bạch Đằng",
+      "Đường đi bộ Nguyễn Huệ",
+      "Cầu Mống",
+      "Cầu Khánh Hội",
+      "Cầu Ba Son",
+      "Địa đạo Phú Thọ Hòa",
+      "Công viên Lê Văn Tám",
+      "Hồ Con Rùa",
+      "Bảo tàng Phụ nữ Nam Bộ",
+      "Bảo tàng Chiến dịch Hồ Chí Minh",
+      "Bảo tàng Lực lượng vũ trang miền Đông Nam Bộ",
+      "Bảo tàng Áo dài",
+      "Tu viện Khánh An",
+      "Chùa Hoằng Pháp"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Chùa Ấn Quang|Việt Nam Quốc Tự|Lăng Ông Bà Chiểu|Nhà thờ Tân Định|Nhà thờ Huyện Sĩ|Nhà thờ Hạnh Thông Tây|Chợ Tân Định|Chùa Bà Ấn|Đền Sri Thenday Yuttha Panin|Tháp Bitexco Financial|Bến Bạch Đằng|Đường đi bộ Nguyễn Huệ|Cầu Mống|Cầu Khánh Hội|Cầu Ba Son|Địa đạo Phú Thọ Hòa|Công viên Lê Văn Tám|Hồ Con Rùa|Bảo tàng Phụ nữ Nam Bộ|Bảo tàng Chiến dịch Hồ Chí Minh|Bảo tàng Lực lượng vũ trang miền Đông Nam Bộ|Bảo tàng Áo dài|Tu viện Khánh An|Chùa Hoằng Pháp"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "redirects": [
+          {
+            "from": "Nhà thờ Huyện Sĩ",
+            "to": "Nhà thờ Huyện Sỹ"
+          },
+          {
+            "from": "Lăng Ông Bà Chiểu",
+            "to": "Lăng Ông (Bà Chiểu)"
+          }
+        ],
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Bảo tàng Áo dài",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_%C3%81o_d%C3%A0i",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_%C3%81o_d%C3%A0i&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_%C3%81o_d%C3%A0i"
+          },
+          {
+            "ns": 0,
+            "title": "Bảo tàng Lực lượng vũ trang miền Đông Nam Bộ",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%B1c_l%C6%B0%E1%BB%A3ng_v%C5%A9_trang_mi%E1%BB%81n_%C4%90%C3%B4ng_Nam_B%E1%BB%99",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%B1c_l%C6%B0%E1%BB%A3ng_v%C5%A9_trang_mi%E1%BB%81n_%C4%90%C3%B4ng_Nam_B%E1%BB%99&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%B1c_l%C6%B0%E1%BB%A3ng_v%C5%A9_trang_mi%E1%BB%81n_%C4%90%C3%B4ng_Nam_B%E1%BB%99"
+          },
+          {
+            "ns": 0,
+            "title": "Đường đi bộ Nguyễn Huệ",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_%C4%91i_b%E1%BB%99_Nguy%E1%BB%85n_Hu%E1%BB%87",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%C6%B0%E1%BB%9Dng_%C4%91i_b%E1%BB%99_Nguy%E1%BB%85n_Hu%E1%BB%87&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_%C4%91i_b%E1%BB%99_Nguy%E1%BB%85n_Hu%E1%BB%87"
+          },
+          {
+            "ns": 0,
+            "title": "Tháp Bitexco Financial",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Th%C3%A1p_Bitexco_Financial",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Th%C3%A1p_Bitexco_Financial&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Th%C3%A1p_Bitexco_Financial"
+          },
+          {
+            "ns": 0,
+            "title": "Đền Sri Thenday Yuttha Panin",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Sri_Thenday_Yuttha_Panin",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%E1%BB%81n_Sri_Thenday_Yuttha_Panin&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_Sri_Thenday_Yuttha_Panin"
+          },
+          {
+            "ns": 0,
+            "title": "Chùa Bà Ấn",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%C3%A0_%E1%BA%A4n",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_B%C3%A0_%E1%BA%A4n&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_B%C3%A0_%E1%BA%A4n"
+          },
+          {
+            "pageid": 56413,
+            "ns": 0,
+            "title": "Hồ Con Rùa",
+            "coordinates": [
+              {
+                "lat": 10.78277778,
+                "lon": 106.69583333,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:30Z",
+            "lastrevid": 75180180,
+            "length": 13138,
+            "fullurl": "https://vi.wikipedia.org/wiki/H%E1%BB%93_Con_R%C3%B9a",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=H%E1%BB%93_Con_R%C3%B9a&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/H%E1%BB%93_Con_R%C3%B9a",
+            "pageprops": {
+              "wikibase_item": "Q10771949"
+            }
+          },
+          {
+            "pageid": 80557,
+            "ns": 0,
+            "title": "Việt Nam Quốc Tự",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:31Z",
+            "lastrevid": 74508224,
+            "length": 13861,
+            "fullurl": "https://vi.wikipedia.org/wiki/Vi%E1%BB%87t_Nam_Qu%E1%BB%91c_T%E1%BB%B1",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Vi%E1%BB%87t_Nam_Qu%E1%BB%91c_T%E1%BB%B1&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Vi%E1%BB%87t_Nam_Qu%E1%BB%91c_T%E1%BB%B1",
+            "pageprops": {
+              "wikibase_item": "Q10832864"
+            }
+          },
+          {
+            "pageid": 86874,
+            "ns": 0,
+            "title": "Công viên Lê Văn Tám",
+            "coordinates": [
+              {
+                "lat": 10.788613,
+                "lon": 106.693715,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 74530472,
+            "length": 5456,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_L%C3%AA_V%C4%83n_T%C3%A1m",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%C3%B4ng_vi%C3%AAn_L%C3%AA_V%C4%83n_T%C3%A1m&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_L%C3%AA_V%C4%83n_T%C3%A1m",
+            "pageprops": {
+              "wikibase_item": "Q10752054"
+            }
+          },
+          {
+            "pageid": 87178,
+            "ns": 0,
+            "title": "Bảo tàng Chiến dịch Hồ Chí Minh",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74298664,
+            "length": 2843,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Chi%E1%BA%BFn_d%E1%BB%8Bch_H%E1%BB%93_Ch%C3%AD_Minh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_Chi%E1%BA%BFn_d%E1%BB%8Bch_H%E1%BB%93_Ch%C3%AD_Minh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Chi%E1%BA%BFn_d%E1%BB%8Bch_H%E1%BB%93_Ch%C3%AD_Minh",
+            "pageprops": {
+              "wikibase_item": "Q10743278"
+            }
+          },
+          {
+            "pageid": 87199,
+            "ns": 0,
+            "title": "Nhà thờ Huyện Sỹ",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-20T12:57:19Z",
+            "lastrevid": 75655731,
+            "length": 8047,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Huy%E1%BB%87n_S%E1%BB%B9",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_Huy%E1%BB%87n_S%E1%BB%B9&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_Huy%E1%BB%87n_S%E1%BB%B9",
+            "pageprops": {
+              "wikibase_item": "Q10800886"
+            }
+          },
+          {
+            "pageid": 87218,
+            "ns": 0,
+            "title": "Chùa Ấn Quang",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:37Z",
+            "lastrevid": 75263447,
+            "length": 10173,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%E1%BA%A4n_Quang",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_%E1%BA%A4n_Quang&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_%E1%BA%A4n_Quang",
+            "pageprops": {
+              "wikibase_item": "Q482355"
+            }
+          },
+          {
+            "pageid": 87748,
+            "ns": 0,
+            "title": "Bảo tàng Phụ nữ Nam Bộ",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 75548020,
+            "length": 8608,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Ph%E1%BB%A5_n%E1%BB%AF_Nam_B%E1%BB%99",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%A3o_t%C3%A0ng_Ph%E1%BB%A5_n%E1%BB%AF_Nam_B%E1%BB%99&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Ph%E1%BB%A5_n%E1%BB%AF_Nam_B%E1%BB%99",
+            "pageprops": {
+              "wikibase_item": "Q10743286"
+            }
+          },
+          {
+            "pageid": 256822,
+            "ns": 0,
+            "title": "Lăng Ông (Bà Chiểu)",
+            "coordinates": [
+              {
+                "lat": 10.80207,
+                "lon": 106.697003,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:34Z",
+            "lastrevid": 75634009,
+            "length": 41434,
+            "fullurl": "https://vi.wikipedia.org/wiki/L%C4%83ng_%C3%94ng_(B%C3%A0_Chi%E1%BB%83u)",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=L%C4%83ng_%C3%94ng_(B%C3%A0_Chi%E1%BB%83u)&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/L%C4%83ng_%C3%94ng_(B%C3%A0_Chi%E1%BB%83u)",
+            "pageprops": {
+              "wikibase_item": "Q7818628"
+            }
+          },
+          {
+            "pageid": 274022,
+            "ns": 0,
+            "title": "Nhà thờ Hạnh Thông Tây",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74702262,
+            "length": 15775,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_H%E1%BA%A1nh_Th%C3%B4ng_T%C3%A2y",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_H%E1%BA%A1nh_Th%C3%B4ng_T%C3%A2y&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_H%E1%BA%A1nh_Th%C3%B4ng_T%C3%A2y",
+            "pageprops": {
+              "wikibase_item": "Q10800888"
+            }
+          },
+          {
+            "pageid": 349034,
+            "ns": 0,
+            "title": "Cầu Mống",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-04T03:43:01Z",
+            "lastrevid": 74892528,
+            "length": 2339,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_M%E1%BB%91ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%E1%BA%A7u_M%E1%BB%91ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_M%E1%BB%91ng",
+            "pageprops": {
+              "wikibase_item": "Q16481264"
+            }
+          },
+          {
+            "pageid": 358530,
+            "ns": 0,
+            "title": "Chùa Hoằng Pháp",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-11T05:39:58Z",
+            "lastrevid": 75631691,
+            "length": 14139,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ho%E1%BA%B1ng_Ph%C3%A1p",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Ho%E1%BA%B1ng_Ph%C3%A1p&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ho%E1%BA%B1ng_Ph%C3%A1p",
+            "pageprops": {
+              "wikibase_item": "Q4356187"
+            }
+          },
+          {
+            "pageid": 1401824,
+            "ns": 0,
+            "title": "Nhà thờ Tân Định",
+            "coordinates": [
+              {
+                "lat": 10.78849952,
+                "lon": 106.69076148,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:09:48Z",
+            "lastrevid": 75414544,
+            "length": 11125,
+            "fullurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_T%C3%A2n_%C4%90%E1%BB%8Bnh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Nh%C3%A0_th%E1%BB%9D_T%C3%A2n_%C4%90%E1%BB%8Bnh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_T%C3%A2n_%C4%90%E1%BB%8Bnh",
+            "pageprops": {
+              "wikibase_item": "Q7682043"
+            }
+          },
+          {
+            "pageid": 1743930,
+            "ns": 0,
+            "title": "Cầu Khánh Hội",
+            "coordinates": [
+              {
+                "lat": 10.768872,
+                "lon": 106.70557,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-12T16:44:49Z",
+            "lastrevid": 75234268,
+            "length": 4127,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_Kh%C3%A1nh_H%E1%BB%99i",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%E1%BA%A7u_Kh%C3%A1nh_H%E1%BB%99i&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_Kh%C3%A1nh_H%E1%BB%99i",
+            "pageprops": {
+              "wikibase_item": "Q10752374"
+            }
+          },
+          {
+            "pageid": 3196147,
+            "ns": 0,
+            "title": "Cầu Ba Son",
+            "coordinates": [
+              {
+                "lat": 10.77955,
+                "lon": 106.71017,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-09-26T13:51:21Z",
+            "lastrevid": 75035517,
+            "length": 12376,
+            "fullurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_Ba_Son",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=C%E1%BA%A7u_Ba_Son&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/C%E1%BA%A7u_Ba_Son",
+            "pageprops": {
+              "wikibase_item": "Q19705165"
+            }
+          },
+          {
+            "pageid": 15253478,
+            "ns": 0,
+            "title": "Tu viện Khánh An",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-04-03T19:09:52Z",
+            "lastrevid": 74412375,
+            "length": 10267,
+            "fullurl": "https://vi.wikipedia.org/wiki/Tu_vi%E1%BB%87n_Kh%C3%A1nh_An",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Tu_vi%E1%BB%87n_Kh%C3%A1nh_An&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Tu_vi%E1%BB%87n_Kh%C3%A1nh_An",
+            "pageprops": {
+              "wikibase_item": "Q86005879"
+            }
+          },
+          {
+            "pageid": 19723891,
+            "ns": 0,
+            "title": "Bến Bạch Đằng",
+            "coordinates": [
+              {
+                "lat": 10.775269,
+                "lon": 106.706903,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:36Z",
+            "lastrevid": 74528723,
+            "length": 17294,
+            "fullurl": "https://vi.wikipedia.org/wiki/B%E1%BA%BFn_B%E1%BA%A1ch_%C4%90%E1%BA%B1ng",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=B%E1%BA%BFn_B%E1%BA%A1ch_%C4%90%E1%BA%B1ng&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/B%E1%BA%BFn_B%E1%BA%A1ch_%C4%90%E1%BA%B1ng",
+            "pageprops": {
+              "wikibase_item": "Q32226383"
+            }
+          },
+          {
+            "pageid": 19729795,
+            "ns": 0,
+            "title": "Chợ Tân Định",
+            "coordinates": [
+              {
+                "lat": 10.789904,
+                "lon": 106.689996,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:37Z",
+            "lastrevid": 75205728,
+            "length": 7615,
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_T%C3%A2n_%C4%90%E1%BB%8Bnh",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%E1%BB%A3_T%C3%A2n_%C4%90%E1%BB%8Bnh&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_T%C3%A2n_%C4%90%E1%BB%8Bnh",
+            "pageprops": {
+              "wikibase_item": "Q31994680"
+            }
+          },
+          {
+            "pageid": 19868291,
+            "ns": 0,
+            "title": "Địa đạo Phú Thọ Hòa",
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T12:10:44Z",
+            "lastrevid": 75636849,
+            "length": 97614,
+            "fullurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%8Ba_%C4%91%E1%BA%A1o_Ph%C3%BA_Th%E1%BB%8D_H%C3%B2a",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=%C4%90%E1%BB%8Ba_%C4%91%E1%BA%A1o_Ph%C3%BA_Th%E1%BB%8D_H%C3%B2a&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%8Ba_%C4%91%E1%BA%A1o_Ph%C3%BA_Th%E1%BB%8D_H%C3%B2a",
+            "pageprops": {
+              "wikibase_item": "Q125344713"
+            }
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    },
+    "language": "vi",
+    "endpoint": "https://vi.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-20T17:45:32.149530+00:00",
+    "fetched_at_evidence": "Original review bundle retrieval timestamp"
+  },
+  {
+    "requested_titles": [
+      "Chùa Phước Hải"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Chùa Phước Hải"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Chùa Phước Hải",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "vi",
+            "pagelanguagehtmlcode": "vi",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C6%B0%E1%BB%9Bc_H%E1%BA%A3i",
+            "editurl": "https://vi.wikipedia.org/w/index.php?title=Ch%C3%B9a_Ph%C6%B0%E1%BB%9Bc_H%E1%BA%A3i&action=edit",
+            "canonicalurl": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ph%C6%B0%E1%BB%9Bc_H%E1%BA%A3i"
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    },
+    "language": "vi",
+    "endpoint": "https://vi.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-20T17:45:32.149530+00:00",
+    "fetched_at_evidence": "Original review bundle retrieval timestamp"
+  },
+  {
+    "language": "en",
+    "endpoint": "https://en.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-21T04:20:58.911481+00:00",
+    "requested_titles": [
+      "Thien Hau Temple (Ho Chi Minh City)",
+      "Nghia An Hoi Quan",
+      "Phuoc An Hoi Quan",
+      "Huyen Sy Church",
+      "Cha Tam Church",
+      "Cho Quan Church",
+      "Giac Vien Pagoda",
+      "Phung Son Temple",
+      "Xa Loi Pagoda",
+      "Vinh Nghiem Pagoda",
+      "An Quang Pagoda",
+      "Jade Emperor Pagoda",
+      "War Remnants Museum",
+      "Ho Chi Minh City Museum of Fine Arts",
+      "Museum of Vietnamese History",
+      "Ton Duc Thang Museum",
+      "Ho Chi Minh Museum (Ho Chi Minh City)",
+      "Mariamman Temple, Ho Chi Minh City",
+      "Sri Thendayuthapani Temple, Ho Chi Minh City",
+      "Ho Chi Minh City Book Street",
+      "Nguyen Hue Boulevard",
+      "Bitexco Financial Tower",
+      "Mong Bridge",
+      "Vietnam Quoc Tu Pagoda"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Thien Hau Temple (Ho Chi Minh City)|Nghia An Hoi Quan|Phuoc An Hoi Quan|Huyen Sy Church|Cha Tam Church|Cho Quan Church|Giac Vien Pagoda|Phung Son Temple|Xa Loi Pagoda|Vinh Nghiem Pagoda|An Quang Pagoda|Jade Emperor Pagoda|War Remnants Museum|Ho Chi Minh City Museum of Fine Arts|Museum of Vietnamese History|Ton Duc Thang Museum|Ho Chi Minh Museum (Ho Chi Minh City)|Mariamman Temple, Ho Chi Minh City|Sri Thendayuthapani Temple, Ho Chi Minh City|Ho Chi Minh City Book Street|Nguyen Hue Boulevard|Bitexco Financial Tower|Mong Bridge|Vietnam Quoc Tu Pagoda"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "redirects": [
+          {
+            "from": "Xa Loi Pagoda",
+            "to": "Xá Lợi Pagoda"
+          },
+          {
+            "from": "An Quang Pagoda",
+            "to": "Ấn Quang Pagoda"
+          },
+          {
+            "from": "Vinh Nghiem Pagoda",
+            "to": "Vĩnh Nghiêm Pagoda, Ho Chi Minh City"
+          },
+          {
+            "from": "Museum of Vietnamese History",
+            "to": "Vietnam National Museum of History"
+          },
+          {
+            "from": "Thien Hau Temple (Ho Chi Minh City)",
+            "to": "List of Mazu temples",
+            "tofragment": "Vietnam"
+          },
+          {
+            "from": "Nguyen Hue Boulevard",
+            "to": "Nguyễn Huệ Boulevard"
+          }
+        ],
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Vietnam Quoc Tu Pagoda",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Vietnam_Quoc_Tu_Pagoda",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Vietnam_Quoc_Tu_Pagoda&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Vietnam_Quoc_Tu_Pagoda"
+          },
+          {
+            "ns": 0,
+            "title": "Ho Chi Minh City Book Street",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Book_Street",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Ho_Chi_Minh_City_Book_Street&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Book_Street"
+          },
+          {
+            "ns": 0,
+            "title": "Sri Thendayuthapani Temple, Ho Chi Minh City",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Sri_Thendayuthapani_Temple,_Ho_Chi_Minh_City",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Sri_Thendayuthapani_Temple,_Ho_Chi_Minh_City&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Sri_Thendayuthapani_Temple,_Ho_Chi_Minh_City"
+          },
+          {
+            "ns": 0,
+            "title": "Ho Chi Minh Museum (Ho Chi Minh City)",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_Museum_(Ho_Chi_Minh_City)",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Ho_Chi_Minh_Museum_(Ho_Chi_Minh_City)&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_Museum_(Ho_Chi_Minh_City)"
+          },
+          {
+            "ns": 0,
+            "title": "Ton Duc Thang Museum",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Ton_Duc_Thang_Museum",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Ton_Duc_Thang_Museum&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Ton_Duc_Thang_Museum"
+          },
+          {
+            "ns": 0,
+            "title": "Phung Son Temple",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Phung_Son_Temple",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Phung_Son_Temple&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Phung_Son_Temple"
+          },
+          {
+            "ns": 0,
+            "title": "Giac Vien Pagoda",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Giac_Vien_Pagoda",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Giac_Vien_Pagoda&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Giac_Vien_Pagoda"
+          },
+          {
+            "ns": 0,
+            "title": "Cho Quan Church",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Cho_Quan_Church",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Cho_Quan_Church&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Cho_Quan_Church"
+          },
+          {
+            "ns": 0,
+            "title": "Cha Tam Church",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Cha_Tam_Church",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Cha_Tam_Church&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Cha_Tam_Church"
+          },
+          {
+            "ns": 0,
+            "title": "Huyen Sy Church",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Huyen_Sy_Church",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Huyen_Sy_Church&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Huyen_Sy_Church"
+          },
+          {
+            "ns": 0,
+            "title": "Phuoc An Hoi Quan",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Phuoc_An_Hoi_Quan",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Phuoc_An_Hoi_Quan&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Phuoc_An_Hoi_Quan"
+          },
+          {
+            "ns": 0,
+            "title": "Nghia An Hoi Quan",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Nghia_An_Hoi_Quan",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Nghia_An_Hoi_Quan&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Nghia_An_Hoi_Quan"
+          },
+          {
+            "pageid": 3217768,
+            "ns": 0,
+            "title": "Ấn Quang Pagoda",
+            "coordinates": [
+              {
+                "lat": 10.76583333,
+                "lon": 106.67166667,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:36:26Z",
+            "lastrevid": 1362361038,
+            "length": 2540,
+            "fullurl": "https://en.wikipedia.org/wiki/%E1%BA%A4n_Quang_Pagoda",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=%E1%BA%A4n_Quang_Pagoda&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/%E1%BA%A4n_Quang_Pagoda",
+            "pageprops": {
+              "wikibase_item": "Q482355"
+            }
+          },
+          {
+            "pageid": 7596521,
+            "ns": 0,
+            "title": "Bitexco Financial Tower",
+            "coordinates": [
+              {
+                "lat": 10.77166667,
+                "lon": 106.70444444,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:37:22Z",
+            "lastrevid": 1378682620,
+            "length": 22590,
+            "fullurl": "https://en.wikipedia.org/wiki/Bitexco_Financial_Tower",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Bitexco_Financial_Tower&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Bitexco_Financial_Tower",
+            "pageprops": {
+              "wikibase_item": "Q638512"
+            }
+          },
+          {
+            "pageid": 9821917,
+            "ns": 0,
+            "title": "War Remnants Museum",
+            "coordinates": [
+              {
+                "lat": 10.779475,
+                "lon": 106.692132,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:37:41Z",
+            "lastrevid": 1363274351,
+            "length": 9439,
+            "fullurl": "https://en.wikipedia.org/wiki/War_Remnants_Museum",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=War_Remnants_Museum&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/War_Remnants_Museum",
+            "pageprops": {
+              "wikibase_item": "Q703871"
+            }
+          },
+          {
+            "pageid": 9929332,
+            "ns": 0,
+            "title": "Vĩnh Nghiêm Pagoda, Ho Chi Minh City",
+            "coordinates": [
+              {
+                "lat": 10.7904,
+                "lon": 106.6823,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T20:44:42Z",
+            "lastrevid": 1375330843,
+            "length": 3796,
+            "fullurl": "https://en.wikipedia.org/wiki/V%C4%A9nh_Nghi%C3%AAm_Pagoda,_Ho_Chi_Minh_City",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=V%C4%A9nh_Nghi%C3%AAm_Pagoda,_Ho_Chi_Minh_City&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/V%C4%A9nh_Nghi%C3%AAm_Pagoda,_Ho_Chi_Minh_City",
+            "pageprops": {
+              "wikibase_item": "Q7932538"
+            }
+          },
+          {
+            "pageid": 12867317,
+            "ns": 0,
+            "title": "Xá Lợi Pagoda",
+            "coordinates": [
+              {
+                "lat": 10.77805556,
+                "lon": 106.68666667,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:38:15Z",
+            "lastrevid": 1367352285,
+            "length": 11055,
+            "fullurl": "https://en.wikipedia.org/wiki/X%C3%A1_L%E1%BB%A3i_Pagoda",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=X%C3%A1_L%E1%BB%A3i_Pagoda&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/X%C3%A1_L%E1%BB%A3i_Pagoda",
+            "pageprops": {
+              "wikibase_item": "Q1005868"
+            }
+          },
+          {
+            "pageid": 14320615,
+            "ns": 0,
+            "title": "Mariamman Temple, Ho Chi Minh City",
+            "coordinates": [
+              {
+                "lat": 10.7723,
+                "lon": 106.6956,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:38:31Z",
+            "lastrevid": 1367126464,
+            "length": 3609,
+            "fullurl": "https://en.wikipedia.org/wiki/Mariamman_Temple,_Ho_Chi_Minh_City",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Mariamman_Temple,_Ho_Chi_Minh_City&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Mariamman_Temple,_Ho_Chi_Minh_City",
+            "pageprops": {
+              "wikibase_item": "Q4448947"
+            }
+          },
+          {
+            "pageid": 15353384,
+            "ns": 0,
+            "title": "Vietnam National Museum of History",
+            "coordinates": [
+              {
+                "lat": 21.02472222,
+                "lon": 105.85972222,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-19T19:03:58Z",
+            "lastrevid": 1363421905,
+            "length": 9620,
+            "fullurl": "https://en.wikipedia.org/wiki/Vietnam_National_Museum_of_History",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Vietnam_National_Museum_of_History&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Vietnam_National_Museum_of_History",
+            "pageprops": {
+              "wikibase_item": "Q5370414"
+            }
+          },
+          {
+            "pageid": 28946369,
+            "ns": 0,
+            "title": "Jade Emperor Pagoda",
+            "coordinates": [
+              {
+                "lat": 10.79171111,
+                "lon": 106.69788889,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:41:32Z",
+            "lastrevid": 1357094635,
+            "length": 2938,
+            "fullurl": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Jade_Emperor_Pagoda&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+            "pageprops": {
+              "wikibase_item": "Q6121304"
+            }
+          },
+          {
+            "pageid": 38156883,
+            "ns": 0,
+            "title": "Ho Chi Minh City Museum of Fine Arts",
+            "coordinates": [
+              {
+                "lat": 10.76944444,
+                "lon": 106.7,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:42:52Z",
+            "lastrevid": 1364537362,
+            "length": 3456,
+            "fullurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Ho_Chi_Minh_City_Museum_of_Fine_Arts&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+            "pageprops": {
+              "wikibase_item": "Q2756351"
+            }
+          },
+          {
+            "pageid": 52203989,
+            "ns": 0,
+            "title": "Nguyễn Huệ Boulevard",
+            "coordinates": [
+              {
+                "lat": 10.774112,
+                "lon": 106.703619,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:44:54Z",
+            "lastrevid": 1378831467,
+            "length": 13795,
+            "fullurl": "https://en.wikipedia.org/wiki/Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard",
+            "pageprops": {
+              "wikibase_item": "Q11300021"
+            }
+          },
+          {
+            "pageid": 52312047,
+            "ns": 0,
+            "title": "List of Mazu temples",
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-17T20:50:39Z",
+            "lastrevid": 1364713443,
+            "length": 41206,
+            "fullurl": "https://en.wikipedia.org/wiki/List_of_Mazu_temples",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=List_of_Mazu_temples&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/List_of_Mazu_temples",
+            "pageprops": {
+              "wikibase_item": "Q7245816"
+            }
+          },
+          {
+            "pageid": 56388227,
+            "ns": 0,
+            "title": "Mong Bridge",
+            "coordinates": [
+              {
+                "lat": 10.768,
+                "lon": 106.7037,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-09-29T19:43:07Z",
+            "lastrevid": 1357913435,
+            "length": 2988,
+            "fullurl": "https://en.wikipedia.org/wiki/Mong_Bridge",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Mong_Bridge&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Mong_Bridge",
+            "pageprops": {
+              "wikibase_item": "Q16481264"
+            }
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    }
+  },
+  {
+    "language": "en",
+    "endpoint": "https://en.wikipedia.org/w/api.php",
+    "fetched_at": "2026-10-21T04:20:59.774026+00:00",
+    "requested_titles": [
+      "Ba Thien Hau Temple",
+      "Quan Am Pagoda"
+    ],
+    "query_parameters": {
+      "action": "query",
+      "format": "json",
+      "formatversion": "2",
+      "redirects": "1",
+      "prop": "coordinates|info|pageprops",
+      "colimit": "max",
+      "coprimary": "primary",
+      "inprop": "url",
+      "ppprop": "disambiguation|wikibase_item",
+      "titles": "Ba Thien Hau Temple|Quan Am Pagoda"
+    },
+    "response": {
+      "batchcomplete": true,
+      "query": {
+        "redirects": [
+          {
+            "from": "Quan Am Pagoda",
+            "to": "Ôn Lăng Assembly Hall"
+          }
+        ],
+        "pages": [
+          {
+            "ns": 0,
+            "title": "Ba Thien Hau Temple",
+            "missing": true,
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "fullurl": "https://en.wikipedia.org/wiki/Ba_Thien_Hau_Temple",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=Ba_Thien_Hau_Temple&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/Ba_Thien_Hau_Temple"
+          },
+          {
+            "pageid": 22199681,
+            "ns": 0,
+            "title": "Ôn Lăng Assembly Hall",
+            "coordinates": [
+              {
+                "lat": 10.7541,
+                "lon": 106.6596,
+                "primary": true,
+                "globe": "earth"
+              }
+            ],
+            "contentmodel": "wikitext",
+            "pagelanguage": "en",
+            "pagelanguagehtmlcode": "en",
+            "pagelanguagedir": "ltr",
+            "touched": "2026-10-18T22:40:11Z",
+            "lastrevid": 1367290559,
+            "length": 16229,
+            "fullurl": "https://en.wikipedia.org/wiki/%C3%94n_L%C4%83ng_Assembly_Hall",
+            "editurl": "https://en.wikipedia.org/w/index.php?title=%C3%94n_L%C4%83ng_Assembly_Hall&action=edit",
+            "canonicalurl": "https://en.wikipedia.org/wiki/%C3%94n_L%C4%83ng_Assembly_Hall",
+            "pageprops": {
+              "wikibase_item": "Q7268821"
+            }
+          }
+        ]
+      },
+      "limits": {
+        "coordinates": 500
+      }
+    }
+  }
+]
