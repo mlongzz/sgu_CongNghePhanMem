@@ -1,5 +1,22 @@
 export type HistoryVisit = { id: number; place_id: number; visited_at: string };
 export type HistoryEntry = HistoryVisit & { name: string; state: 'available' | 'deleted' | 'unavailable' };
+export type HistoryRange = 'all' | 'today' | 'week';
+
+export function historyTime(value: string): number {
+  return Date.parse(/(?:Z|[+-]\d{2}:?\d{2})$/i.test(value) ? value : `${value}Z`);
+}
+
+export function filterHistoryEntries<T extends HistoryVisit>(visits: T[], range: HistoryRange, now = Date.now()): T[] {
+  if (range === 'all') return visits;
+  if (!Number.isFinite(now)) return [];
+  const start = new Date(now);
+  start.setHours(0, 0, 0, 0);
+  if (range === 'week') start.setDate(start.getDate() - 6);
+  return visits.filter(visit => {
+    const time = historyTime(visit.visited_at);
+    return Number.isFinite(time) && time >= start.getTime() && time <= now;
+  });
+}
 
 export async function resolveHistoryEntries(
   visits: HistoryVisit[],

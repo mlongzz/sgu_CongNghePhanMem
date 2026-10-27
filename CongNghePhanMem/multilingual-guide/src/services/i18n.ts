@@ -6,6 +6,13 @@ import type { Language } from '../data/places';
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
 // diagnostics and content supplied by a provider retain their original language.
 const copy: Record<string, readonly [string, string, string]> = {
+  'Địa điểm đã được xóa': ['This place has been deleted', 'Ce lieu a été supprimé', 'この場所は削除されました'],
+  'Lọc thời gian trong trang hiện tại': ['Filter dates on this page', 'Filtrer les dates sur cette page', 'このページの日付で絞り込む'],
+  'Tất cả trong trang': ['All on this page', 'Tout sur cette page', 'このページのすべて'],
+  'Hôm nay': ['Today', 'Aujourd’hui', '今日'],
+  '7 ngày gần đây': ['Last 7 days', 'Les 7 derniers jours', '過去7日間'],
+  'lượt khám phá': ['visits', 'visites', '件の訪問'],
+  'Không có lượt khám phá phù hợp trong trang này.': ['No matching visits on this page.', 'Aucune visite correspondante sur cette page.', 'このページに該当する訪問はありません。'],
   'Không tải được tên địa điểm': ['Could not load the place name', 'Impossible de charger le nom du lieu', '場所の名前を読み込めません'],
   'Một số tên địa điểm chưa tải được. Bạn có thể tải lại.': ['Some place names could not load. You can retry.', 'Certains noms de lieux sont indisponibles. Vous pouvez réessayer.', '一部の場所の名前を読み込めません。再読み込みできます。'],
   'Sắp xếp địa điểm yêu thích': ['Sort saved places', 'Trier les favoris', 'お気に入りを並べ替え'],
