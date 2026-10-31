@@ -28,7 +28,8 @@ def test_upgrade_fresh_database():
             inspector = inspect(connection)
             assert {'users', 'places', 'journeys', 'journey_stops', 'audit_logs', 'admin_settings'} <= set(inspector.get_table_names())
             assert 'role' in {c['name'] for c in inspector.get_columns('users')}
-            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0003'
+            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0007'
+            assert 'place_images' in inspector.get_table_names()
             command.upgrade(config, 'head')  # idempotent
             assert compare_metadata(MigrationContext.configure(connection), Base.metadata) == []
         finally:
@@ -48,6 +49,7 @@ def test_upgrade_existing_baseline_preserves_data():
         assert connection.execute(text('SELECT full_name, role FROM users')).one() == ('Keep', 'user')
         assert connection.execute(text('SELECT name, latitude, longitude, image_url, publication_status, deleted_at FROM places')).one() == ('Keep place', 10, 106, '/media/existing.jpg', 'published', None)
         assert connection.execute(text('SELECT title, content, publication_status FROM guide_contents')).one() == ('Keep title', 'Keep narration', 'published')
+        assert connection.execute(text('SELECT count(*) FROM place_images')).scalar() == 0
 
 
 def test_adopt_existing_admin_tables_preserves_data():

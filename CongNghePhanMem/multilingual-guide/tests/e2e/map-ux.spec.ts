@@ -8,7 +8,10 @@ test.beforeEach(async ({ page, context }) => {
   await context.grantPermissions(['geolocation']);
   await context.setGeolocation(origin);
   await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({ contentType: 'image/png', body: tile }));
-  await page.route('https://vi.wikipedia.org/w/api.php?**', route => route.fulfill({ json: { query: { geosearch: [] } } }));
+  await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+return route.fulfill({ json: { query: { geosearch: [] } } }); });
   await page.route('**/osm/nearby?**', route => route.fulfill({ json: osmPayload(route, [{ type: 'node', id: 501, lat: origin.latitude + .001, lon: origin.longitude, tags: { name: 'Nearby Garden', leisure: 'park' } }]) }));
 });
 
@@ -65,4 +68,5 @@ test('dense marker clusters preserve an individually selected landmark', async (
   await page.getByLabel('Xem bản đồ Cluster landmark 0', { exact: true }).click();
   await expect(page.locator('.poi-marker[data-poi-id="osm-node-1000"]')).toHaveCount(1);
   await expect(page.locator('.leaflet-popup-content')).toContainText('Cluster landmark 0');
+  await expect(page.getByTestId('places-map')).toBeInViewport({ratio:.5});
 });

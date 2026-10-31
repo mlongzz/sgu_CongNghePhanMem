@@ -13,17 +13,18 @@ export function setSessionRecovery(handler: typeof recoverSession) { recoverSess
 
 export async function apiFetch<T>(
   path: string,
-  options?: RequestInit & { token?: string },
+  options?: RequestInit & { token?: string; timeoutMs?: number },
   retried = false,
 ): Promise<T> {
   if (!API_BASE_URL)
     throw new Error("Dịch vụ hiện chưa sẵn sàng. Vui lòng thử lại sau.");
-  const { token, headers, ...init } = options ?? {};
+  const { token, headers, timeoutMs, ...init } = options ?? {};
   if (init.signal?.aborted) { const error = new Error('Đã hủy yêu cầu.'); error.name = 'AbortError'; throw error; }
   const controller = new AbortController();
   const cancel = () => controller.abort();
   init.signal?.addEventListener('abort', cancel, { once: true });
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const configuredTimeout = timeoutMs ?? Number(process.env.EXPO_PUBLIC_API_TIMEOUT_MS || '12000');
+  const timeout = setTimeout(() => controller.abort(), Number.isFinite(configuredTimeout) ? Math.max(1000, Math.min(120000, configuredTimeout)) : 12000);
   try {
     const response = await fetch(`${API_BASE_URL}${path}`, {
       ...init,
@@ -63,6 +64,7 @@ export async function apiFetch<T>(
             : `HTTP ${response.status}`;
       const friendly: Record<string, string> = {
         "Invalid email or password": "Email hoặc mật khẩu không đúng.",
+        "Too many login attempts. Try again later.": "Bạn đã thử đăng nhập quá nhiều lần. Vui lòng chờ vài phút rồi thử lại.",
         "Email already registered": "Email này đã được đăng ký.",
         "Token has expired": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.",
         "Place not found": "Địa điểm này không còn tồn tại.",
@@ -80,7 +82,7 @@ export async function apiFetch<T>(
   } catch (e) {
     if (e instanceof Error && e.name === "AbortError") {
       if (init.signal?.aborted) { const error = new Error('Đã hủy yêu cầu.'); error.name = 'AbortError'; throw error; }
-      throw new Error("Kết nối quá thời gian chờ. Vui lòng thử lại.");
+      throw new Error("Máy chủ phản hồi quá thời gian chờ và có thể đang khởi động. Vui lòng thử lại.");
     }
     if (e instanceof TypeError)
       throw new Error(
@@ -119,6 +121,12 @@ export function refreshTokens(refreshToken: string) {
   return apiFetch<LoginResponse>('/auth/refresh', {
     method: 'POST',
     body: JSON.stringify({ refresh_token: refreshToken }),
+  });
+}
+
+export function revokeSession(refreshToken: string) {
+  return apiFetch<void>('/auth/logout', {
+    method: 'POST', body: JSON.stringify({ refresh_token: refreshToken }),
   });
 }
 

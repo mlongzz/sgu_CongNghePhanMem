@@ -67,6 +67,8 @@ def test_admin_crud_shared_api_and_audit(client, admin_headers):
     assert client.put(f'/admin/places/{pid}', headers=h, json={"publication_status": "published"}).status_code == 200
     assert client.get(f'/places/{pid}').json()['name'] == 'Museum'
     assert client.put(f'/admin/places/{pid}', headers=h, json={"name": "Updated"}).status_code == 200
+    assert client.get(f'/places/{pid}').status_code == 404
+    assert client.put(f'/admin/places/{pid}', headers=h, json={"publication_status": "published"}).status_code == 200
     assert client.get('/admin/places?q=Updated&page_size=1', headers=h).json()['total'] == 1
     assert client.get('/admin/places?page=0', headers=h).status_code == 422
     guide = {"title": "Title", "content": "Verified script", "language_code": "en", "publication_status": "published"}

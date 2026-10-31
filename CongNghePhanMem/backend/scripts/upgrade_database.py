@@ -50,6 +50,9 @@ def main():
     backup = backup_dir / f"before-upgrade-{timestamp}.dump"
     url = engine.url
     env = {**os.environ, "PGPASSWORD": url.password or ""}
+    for option,variable in (('sslmode','PGSSLMODE'),('sslrootcert','PGSSLROOTCERT')):
+        if url.query.get(option):env[variable]=url.query[option]
+    env['PGCONNECT_TIMEOUT']='15'
     result = subprocess.run([find_pg_dump(), "--format=custom", "--no-password", "--file", str(backup),
                              "--host", url.host or "localhost", "--port", str(url.port or 5432),
                              "--username", url.username or "postgres", url.database or "postgres"],

@@ -7,8 +7,11 @@ from sqlalchemy.orm import Session
 
 from app.models.place import Place
 from app.services.media_service import remove_unused_image
+from app.services.editorial_service import reviewed_changes
 
 EARTH_RADIUS_KM = 6371.0
+# One tenth of a millimetre absorbs floating-point error at the inclusive edge.
+DISTANCE_TOLERANCE_KM = 1e-7
 
 
 def public_places(db: Session):
@@ -72,7 +75,7 @@ def get_nearby_places(
             not -90 <= latitude <= 90 or not -180 <= longitude <= 180 or
             not 0 < radius_km <= 500 or not 1 <= limit <= 100):
         raise ValueError("Invalid nearby coordinates, radius or limit")
-    angular_radius = radius_km / EARTH_RADIUS_KM
+    angular_radius = (radius_km + DISTANCE_TOLERANCE_KM) / EARTH_RADIUS_KM
     lat_delta = degrees(angular_radius)
     lat_min = max(-90.0, latitude - lat_delta)
     lat_max = min(90.0, latitude + lat_delta)
@@ -100,7 +103,7 @@ def get_nearby_places(
         if not isfinite(place.latitude) or not isfinite(place.longitude):
             continue
         dist = _haversine_km(latitude, longitude, place.latitude, place.longitude)
-        if dist <= radius_km:
+        if dist <= radius_km + DISTANCE_TOLERANCE_KM:
             nearby.append((place, dist))
 
     nearby.sort(key=lambda x: (x[1], x[0].id))
@@ -147,7 +150,7 @@ def create_place(
 
 def update_place(db: Session, place: Place, changes: dict) -> Place:
     old_image = place.image_url
-    for field, value in changes.items():
+    for field, value in reviewed_changes(place, changes).items():
         setattr(place, field, value)
     db.commit()
     db.refresh(place)

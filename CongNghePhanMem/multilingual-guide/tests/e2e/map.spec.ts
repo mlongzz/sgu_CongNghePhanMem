@@ -11,7 +11,10 @@ test.beforeEach(async ({ page, context }) => {
   await context.setGeolocation(origin);
   await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({ contentType: 'image/png', body: tile }));
   // These cases isolate FastAPI/OSM behavior; the automatically searched fallback is empty.
-  await page.route('https://vi.wikipedia.org/w/api.php?**', route => route.fulfill({ json: { query: { geosearch: [] } } }));
+  await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+return route.fulfill({ json: { query: { geosearch: [] } } }); });
 });
 
 async function locate(page: Page) {
@@ -92,7 +95,7 @@ for (const radius of [3, 20]) {
       release();
       await expect(page.getByText('OpenStreetMap: Đã phản hồi · 0 POI khám phá đang hiển thị.', { exact: true })).toBeVisible();
       await expect(page.getByText(/Đang đọc dữ liệu OpenStreetMap đã lưu/)).toHaveCount(0);
-      await expect(page.getByText(/Chưa tìm thấy địa điểm trong bán kính/)).toBeVisible();
+      await expect(page.getByText(radius > 10 ? /Chưa tìm thấy địa điểm trong phần dữ liệu đã có/ : /Chưa tìm thấy địa điểm trong bán kính/)).toBeVisible();
       expect(errors).toEqual([]);
     } finally { release(); }
   });

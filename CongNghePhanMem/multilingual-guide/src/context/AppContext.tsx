@@ -13,11 +13,13 @@ import * as Speech from "expo-speech";
 import { LANGS, type Language, type Place, type NarrationContent } from "../data/places";
 import { type Coordinates, fetchNearbyPlaces, validateBackendPlace } from "../services/nearby";
 import { getSessionToken, writeSessionToken, getRefreshToken, writeRefreshToken } from "../services/session";
-import { apiFetch, checkAdmin, getUserProfile, refreshTokens, ApiError, setSessionRecovery, type UserResponse } from "../services/api";
+import { apiFetch, checkAdmin, getUserProfile, refreshTokens, revokeSession, ApiError, setSessionRecovery, type UserResponse } from "../services/api";
 import { createSpeechPlayer, createWebSpeechDriver, type PlayerState } from "../services/speechPlayer";
 import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
+
+import { freshGps } from '../services/discoveryStatus';
 
 const STORE_FAVORITES = "mg_favorites_v2";
 const STORE_LANG = "mg_language_v2";
@@ -36,6 +38,7 @@ type AppState = {
   playingId: string | null;
   speechError: string;
   speechStatus: PlayerState['status'];
+  speechCompletion: { id: string; sequence: number } | null;
   speechRate: number;
   setSpeechRate: (rate: number) => void;
   pauseSpeech: () => void;
@@ -51,6 +54,7 @@ type AppState = {
   updateProfile: (profile: UserResponse) => void;
   authLoading: boolean;
   logout: () => void;
+  sessionNotice: string;
   loginWithTokens: (accessToken: string, refreshToken: string) => Promise<void>;
   places: Place[];
   location: LocationCoordinates | null;
@@ -84,6 +88,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [speechError, setSpeechError] = useState("");
   const [speechStatus, setSpeechStatus] = useState<PlayerState['status']>('idle');
+  const [speechCompletion, setSpeechCompletion] = useState<{ id: string; sequence: number } | null>(null);
   const [speechRate, saveSpeechRate] = useState(1);
   const player = useRef<ReturnType<typeof createSpeechPlayer> | null>(null);
   const speechRequest = useRef<AbortController | null>(null);
@@ -116,15 +121,27 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [drafts, setDrafts] = useState<Drafts>({});
   const [user, setUser] = useState<UserResponse | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [sessionNotice, setSessionNotice] = useState('');
   const speechSeq = useRef(0);
   const authSeq = useRef(0);
   const tokenRef = useRef<string | null>(null);
+  const refreshRef = useRef<string | null>(null);
   const recovery = useRef<Promise<string | null> | null>(null);
   const logout = useCallback(() => {
+    const refresh = refreshRef.current;
+    refreshRef.current = null;
+    setSessionNotice('');
+    speechSeq.current++;
+    speechRequest.current?.abort();
+    player.current?.stop();
+    setPlayingId(null); setSpeechStatus('idle');
     authSeq.current++;
     tokenRef.current = null;
     saveToken(null); saveAccountFavorites([]); setFavoritesLoading(false); setFavoriteError(""); setUser(null); setAdminToken(null); setAuthLoading(false);
     void Promise.all([writeSessionToken(null), writeRefreshToken(null)]).catch(() => {});
+    if (refresh) void revokeSession(refresh).catch(e => {
+      if (!(e instanceof ApiError && e.status === 401)) setSessionNotice('Đã đăng xuất trên thiết bị. Chưa thu hồi được phiên trên máy chủ do lỗi kết nối.');
+    });
   }, []);
   const loginWithTokens = useCallback(async (access: string, refresh: string, keepLoading = false) => {
     const seq = ++authSeq.current;
@@ -143,6 +160,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         void AsyncStorage.setItem(STORE_LANG, profile.language).catch(() => {});
       }
       tokenRef.current = access;
+      refreshRef.current = refresh || null;
+      setSessionNotice('');
       saveToken(access); setUser(profile); setAdminToken(admin.enabled ? access : null);
     } finally { if (seq === authSeq.current && !keepLoading) setAuthLoading(false); }
   }, []);
@@ -317,6 +336,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       Platform.OS,
       state => { speechState.current = state; setPlayingId(state.id); setSpeechStatus(state.status); setSpeechError(state.error); },
       { onProgress: (id, progress) => {
+        if (progress === 1) setSpeechCompletion(value => ({ id, sequence: (value?.sequence ?? 0) + 1 }));
         const saved = audioSession.current;
         if (saved?.id === id) saved.progressQueue = saved.progressQueue.then(async () => {
           const sessionId = await saved.session;
@@ -389,12 +409,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     locationRequest.current = controller;
     setLocationProgress("");
     let queryingPlaces = false;
-    const reusable = options.reuseLocation && location && (locationSource === 'manual' ||
-      (typeof location.timestamp === 'number' && Date.now() - location.timestamp <= 60_000));
+    const reusable = options.reuseLocation && location && (locationSource === 'manual' || freshGps(location.timestamp));
     setLoadingPlaces(true);
     setPlacesError("");
     setPlacesWarning("");
-    setPlaces([]);
+    // Retain already downloaded official POI while refreshing; discovery always
+    // filters them against the current exact coordinates and radius.
     setNearbyStatus(options.coordinates || options.gpsCoordinates || reusable ? "loading" : "locating");
     try {
       let coordinates: LocationCoordinates | null = options.coordinates ?? options.gpsCoordinates ?? (reusable ? location : null);
@@ -483,7 +503,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       toggleFavorite,
       isFavorite: (id: string) => favorites.includes(id),
       playingId,
-      speechError, speechStatus, speechRate, setSpeechRate, pauseSpeech, resumeSpeech,
+      speechError, speechStatus, speechCompletion, speechRate, setSpeechRate, pauseSpeech, resumeSpeech,
       canPauseSpeech: Platform.OS !== "android",
       speak,
       stop,
@@ -491,7 +511,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       token,
       setToken,
       isAdmin,
-      user, updateProfile, authLoading, logout, loginWithTokens,
+      user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
       places,
       location,
       locationSource,
@@ -516,14 +536,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       favorites, favoriteError, favoritesLoading, refreshFavorites,
       toggleFavorite,
       playingId,
-      speechError, speechStatus, speechRate, setSpeechRate, pauseSpeech, resumeSpeech,
+      speechError, speechStatus, speechCompletion, speechRate, setSpeechRate, pauseSpeech, resumeSpeech,
       speak,
       stop,
       testSpeech,
       token,
       setToken,
       isAdmin,
-      user, updateProfile, authLoading, logout, loginWithTokens,
+      user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
       places,
       location,
       locationSource,

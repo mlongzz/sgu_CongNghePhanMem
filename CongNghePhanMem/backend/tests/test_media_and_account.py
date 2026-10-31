@@ -32,9 +32,9 @@ def headers(db_session, role="user", email="member@example.com"):
     return {"Authorization": "Bearer " + create_access_token(user.id)}
 
 
-def png():
+def png(color="teal"):
     output = BytesIO()
-    Image.new("RGB", (16, 16), "teal").save(output, "PNG")
+    Image.new("RGB", (16, 16), color).save(output, "PNG")
     return output.getvalue()
 
 
@@ -44,7 +44,16 @@ def test_image_upload_replace_remove_and_audit(client, db_session, tmp_path):
     path = f'/admin/places/{place["id"]}/image'
     upload = client.post(path, headers=admin, content=png())
     assert upload.status_code == 200
-    url = upload.json()['image_url']
+    assert upload.json()['image_url'] is None
+    assert client.get(f'/places/{place["id"]}/images').json() == []
+    candidates = client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()
+    assert candidates[0]['status'] == 'pending'
+    review_path = f'/admin/places/{place["id"]}/images/{candidates[0]["id"]}'
+    assert client.put(review_path, headers=admin, json={'status': 'approved', 'as_cover': True}).status_code == 422
+    reviewed = client.put(review_path, headers=admin, json={'status': 'approved', 'as_cover': True, 'attribution': 'Explicit test author', 'license': 'CC0'})
+    url = reviewed.json()['image_url']
+    assert client.get(f'/places/{place["id"]}').status_code == 404
+    client.put(f'/admin/places/{place["id"]}', headers=admin, json={'publication_status': 'published'})
     assert client.get(f'/places/{place["id"]}').json()['image_url'] == url
     image = client.get(url)
     assert image.status_code == 200
@@ -53,12 +62,18 @@ def test_image_upload_replace_remove_and_audit(client, db_session, tmp_path):
     with Image.open(BytesIO(image.content)) as decoded:
         assert decoded.size == (16, 16)
         assert not decoded.getexif()
-    replacement = client.post(path, headers=admin, content=png()).json()['image_url']
+    assert client.post(path, headers=admin, content=png()).json()['image_url'] == url
+    assert len(client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()) == 1
+    assert client.post(path, headers=admin, content=png('coral')).status_code == 200
+    candidate = client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()[0]
+    replacement = client.put(f'/admin/places/{place["id"]}/images/{candidate["id"]}', headers=admin, json={'status': 'approved', 'as_cover': True, 'attribution': 'Explicit replacement author', 'license': 'CC0'}).json()['image_url']
     assert replacement != url
-    assert client.get(url).status_code == 404
-    assert len(list(tmp_path.iterdir())) == 1
+    assert client.get(url).status_code == 200  # Gallery history remains intact.
+    assert len(list(tmp_path.iterdir())) == 4
     assert client.delete(path, headers=admin).json()['image_url'] is None
-    assert client.get(replacement).status_code == 404
+    assert client.get(replacement).status_code == 200  # Detach/reject does not destroy stored images.
+    candidates = client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()
+    assert next(row for row in candidates if row['url'] == replacement)['status'] == 'rejected'
     actions = [r['action'] for r in client.get('/admin/audit-logs', headers=admin).json()['items']]
     assert 'upload_image' in actions and 'delete_image' in actions
 
@@ -108,7 +123,9 @@ def test_own_review_and_profile_stay_scoped_to_user(client, db_session):
 def test_shared_image_is_kept_until_last_place_releases_it(client, db_session, tmp_path):
     admin = headers(db_session, 'admin')
     ids = [client.post('/admin/places', headers=admin, json={"name": name, "latitude": 0, "longitude": 0}).json()['id'] for name in ('First', 'Second')]
-    url = client.post(f'/admin/places/{ids[0]}/image', headers=admin, content=png()).json()['image_url']
+    client.post(f'/admin/places/{ids[0]}/image', headers=admin, content=png())
+    candidate = client.get(f'/admin/places/{ids[0]}/images', headers=admin).json()[0]
+    url = client.put(f'/admin/places/{ids[0]}/images/{candidate["id"]}', headers=admin, json={'status':'approved','as_cover':True,'attribution':'Shared fixture author','license':'CC0'}).json()['image_url']
     client.put(f'/admin/places/{ids[1]}', headers=admin, json={'image_url': url})
     client.delete(f'/admin/places/{ids[0]}', headers=admin)
     assert client.get(url).status_code == 200
@@ -116,5 +133,5 @@ def test_shared_image_is_kept_until_last_place_releases_it(client, db_session, t
     # Archiving preserves the original place image for a later restore.
     assert client.get(url).status_code == 200
     client.delete(f'/admin/places/{ids[0]}/image', headers=admin)
-    assert client.get(url).status_code == 404
-    assert not list(tmp_path.iterdir())
+    assert client.get(url).status_code == 200
+    assert list(tmp_path.iterdir())  # Gallery audit retains image files after detaching covers.

@@ -319,3 +319,10 @@ test('backend Wikipedia links require matching trusted language, canonical page 
   const canonical = api.validateBackendPlace({ ...base, source_url: 'https://vi.wikipedia.org/w/index.php?curid=7703' });
   assert.equal(canonical.wikipedia.pageId, 7703);
 });
+
+test('official API result cap stays disclosed after duplicate filtering and malformed-only rows are errors',async()=>{
+  const row={id:90001,name:'Official capped fixture',latitude:here.latitude,longitude:here.longitude,publication_status:'published'};
+  const api=service({apiFetch:async()=>Array.from({length:100},()=>row)});
+  const result=await api.fetchNearbyPlaces(here,3);assert.equal(result.places.length,1);assert.match(result.warning,/100/);
+  await assert.rejects(service({apiFetch:async()=>[null,{}]}).fetchNearbyPlaces(here,3),/không hợp lệ/);
+});

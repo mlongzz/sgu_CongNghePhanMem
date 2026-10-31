@@ -1,9 +1,24 @@
 // Run with a fresh build and isolated backend. Explicit teardown also works on Windows.
-const { spawn } = require('node:child_process');
+const { spawn, spawnSync } = require('node:child_process');
+const fs = require('node:fs');
 const path = require('node:path');
 const windows = process.platform === 'win32';
 const children = [];
-const env = { ...process.env, EXPO_PUBLIC_API_URL: 'http://127.0.0.1:8765', EXPO_PUBLIC_ENABLE_DIAGNOSTICS: '1', E2E_EXTERNAL_SERVERS: '1' };
+const lockPath = path.resolve('.test-artifacts/e2e-run.lock');
+let ownsLock = false;
+function lockRun() {
+  fs.mkdirSync(path.dirname(lockPath),{recursive:true});
+  if(fs.existsSync(lockPath)) {
+    let owner;try{owner=JSON.parse(fs.readFileSync(lockPath,'utf8')).pid;}catch{throw new Error('E2E lock is unreadable; verify no runner is active before removing '+lockPath);}
+    let alive=true;try{process.kill(owner,0);}catch(error){if(error.code==='ESRCH')alive=false;}
+    if(alive)throw new Error('Another E2E runner owns the local fixture ports. Wait for it to finish.');
+    fs.unlinkSync(lockPath);
+  }
+  const handle=fs.openSync(lockPath,'wx');
+  fs.writeFileSync(handle,JSON.stringify({pid:process.pid,startedAt:new Date().toISOString()}));fs.closeSync(handle);ownsLock=true;
+}
+
+const env = { ...process.env, EXPO_NO_DOTENV: '1', EXPO_PUBLIC_API_URL: 'http://127.0.0.1:8765', EXPO_PUBLIC_ENABLE_DIAGNOSTICS: '1', E2E_EXTERNAL_SERVERS: '1' };
 function start(command, args, options = {}) {
   const child = spawn(command, args, { env, stdio: 'inherit', windowsHide: true, ...options });
   children.push(child);
@@ -22,11 +37,13 @@ async function ready(url) {
 async function stop() {
   for (const child of children.reverse()) {
     if (child.exitCode !== null || !child.pid) continue;
-    child.kill('SIGTERM');
+    if(windows)spawnSync('taskkill.exe',['/PID',String(child.pid),'/T','/F'],{stdio:'ignore',windowsHide:true});
+    else child.kill('SIGTERM');
     child.unref();
   }
 }
 async function main() {
+  lockRun();
   // Refuse to reuse another developer's process on either test port.
   for (const port of [8765, 8099]) {
     try { await fetch(`http://127.0.0.1:${port}`); throw new Error(`Port ${port} is already in use. Stop the existing process before running tests.`); }
@@ -40,8 +57,9 @@ async function main() {
   await Promise.all([ready('http://127.0.0.1:8765'), ready('http://127.0.0.1:8099/login')]);
   await completed(start(process.execPath, ['node_modules/@playwright/test/cli.js', 'test', ...process.argv.slice(2)]));
 }
-process.once('SIGINT', () => { void stop().then(() => process.exit(130)); });
+process.once('SIGINT', () => { void stop().then(() => {if(ownsLock)try{fs.unlinkSync(lockPath);}catch{/* already removed */}process.exit(130);}); });
 main().catch(error => { console.error(error.message); process.exitCode = 1; }).finally(async () => {
   await stop();
+  if(ownsLock) { try{const owner=JSON.parse(fs.readFileSync(lockPath,'utf8'));if(owner.pid===process.pid)fs.unlinkSync(lockPath);}catch{/* already removed */} }
   process.exit(process.exitCode || 0);
 });

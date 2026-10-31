@@ -7,11 +7,15 @@ Application entry point.
 """
 import logging
 import time
+import asyncio
+import os
+from contextlib import suppress
 
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, Request
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -28,7 +32,9 @@ from app.routers.places import router as places_router
 from app.routers.reviews import router as reviews_router
 from app.routers.journeys import router as journeys_router
 from app.routers.media import router as media_router
-from app.routers.osm import router as osm_router
+from app.routers.osm import router as osm_router, admin_router as osm_admin_router
+from app.routers.presence import router as presence_router
+from app.routers.image_manager import router as image_manager_router
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -42,8 +48,20 @@ logger = logging.getLogger(__name__)
 # ─── Lifespan (startup / shutdown) ───────────────────────────────────────────
 @asynccontextmanager
 async def lifespan(app: FastAPI):  # noqa: ARG001
+    from app.services.image_storage import storage_configuration
+    storage_configuration()
     logger.info("Schema managed by Alembic; run alembic upgrade head before startup.")
-    yield
+    task = None
+    if os.getenv('APP_ENV') != 'test':
+        from app.services.presence_cleanup import retention_worker
+        task = asyncio.create_task(retention_worker())
+    try:
+        yield
+    finally:
+        if task:
+            task.cancel()
+            with suppress(asyncio.CancelledError):
+                await task
     logger.info("Application shutting down.")
 
 
@@ -109,6 +127,9 @@ app.include_router(reviews_router)
 app.include_router(journeys_router)
 app.include_router(media_router)
 app.include_router(osm_router)
+app.include_router(osm_admin_router)
+app.include_router(presence_router)
+app.include_router(image_manager_router)
 
 
 # ─── Health check ─────────────────────────────────────────────────────────────
@@ -122,3 +143,17 @@ def root():
 def public_settings(db: Session = Depends(get_db)):
     from app.routers.admin import read_settings
     return read_settings(db)
+
+@app.get('/health/live', tags=['Health'])
+def health_live():
+    return {'status': 'ok'}
+
+@app.get('/health/ready', tags=['Health'])
+def health_ready(db: Session = Depends(get_db)):
+    try:
+        db.execute(text('SELECT 1'))
+        db.execute(text('SELECT thumbnail_url FROM place_images LIMIT 0'))
+        db.execute(text('SELECT id FROM user_presence_sessions LIMIT 0'))
+        return {'status': 'ready'}
+    except Exception:
+        return JSONResponse(status_code=503, content={'status': 'unavailable'})

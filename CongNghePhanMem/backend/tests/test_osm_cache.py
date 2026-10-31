@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import json
+import os
 
 import httpx2 as httpx
 import pytest
@@ -104,8 +105,12 @@ def test_reader_reloads_new_snapshot_without_backend_restart_and_corruption_keep
         with pytest.raises(OsmUnavailable): await reader.nearby(LAT, LON, 3)
         await writer.nearby(LAT, LON, 3)
         assert (await reader.nearby(LAT, LON, 3)).elements[0].id == 1
+        original = path.stat()
         value[0] = 2; now[0] = 10
         await writer.nearby(LAT, LON, 3, force_refresh=True)
+        # Emulate equal timestamps/size deterministically; the atomic file identity differs.
+        assert path.stat().st_size == original.st_size
+        os.utime(path, ns=(original.st_atime_ns, original.st_mtime_ns))
         assert (await reader.nearby(LAT, LON, 3)).elements[0].id == 2
         path.write_text('{broken', encoding='utf-8')
         assert (await reader.nearby(LAT, LON, 3)).elements[0].id == 2

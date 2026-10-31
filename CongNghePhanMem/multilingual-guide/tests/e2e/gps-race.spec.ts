@@ -20,6 +20,9 @@ test.beforeEach(async ({ page, context }) => {
     return route.fulfill({ json: [{ id: 70, name: 'Official GPS Race Museum', latitude: Number(query.get('latitude')), longitude: Number(query.get('longitude')), address: 'Mock provider fixture' }] });
   });
   await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     const [lat, lon] = new URL(route.request().url()).searchParams.get('gscoord')!.split('|').map(Number);
     return route.fulfill({ json: { query: { geosearch: [{ pageid: 700, ns: 0, title: 'Wikipedia GPS Race Landmark', lat, lon }] } } });
   });

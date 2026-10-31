@@ -28,6 +28,9 @@ test('a GPS click automatically finds Wikipedia fallback places and keeps them s
   page.on('request', request => { if (request.method() === 'POST' && /\/(history|favorites|audio-sessions)/.test(request.url())) accountWrites.push(request.url()); });
   let calls = 0;
   await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     calls++;
     return route.fulfill({ json: wikiResponse([article(1, 'Wikipedia Nearby'), article(2, 'Browser Test Museum'), article(1, 'Duplicate'), article(3, 'Outside Radius', 11)]) });
   });
@@ -52,7 +55,10 @@ test('a GPS click automatically finds Wikipedia fallback places and keeps them s
 
 test('Wikipedia failure leaves other sources available and manual refresh recovers', async ({ page }) => {
   let recover = false;
-  await page.route('https://vi.wikipedia.org/w/api.php?**', route => recover ? route.fulfill({ json: wikiResponse([article(4, 'Wikipedia Recovered')]) }) : route.fulfill({ status: 503, body: 'unavailable' }));
+  await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+return recover ? route.fulfill({ json: wikiResponse([article(4, 'Wikipedia Recovered')]) }) : route.fulfill({ status: 503, body: 'unavailable' }); });
   await locate(page);
   await expect(page.getByText(/Wikipedia: Wikipedia trả HTTP 503/)).toBeVisible();
   await expect(page.getByTestId('nearby-place-list').getByText('Browser Test Museum', { exact: true })).toBeVisible();
@@ -67,6 +73,9 @@ test('changing radius discards stale Wikipedia data and disabling stops future q
   const held = new Promise<void>(resolve => { release = resolve; });
   const seen = new Promise<void>(resolve => { oldSeen = resolve; });
   await page.route('https://vi.wikipedia.org/w/api.php?**', async route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     calls++;
     if (new URL(route.request().url()).searchParams.get('gsradius') === '5000') {
       oldSeen(); await held;
@@ -101,6 +110,9 @@ test('changing radius discards stale Wikipedia data and disabling stops future q
 test('20 km Wikipedia search discloses its 10 km limit and uses that actual radius', async ({ page }) => {
   let radius = '';
   await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     radius = new URL(route.request().url()).searchParams.get('gsradius') ?? '';
     return route.fulfill({ json: wikiResponse([article(7, 'Within Wikipedia Coverage'), article(8, 'Beyond Wikipedia Coverage', 10.88)]) });
   });

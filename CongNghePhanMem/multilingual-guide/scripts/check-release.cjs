@@ -1,3 +1,4 @@
+/* global __dirname */
 // Run after `npm run build:web -- --clear`. Uses the actual release export.
 // External requests are blocked: this checks layout/hydration, not live providers.
 const http = require('node:http');
@@ -15,7 +16,8 @@ const server = http.createServer((req, res) => {
   catch { res.writeHead(400).end(); return; }
   let file = path.resolve(root, '.' + name);
   if (file !== root && !file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
-  if (name.startsWith('/place/')) file = path.join(root, 'place', '[id].html');
+  if (!fs.existsSync(path.join(root,'map.html')) && !path.extname(name)) file=path.join(root,'index.html');
+  else if (name.startsWith('/place/')) file = path.join(root, 'place', '[id].html');
   else if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
   else if (!path.extname(file)) file += '.html';
   if (!fs.existsSync(file)) { res.writeHead(404).end(); return; }
@@ -69,6 +71,25 @@ const server = http.createServer((req, res) => {
       }
       await context.close();
     }
+    // Explicit hostile-name fixture: provider/POI text must never become Leaflet HTML.
+    const safeContext = await browser.newContext({ viewport: { width: 390, height: 900 } });
+    const safePage = await safeContext.newPage();
+    const hostile = '<img src=x onerror="window.__guideInjected=true"> Tooltip fixture';
+    const fixture = { id: 999, name: 'Tooltip safety fixture', description: 'Explicit release-only fixture', place_ids: [999], stops: [{ id:999, name:hostile, latitude:10.77, longitude:106.69, publication_status:'published' }] };
+    await safePage.route('**/*', route => route.request().url().startsWith(origin + '/') ? route.continue() : route.abort());
+    await safePage.route('**/journeys?**', route => route.fulfill({json:[fixture]}));
+    await safePage.route('**/journeys/999', route => route.fulfill({json:fixture}));
+    await safePage.goto(`${origin}/journeys`, {waitUntil:'networkidle'});
+    await safePage.getByRole('button',{name:'Tooltip safety fixture',exact:true}).click();
+    await safePage.getByRole('button',{name:'Bắt đầu hành trình',exact:true}).click();
+    const marker = safePage.locator('.journey-stop-marker');
+    await expect(marker).toHaveCount(1); await marker.hover();
+    await expect(safePage.locator('.leaflet-tooltip')).toContainText(hostile);
+    await expect(safePage.locator('.leaflet-tooltip img')).toHaveCount(0);
+    expect(await safePage.evaluate(() => window.__guideInjected)).toBeUndefined();
+    await safePage.screenshot({path:path.join(output,'release-tooltip-safe.png')});
+    report.tooltipSafe = true;
+    await safeContext.close();
     report.status = 'PASS';
   } catch (error) { report.status = 'FAIL'; report.error = error.message; process.exitCode = 1; }
   finally {

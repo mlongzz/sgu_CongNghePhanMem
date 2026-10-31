@@ -36,12 +36,12 @@ test('one unavailable source does not remove PostgreSQL or another community pro
   assert.deepEqual(Array.from(mergeNearbyPlaces([[official], [], [wiki]], origin, 3), p => p.id), ['db-1', 'wiki-vi-2']);
 });
 
-test('deduplication preserves an exact nearby Wikipedia identity for an official landmark lacking a translation', () => {
+test('same-name proximity does not assign a Wikipedia identity to an official landmark lacking verified provenance', () => {
   const official = place('db-1', 10.002, 'backend', 'Chợ Bình Tây');
   const wiki = { ...place('wiki-vi-3', 10.0021, 'wikipedia', 'Cho Binh Tay'), wikipedia: { language: 'vi', pageId: 3 } };
   const result = mergeNearbyPlaces([[official], [wiki]], origin, 3);
   assert.equal(result.length, 1); assert.equal(result[0].id, 'db-1'); assert.equal(result[0].source, 'backend');
-  assert.deepEqual(result[0].wikipedia, wiki.wikipedia);
+  assert.equal(result[0].wikipedia, undefined);
   assert.equal(official.wikipedia, undefined);
 });
 

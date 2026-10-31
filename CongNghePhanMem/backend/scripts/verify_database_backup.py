@@ -72,6 +72,9 @@ def snapshot(database_engine, columns=None):
 def pg_command(executable, args, database_engine):
     url = database_engine.url
     environment = {**os.environ, "PGPASSWORD": url.password or ""}
+    for option,variable in (('sslmode','PGSSLMODE'),('sslrootcert','PGSSLROOTCERT')):
+        if url.query.get(option):environment[variable]=url.query[option]
+    environment['PGCONNECT_TIMEOUT']='15'
     result = subprocess.run([str(executable), "--no-password", "--host", url.host or "localhost",
                              "--port", str(url.port or 5432), "--username", url.username or "postgres", *args],
                             env=environment, capture_output=True, text=True, timeout=180)

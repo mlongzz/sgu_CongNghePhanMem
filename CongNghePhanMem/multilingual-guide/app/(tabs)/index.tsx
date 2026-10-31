@@ -1,7 +1,7 @@
 import React, { useCallback, useDeferredValue, useMemo, useState } from "react";
 import {
   FlatList,
-  Image,
+  useWindowDimensions,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -15,6 +15,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import { C } from "../../src/theme/colors";
 import { PlaceCard, Heading } from "../../src/components/UI";
+import PlaceImage from "../../src/components/PlaceImage";
+import ImageCredit from "../../src/components/ImageCredit";
+import PlaceSkeleton from "../../src/components/PlaceSkeleton";
+import { travelHero } from "../../src/data/travelHero";
 import type { Category } from "../../src/data/places";
 import { filterPlaces } from "../../src/services/nearby";
 import { useApp } from "../../src/context/AppContext";
@@ -40,6 +44,8 @@ export default function Home() {
     refreshCatalog,
   } = useApp();
   const { t } = useI18n();
+  const {width} = useWindowDimensions();
+  const columns = width >= 1050 ? 3 : width >= 700 ? 2 : 1;
   useFocusEffect(useCallback(() => { void refreshCatalog(); }, [refreshCatalog]));
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
@@ -73,12 +79,8 @@ export default function Home() {
         </Pressable>
 
         <View style={s.hero}>
-          <Image
-            source={{
-              uri: "https://images.unsplash.com/photo-1533676802871-eca1ae998cd5?w=1300&q=85",
-            }}
-            style={StyleSheet.absoluteFill}
-          />
+          <PlaceImage uri={travelHero.image} label={travelHero.title} style={StyleSheet.absoluteFill}/>
+
           <LinearGradient
             colors={["rgba(13,39,53,.3)", "rgba(9,40,48,.92)"]}
             style={StyleSheet.absoluteFill}
@@ -106,6 +108,7 @@ export default function Home() {
           </View>
         </View>
 
+        <View style={{marginTop:-12,marginBottom:16}}><Text style={{color:C.muted,fontSize:10}}>{travelHero.title} · {t('Ảnh cắt theo khung hiển thị')}</Text><ImageCredit place={travelHero}/></View>
         <View style={s.statStrip}>
           <View style={s.stat}>
             <View style={[s.statIcon, { backgroundColor: "#E6F5F3" }]}>
@@ -152,9 +155,9 @@ export default function Home() {
         <Pressable accessibilityRole="button" onPress={() => router.push('/map')} style={s.gpsPanel}>
           <View style={s.gpsHeading}><Ionicons name="navigate-circle" size={30} color={C.primary} /><View style={{ flex: 1 }}><Text style={s.gpsTitle}>{t('Tìm địa danh quanh vị trí của tôi')}</Text><Text style={s.gpsCaption}>{location ? t('Vị trí hiện tại') + (typeof location.accuracy === 'number' ? ` · GPS ±${Math.round(location.accuracy)} m` : '') : t('Cho phép vị trí để tìm địa danh quanh bạn.')}</Text></View><Ionicons name="arrow-forward" size={20} color={C.primary} /></View>
         </Pressable>
-        {placesError ? <Text accessibilityRole="alert" style={s.gpsError}>{placesError}</Text> : null}
+        {placesError ? <View style={{padding:14,borderRadius:14,backgroundColor:C.dangerSoft,marginBottom:12,gap:8}}><Text accessibilityRole="alert" style={s.gpsError}>{placesError}</Text><Pressable accessibilityRole="button" onPress={()=>void refreshCatalog()}><Text style={{color:C.primaryDark,fontWeight:'700'}}>{t('Thử lại')}</Text></Pressable></View> : null}
         {placesWarning ? <Text style={s.sourceText}>{placesWarning}</Text> : null}
-        {loadingPlaces && <Text style={s.sourceText}>{t('Đang tải địa điểm...')}</Text>}
+        {loadingPlaces && !places.length ? <PlaceSkeleton count={2}/> : null}
         {!query && category === "Tất cả" ? (
           <>
             <Heading
@@ -198,19 +201,19 @@ export default function Home() {
             </Pressable>
           ))}
         </ScrollView>
-        <View style={{ marginTop: 17 }}>
+        <View style={{ marginTop: 16,flexDirection:"row",flexWrap:"wrap",gap:14 }}>
           {filtered.length ? (
             filtered.slice(0, visibleCount).map((place) => (
-              <View key={place.id}>
+              <View key={place.id} style={{width:columns===1?"100%":columns===2?"48.8%":"32.3%",minWidth:0}}>
                 <PlaceCard place={place} wide />
               </View>
             ))
-          ) : (
-            <View style={s.noResults}>
+          ) : !loadingPlaces ? (
+            <View style={[s.noResults,{width:"100%"}]}>
               <Ionicons name="search" size={27} color={C.primary} />
               <Text style={s.noTitle}>{t('Chưa tìm thấy địa điểm')}</Text>
               <Text style={s.noCopy}>
-                {t('Thử từ khóa, danh mục khác hoặc tăng bán kính tìm kiếm nhé.')}
+                {t('Thử từ khóa hoặc danh mục khác. Mở bản đồ để tìm quanh vị trí của bạn.')}
               </Text>
               <Pressable
                 onPress={() => {
@@ -221,7 +224,7 @@ export default function Home() {
                 <Text style={s.reset}>{t('Xóa bộ lọc')}</Text>
               </Pressable>
             </View>
-          )}
+          ) : null}
         </View>
         {visibleCount < filtered.length && <Pressable accessibilityRole="button" onPress={() => setVisibleCount(v => v + 40)} style={s.gpsButton}><Text style={s.gpsButtonText}>{t('Xem thêm')}</Text></Pressable>}
         <Text style={s.foot}>{t('KHÁM PHÁ • LẮNG NGHE • KẾT NỐI')}</Text>
@@ -324,7 +327,7 @@ const s = StyleSheet.create({
     borderRadius: 20,
     paddingVertical: 16,
     paddingHorizontal: 14,
-    marginBottom: 27,
+    marginBottom: 18,
     borderWidth: 1,
     borderColor: C.border,
   },
@@ -353,7 +356,7 @@ const s = StyleSheet.create({
     gap: 11,
     borderColor: C.border,
     borderWidth: 1,
-    marginBottom: 26,
+    marginBottom: 18,
   },
   search: { flex: 1, fontSize: 13, color: C.ink },
   categories: { gap: 9, paddingRight: 15 },
@@ -374,7 +377,7 @@ const s = StyleSheet.create({
     borderWidth: 1,
     borderColor: C.border,
     padding: 15,
-    marginBottom: 24,
+    marginBottom: 18,
   },
   gpsHeading: { flexDirection: "row", gap: 10, alignItems: "center" },
   gpsTitle: { color: C.ink, fontWeight: "900", fontSize: 14 },

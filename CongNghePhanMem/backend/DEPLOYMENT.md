@@ -1,11 +1,12 @@
 # Backend container release
 
-Schema is now managed by Alembic. Follow `../ADMIN_DASHBOARD.md` before starting
+Schema is managed by Alembic. Follow [the root README](../README.md) before starting
 the new image: verify the existing baseline, then run the reviewed migrations.
 Startup no longer calls create_all. Run migrations explicitly before serving traffic.
 
 The backend image is published to GitHub Container Registry when a `v*` tag
-passes the backend test job. For example, pushing `v1.0.0` publishes a tagged
+passes backend SQLite/PostgreSQL, frontend, E2E and Docker build jobs in
+[the root workflow](../.github/workflows/ci.yml). For example, pushing `v1.0.0` publishes a tagged
 image at `ghcr.io/<owner>/<repository>/backend:1.0.0`.
 
 Set these environment variables on the container host before starting it:
@@ -23,11 +24,27 @@ Set these environment variables on the container host before starting it:
 The container listens on port `8000` and exposes `/` as its health check. The
 host must provide persistent database storage and inject secrets at runtime.
 
-Place image uploads use Pillow and `UPLOAD_DIR` (default `backend/uploads`).
-Mount this directory as persistent storage and include it in backups. Multiple
-replicas require shared storage. Image writes require the existing admin role;
-public delivery only serves generated UUID filenames.
-See `../COMPLETION_REPORT.md` for current validation and remaining release checks.
+Place images are normalized with Pillow. Development can use `UPLOAD_DIR`;
+production must use durable storage (`MEDIA_STORAGE_BACKEND=r2`, preferably a
+custom HTTPS image domain). Local storage is rejected in production. Render Free
+does not persist uploaded files across restarts/deploys. All upload, URL import
+and source-discovery paths copy through the configured storage, create pending
+gallery entries and require separate Admin approval/publication. Configure the
+backend-only R2 variables listed in [.env.example](.env.example): account, bucket,
+access key ID, secret access key and public HTTPS base URL. Never expose storage
+secrets through EXPO_PUBLIC_ variables.
+
+Before upgrading an existing database, run `python -m scripts.check_email_duplicates`
+after reviewing a backup. Migration 0006 stops on normalized email collisions and
+does not delete/merge accounts. Migration 0007 adds rotating refresh sessions and
+database-backed login limits. Old refresh JWTs require one new login. Logout
+revokes the refresh family; already issued access tokens remain valid until expiry
+(60 minutes by default). Fixed five-minute limits default to 12/account and 120/IP;
+the server trusts its connection peer, not a client-provided forwarding header.
+
+No GitHub Actions run, GHCR publish or deployment has been performed by this repair
+session. Docker CLI is installed locally but its daemon is unavailable. The root
+workflow includes a build check; it still needs a successful run on GitHub.
 
 PostgreSQL is the primary POI source. The reviewed HCMC bundle is imported through
 JWT/RBAC Admin endpoints, with an additive transaction and audit log:
@@ -46,33 +63,35 @@ credentials to third-party providers. No schema migration is needed.
 `GET /places/nearby` remains PostgreSQL-only. Keep the frontend origin in
 `ALLOWED_ORIGINS`; `httpx2` remains a runtime dependency for the optional sync job.
 
-Snapshots live at `OSM_CACHE_PATH` (default `backend/cache/osm-poi-v2.json`,
-`/app/cache/osm-poi-v2.json` in the container). Mount `/app/cache` as persistent
-storage shared with a single sync worker. The API needs read access; the worker
-needs write access. Updates use an atomic file replacement and are reloaded by
-API workers without restarting. Only successful provider results replace saved
-data. Old/invalid snapshots never replace the official catalog.
+Production snapshots now use `OSM_SNAPSHOT_STORAGE=postgres` (default when
+`APP_ENV=production`), in the existing internal AdminSetting JSON store. No new
+migration is needed. Public map requests only read snapshots; they never contact
+Overpass. Development may still use a local `OSM_CACHE_PATH` file. Production
+explicitly rejects ephemeral local snapshots.
 
-Full results are fresh for 5 minutes, reduced results for 45 seconds, and successful
-entries are retained up to 24 hours, bounded to 32 entries and 16 MiB on disk.
-Nearby GPS fixes share 0.001-degree cells; queries have a 100 m buffer and responses
-are filtered from the actual caller coordinates. Reusing a larger synced circle
-reports its actual guaranteed coverage. Old results have `stale: true`, their
-original age and a warning. If no eligible snapshot exists, the optional endpoint
-returns 503 with an explanatory message and `Retry-After`, without outbound work.
+Snapshots keep original timestamps, disclose actual coverage/truncation, and are
+bounded to 32 regions / 16 MiB. Freshness is 5 minutes (45 seconds for reduced
+coverage), with clearly labelled stale fallback for at most 24 hours. Missing,
+expired or unreadable optional data never erase official PostgreSQL places.
 
-The optional job has two fixed public HCMC landmark targets, no device GPS:
+The separate sync job uses only two fixed public HCMC landmark anchors, not user
+GPS. Durable leases prevent overlapping jobs and retain next-allowed time and
+provider Retry-After across restarts. Minimum interval is 3600 seconds. Inspect
+metadata with Admin-only `GET /admin/osm/status`.
 
 ```powershell
-python -m scripts.sync_osm   # Preview only, zero network requests
-# Enable only when external sync is wanted and connectivity is available:
-python -m scripts.sync_osm --allow-network --once
-python -m scripts.sync_osm --allow-network --watch --interval-seconds 3600
+python -m scripts.sync_osm  # Preview only: no network/database writes
+# Only after approval of the target database and provider access:
+python -m scripts.sync_osm --allow-network --apply --once
+# Alternative: one dedicated external worker, never API startup:
+python -m scripts.sync_osm --allow-network --apply --watch --interval-seconds 3600
 ```
 
-It is not started by API startup. Run one worker or schedule `--once` hourly with
-overlapping instances disabled. The minimum configured interval is one hour.
-Provider timeouts, backup/radius reduction and Retry-After backoff remain bounded.
-Sync errors keep the last successful file and never touch PostgreSQL places.
-No network-enabled job was launched during this change. See
-`../BACKEND_FIRST_REPORT.md` for the real Admin import and validation results.
+The job is never launched by map load, startup, seed or deployment. Do not run it
+inside a sleeping Render Free web process. Use a separately approved scheduler or
+worker. New demo data are also preview-only until an Admin explicitly imports
+drafts; nothing is automatically seeded into production.
+
+See [the testing guide](../docs/TESTING_GUIDE.md) and
+[acceptance report](../docs/REPAIR_ACCEPTANCE_REPORT.md) for the current handoff,
+validation and local commands. No cloud deployment or production database modification was performed.

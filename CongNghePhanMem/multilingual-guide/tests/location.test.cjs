@@ -242,3 +242,22 @@ test('native validates actual timestamp and preserves reported low accuracy with
     await assert.rejects(loadNative({ provider: { getCurrentPositionAsync: async () => position } }).getCurrentCoordinates(), /không hợp lệ/);
   }
 });
+
+test('Web and native reject future GPS timestamps beyond the same five-second tolerance as discovery', async () => {
+  for (const platform of ['web', 'native']) {
+    const timestamp = Date.now() + 20000;
+    const position = { coords: { ...here, accuracy: 5 }, timestamp };
+    const api = platform === 'web'
+      ? loadWeb({ geolocation: { getCurrentPosition: success => success(position) } })
+      : loadNative({ provider: { getCurrentPositionAsync: async () => position } });
+    await assert.rejects(api.getCurrentCoordinates(), error => error.code === 'STALE_POSITION', `${platform} must reject a fix discovery would immediately classify as stale`);
+  }
+});
+
+test('Web and native retain a small permitted GPS clock skew', async () => {
+  const timestamp = Date.now() + 3000;
+  const position = { coords: { ...here, accuracy: 5 }, timestamp };
+  const web = loadWeb({ geolocation: { getCurrentPosition: success => success(position) } });
+  const native = loadNative({ provider: { getCurrentPositionAsync: async () => position } });
+  for (const api of [web, native]) assert.equal((await api.getCurrentCoordinates()).timestamp, timestamp);
+});

@@ -54,7 +54,7 @@ export default function Profile() {
           <View style={s.accountIcon}>
             <Ionicons name="person" size={32} color="#fff" />
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={{ flex: 1, minWidth:0 }}>
             <Text style={s.accountTitle}>
               {token ? (user?.full_name || t('Đã đăng nhập')) : t('Nhà khám phá')}
             </Text>
@@ -85,7 +85,7 @@ export default function Profile() {
           </Pressable>
         )}
 
-        {token && <View style={{ gap: 10, marginTop: 12 }}><Pressable onPress={() => router.push('/account')} style={s.login}><Text style={s.loginText}>{t('Chỉnh sửa hồ sơ →')}</Text></Pressable><Pressable onPress={() => router.push('/history')} style={s.login}><Text style={s.loginText}>{t('Lịch sử khám phá →')}</Text></Pressable></View>}
+        {Boolean(token) && <View style={{ gap: 10, marginTop: 12 }}><Pressable onPress={() => router.push('/account')} style={s.login}><Text style={s.loginText}>{t('Chỉnh sửa hồ sơ →')}</Text></Pressable><Pressable onPress={() => router.push('/history')} style={s.login}><Text style={s.loginText}>{t('Lịch sử khám phá →')}</Text></Pressable></View>}
         {token && isAdmin ? (
           <Pressable onPress={() => router.push("/admin")} style={s.login}>
             <Ionicons name="settings-outline" size={19} color={C.primary} />
@@ -93,6 +93,7 @@ export default function Profile() {
             <Ionicons name="arrow-forward" color={C.primary} size={17} />
           </Pressable>
         ) : null}
+        <View style={{flexDirection:'row',gap:12,marginTop:18}}>{[{label:'Đã lưu',icon:'heart-outline' as const,value:String(favorites.length),path:'/saved'},{label:'Hành trình',icon:'map-outline' as const,value:'Khám phá',path:'/journeys'}].map(item=><Pressable key={item.path} accessibilityRole="button" onPress={()=>router.push(item.path as never)} style={{flex:1,backgroundColor:C.white,borderRadius:18,borderWidth:1,borderColor:C.border,padding:16,gap:8}}><Ionicons name={item.icon} size={22} color={C.primaryDark}/><Text style={{color:C.darkBlue,fontSize:20,fontWeight:'800'}}>{t(item.value)}</Text><Text style={{color:C.muted,fontSize:12}}>{t(item.label)} ↗</Text></Pressable>)}</View>
         <Text style={s.section}>{t('Ngôn ngữ giao diện & thuyết minh')}</Text>
         <Text style={s.hint}>
           {t('Chọn một ngôn ngữ. Giọng đọc sẽ thay đổi theo lựa chọn.')}
@@ -108,7 +109,7 @@ export default function Profile() {
               style={[s.langRow, i !== LANGS.length - 1 && s.rowBorder]}
             >
               <Text style={s.flag}>{lang.flag}</Text>
-              <View style={{ flex: 1 }}>
+              <View style={{ flex: 1, minWidth:0 }}>
                 <Text style={s.langName}>{lang.label}</Text>
                 <Text style={s.langCode}>{lang.voice}</Text>
               </View>
@@ -127,7 +128,7 @@ export default function Profile() {
         <View style={s.panel}>
           <View style={s.infoRow}>
             <Ionicons name="server-outline" size={22} color={C.primary} />
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, minWidth:0 }}>
               <Text style={s.langName}>{t('Dịch vụ kết nối')}</Text>
               <Text style={s.langCode} numberOfLines={1}>
                 {t(API_BASE_URL ? 'Đồng bộ nội dung và tài khoản' : 'Dịch vụ chưa sẵn sàng')}
@@ -196,18 +197,18 @@ export default function Profile() {
 }
 const s = StyleSheet.create({
   safe: { flex: 1, backgroundColor: C.paper },
-  page: { padding: 22, paddingTop: 28, paddingBottom: 100, width: '100%', maxWidth: 860, alignSelf: 'center' },
+  page: { padding: 22, paddingTop: 28, paddingBottom: 100, width: '100%', maxWidth: 920, alignSelf: 'center' },
   overline: {
     color: C.primary,
     fontSize: 10,
-    fontWeight: "900",
+    fontWeight: "800",
     letterSpacing: 1.8,
     marginBottom: 8,
   },
   title: {
     color: C.ink,
     fontSize: 27,
-    fontWeight: "900",
+    fontWeight: "800",
     letterSpacing: -0.6,
     marginBottom: 23,
   },
@@ -227,7 +228,7 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  accountTitle: { color: "#fff", fontSize: 17, fontWeight: "900" },
+  accountTitle: { color: "#fff", fontSize: 17, fontWeight: "800" },
   accountSub: { color: "#D0E2E6", fontSize: 11, marginTop: 5, lineHeight: 16 },
   login: {
     backgroundColor: C.primarySoft,
@@ -242,10 +243,10 @@ const s = StyleSheet.create({
   },
   loginText: { fontWeight: "800", color: C.primary, fontSize: 13 },
   section: {
-    marginTop: 27,
+    marginTop: 22,
     marginBottom: 7,
     fontSize: 17,
-    fontWeight: "900",
+    fontWeight: "800",
     color: C.ink,
   },
   hint: { fontSize: 12, lineHeight: 19, color: C.muted, marginBottom: 14 },

@@ -81,7 +81,7 @@ export function getCurrentCoordinates({ signal, onProgress }: LocationRequestOpt
             return;
           }
           const timestamp = position.timestamp;
-          if (timestamp !== undefined && (!Number.isFinite(timestamp) || timestamp <= 0 || Date.now() - timestamp > 60_000 || timestamp - Date.now() > 60_000)) {
+          if (timestamp !== undefined && (!Number.isFinite(timestamp) || timestamp <= 0 || Date.now() - timestamp > 60_000 || timestamp - Date.now() > 5000)) {
             finish(undefined, locationError("Trình duyệt trả vị trí đã cũ hoặc thời gian GPS không hợp lệ. Hãy lấy GPS lại.", "STALE_POSITION"));
             return;
           }

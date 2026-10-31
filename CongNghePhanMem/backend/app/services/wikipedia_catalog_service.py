@@ -81,8 +81,8 @@ def _name_keys(value):
     return keys
 
 
-def discovery_plan(db, source_ids=None):
-    bundle, places = load_review_catalog()
+def discovery_plan(db, source_ids=None, *, bundle_data=None):
+    bundle, places = bundle_data or load_review_catalog()
     if source_ids is not None:
         requested = set(source_ids)
         if not requested <= {place.source_id for place in places}:
@@ -112,20 +112,22 @@ def discovery_plan(db, source_ids=None):
                      "place_id": match.id if match else None, "deleted": bool(match and match.deleted_at),
                      "existing_publication_status": match.publication_status if match else None})
     token = hashlib.sha256(json.dumps({"bundle": bundle, "rows": rows}, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
-    return {"bundle_id": BUNDLE_ID, "fetched_at": bundle.get("fetched_at"), "verification": bundle.get("verification", {}),
+    return {"bundle_id": bundle["bundle_id"], "fetched_at": bundle.get("fetched_at"), "verification": bundle.get("verification", {}),
             "rows": rows, "places_to_create": sum(row["status"] == "create" for row in rows),
             "existing": sum(row["status"] == "existing" for row in rows),
             "conflicts": sum(row["status"] == "conflict" for row in rows), "preview_token": token,
             "guides_to_create": 0, "publication_status": "draft"}
 
 
-def import_discovery(db, actor_id, source_ids, preview_token):
-    ledger = db.execute(select(AdminSetting).where(AdminSetting.key == BUNDLE_ID).with_for_update()).scalar_one_or_none()
+def import_discovery(db, actor_id, source_ids, preview_token, *, bundle_data=None):
+    bundle_data = bundle_data or load_review_catalog()
+    bundle_id = bundle_data[0]["bundle_id"]
+    ledger = db.execute(select(AdminSetting).where(AdminSetting.key == bundle_id).with_for_update()).scalar_one_or_none()
     if ledger is None:
-        ledger = AdminSetting(key=BUNDLE_ID, value={})
+        ledger = AdminSetting(key=bundle_id, value={})
         db.add(ledger)
         db.flush()
-    plan = discovery_plan(db, source_ids)
+    plan = discovery_plan(db, source_ids, bundle_data=bundle_data)
     if preview_token != plan["preview_token"]:
         raise HTTPException(409, "Review bundle or database changed after preview; preview again")
     if plan["conflicts"]:
@@ -136,7 +138,7 @@ def import_discovery(db, actor_id, source_ids, preview_token):
             continue
         place = Place(name=row["name"], latitude=row["latitude"], longitude=row["longitude"], category=row["category"],
                       source="wikipedia", source_id=row["source_id"], source_url=row["source_url"],
-                      source_license=row["license"], publication_status="draft")
+                      source_license=row["license"], description=row.get("description"), publication_status="draft")
         db.add(place)
         db.flush()
         row["place_id"] = place.id

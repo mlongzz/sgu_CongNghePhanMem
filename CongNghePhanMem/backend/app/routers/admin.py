@@ -21,10 +21,24 @@ from app.schemas.guide_content import GuideContentCreate, GuideContentUpdate
 from app.schemas.imports import OsmImportApply, OsmImportPreview, WikipediaImportApproval, WikipediaSelection
 from app.schemas.place import PlaceCreate, PlaceUpdate
 from app.services.media_service import remove_unused_image
+from app.services.editorial_service import reviewed_changes
 from app.schemas.user import UserResponse, UserUpdate
-from app.services.user_service import _password_hash
+from app.schemas.url_import import UrlPreview, UrlImport
+from app.services.user_service import _password_hash, get_user_by_email
 
 router = APIRouter(prefix="/admin", tags=["Admin"], dependencies=[Depends(get_current_admin)])
+
+
+@router.post('/imports/url/preview')
+def preview_link(data: UrlPreview, db: Session = Depends(get_db)):
+    from app.services.url_import_service import preview_url
+    return preview_url(db, data.url)
+
+
+@router.post('/imports/url')
+def import_link(data: UrlImport, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
+    from app.services.url_import_service import import_url
+    return import_url(db, actor, data.preview_token, data.changes.model_dump(exclude_unset=True))
 
 
 @router.post("/imports/osm/preview")
@@ -131,6 +145,36 @@ def import_hcmc_discovery(approval: WikipediaImportApproval, db: Session = Depen
         raise
 
 
+@router.get("/catalog/hcmc-demo")
+def preview_hcmc_demo(db: Session = Depends(get_db)):
+    from app.services.demo_catalog_service import load_demo_catalog
+    from app.services.wikipedia_catalog_service import discovery_plan
+    return discovery_plan(db, bundle_data=load_demo_catalog())
+
+
+@router.post("/catalog/hcmc-demo/preview")
+def preview_demo_selection(selection: WikipediaSelection, db: Session = Depends(get_db)):
+    from app.services.demo_catalog_service import load_demo_catalog
+    from app.services.wikipedia_catalog_service import discovery_plan
+    return discovery_plan(db, selection.source_ids, bundle_data=load_demo_catalog())
+
+
+@router.post("/catalog/hcmc-demo/import")
+def import_hcmc_demo(approval: WikipediaImportApproval, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
+    from app.services.demo_catalog_service import load_demo_catalog
+    from app.services.wikipedia_catalog_service import import_discovery
+    try:
+        result = import_discovery(db, actor.id, approval.source_ids, approval.preview_token, bundle_data=load_demo_catalog())
+        db.commit()
+        return result
+    except IntegrityError as exc:
+        db.rollback()
+        raise HTTPException(409, "Import changed concurrently; preview again") from exc
+    except Exception:
+        db.rollback()
+        raise
+
+
 @router.get("/overview")
 def overview(
     period: Literal["day", "month", "year"] = "day",
@@ -194,6 +238,8 @@ def list_users(q: str = Query("", max_length=200), role: Literal["admin", "user"
 
 @router.post("/users", response_model=UserResponse, status_code=201)
 def add_user(data: AdminUserCreate, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
+    if get_user_by_email(db, data.email):
+        raise HTTPException(409, "Email already registered")
     row = User(**data.model_dump(exclude={"password"}), password_hash=_password_hash.hash(data.password))
     db.add(row)
     commit(db, actor, "create", "users")
@@ -203,6 +249,10 @@ def add_user(data: AdminUserCreate, db: Session = Depends(get_db), actor: User =
 @router.put("/users/{identifier}", response_model=UserResponse)
 def edit_user(identifier: int, data: UserUpdate, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
     row = required(db, User, identifier)
+    if data.email:
+        existing = get_user_by_email(db, data.email)
+        if existing and existing.id != row.id:
+            raise HTTPException(409, "Email already registered")
     for key, value in data.model_dump(exclude_unset=True).items():
         if value is not None:
             setattr(row, key, value)
@@ -243,6 +293,18 @@ def list_places(q: str = Query("", max_length=200), category: str | None = Query
     return paginate(query.order_by(Place.id.desc()), page, page_size)
 
 
+@router.get("/places/selection")
+def selected_places(ids: str = Query(..., max_length=2200), db: Session = Depends(get_db)):
+    try:
+        values = list(dict.fromkeys(int(value) for value in ids.split(",")))
+        if not values or len(values) > 200 or any(value <= 0 for value in values):
+            raise ValueError()
+    except ValueError:
+        raise HTTPException(422, "Choose at most 200 valid place IDs") from None
+    rows = {row.id: serialize(row) for row in db.query(Place).filter(Place.id.in_(values)).all()}
+    return [rows[value] for value in values if value in rows]
+
+
 @router.post("/places", status_code=201)
 def add_place(data: PlaceCreate, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
     row = Place(**data.model_dump())
@@ -257,7 +319,7 @@ def edit_place(identifier: int, data: PlaceUpdate, db: Session = Depends(get_db)
     if row.deleted_at is not None and data.publication_status == "published" and "publication_status" in data.model_fields_set:
         raise HTTPException(409, "Restore this place before publishing")
     old_image = row.image_url
-    for key, value in data.model_dump(exclude_unset=True).items():
+    for key, value in reviewed_changes(row, data.model_dump(exclude_unset=True)).items():
         setattr(row, key, value)
     commit(db, actor, "update", "places", identifier)
     remove_unused_image(db, old_image)
@@ -311,8 +373,8 @@ def upsert_guide(place_id: int, language_code: str, data: GuideContentUpdate,
             raise HTTPException(422, "New guide requires valid language, title and content") from exc
         row = GuideContent(place_id=place_id)
         db.add(row)
-    elif any(key in changes for key in ("title", "content", "language_code")) and "publication_status" not in changes:
-        changes["publication_status"] = "draft"
+    else:
+        changes = reviewed_changes(row, changes)
     for key, value in changes.items():
         setattr(row, key, value.lower() if key == "language_code" else value)
     commit(db, actor, "upsert", "guides", place_id)
@@ -326,26 +388,47 @@ def remove_guide(identifier: int, db: Session = Depends(get_db), actor: User = D
     return Response(status_code=204)
 
 
+def journey_values(db, rows, *, public_only=False):
+    """One stop query for the whole page, including publication filtering."""
+    if not rows:
+        return []
+    grouped = {row.id: [] for row in rows}
+    pairs = (db.query(JourneyStop, Place).join(Place, Place.id == JourneyStop.place_id)
+             .filter(JourneyStop.journey_id.in_(grouped))
+             .order_by(JourneyStop.journey_id, JourneyStop.position).all())
+    for stop, place in pairs:
+        grouped[stop.journey_id].append(place)
+    result = []
+    for row in rows:
+        all_points = grouped[row.id]
+        points = [p for p in all_points if not public_only or
+                  (p.publication_status == 'published' and p.deleted_at is None)]
+        cover = next((p for p in points if p.image_url), None)
+        result.append({**serialize(row), 'place_ids': [p.id for p in points],
+                       'stops': [serialize(p) for p in points], 'stop_count': len(points),
+                       'unavailable_stop_count': len(all_points) - len(points),
+                       'image_url': cover.image_url if cover else None,
+                       'image_thumbnail_url': cover.image_thumbnail_url if cover else None})
+    return result
+
+
 def journey_value(db, row, *, public_only=False):
-    query = db.query(JourneyStop).filter_by(journey_id=row.id)
-    if public_only:
-        query = query.join(Place, Place.id == JourneyStop.place_id).filter(
-            Place.publication_status == "published", Place.deleted_at.is_(None))
-    return {**serialize(row), "place_ids": [stop.place_id for stop in query.order_by(JourneyStop.position).all()]}
+    return journey_values(db, [row], public_only=public_only)[0]
 
 
 @router.get("/journeys")
 def list_journeys(q: str = Query("", max_length=200), page: int = Query(1, ge=1),
                   page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
     query = db.query(Journey).filter(Journey.name.ilike(f"%{q}%")).order_by(Journey.id.desc())
-    result = paginate(query, page, page_size)
-    result["items"] = [journey_value(db, row) for row in query.offset((page-1)*page_size).limit(page_size).all()]
-    return result
+    total = query.count()
+    rows = query.offset((page - 1) * page_size).limit(page_size).all()
+    return {'items': journey_values(db, rows), 'total': total, 'page': page,
+            'page_size': page_size, 'pages': (total + page_size - 1) // page_size}
 
 
 def save_journey(db, actor, data, row):
-    if db.query(Place).filter(Place.id.in_(data.place_ids)).count() != len(data.place_ids):
-        raise HTTPException(422, "One or more stops do not exist")
+    if db.query(Place).filter(Place.id.in_(data.place_ids), Place.deleted_at.is_(None)).count() != len(data.place_ids):
+        raise HTTPException(422, "Stops must be available, non-deleted places")
     row.name, row.description = data.name, data.description
     db.add(row)
     db.flush()

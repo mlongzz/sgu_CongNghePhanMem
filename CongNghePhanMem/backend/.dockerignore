@@ -1,10 +1,16 @@
-.env
-.env.*
-!.env.example
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.venv/
-venv/
-tests/
-*.db
+# Only runtime source and dependency declarations enter the Docker context.
+*
+!Dockerfile
+!.dockerignore
+!requirements.txt
+!constraints.txt
+!alembic.ini
+!app/
+!app/**
+!alembic/
+!alembic/**
+!scripts/
+!scripts/**
+**/__pycache__/
+**/*.py[cod]
+**/*.log

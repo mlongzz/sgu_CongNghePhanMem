@@ -24,6 +24,7 @@ class OsmNearbyResponse(BaseModel):
     requested_radius_km: float
     searched_radius_km: float
     warning: str = ""
+    truncated: bool = False
     stale: bool = False
     cache_age_seconds: int = Field(default=0, ge=0)
     retry_after_seconds: int | None = Field(default=None, ge=1)

@@ -113,7 +113,8 @@ export function createSpeechPlayer(
       const chunks = splitSpeechText(text, Math.min(750, deviceLimit));
       const playChunk = (index: number) => {
         if (!active(current)) return;
-        if (index >= chunks.length) { emit(idle()); return; }
+        // Completion also ends ownership of pending pause/resume promises.
+        if (index >= chunks.length) { sequence++; emit(idle()); return; }
         if (state.status === 'paused') { pendingChunk = () => playChunk(index); return; }
         let finished = false;
         const live = () => active(current) && !finished;
@@ -133,7 +134,7 @@ export function createSpeechPlayer(
               playChunk(index + 1);
             },
             onStopped: () => {
-              if (live() && state.status !== 'paused') { finished = true; clearWatchdog(); emit(idle()); }
+              if (live() && state.status !== 'paused') { finished = true; sequence++; clearWatchdog(); emit(idle()); }
             },
             onError: () => { if (live()) fail(current, 'Không phát được giọng đọc. Hãy kiểm tra âm lượng, giọng nói đã cài và chế độ im lặng trên iPhone, rồi thử lại.'); },
             onPause: () => { if (live()) emit({ id, status: 'paused', error: '' }); },

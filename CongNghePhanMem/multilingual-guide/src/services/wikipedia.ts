@@ -3,7 +3,7 @@ import { distanceKm, type Coordinates } from "./nearby";
 
 const ENDPOINT = "https://vi.wikipedia.org/w/api.php";
 const CACHE_MS = 5 * 60_000;
-export type WikipediaResult = { places: Place[]; requestedRadiusKm: number; searchedRadiusKm: number; warning: string };
+export type WikipediaResult = { places: Place[]; requestedRadiusKm: number; searchedRadiusKm: number; warning: string; truncated?: boolean };
 type Options = { signal?: AbortSignal; forceRefresh?: boolean };
 const cache = new Map<string, { at: number; result: WikipediaResult }>();
 
@@ -73,12 +73,13 @@ export async function fetchWikipediaNearby(location: Coordinates, radiusKm: numb
       throw new Error("Wikipedia trả dữ liệu không hợp lệ. Hãy thử lại sau.");
     const seen = new Set<string>();
     const places = body.query.geosearch.map(toPlace).filter((p): p is Place => !!p)
-      .filter(p => distanceKm(location, p) <= searchedRadiusKm + 0.03)
+      .filter(p => distanceKm(location, p) <= searchedRadiusKm + 1e-7)
       .filter(p => { if (seen.has(p.id)) return false; seen.add(p.id); return true; })
       .sort((a, b) => distanceKm(location, a) - distanceKm(location, b)).slice(0, 50);
     if (options.signal?.aborted) throw abortError();
-    const result: WikipediaResult = { places, requestedRadiusKm, searchedRadiusKm, warning: requestedRadiusKm > searchedRadiusKm
-      ? `Wikipedia hỗ trợ tối đa 10 km mỗi truy vấn. Đang hiển thị kết quả trong ${searchedRadiusKm} km, chưa phủ đủ ${requestedRadiusKm} km đã chọn.` : "" };
+    const truncated = body.query.geosearch.length >= 50;
+    const result: WikipediaResult = { places, requestedRadiusKm, searchedRadiusKm, truncated, warning: [requestedRadiusKm > searchedRadiusKm
+      ? `Wikipedia hỗ trợ tối đa 10 km mỗi truy vấn. Đang hiển thị kết quả trong ${searchedRadiusKm} km, chưa phủ đủ ${requestedRadiusKm} km đã chọn.` : "", truncated ? "Wikipedia đạt giới hạn 50 kết quả; danh sách có thể chưa đầy đủ." : ""].filter(Boolean).join(" ") };
     cache.set(key, { at: Date.now(), result });
     if (cache.size > 25) cache.delete(cache.keys().next().value!);
     return result;

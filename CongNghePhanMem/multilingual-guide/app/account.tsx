@@ -7,6 +7,7 @@ import { useApp } from '../src/context/AppContext';
 import { apiFetch, type UserResponse } from '../src/services/api';
 import type { Language } from '../src/data/places';
 import { useI18n } from '../src/hooks/useI18n';
+import PresencePrivacy from '../src/components/PresencePrivacy';
 
 function AccountForm() {
   const { t } = useI18n();
@@ -31,7 +32,7 @@ function AccountForm() {
     <LanguageSelector value={language} onChange={v => { if (!busy) chooseLanguage(v); }} />
     <ErrorMessage message={error} />{!!notice && <Text accessibilityRole="alert">{t(notice)}</Text>}
     <PrimaryButton title="Lưu hồ sơ" loading={busy} onPress={() => void save()} />
-  </View></Screen>;
+  </View><PresencePrivacy token={token}/></Screen>;
 }
 
 export default function Account() {

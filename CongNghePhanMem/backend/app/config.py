@@ -36,6 +36,18 @@ _raw_origins: str = os.getenv(
 )
 ALLOWED_ORIGINS: list[str] = [origin.strip() for origin in _raw_origins.split(",") if origin.strip()]
 
+if os.getenv('APP_ENV') == 'production':
+    from urllib.parse import urlsplit
+    if len(SECRET_KEY) < 32 or SECRET_KEY.startswith(('replace-', 'change-this')):
+        raise RuntimeError('Configure a strong server-only SECRET_KEY before production startup')
+    def _public_origin(origin):
+        try:
+            parts=urlsplit(origin)
+            return parts.scheme=='https' and bool(parts.hostname) and not (parts.username or parts.password or parts.query or parts.fragment or parts.path or '*' in origin) and parts.hostname!='localhost' and not parts.hostname.endswith(('.local','.localhost','.internal','.test'))
+        except ValueError:return False
+    if not ALLOWED_ORIGINS or not all(_public_origin(origin) for origin in ALLOWED_ORIGINS):
+        raise RuntimeError('Production ALLOWED_ORIGINS must contain exact HTTPS frontend origins')
+
 _raw_admin_ids = os.getenv("ADMIN_USER_IDS", "")
 try:
     ADMIN_USER_IDS: frozenset[int] = frozenset(

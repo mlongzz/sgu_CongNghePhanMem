@@ -39,6 +39,9 @@ async function mockSpeech(page: Page) {
 }
 async function wikipedia(page: Page, options: { fail?: () => boolean; empty?: boolean; noEnglish?: boolean; long?: boolean; delayed?: Promise<void> } = {}) {
   await page.route('https://*.wikipedia.org/w/api.php?**', async route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     const url = new URL(route.request().url());
     if (url.searchParams.get('list') === 'geosearch') return route.fulfill({ json: { query: { geosearch: [{ pageid: 456, ns: 0, title, lat: origin.latitude, lon: origin.longitude }] } } });
     if (options.delayed) await options.delayed;
@@ -89,11 +92,12 @@ test('four languages select translated article text and matching voice/rate; cha
   for (const [lang, label, locale] of choices) {
     await page.getByRole('radio', { name: label, exact: true }).click();
     await expect(page.getByTestId('narration-text')).toHaveText(excerpts[lang]);
-    await page.getByRole('button', { name: 'Tốc độ 1.5×', exact: true }).click();
+    const speedLabel = { vi: 'Tốc độ', en: 'Speed', fr: 'Vitesse', ja: '速度' }[lang];
+    await page.getByRole('button', { name: `${speedLabel} 1.5×`, exact: true }).click();
     await page.getByTestId('narration-playback').click();
     await expect.poll(() => page.evaluate(() => window.narrationMock.calls.at(-1))).toEqual({ text: excerpts[lang], language: locale, rate: 1.5 });
   }
-  await page.getByRole('button', { name: 'Tốc độ 0.75×', exact: true }).click();
+  await page.getByRole('button', { name: '速度 0.75×', exact: true }).click();
   await expect(page.getByTestId('narration-playback')).toBeEnabled();
   expect(await page.evaluate(() => window.narrationMock.current)).toBeNull();
 });
@@ -101,7 +105,8 @@ test('four languages select translated article text and matching voice/rate; cha
 test('missing translation and empty content explain disabled playback without speaking metadata', async ({ page }) => {
   await wikipedia(page, { noEnglish: true }); await openWikipedia(page);
   await page.getByRole('radio', { name: 'English', exact: true }).click();
-  await expect(page.getByTestId('narration-text')).toHaveText('Địa danh này chưa có nội dung thuyết minh. Vui lòng thử lại sau.');
+  await expect(page.getByTestId('narration-text')).toHaveText('No narration is available for this place. Please try again later.');
+  await expect(page.getByTestId('narration-status')).toContainText('No narration to play');
   await expect(page.getByTestId('narration-playback')).toBeDisabled();
   expect(await page.evaluate(() => window.narrationMock.calls)).toEqual([]);
 });
@@ -116,6 +121,7 @@ test('Wikipedia network errors allow retry and missing installed voice explains 
   await page.evaluate(() => { window.narrationMock.voices = window.narrationMock.voices.filter(voice => voice.lang !== 'vi-VN'); });
   await page.getByRole('button', { name: 'Nghe thuyết minh', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('chưa có giọng đọc tiếng Việt');
+  await expect(page.getByTestId('narration-status')).toContainText('Không thể phát, hãy thử lại');
   expect(await page.evaluate(() => window.narrationMock.calls)).toEqual([]);
   await page.evaluate(voices => { window.narrationMock.voices = voices; }, installed);
   await page.getByRole('button', { name: 'Nghe thuyết minh', exact: true }).click();
@@ -131,7 +137,7 @@ test('long extract resumes into the next chunk and navigation stops it', async (
   await page.evaluate(() => { const u = window.narrationMock.current; u?.onend?.call(u, new Event('end') as SpeechSynthesisEvent); });
   await expect.poll(() => page.evaluate(() => window.narrationMock.calls.length)).toBe(2);
   await page.getByRole('button', { name: 'Quay lại', exact: true }).click();
-  await expect(page).toHaveURL(/\/map$/);
+  await expect(page).toHaveURL(/\/map(?:\?journey=\d+)?$/);
   expect(await page.evaluate(() => window.narrationMock.current)).toBeNull();
 });
 
@@ -183,38 +189,65 @@ test('published PostgreSQL guide and meaningful OSM description both play throug
   await expect.poll(() => page.evaluate(() => window.narrationMock.calls.at(-1)?.text)).toBe(description);
 });
 
-test('AutoGuide uses accurate live GPS, avoids repeats, rearms after exit/cooldown, and removes the actual browser watch', async ({ page }) => {
-  // Isolate repeat/re-entry behavior for one POI; choosing between multiple sources is tested separately in auto-guide.test.cjs.
-  await page.route('https://*.wikipedia.org/w/api.php?**', route => route.fulfill({ json: { query: { geosearch: [] } } }));
+test('journey AutoGuide requires explicit route consent, preserves progress and never replays a completed stop automatically', async ({ page }) => {
+  await page.context().setGeolocation({ latitude: origin.latitude, longitude: origin.longitude, accuracy: 102 });
+  await page.route('https://*.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+return route.fulfill({ json: { query: { geosearch: [] } } }); });
   await page.addInitScript(() => {
     window.autoGps = { callback: null, error: null, cleared: [] };
     navigator.geolocation.watchPosition = (success, error) => { window.autoGps.callback = success; window.autoGps.error = error ?? null; return 77; };
     navigator.geolocation.clearWatch = id => { window.autoGps.cleared.push(id); };
   });
   await page.goto('/map');
-  await page.getByRole('button', { name: 'Dùng GPS và tìm địa danh', exact: true }).click();
-  await expect(page.getByLabel('Chi tiết Browser Test Museum', { exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Bật thuyết minh tự động', exact: true })).toBeDisabled();
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(0);
+  await page.goto('/journeys');
+  await page.getByRole('button', { name: 'Browser Journey Fixture', exact: true }).click();
+  await page.getByRole('button', { name: 'Bắt đầu hành trình', exact: true }).click();
+  await expect(page).toHaveURL(/\/map(?:\?journey=\d+)?$/);
+  await expect(page.getByTestId('journey-current')).toContainText('Browser Test Museum');
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(0);
   await page.getByRole('button', { name: 'Bật thuyết minh tự động', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Tắt thuyết minh tự động', exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => !!window.autoGps.callback)).toBe(true);
   const emit = async (latitude: number, accuracy = 5) => page.evaluate(({ latitude, accuracy }) => window.autoGps.callback?.({
     coords: { latitude, longitude: 106.6993, accuracy, altitude: null, altitudeAccuracy: null, heading: null, speed: null }, timestamp: Date.now(),
   } as GeolocationPosition), { latitude, accuracy });
+  // Initial OS fix is 102 m in the fixture, so it must not start a guide.
   await emit(origin.latitude, 150);
   expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(0);
   await emit(origin.latitude);
   await expect.poll(() => page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
-  for (let i = 0; i < 4; i++) await emit(origin.latitude + i * .000001);
-  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
   await page.evaluate(() => { const u = window.narrationMock.current; u?.onend?.call(u, new Event('end') as SpeechSynthesisEvent); });
+  await expect(page.getByTestId('journey-current')).toContainText('Journey Admin fixture 000');
   await emit(origin.latitude);
   expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
-  await emit(origin.latitude + .004);
-  await page.evaluate(() => { const real = Date.now; Date.now = () => real() + 120001; });
+  await emit(origin.latitude + 0.01);
   await emit(origin.latitude);
-  await expect.poll(() => page.evaluate(() => window.narrationMock.calls.length)).toBe(2);
-  await page.getByRole('button', { name: 'Tắt thuyết minh tự động', exact: true }).click();
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
+  await emit(origin.latitude + 0.01);
+  await emit(origin.latitude);
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
+  await page.getByRole('button', { name: 'Tạm dừng hành trình', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Tiếp tục hành trình', exact: true })).toBeVisible();
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('mg_active_journey_v1')?.includes('db-1'))).toBe(true);
+  await page.reload();
+  await expect(page.getByTestId('journey-current')).toContainText('Journey Admin fixture 000');
+  await expect(page.getByRole('button', { name: 'Tiếp tục hành trình', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Bật thuyết minh tự động', exact: true })).toBeDisabled();
+  expect(await page.evaluate(() => window.autoGps.callback)).toBeNull();
+  await page.getByRole('button', { name: 'Tiếp tục hành trình', exact: true }).click();
+  await page.getByRole('button', { name: 'Bật thuyết minh tự động', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => !!window.autoGps.callback)).toBe(true);
+  await emit(origin.latitude);
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(0);
+  await emit(11.1);
+  await expect.poll(() => page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
+  await page.evaluate(() => { const u = window.narrationMock.current; u?.onend?.call(u, new Event('end') as SpeechSynthesisEvent); });
+  await expect(page.getByText('Hành trình đã hoàn thành', { exact: true })).toBeVisible();
+  await emit(11.1);
+  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(1);
+  await expect(page.getByRole('button', { name: 'Theo dõi khi di chuyển', exact: true })).toBeVisible();
   expect(await page.evaluate(() => window.autoGps.cleared)).toContain(77);
-  expect(await page.evaluate(() => window.narrationMock.current)).toBeNull();
-  await emit(origin.latitude);
-  expect(await page.evaluate(() => window.narrationMock.calls.length)).toBe(2);
 });

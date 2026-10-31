@@ -3,8 +3,22 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 
 from app.schemas.osm import OsmNearbyResponse
 from app.services.osm_service import OsmNearbyService, OsmUnavailable, get_osm_service
+from app.dependencies import get_current_admin
+from app.services.osm_snapshot_store import SnapshotStoreError
+import asyncio
 
 router = APIRouter(prefix="/osm", tags=["OpenStreetMap"])
+admin_router = APIRouter(prefix='/admin/osm',tags=['OSM sync'],dependencies=[Depends(get_current_admin)])
+
+
+@admin_router.get('/status')
+async def sync_status(service:OsmNearbyService=Depends(get_osm_service)):
+    if service.snapshot_store is None:
+        return {'storage':'local','durable':False,'notice':'Use postgres snapshot storage in production; sync is an explicit external job'}
+    try:
+        return {**await asyncio.to_thread(service.snapshot_store.status),'durable':True,'minimum_interval_seconds':3600,'map_requests_trigger_sync':False}
+    except SnapshotStoreError:
+        raise HTTPException(503,'Durable OSM status unavailable') from None
 
 
 @router.get("/nearby", response_model=OsmNearbyResponse, response_model_exclude_none=True)
