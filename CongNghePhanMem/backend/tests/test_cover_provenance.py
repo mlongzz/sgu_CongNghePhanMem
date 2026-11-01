@@ -23,8 +23,26 @@ def test_cover_metadata_updates_and_removal_are_atomic(client, db_session):
     }).json()
     assert changed['image_attribution'] == 'Corrected author'
     assert changed['image_license'] == 'CC BY 4.0'
-    assert changed['publication_status'] == 'draft'
+    assert changed['publication_status'] == 'published'
+    assert client.get(path.replace('/admin', '')).json()['image_attribution'] == 'Corrected author'
     removed = client.delete(path + '/image', headers=admin).json()
     for field in ('image_url', 'image_attribution', 'image_source_url', 'image_license'):
         assert removed[field] is None
+    assert removed['publication_status'] == 'published'
+    assert client.get(path.replace('/admin', '')).status_code == 200
     assert client.get(path + '/images', headers=admin).json()[0]['status'] == 'rejected'
+
+
+def test_adding_a_cover_does_not_publish_a_draft(client, db_session):
+    admin = headers(db_session, 'admin')
+    place = client.post('/admin/places', headers=admin, json={
+        'name': 'Draft fixture', 'latitude': 1, 'longitude': 2,
+    }).json()
+    path = f'/admin/places/{place["id"]}'
+    assert client.post(path + '/image', headers=admin, content=png()).status_code == 200
+    image = client.get(path + '/images', headers=admin).json()[0]
+    result = client.put(path + f'/images/{image["id"]}', headers=admin, json={
+        'status': 'approved', 'as_cover': True, 'attribution': 'Fixture author', 'license': 'CC0',
+    })
+    assert result.status_code == 200 and result.json()['publication_status'] == 'draft'
+    assert client.get(path.replace('/admin', '')).status_code == 404

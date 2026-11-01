@@ -6,7 +6,7 @@ Startup no longer calls create_all. Run migrations explicitly before serving tra
 
 The backend image is published to GitHub Container Registry when a `v*` tag
 passes backend SQLite/PostgreSQL, frontend, E2E and Docker build jobs in
-[the root workflow](../.github/workflows/ci.yml). For example, pushing `v1.0.0` publishes a tagged
+[the repository root workflow](https://github.com/mlongzz/sgu_CongNghePhanMem/blob/main/.github/workflows/ci.yml). For example, pushing `v1.0.0` publishes a tagged
 image at `ghcr.io/<owner>/<repository>/backend:1.0.0`.
 
 Set these environment variables on the container host before starting it:

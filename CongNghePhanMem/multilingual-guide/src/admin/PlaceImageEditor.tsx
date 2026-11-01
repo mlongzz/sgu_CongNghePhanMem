@@ -92,7 +92,7 @@ export default function PlaceImageEditor({placeId,uri,token,onSaved,onDirtyChang
       if(!/^\d+$/.test(data.position)||Number(data.position)>1000)throw new Error('Thứ tự ảnh phải từ 0 đến 1000.');
       const result=await apiFetch<Cover>(`/admin/places/${placeId}/images/${row.id}`,{token,method:'PUT',body:JSON.stringify({...data,source_url:data.source_url||null,position:Number(data.position),status,as_cover})});
       if(mounted.current)onSaved(result);setEdits(old=>{const next={...old};delete next[row.id];return next;});await load();
-      setNotice(as_cover?'Đã đặt ảnh bìa. Kiểm tra địa điểm và xuất bản lại khi sẵn sàng.':'Đã lưu lựa chọn và thông tin ảnh.');
+      setNotice(as_cover?'Đã đặt ảnh bìa. Trạng thái địa điểm được giữ nguyên.':'Đã lưu lựa chọn và thông tin ảnh.');
     }catch(e){fail(e);}finally{setBusy(false);}
   };
   const remove=async()=>{
@@ -104,7 +104,7 @@ export default function PlaceImageEditor({placeId,uri,token,onSaved,onDirtyChang
   return <View style={{gap:15,paddingVertical:12}}>
     {uploading&&<PrimaryButton title={t('Hủy tải ảnh')} onPress={()=>uploadRequest.current?.abort()} variant="outline"/>}
     <PlaceImage uri={uri} style={{width:'100%',height:180,borderRadius:13}}/>
-    <Text style={{color:C.muted,fontSize:12,lineHeight:19}}>{t('Ảnh mới được lưu trong thư viện. Chọn ảnh bìa hoặc ảnh bổ sung sau khi kiểm tra nguồn, tác giả và giấy phép. Thay hoặc gỡ ảnh bìa đưa địa điểm về nháp.')}</Text>
+    <Text style={{color:C.muted,fontSize:12,lineHeight:19}}>{t('Ảnh mới được lưu trong thư viện. Chọn ảnh bìa hoặc ảnh bổ sung sau khi kiểm tra nguồn, tác giả và giấy phép. Trạng thái địa điểm được giữ nguyên khi thay hoặc gỡ ảnh.')}</Text>
     <ImageDropZone disabled={busy} onFiles={addFiles}/><PrimaryButton title={t('Chọn ảnh từ thiết bị')} loading={busy} onPress={()=>void choose()} variant="outline"/>
     {!!queue.length&&<View style={{gap:10}}><View style={{flexDirection:'row',flexWrap:'wrap',gap:10}}>{queue.map((entry,index)=><View key={entry.uri+index} style={{gap:7}}><PlaceImage localPreview uri={entry.uri} style={{width:95,height:80,borderRadius:9}}/><PrimaryButton title={`Bỏ ảnh ${index+1}`} disabled={busy} onPress={()=>setQueue(old=>old.filter((_,i)=>i!==index))} variant="outline"/></View>)}</View><PrimaryButton title={`Tải ${queue.length} ảnh lên thư viện`} disabled={busy} onPress={()=>void upload()}/></View>}
     <View style={{gap:10,padding:15,borderWidth:1,borderColor:C.border,borderRadius:13}}><Text style={{fontWeight:'700'}}>{t('Nhập ảnh bằng URL HTTPS')}</Text><TextInput editable={!busy} accessibilityLabel="URL ảnh nhập vào thư viện" value={url} onChangeText={setUrl} placeholder="https://..." autoCapitalize="none" style={input}/><TextInput editable={!busy} accessibilityLabel="Nguồn ảnh URL" value={source} onChangeText={setSource} placeholder={t('URL tham khảo (tùy chọn)')} autoCapitalize="none" style={input}/><TextInput editable={!busy} accessibilityLabel="Tác giả ảnh URL" value={author} onChangeText={setAuthor} placeholder={t('Tác giả / ghi công')} style={input}/><TextInput editable={!busy} accessibilityLabel="Giấy phép ảnh URL" value={license} onChangeText={setLicense} placeholder="CC BY-SA 4.0 / CC0 / ..." style={input}/><PrimaryButton title={t('Lưu ảnh từ URL vào thư viện')} disabled={busy||!url.trim()} onPress={()=>void importUrl()}/></View>

@@ -34,6 +34,16 @@ test('published PostgreSQL guide has priority over saved and Wikipedia content i
   assert.equal(result.source, 'published'); assert.equal(result.text, 'Bài chính thức đã được xuất bản.');
 });
 
+test('published narration preserves a safe source link and licence text', async () => {
+  const official = place({ id: 'db-12', source: 'backend' });
+  for (const [source_url, expected] of [['https://museum.example/history', 'https://museum.example/history'], ['javascript:alert(1)', undefined], ['https://user:password@example.org/', undefined]]) {
+    const api = service({ guide: async () => ({ content: text, language_code: 'vi', source_url, source_license: 'Source licence' }) });
+    const result = await api.resolveNarration(official, 'vi');
+    assert.equal(result.sourceUrl, expected);
+    assert.equal(result.sourceLicense, 'Source licence');
+  }
+});
+
 test('community landmark prefers matching published title and coordinates, but never guesses an unrelated official place', async () => {
   let calls = 0;
   const api = service({ guide: async id => { calls++; assert.equal(id, '7'); return { content: text, language_code: 'vi' }; } });

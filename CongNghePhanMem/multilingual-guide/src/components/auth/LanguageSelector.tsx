@@ -37,7 +37,8 @@ export default function LanguageSelector({
               onPress={() => onChange(lang.key)}
               style={[styles.chip, selected && styles.chipSelected]}
               accessibilityRole="radio"
-              accessibilityState={{ selected }}
+              aria-checked={selected}
+              accessibilityState={{ checked: selected }}
               accessibilityLabel={lang.label}
             >
               <Text style={styles.flag}>{lang.flag}</Text>

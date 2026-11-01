@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { ActivityIndicator, Alert, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -19,6 +19,7 @@ import { resolveNarration, NO_NARRATION } from '../../src/services/narration';
 import SpeechVoiceSelector from '../../src/components/SpeechVoiceSelector';
 import { useI18n } from '../../src/hooks/useI18n';
 import LanguageMenu from '../../src/components/LanguageMenu';
+import { openDirections } from '../../src/services/directions';
 
 export default function PlaceDetail() {
   const { id: routeId } = useLocalSearchParams<{ id: string }>();
@@ -102,7 +103,7 @@ export default function PlaceDetail() {
   if (!p) return <SafeAreaView style={s.safe}><View style={s.missing}><Text style={s.missingText}>{t(placeError || 'Không tìm thấy địa điểm. Hãy chọn lại từ bản đồ.')}</Text><Pressable accessibilityRole="button" onPress={() => setRetry(v => v + 1)}><Text>{t('Thử tải lại')}</Text></Pressable><Pressable accessibilityRole="button" onPress={() => router.canGoBack() ? router.back() : router.replace('/map')}><Text>{t('Quay lại bản đồ')}</Text></Pressable></View></SafeAreaView>;
   const playing = playingId === p.id;
   const isDatabase = databaseId;
-  const directions = () => { void Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${p.latitude}%2C${p.longitude}&travelmode=walking`).catch(() => Alert.alert(t('Lỗi'), t('Không thể mở chỉ đường.'))); };
+  const directions = () => { void openDirections(p, t); };
   const voiceState = playing ? speechStatus === 'paused' ? 'Đang tạm dừng' : speechStatus === 'loading' ? 'Đang chuẩn bị giọng đọc…' : 'Đang phát'
     : contentLoading ? 'Đang tải nội dung thuyết minh…' : !content ? 'Không có nội dung để phát' : speechError ? 'Không thể phát, hãy thử lại' : 'Nhấn nghe để kiểm tra giọng đọc';
   return <View style={s.screen}><ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 155 }}>
@@ -121,7 +122,8 @@ export default function PlaceDetail() {
       {!contentLoading && !content && <View><Text style={s.body}>{t('Chọn ngôn ngữ khác hoặc thử tải lại nội dung.')}</Text><Pressable accessibilityRole="button" onPress={() => setContentRetry(v => v + 1)}><Text style={{ color: C.primary }}>{t('Thử tải lại nội dung')}</Text></Pressable></View>}
       {content && <View style={{ gap: 8, marginBottom: 20 }}><Text testID="narration-attribution" style={{ color: C.muted }}>{t(content.attribution || (content.source === 'published' ? 'Bài thuyết minh do hệ thống xuất bản.' : 'Nội dung tham khảo; chưa được Admin duyệt.'))}</Text>
         {content.source === 'wikipedia' && <Text style={{ color: C.muted }}>{t('Bản đọc tạm thời từ Wikipedia; chưa được Admin duyệt.')}</Text>}
-        {Boolean(content.sourceUrl) && <Pressable accessibilityRole="button" onPress={() => void Linking.openURL(content.sourceUrl!).catch(() => {})}><Text style={{ color: C.primary }}>{t('Đọc nguồn gốc và lịch sử tác giả')}</Text></Pressable>}
+        {Boolean(content.sourceLicense) && <Text style={{ color: C.muted }}>{content.sourceLicense}</Text>}
+        {Boolean(content.sourceUrl) && <Pressable accessibilityRole="button" onPress={() => void Linking.openURL(content.sourceUrl!).catch(() => {})}><Text style={{ color: C.primary }}>{t(content.source === 'wikipedia' ? 'Đọc nguồn gốc và lịch sử tác giả' : 'Xem nguồn thông tin')}</Text></Pressable>}
         {Boolean(content.licenseUrl) && <Pressable accessibilityRole="button" onPress={() => void Linking.openURL(content.licenseUrl!).catch(() => {})}><Text style={{ color: C.primary }}>{t('Giấy phép sử dụng nội dung')}</Text></Pressable>}
       </View>}
       <View style={s.voiceCard}><View style={{ flex: 1 }}><Text style={s.voiceName}>{t('Hướng dẫn viên âm thanh')}</Text><Text testID="narration-status" style={s.voiceSub}>{LANGS.find(l => l.key === language)?.label} · {t(voiceState)}</Text></View></View>

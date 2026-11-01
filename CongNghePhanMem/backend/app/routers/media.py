@@ -81,7 +81,6 @@ def delete_image(place_id: int, db: Session = Depends(get_db), actor: User = Dep
     place.image_source_url = None
     place.image_attribution = None
     place.image_license = None
-    place.publication_status = 'draft'
     for candidate in db.query(PlaceImage).filter_by(place_id=place.id, url=old).all():
         candidate.status = 'rejected'
     db.add(AuditLog(actor_id=actor.id, action="delete_image", resource="places", resource_id=place.id))
@@ -140,14 +139,11 @@ def review_image(place_id: int, image_id: int, data: ImageReview, db: Session = 
     for key, value in changes.items(): setattr(row, key, value)
     row.reviewed_at = datetime.now(timezone.utc)
     cover_fields = ('image_url', 'image_thumbnail_url', 'image_source_url', 'image_attribution', 'image_license')
-    old_cover = tuple(getattr(place, field) for field in cover_fields)
     if data.as_cover or (row.url == place.image_url and row.status == 'approved'):
         place.image_url, place.image_thumbnail_url, place.image_source_url, place.image_attribution, place.image_license = row.url, row.thumbnail_url, row.source_url, row.attribution, row.license
     elif row.url == place.image_url and row.status != 'approved':
         for field in cover_fields:
             setattr(place, field, None)
-    if old_cover != tuple(getattr(place, field) for field in cover_fields):
-        place.publication_status = 'draft'
     db.add(AuditLog(actor_id=actor.id, action='review_image', resource='places', resource_id=place_id))
     db.commit(); db.refresh(row)
     return {'image': image_value(row), **{field: getattr(place, field) for field in cover_fields}, 'publication_status': place.publication_status}

@@ -63,6 +63,9 @@ export default function Profile() {
                 ? (user?.email || t('Phiên đăng nhập đang hoạt động'))
                 : t('Đăng nhập để sử dụng tài khoản cá nhân')}
             </Text>
+            {token && user ? <Text style={s.accountSub}>
+              {t('Vai trò tài khoản')}: {t(user.role === 'admin' ? 'Quản trị viên' : 'Người dùng thường')} · {t('Quyền quản trị khi đăng nhập')}: {t(isAdmin ? 'Có' : 'Không')}
+            </Text> : null}
           </View>
         </View>
         {token ? (
@@ -102,6 +105,10 @@ export default function Profile() {
           {LANGS.map((lang, i) => (
             <Pressable
               key={lang.key}
+              accessibilityRole="radio"
+              accessibilityLabel={lang.label}
+              aria-checked={language === lang.key}
+              accessibilityState={{ checked: language === lang.key }}
               onPress={() => {
                 stop();
                 setLanguage(lang.key);

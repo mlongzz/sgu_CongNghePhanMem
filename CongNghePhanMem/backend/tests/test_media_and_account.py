@@ -52,8 +52,7 @@ def test_image_upload_replace_remove_and_audit(client, db_session, tmp_path):
     assert client.put(review_path, headers=admin, json={'status': 'approved', 'as_cover': True}).status_code == 422
     reviewed = client.put(review_path, headers=admin, json={'status': 'approved', 'as_cover': True, 'attribution': 'Explicit test author', 'license': 'CC0'})
     url = reviewed.json()['image_url']
-    assert client.get(f'/places/{place["id"]}').status_code == 404
-    client.put(f'/admin/places/{place["id"]}', headers=admin, json={'publication_status': 'published'})
+    assert client.get(f'/places/{place["id"]}').status_code == 200
     assert client.get(f'/places/{place["id"]}').json()['image_url'] == url
     image = client.get(url)
     assert image.status_code == 200
@@ -68,9 +67,11 @@ def test_image_upload_replace_remove_and_audit(client, db_session, tmp_path):
     candidate = client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()[0]
     replacement = client.put(f'/admin/places/{place["id"]}/images/{candidate["id"]}', headers=admin, json={'status': 'approved', 'as_cover': True, 'attribution': 'Explicit replacement author', 'license': 'CC0'}).json()['image_url']
     assert replacement != url
+    assert client.get(f'/places/{place["id"]}').json()['image_url'] == replacement
     assert client.get(url).status_code == 200  # Gallery history remains intact.
     assert len(list(tmp_path.iterdir())) == 4
     assert client.delete(path, headers=admin).json()['image_url'] is None
+    assert client.get(f'/places/{place["id"]}').json()['image_url'] is None
     assert client.get(replacement).status_code == 200  # Detach/reject does not destroy stored images.
     candidates = client.get(f'/admin/places/{place["id"]}/images', headers=admin).json()
     assert next(row for row in candidates if row['url'] == replacement)['status'] == 'rejected'

@@ -74,4 +74,4 @@ Tạo virtualenv mới trong backend của bản sao, cài `requirements-dev.txt
 
 ## CI, artifact và giới hạn
 
-[Workflow root](../.github/workflows/ci.yml) chạy SQLite/PostgreSQL, frontend, E2E, build Docker rồi mới cho publish tag. Log/ảnh/trace lỗi là CI artifacts 7 ngày, không commit. Không đặt credential production vào fixture. Docker local cần daemon; không coi có CLI là đã build được. Chưa có Actions run hoặc kiểm tra thiết bị thật trong phiên này.
+[Workflow ở root kho GitHub](https://github.com/mlongzz/sgu_CongNghePhanMem/blob/main/.github/workflows/ci.yml) chạy SQLite/PostgreSQL, frontend, E2E, build Docker rồi mới cho publish tag. Log/ảnh/trace lỗi là CI artifacts 7 ngày, không commit. Không đặt credential production vào fixture. Docker local cần daemon; không coi có CLI là đã build được. Run `41191217605` của commit `ceb59a1` đã đạt; kết quả commit mới nằm trong PR và không thay thế kiểm tra thiết bị thật. Xem [bản demo ngày 01/11](DEMO_RELEASE_2026-11-01.md).

@@ -11,6 +11,7 @@ import { useI18n } from '../hooks/useI18n';
 import PlaceImage from './PlaceImage';
 import ImageCredit from './ImageCredit';
 import PlaceSkeleton from './PlaceSkeleton';
+import { openDirections } from '../services/directions';
 
 const subscribe = () => () => {};
 const client = () => true;
@@ -21,8 +22,8 @@ export function MapIcon(props: React.ComponentProps<typeof Ionicons>) {
 }
 export function mapSourceLabel(place: Place) { return place.source === 'backend' ? 'Hệ thống' : place.source === 'wikipedia' ? 'Wikipedia' : 'OpenStreetMap'; }
 export function openMapDetail(place: Place, model: MapDiscovery) { model.registerPlace(place); router.push(`/place/${place.id}` as never); }
-export function openMapDirections(place: Place) {
-  void Linking.openURL(`https://www.google.com/maps/dir/?api=1&destination=${place.latitude}%2C${place.longitude}&travelmode=walking`).catch(() => {});
+export function openMapDirections(place: Place, t: (text: string) => string) {
+  void openDirections(place, t);
 }
 
 export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
@@ -74,7 +75,7 @@ export function MapSelection({ model: m }: { model: MapDiscovery }) {
   return <View style={s.selection}>
     <View style={{ flex: 1, minWidth: 0 }}><Text style={s.placeTitle}>{place.title}</Text><Text style={s.caption}>{t(place.category)} · {t(mapSourceLabel(place))}</Text></View>
     <Pressable accessibilityRole="button" onPress={() => openMapDetail(place, m)} style={s.secondary}><Text style={s.action}>{t('Xem chi tiết')}</Text></Pressable>
-    <Pressable accessibilityRole="button" onPress={() => openMapDirections(place)} style={s.secondary}><MapIcon name="navigate-outline" size={18} color={C.primary}/><Text style={s.action}>{t('Chỉ đường')}</Text></Pressable>
+    <Pressable accessibilityRole="button" onPress={() => openMapDirections(place, t)} style={s.secondary}><MapIcon name="navigate-outline" size={18} color={C.primary}/><Text style={s.action}>{t('Chỉ đường')}</Text></Pressable>
     {place.source !== 'backend' && place.sourceUrl ? <Pressable accessibilityRole="button" onPress={() => void Linking.openURL(place.sourceUrl!).catch(() => {})}><Text style={s.action}>{t(place.source === 'wikipedia' ? 'Đọc bài viết Wikipedia →' : 'Mở vị trí trên OpenStreetMap →')}</Text></Pressable> : null}
   </View>;
 }
@@ -97,7 +98,7 @@ export function MapPlaceList({ model: m }: { model: MapDiscovery }) {
           <View style={s.placeActions}>
             <Pressable accessibilityRole="button" accessibilityLabel={`${t('Chi tiết')} ${place.title}`} onPress={() => openMapDetail(place, m)}><Text style={s.action}>{t('Xem chi tiết')} →</Text></Pressable>
             <Pressable accessibilityRole="button" accessibilityLabel={`${t('Xem bản đồ')} ${place.title}`} onPress={() => m.selectPlace(place.id)}><MapIcon name="locate-outline" size={19} color={C.primary}/></Pressable>
-            <Pressable accessibilityRole="button" accessibilityLabel={`${t('Mở bản đồ ngoài')} ${place.title}`} onPress={() => openMapDirections(place)}><MapIcon name="navigate-outline" size={19} color={C.primary}/></Pressable>
+            <Pressable accessibilityRole="button" accessibilityLabel={`${t('Mở bản đồ ngoài')} ${place.title}`} onPress={() => openMapDirections(place, t)}><MapIcon name="navigate-outline" size={19} color={C.primary}/></Pressable>
           </View>
         </View>
       </View>)}

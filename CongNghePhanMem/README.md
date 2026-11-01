@@ -70,6 +70,29 @@ npm.cmd run web
 
 Thuyết minh dùng giọng có trên thiết bị. Nội dung chính thức ưu tiên bài đã duyệt đúng ngôn ngữ; thiếu giọng/nội dung có thông báo. Dịch tự động cần provider LibreTranslate được cấu hình riêng.
 
+## Dữ liệu demo sau khi clone
+
+Mười địa điểm có ảnh Commons được cấp phép và bài Việt–Anh trong bộ demo. Xem [kết quả và giới hạn nội dung](docs/DEMO_RELEASE_2026-11-01.md) cùng [ghi công ảnh](docs/DEMO_IMAGE_CREDITS.md). Hai script sửa dữ liệu phát triển chỉ nhận đúng baseline đã kiểm tra và yêu cầu backup đã khôi phục thử; không chạy chúng trên database khác để thử.
+
+Để dựng mới, dùng **database PostgreSQL local trống riêng** có tên `mg_demo_*`, cấu hình `DATABASE_URL` cho terminal đó, rồi từ `backend` chạy:
+
+```powershell
+.\.venv\Scripts\python.exe -m alembic upgrade head
+.\.venv\Scripts\python.exe -m scripts.bootstrap_reviewed_demo
+.\.venv\Scripts\python.exe -m scripts.bootstrap_reviewed_demo --apply
+```
+
+Bootstrap từ chối database có bất kỳ dữ liệu nghiệp vụ nào, không tạo tài khoản, đánh giá hay lịch sử. Sau đó tạo thư mục `..\.verification` nếu chưa có, dùng `pg_dump` đã cài để sao lưu database demo mới, nhập mật khẩu qua terminal hoặc cơ chế đăng nhập PostgreSQL sẵn có:
+
+```powershell
+pg_dump --format=custom --host=127.0.0.1 --port=5432 --username=<tai-khoan-local> --file=../.verification/demo-before-images.dump mg_demo_giangvien
+.\.venv\Scripts\python.exe -m scripts.verify_database_backup --backup ../.verification/demo-before-images.dump --isolated-cluster
+.\.venv\Scripts\python.exe -m scripts.prepare_verified_demo_images --allow-demo-db
+.\.venv\Scripts\python.exe -m scripts.prepare_verified_demo_images --allow-demo-db --apply --verified-backup ../.verification/demo-before-images.dump
+```
+
+Thay tên database và tài khoản bằng cấu hình local vừa tạo. Bộ 10 JPEG đã đi kèm mã nguồn, được kiểm SHA-256 trước khi chép vào `backend/uploads`; không cần tải ảnh từ mạng để dựng demo. Upload local cần giữ trên ổ đĩa/persistent volume. Dịch vụ production cần cấu hình kho ảnh bền vững riêng. Tùy chọn `--download` có thể bị Commons từ chối HTTP 403; không dùng kết quả tải lỗi để thay dữ liệu đã kiểm tra.
+
 ## Kiểm tra và bàn giao
 
 ```powershell
@@ -94,6 +117,7 @@ Nếu bản làm việc không có `.git`, không khởi tạo lịch sử để
 - [Hướng dẫn kiểm thử và thiết bị thật](docs/TESTING_GUIDE.md)
 - [Trạng thái triển khai](docs/IMPLEMENTATION_STATUS.md)
 - [Rà soát dữ liệu và giới hạn ngày 31/10/2026](docs/REVIEW_2026-10-31.md)
+- [Demo đã cập nhật ngày 01/11/2026](docs/DEMO_RELEASE_2026-11-01.md)
 - [Báo cáo sửa chữa, bằng chứng và điểm tham khảo](docs/REPAIR_ACCEPTANCE_REPORT.md)
 
-Workflow đã cấu hình kiểm tra SQLite/PostgreSQL, frontend, E2E và build Docker. Chỉ tag `v*` sau khi tất cả job đạt mới publish image lên GHCR; chưa chạy Actions/publish/deploy trong phiên sửa này.
+Workflow kiểm tra SQLite/PostgreSQL, frontend, E2E và Docker. [Lần chạy của commit `ceb59a1`](https://github.com/mlongzz/sgu_CongNghePhanMem/actions/runs/41191217605) đã đạt; commit mới phải có kết quả riêng trong PR. Chỉ tag `v*` sau khi tất cả job đạt mới publish image lên GHCR; chưa publish hoặc deploy production.

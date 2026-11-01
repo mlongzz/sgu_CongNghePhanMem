@@ -1,0 +1,382 @@
+{
+  "version": 1,
+  "source_note": "Snapshot of public demo text; eight pre-existing guide pairs lack complete independent source review. No user accounts, reviews, histories or user images included.",
+  "places": [
+    {
+      "id": 1,
+      "name": "Địa đạo Củ Chi",
+      "description": "Khu di tích lịch sử nổi tiếng tại Thành phố Hồ Chí Minh.",
+      "address": "Củ Chi, Thành phố Hồ Chí Minh",
+      "category": "Di tích lịch sử",
+      "latitude": 11.1415,
+      "longitude": 106.4635,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Địa đạo Củ Chi",
+          "content": "The Cu Chi Tunnels are an underground defence system in Cu Chi, Ho Chi Minh City, formed during the resistance against French colonial rule. Alongside the tunnels were spaces for daily life and defence, including living quarters, kitchens, stores and medical facilities. Today, the historic site helps visitors learn about the lives and wartime conditions of the people and forces of Cu Chi.",
+          "source_url": "https://baotanglichsu.vn/vi/Articles/2001/66910/djia-djao-cu-chi-djiem-hen-tim-ve-lich-su.html",
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Địa đạo Củ Chi",
+          "content": "Địa đạo Củ Chi là hệ thống phòng thủ dưới lòng đất tại Củ Chi, Thành phố Hồ Chí Minh, hình thành trong thời kỳ kháng chiến chống Pháp. Bên cạnh các đường hầm, hệ thống có những không gian phục vụ sinh hoạt và chiến đấu như phòng ở, bếp, kho và bệnh xá. Ngày nay, khu di tích giúp du khách tìm hiểu đời sống và điều kiện chiến đấu của quân dân Củ Chi trong thời chiến.",
+          "source_url": "https://baotanglichsu.vn/vi/Articles/2001/66910/djia-djao-cu-chi-djiem-hen-tim-ve-lich-su.html",
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Chợ Bình Tây",
+      "description": "Chợ đầu mối trong khu Chợ Lớn, nổi bật với kiến trúc Á Đông và hoạt động giao thương.",
+      "address": "57A Tháp Mười, TP. Hồ Chí Minh",
+      "category": "Văn hóa",
+      "latitude": 10.749375,
+      "longitude": 106.651078,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Chợ Bình Tây",
+          "content": "Binh Tay Market is a longstanding trading centre in Cholon. Its market halls and East Asian architecture offer a glimpse into the city's commercial life.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Chợ Bình Tây",
+          "content": "Le marché Binh Tay est un ancien centre de commerce de Cholon. Ses halles et son architecture asiatique permettent de découvrir la vie commerciale de la ville.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Chợ Bình Tây",
+          "content": "ビンタイ市場はチョロン地区の歴史ある商業の中心です。市場の売り場や東アジア様式の建築から、この街の商いの営みを感じられます。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Chợ Bình Tây",
+          "content": "Chợ Bình Tây là một điểm giao thương lâu đời trong khu Chợ Lớn. Những dãy hàng và kiến trúc Á Đông gợi mở nhịp sống thương mại của thành phố.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Chùa Giác Lâm",
+      "description": "Ngôi chùa cổ được khởi lập năm 1744, gắn với lịch sử Phật giáo Nam Bộ.",
+      "address": "565 Lạc Long Quân, TP. Hồ Chí Minh",
+      "category": "Lịch sử",
+      "latitude": 10.77944,
+      "longitude": 106.64917,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Chùa Giác Lâm",
+          "content": "Giac Lam Pagoda was founded in 1744. This historic temple offers an introduction to the Buddhist traditions of southern Vietnam.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Chùa Giác Lâm",
+          "content": "Fondée en 1744, la pagode Giac Lam est un temple historique de la ville. Elle invite à découvrir les traditions bouddhistes du sud du Vietnam.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Chùa Giác Lâm",
+          "content": "ザックラム寺は1744年に創建された歴史ある仏教寺院です。ベトナム南部の仏教の伝統に触れることができます。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Chùa Giác Lâm",
+          "content": "Chùa Giác Lâm được khởi lập năm 1744 và là một ngôi chùa cổ của thành phố. Không gian chùa gợi mở truyền thống Phật giáo Nam Bộ.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Chùa Giác Viên",
+      "description": "Ngôi cổ tự còn được gọi là chùa Hố Đất, nổi bật với nghệ thuật chạm khắc gỗ.",
+      "address": "Khu vực Lạc Long Quân, Bình Thới, TP. Hồ Chí Minh",
+      "category": "Văn hóa",
+      "latitude": 10.763025,
+      "longitude": 106.639236,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Chùa Giác Viên",
+          "content": "Giac Vien Pagoda is also known as Ho Dat Pagoda. Its wooden carvings are a distinctive feature of traditional architectural craftsmanship.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Chùa Giác Viên",
+          "content": "La pagode Giac Vien est aussi connue sous le nom de Ho Dat. Ses sculptures sur bois permettent de découvrir les savoir-faire de l'architecture traditionnelle.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Chùa Giác Viên",
+          "content": "ザックヴィエン寺はホーダット寺とも呼ばれます。伝統的な建築工芸を知るために、寺院の木彫装飾に注目してみてください。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Chùa Giác Viên",
+          "content": "Chùa Giác Viên còn được gọi là chùa Hố Đất. Những chi tiết chạm khắc gỗ là điểm đáng quan sát khi tìm hiểu nghệ thuật kiến trúc truyền thống.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Công viên Văn hóa Đầm Sen",
+      "description": "Không gian công viên với hồ, cây xanh và các hoạt động vui chơi trong thành phố.",
+      "address": "3 Hòa Bình, TP. Hồ Chí Minh",
+      "category": "Khám phá",
+      "latitude": 10.766158,
+      "longitude": 106.640831,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Công viên Văn hóa Đầm Sen",
+          "content": "Dam Sen is a cultural and amusement park in Ho Chi Minh City. Its lake and green spaces provide a setting for a walk and a break.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Công viên Văn hóa Đầm Sen",
+          "content": "Dam Sen est un parc culturel et de loisirs de Hô Chi Minh-Ville. Son lac et ses espaces verts offrent un cadre pour se promener et se détendre.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Công viên Văn hóa Đầm Sen",
+          "content": "ダムセンはホーチミン市の文化・レジャー公園です。湖と緑地が広がり、街の中で散歩や休憩を楽しめる場所となっています。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Công viên Văn hóa Đầm Sen",
+          "content": "Đầm Sen là một công viên văn hóa và vui chơi của thành phố. Cảnh quan hồ và cây xanh tạo không gian dạo bộ, nghỉ ngơi giữa khu dân cư.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Hội quán Nghĩa An",
+      "description": "Cơ sở tín ngưỡng của cộng đồng Triều Châu tại Chợ Lớn, thờ Quan Đế.",
+      "address": "678 Nguyễn Trãi, TP. Hồ Chí Minh",
+      "category": "Văn hóa",
+      "latitude": 10.753657,
+      "longitude": 106.662113,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Hội quán Nghĩa An",
+          "content": "Nghia An Assembly Hall is a religious site of the Teochew community in Cholon. Dedicated to Guan Yu, it features traditional decoration and carvings.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Hội quán Nghĩa An",
+          "content": "La maison communautaire Nghia An est un lieu de culte de la communauté teochew de Cholon. Dédiée à Guan Yu, elle présente des décors et sculptures traditionnels.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Hội quán Nghĩa An",
+          "content": "ギアアン会館はチョロンの潮州系の人々の信仰の場です。関羽を祀り、伝統的な装飾や彫刻を見ることができます。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Hội quán Nghĩa An",
+          "content": "Hội quán Nghĩa An là cơ sở tín ngưỡng của cộng đồng Triều Châu tại Chợ Lớn. Công trình thờ Quan Đế, với các chi tiết trang trí và chạm khắc truyền thống.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Dinh Độc Lập",
+      "description": "Công trình gắn với lịch sử Việt Nam thế kỷ hai mươi, nay là điểm tham quan.",
+      "address": "135 Nam Kỳ Khởi Nghĩa, TP. Hồ Chí Minh",
+      "category": "Lịch sử",
+      "latitude": 10.777108,
+      "longitude": 106.695441,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Dinh Độc Lập",
+          "content": "Independence Palace is closely associated with Vietnam's twentieth-century history. Its architecture and interior spaces introduce visitors to a chapter of the city's past.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Dinh Độc Lập",
+          "content": "Le palais de l'Indépendance est lié à l'histoire du Vietnam au vingtième siècle. Son architecture et ses espaces intérieurs invitent à découvrir le passé de la ville.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Dinh Độc Lập",
+          "content": "統一会堂はベトナムの20世紀の歴史と深く結びついた建物です。建築や内部の空間を通して、この街の歴史の一時代を学べます。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Dinh Độc Lập",
+          "content": "Dinh Độc Lập gắn với lịch sử Việt Nam trong thế kỷ hai mươi. Kiến trúc và các không gian bên trong giúp du khách tìm hiểu một giai đoạn lịch sử của thành phố.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Bảo tàng Chứng tích Chiến tranh",
+      "description": "Bảo tàng trưng bày tư liệu, hình ảnh và hiện vật về chiến tranh ở Việt Nam.",
+      "address": "28 Võ Văn Tần, TP. Hồ Chí Minh",
+      "category": "Lịch sử",
+      "latitude": 10.779475,
+      "longitude": 106.692132,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Bảo tàng Chứng tích Chiến tranh",
+          "content": "The War Remnants Museum presents documents, photographs and objects relating to war in Vietnam. It is a place to learn about history and the consequences of conflict.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Bảo tàng Chứng tích Chiến tranh",
+          "content": "Le musée des Vestiges de guerre présente des documents, photographies et objets sur la guerre au Vietnam. Il invite à réfléchir à l'histoire et aux conséquences des conflits.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Bảo tàng Chứng tích Chiến tranh",
+          "content": "戦争証跡博物館では、ベトナムの戦争に関する資料、写真、遺物が展示されています。歴史と、戦争が残した影響について学ぶ場所です。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Bảo tàng Chứng tích Chiến tranh",
+          "content": "Bảo tàng Chứng tích Chiến tranh giới thiệu tư liệu, hình ảnh và hiện vật về chiến tranh ở Việt Nam. Đây là nơi tìm hiểu lịch sử và hậu quả chiến tranh.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Bưu điện Trung tâm Sài Gòn",
+      "description": "Tòa nhà bưu điện lịch sử với mặt tiền nổi bật và không gian vòm bên trong.",
+      "address": "2 Công trường Công xã Paris, TP. Hồ Chí Minh",
+      "category": "Kiến trúc",
+      "latitude": 10.779884,
+      "longitude": 106.699943,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Bưu điện Trung tâm Sài Gòn",
+          "content": "Saigon Central Post Office is one of the city's distinctive historic buildings. Its façade and vaulted interior invite visitors to look closely at the architecture.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Bưu điện Trung tâm Sài Gòn",
+          "content": "La poste centrale de Saigon est un édifice historique caractéristique de la ville. Sa façade et son intérieur voûté invitent à observer son architecture.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Bưu điện Trung tâm Sài Gòn",
+          "content": "サイゴン中央郵便局は、この街を代表する歴史的な建築の一つです。正面の外観と内部のアーチ天井に注目してみてください。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Bưu điện Trung tâm Sài Gòn",
+          "content": "Bưu điện Trung tâm Sài Gòn là một công trình kiến trúc tiêu biểu của thành phố. Hãy quan sát mặt tiền và hệ thống vòm bên trong tòa nhà lịch sử này.",
+          "source_url": null,
+          "source_license": null
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Chợ Bến Thành",
+      "description": "Khu chợ nổi tiếng ở trung tâm thành phố với kiến trúc tháp đồng hồ đặc trưng.",
+      "address": "Khu vực Lê Lợi, Bến Thành, TP. Hồ Chí Minh",
+      "category": "Văn hóa",
+      "latitude": 10.772521,
+      "longitude": 106.698019,
+      "guides": [
+        {
+          "language_code": "en",
+          "title": "Chợ Bến Thành",
+          "content": "Ben Thanh Market is a well-known destination in the city centre. Its clock tower and market halls form the familiar image of a longstanding urban market.",
+          "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+          "source_license": null
+        },
+        {
+          "language_code": "fr",
+          "title": "Chợ Bến Thành",
+          "content": "Le marché Ben Thanh est un lieu connu du centre-ville. Sa tour de l'horloge et ses halles composent l'image familière de cet ancien marché urbain.",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "ja",
+          "title": "Chợ Bến Thành",
+          "content": "ベンタイン市場は市の中心部にある有名な場所です。時計塔と売り場が、歴史ある都市の市場を象徴する風景を作っています。",
+          "source_url": null,
+          "source_license": null
+        },
+        {
+          "language_code": "vi",
+          "title": "Chợ Bến Thành",
+          "content": "Chợ Bến Thành là một điểm đến quen thuộc ở trung tâm thành phố. Tháp đồng hồ và các dãy hàng tạo nên hình ảnh đặc trưng của khu chợ đô thị lâu đời.",
+          "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+          "source_license": null
+        }
+      ]
+    }
+  ]
+}

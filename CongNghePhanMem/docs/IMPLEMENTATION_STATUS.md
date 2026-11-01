@@ -1,6 +1,6 @@
 # Trạng thái triển khai
 
-Cập nhật 29/10/2026. Nguồn kiểm chứng cuối cùng là [báo cáo nghiệm thu](REPAIR_ACCEPTANCE_REPORT.md); số test cũ trong các báo cáo trước vẫn là lịch sử.
+Cập nhật 01/11/2026. Dữ liệu, kiểm thử và giới hạn mới nằm trong [báo cáo demo](DEMO_RELEASE_2026-11-01.md). [Báo cáo nghiệm thu](REPAIR_ACCEPTANCE_REPORT.md) và các số test ngày 29/10 là lịch sử.
 
 ## Đã triển khai
 
@@ -20,10 +20,10 @@ Typecheck và logic frontend; backend API/regression; E2E Chrome với backend t
 ## Chưa kiểm chứng hoặc cần cấu hình riêng
 
 - Loa/TTS/GPS Android/iPhone thật, APK/IPA ký và cài đặt trên thiết bị.
-- Actions trên GitHub; Docker build/start local khi daemon chưa chạy.
+- CI commit `ceb59a1` đã đạt backend/frontend/E2E/Docker; commit mới cần lần chạy riêng. Docker build/start local khi daemon chưa chạy vẫn chưa được xác nhận.
 - R2, LibreTranslate, MapTiler/native keys và provider live với credential demo thực.
-- Chất lượng nội dung/ảnh chính thức: bản dữ liệu thật đã có ảnh thiếu/hỏng trong đợt QA trước; cần Admin duyệt nội dung thật, không được tự xuất bản để tăng điểm.
-- Theo dõi/untrack bằng Git ở C không thể xác nhận vì không có `.git`. Bản Git ở E có HEAD khác báo cáo, chưa nhận thay đổi phiên này. Không commit/push/tag/publish/deploy.
+- Dữ liệu local có 10 ảnh đã đối chiếu giấy phép, 10 cặp bài Việt–Anh công khai. Tám cặp bài cũ vẫn thiếu đối chiếu nguồn đầy đủ; ảnh của các địa điểm khác chưa hoàn thiện.
+- Workspace đang chạy không có `.git`; đồng bộ có kiểm soát qua clone riêng và PR #3. Trạng thái commit/CI/main cuối cùng nằm trong PR. Chưa tag/publish/deploy production.
 - Microservices/queue/media audio server theo tài liệu hướng dẫn giả định chưa triển khai. Nếu đó là tiêu chí bắt buộc của giảng viên, cần phạm vi riêng; bản FastAPI hiện tại chưa được tính là đáp ứng.
 
 ## Giới hạn thiết kế còn lại

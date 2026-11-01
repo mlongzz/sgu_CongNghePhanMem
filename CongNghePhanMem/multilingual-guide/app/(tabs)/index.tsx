@@ -18,7 +18,6 @@ import { PlaceCard, Heading } from "../../src/components/UI";
 import PlaceImage from "../../src/components/PlaceImage";
 import ImageCredit from "../../src/components/ImageCredit";
 import PlaceSkeleton from "../../src/components/PlaceSkeleton";
-import { travelHero } from "../../src/data/travelHero";
 import type { Category } from "../../src/data/places";
 import { filterPlaces } from "../../src/services/nearby";
 import { useApp } from "../../src/context/AppContext";
@@ -56,6 +55,8 @@ export default function Home() {
     [places, category, deferredQuery, language],
   );
   const featured = places.slice(0, 4);
+  const creditedPlaces = places.filter(place => place.image && place.imageAttribution && place.imageLicense);
+  const heroPlace = creditedPlaces.find(place => place.title === 'Dinh Độc Lập') ?? creditedPlaces[0];
   return (
     <SafeAreaView style={s.safe}>
       <ScrollView
@@ -79,7 +80,7 @@ export default function Home() {
         </Pressable>
 
         <View style={s.hero}>
-          <PlaceImage uri={travelHero.image} label={travelHero.title} style={StyleSheet.absoluteFill}/>
+          {heroPlace && <PlaceImage uri={heroPlace.image} label={heroPlace.title} style={StyleSheet.absoluteFill}/>}
 
           <LinearGradient
             colors={["rgba(13,39,53,.3)", "rgba(9,40,48,.92)"]}
@@ -108,7 +109,7 @@ export default function Home() {
           </View>
         </View>
 
-        <View style={{marginTop:-12,marginBottom:16}}><Text style={{color:C.muted,fontSize:10}}>{travelHero.title} · {t('Ảnh cắt theo khung hiển thị')}</Text><ImageCredit place={travelHero}/></View>
+        {heroPlace && <View style={{marginTop:-12,marginBottom:16}}><Text style={{color:C.muted,fontSize:10}}>{heroPlace.title} · {t('Ảnh cắt theo khung hiển thị')}</Text><ImageCredit place={heroPlace}/></View>}
         <View style={s.statStrip}>
           <View style={s.stat}>
             <View style={[s.statIcon, { backgroundColor: "#E6F5F3" }]}>

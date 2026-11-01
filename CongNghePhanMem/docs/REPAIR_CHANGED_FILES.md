@@ -4,7 +4,7 @@
 
 ## Tệp mới (21)
 
-- [.github/workflows/ci.yml](../.github/workflows/ci.yml)
+- [Workflow ở root kho](https://github.com/mlongzz/sgu_CongNghePhanMem/blob/main/.github/workflows/ci.yml)
 - [README.md](../README.md)
 - [backend/alembic/versions/0006_email_uniqueness.py](../backend/alembic/versions/0006_email_uniqueness.py)
 - [backend/alembic/versions/0007_auth_sessions.py](../backend/alembic/versions/0007_auth_sessions.py)

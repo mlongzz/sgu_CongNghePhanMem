@@ -1,8 +1,9 @@
 import { useI18n } from "../hooks/useI18n";
 import { useEffect, useState } from "react";
-import { Linking, Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { apiFetch } from "../services/api";
 import PlaceImage from "./PlaceImage";
+import ImageCredit from "./ImageCredit";
 import { C } from "../theme/colors";
 type Photo = {
   id: number;
@@ -35,7 +36,7 @@ export default function PlaceGallery({ placeId }: { placeId: string }) {
   return (
     <View testID="place-gallery" style={{ gap: 12 }}>
       <Text style={{ fontWeight: "700", color: C.ink }}>
-        {t("Ảnh đã được duyệt")}
+        {t("Ảnh địa điểm")}
       </Text>
       {photos.map((photo) => (
         <View key={photo.id} style={{ gap: 7 }}>
@@ -44,17 +45,7 @@ export default function PlaceGallery({ placeId }: { placeId: string }) {
             thumbnailUri={photo.thumbnail_url}
             style={{ height: 210, width: "100%", borderRadius: 14 }}
           />
-          <Text style={{ color: C.muted }}>
-            {photo.attribution} · {photo.license}
-          </Text>
-          {Boolean(photo.source_url && /^https?:\/\//.test(photo.source_url)) && (
-            <Pressable
-              accessibilityRole="button"
-              onPress={() => void Linking.openURL(photo.source_url!)}
-            >
-              <Text style={{ color: C.primaryDark }}>Nguồn ảnh ↗</Text>
-            </Pressable>
-          )}
+          <ImageCredit place={{ imageAttribution: photo.attribution, imageLicense: photo.license, imageSourceUrl: photo.source_url }} />
         </View>
       ))}
     </View>

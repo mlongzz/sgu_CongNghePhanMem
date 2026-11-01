@@ -7,6 +7,7 @@ export type NarrationContent = {
   title?: string;
   source: 'published' | 'saved' | 'wikipedia' | 'description';
   sourceUrl?: string;
+  sourceLicense?: string;
   licenseUrl?: string;
   attribution?: string;
 };

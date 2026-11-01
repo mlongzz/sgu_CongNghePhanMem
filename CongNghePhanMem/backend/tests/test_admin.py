@@ -46,6 +46,20 @@ def test_normal_user_cannot_escalate(client, db_session):
     assert client.post('/admin/places', headers=headers, json={"name": "Denied", "latitude": 0, "longitude": 0}).status_code == 403
 
 
+def test_allowlisted_user_keeps_stored_role_but_has_admin_access(client, db_session, monkeypatch):
+    import app.dependencies as dependencies
+    member = User(email="allowlisted@example.com", password_hash="unused", full_name="Allowlisted", role="user")
+    db_session.add(member)
+    db_session.commit()
+    monkeypatch.setattr(dependencies, 'ADMIN_USER_IDS', {member.id})
+    headers = {"Authorization": "Bearer " + create_access_token(member.id)}
+    assert client.get('/users/me', headers=headers).json()['role'] == 'user'
+    assert client.get('/admin/me', headers=headers).json()['enabled'] is True
+    assert client.get('/admin/overview', headers=headers).status_code == 200
+    monkeypatch.setattr(dependencies, 'ADMIN_USER_IDS', set())
+    assert client.get('/admin/me', headers=headers).status_code == 403
+
+
 def test_invalid_jwt_claims_are_rejected(client, admin_headers):
     import jwt
     from app.config import SECRET_KEY, ALGORITHM

@@ -38,12 +38,12 @@ export default function SpeechVoiceSelector({ language, value, onChange }: Props
     </Pressable>
     {expanded && (!current ? <ActivityIndicator color={C.primary}/> : <>
       <ScrollView style={{ maxHeight: 180 }} nestedScrollEnabled><View style={styles.choices}>
-        <Pressable accessibilityRole="radio" accessibilityLabel={t('Tự động chọn giọng phù hợp')} accessibilityState={{ selected: !value }}
+        <Pressable accessibilityRole="radio" accessibilityLabel={t('Tự động chọn giọng phù hợp')} aria-checked={!value} accessibilityState={{ checked: !value }}
           style={[styles.choice, !value && styles.selected]} onPress={() => onChange(undefined)}>
           <Text style={styles.text}>{t('Tự động chọn giọng phù hợp')}</Text>
         </Pressable>
         {current.voices.map(voice => <Pressable key={voice.identifier} accessibilityRole="radio"
-          accessibilityLabel={`${voice.name || voice.identifier} (${voice.language})`} accessibilityState={{ selected: value === voice.identifier }}
+          accessibilityLabel={`${voice.name || voice.identifier} (${voice.language})`} aria-checked={value === voice.identifier} accessibilityState={{ checked: value === voice.identifier }}
           style={[styles.choice, value === voice.identifier && styles.selected]} onPress={() => onChange(voice.identifier)}>
           <Text style={styles.text}>{voice.name || voice.identifier} · {voice.language}</Text>
         </Pressable>)}

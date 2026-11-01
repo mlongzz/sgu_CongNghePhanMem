@@ -40,7 +40,7 @@ test('real presence across tabs, Admin dashboard, own deletion and persistent op
   await second.close();await dashboard.close();
 });
 
-test('Image Manager drag/drop, duplicate detection, URL error, source suggestions and multi-POI navigation',async({page})=>{
+test('Image Manager drag/drop, duplicate detection, URL error, source suggestions and multi-POI navigation',async({page,request})=>{
   await login(page,'admin@e2e.example.com');await expect(page).toHaveURL(/\/admin$/);
   await page.getByText('Thư viện ảnh',{exact:true}).click();await expect(page.getByTestId('image-manager')).toBeVisible();
   await page.getByLabel('Tìm địa danh trong thư viện ảnh').fill('Journey Admin fixture');
@@ -57,13 +57,24 @@ test('Image Manager drag/drop, duplicate detection, URL error, source suggestion
   await page.getByTestId('image-drop-zone').dispatchEvent('drop',{dataTransfer:transfer});await page.getByRole('button',{name:'Tải 1 ảnh lên thư viện'}).click();
   await expect(page.getByLabel(/Ảnh \d+ attribution/)).toHaveCount(1);
   await page.getByLabel(/Ảnh \d+ attribution/).fill('Browser drop fixture author');await page.getByLabel(/Ảnh \d+ license/).fill('CC0');
+  const savedCover = page.waitForResponse(response => /\/admin\/places\/\d+\/images\/\d+$/.test(new URL(response.url()).pathname) && response.request().method()==='PUT');
   await page.getByRole('button',{name:'Đặt làm ảnh bìa',exact:true}).click();await expect(page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm'})).toBeVisible();
+  const cover = await (await savedCover).json();
+  const publicPlace = await request.get(api+'/places/'+cover.image.place_id);
+  expect(publicPlace.status()).toBe(200);
+  expect((await publicPlace.json()).image_url).toBe(cover.image_url);
   await page.getByLabel('URL ảnh nhập vào thư viện').fill('https://localhost/private.jpg');await page.getByRole('button',{name:'Lưu ảnh từ URL vào thư viện'}).click();
   await expect(page.getByRole('alert').filter({hasText:/Private, local|public HTTPS/})).toBeVisible();
   await page.getByRole('button',{name:'Hoàn tác chỉnh sửa ảnh chưa lưu'}).click();
   await page.getByRole('button',{name:'Tìm theo tên để tự đối chiếu'}).click();
   await expect(page.getByText('Chưa xác minh đúng địa danh. Hãy kiểm tra trước khi sử dụng.')).toBeVisible();
   await page.screenshot({path:'test-results/image-manager-desktop.png',fullPage:true});
+  await page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm',exact:true}).click();
+  await page.getByRole('button',{name:'Xác nhận gỡ ảnh',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm',exact:true})).toBeHidden();
+  const withoutCover = await request.get(api+'/places/'+cover.image.place_id);
+  expect(withoutCover.status()).toBe(200);
+  expect((await withoutCover.json()).image_url).toBeNull();
   await page.getByRole('button',{name:'POI tiếp →'}).click();
   await expect(page.getByLabel(/Ảnh \d+ attribution/)).toHaveCount(0);
   await page.getByRole('button',{name:'Đóng thư viện ảnh'}).click();

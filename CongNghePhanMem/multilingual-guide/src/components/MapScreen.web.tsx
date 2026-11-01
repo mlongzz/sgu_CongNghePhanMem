@@ -249,7 +249,7 @@ function PlacesMap({
         popup.appendChild(credit);
       }
       const detail = document.createElement('button'); detail.textContent = t('Xem chi tiết'); detail.onclick = () => onOpenDetail(place); popup.appendChild(detail);
-      const directions = document.createElement('button'); directions.textContent = t('Chỉ đường'); directions.style.marginLeft = '8px'; directions.onclick = () => openMapDirections(place); popup.appendChild(directions);
+      const directions = document.createElement('button'); directions.textContent = t('Chỉ đường'); directions.style.marginLeft = '8px'; directions.onclick = () => openMapDirections(place, t); popup.appendChild(directions);
       marker.bindPopup(popup);
       if (selected) marker.openPopup();
       marker.on("click", () => onSelectPlace(place.id));

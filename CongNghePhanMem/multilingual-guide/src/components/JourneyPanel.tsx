@@ -25,7 +25,7 @@ export default function JourneyPanel({ model: m }: { model: MapDiscovery }) {
         <PrimaryButton title={`${t('Xem bản đồ')} ${point.title}`} onPress={() => m.selectPlace(point.id)} variant="outline" />
         <PrimaryButton title={`${t('Nghe')} ${point.title}`} onPress={() => void route.play(point)} variant="outline" />
         <PrimaryButton title={`${t('Chi tiết')} ${point.title}`} onPress={() => openMapDetail(point, m)} variant="outline" />
-        <PrimaryButton title={`${t('Mở bản đồ ngoài')} ${point.title}`} onPress={() => openMapDirections(point)} variant="outline" />
+        <PrimaryButton title={`${t('Mở bản đồ ngoài')} ${point.title}`} onPress={() => openMapDirections(point, t)} variant="outline" />
       </View>
     </View>)}
     <PrimaryButton title="Thoát hành trình" onPress={() => { route.end(); router.replace('/map'); }} variant="outline" />
