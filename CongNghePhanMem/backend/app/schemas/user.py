@@ -1,10 +1,17 @@
 """Pydantic schemas for User endpoints."""
 from datetime import datetime
 
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, model_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator, model_validator
 
 
-class UserCreate(BaseModel):
+class EmailInput(BaseModel):
+    @field_validator('email', mode='after', check_fields=False)
+    @classmethod
+    def canonical_email(cls, value):
+        return value.strip().lower() if isinstance(value, str) else value
+
+
+class UserCreate(EmailInput):
     email: EmailStr
     password: str = Field(
         min_length=8,
@@ -15,7 +22,7 @@ class UserCreate(BaseModel):
     language: str = Field(default="vi", min_length=2, max_length=10)
 
 
-class UserUpdate(BaseModel):
+class UserUpdate(EmailInput):
     email: EmailStr | None = None
     full_name: str | None = Field(default=None, min_length=1, max_length=100)
     language: str | None = Field(default=None, min_length=2, max_length=10)
@@ -28,7 +35,7 @@ class UserUpdate(BaseModel):
         return self
 
 
-class LoginRequest(BaseModel):
+class LoginRequest(EmailInput):
     email: EmailStr
     password: str
 

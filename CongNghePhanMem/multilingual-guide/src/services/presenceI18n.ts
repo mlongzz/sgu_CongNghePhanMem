@@ -1,0 +1,16 @@
+export const presenceCopy: Record<string, readonly [string,string,string]> = {
+  'Ứng dụng ghi nhận thời gian hoạt động, không ghi GPS hay nội dung nhập.': ['The app records activity duration, without GPS or typed contents.','L’application mesure la durée d’activité sans GPS ni contenu saisi.','アプリは利用時間を記録します。GPSや入力内容は記録しません。'],
+  'Thời hạn lưu':['Retention','Conservation','保存期間'],
+  'ngày':['days','jours','日'],
+  'Quyền riêng tư':['Privacy','Confidentialité','プライバシー'],
+  'Đóng thông báo hoạt động':['Dismiss activity notice','Fermer l’avis d’activité','利用状況のお知らせを閉じる'],
+  'Dữ liệu hoạt động':['Activity data','Données d’activité','利用状況データ'],
+  'Chỉ ghi thời điểm phiên, nền tảng và thời lượng hoạt động; không ghi GPS, nội dung nhập hay lịch sử trang.':['Only session times, platform and activity duration are stored; no GPS, input contents or page history.','Seuls les horaires, la plateforme et la durée sont conservés ; aucun GPS, contenu saisi ou historique des pages.','セッション時刻、利用端末の種類、利用時間のみを保存します。GPS、入力内容、ページ履歴は保存しません。'],
+  'Trạng thái offline và thời gian tương tác là ước tính. Chỉ Admin xem dữ liệu định danh.':['Offline status and interaction duration are estimates. Only administrators see identifying data.','Le statut hors ligne et la durée d’interaction sont estimés. Seuls les administrateurs voient les données nominatives.','オフライン状態と操作時間は推定値です。個人を特定できるデータは管理者のみ閲覧できます。'],
+  'Tạm dừng theo dõi hoạt động':['Pause activity tracking','Suspendre le suivi d’activité','利用状況の記録を停止'],
+  'Bật theo dõi hoạt động':['Enable activity tracking','Activer le suivi d’activité','利用状況の記録を有効化'],
+  'Xóa dữ liệu hoạt động của tôi':['Delete my activity data','Supprimer mes données d’activité','自分の利用状況データを削除'],
+  'Xóa lịch sử hoạt động và tắt theo dõi cho đến khi bạn bật lại?':['Delete activity history and pause tracking until you enable it again?','Supprimer l’historique et suspendre le suivi jusqu’à sa réactivation ?','利用履歴を削除し、再度有効にするまで記録を停止しますか？'],
+  'Xác nhận xóa dữ liệu hoạt động':['Confirm activity deletion','Confirmer la suppression','利用状況データの削除を確認'],
+  'Không thể cập nhật quyền riêng tư.':['Could not update privacy settings.','Impossible de modifier la confidentialité.','プライバシー設定を更新できませんでした。'],
+};

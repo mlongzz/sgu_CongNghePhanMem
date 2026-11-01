@@ -1,0 +1,21 @@
+import {test,expect} from '@playwright/test';
+const api='http://127.0.0.1:8765';
+const pixel=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQAAAABJRU5ErkJggg==','base64');
+test('Admin previews all 15 licensed demo places without importing or calling Wikipedia',async({page,request})=>{
+ const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));let externalApi=0,imports=0;
+ const before=await(await request.get(api+'/places?limit=100')).json();
+ await page.route('https://upload.wikimedia.org/**',r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route('https://thumb.wikimedia.org/**',r=>r.fulfill({contentType:'image/png',body:pixel}));
+ await page.route(/https:\/\/[^/]*(?:wikipedia|wikimedia)\.org\/w\/api\.php/,r=>{externalApi++;return r.abort();});
+ page.on('request',r=>{if(r.method()==='POST'&&r.url().includes('/catalog/hcmc-demo/import'))imports++;});
+ await page.goto('/login');await page.getByLabel('Địa chỉ email',{exact:true}).fill('admin@e2e.example.com');await page.getByLabel('Mật khẩu',{exact:true}).fill('TestPassword123!');await page.getByRole('button',{name:'Đăng nhập',exact:true}).click();
+ await expect(page).toHaveURL(/\/admin$/);await page.getByText('Nhập địa danh',{exact:true}).click();
+ const response=page.waitForResponse(r=>r.url().endsWith('/admin/catalog/hcmc-demo'));
+ await page.getByRole('button',{name:'Xem trước 15 địa điểm demo có ảnh',exact:true}).click();
+ const received=await response;expect(received.status()).toBe(200);const plan=await received.json();expect(plan.rows).toHaveLength(15);
+ await expect(page.getByText('Chùa Giác Lâm',{exact:true}).first()).toBeVisible();
+ await expect(page.getByText('DoktorMax · Public domain',{exact:true})).toBeVisible();
+ await expect(page.getByText('Nguồn ảnh và giấy phép ↗',{exact:true})).toHaveCount(15);
+ expect(imports).toBe(0);expect(externalApi).toBe(0);expect(await(await request.get(api+'/places?limit=100')).json()).toEqual(before);expect(errors).toEqual([]);
+ await page.screenshot({path:'test-results/admin-demo-preview.png',fullPage:true});
+});

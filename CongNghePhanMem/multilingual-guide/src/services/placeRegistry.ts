@@ -81,6 +81,11 @@ function validate(value: unknown): Place | null {
         && (!url.searchParams.has('curid') || Number(url.searchParams.get('curid')) === id.wiki.pageId));
     if (sourceMatches) place.sourceUrl = sourceUrl;
   }
+  for (const key of ['sourceLicense', 'imageAttribution', 'imageLicense', 'imageThumbnail'] as const) {
+    if (text(value[key], 500, true)) place[key] = (value[key] as string).trim();
+  }
+  const imageSource = httpsUrl(value.imageSourceUrl);
+  if (imageSource) place.imageSourceUrl = imageSource;
   const linkedArticle = wikipediaUrl(value.wikipediaUrl);
   if (linkedArticle) place.wikipediaUrl = linkedArticle;
   if (id.wiki) {

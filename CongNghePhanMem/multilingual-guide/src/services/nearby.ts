@@ -59,6 +59,7 @@ export type OsmExploreResult = {
   stale: boolean;
   cacheAgeSeconds: number;
   retryAfterSeconds: number | null;
+  truncated?: boolean;
 };
 const osmCache = new Map<string, { expiresAt: number; result: OsmExploreResult }>();
 // Share duplicate FastAPI requests; provider retry/cooldown lives on the server.
@@ -305,6 +306,7 @@ export function validateBackendPlace(value: unknown): Place | null {
     ...(wikipedia ? { wikipedia } : {}),
     sourceLicense: text(v.source_license),
     imageSourceUrl: text(v.image_source_url),
+    imageThumbnail: text(v.image_thumbnail_url),
     imageAttribution: text(v.image_attribution),
     imageLicense: text(v.image_license),
     publicationStatus: v.publication_status === 'published' ? 'published' : undefined,
@@ -348,11 +350,13 @@ async function queryOsmBackend(location: Coordinates, radiusKm: number, options:
       (stale && age * 1000 >= STALE_CACHE_MS))
       throw new Error("API /osm/nearby trả thông tin cache không hợp lệ.");
     const warning = "warning" in body && typeof body.warning === "string" ? body.warning.trim() : "";
+    const truncated = 'truncated' in body ? body.truncated : false;
+    if (typeof truncated !== 'boolean') throw new Error('API /osm/nearby trả thông tin độ phủ không hợp lệ.');
     const coverage = searched < radiusKm ? `Chưa hoàn tất tìm OpenStreetMap trong ${radiusKm} km. Tạm hiển thị dữ liệu trong ${searched} km gần bạn; hãy thử lại sau để tìm đủ bán kính.` : "";
     const savedWarning = stale ? `Chưa cập nhật được OpenStreetMap. Đang dùng dữ liệu đã lưu cách đây ${age} giây; thử lại sau ${retry ?? 30} giây.` : "";
     return { places: cleanOsmItems(body.elements, location, searched), requestedRadiusKm: radiusKm, searchedRadiusKm: searched,
-      stale, cacheAgeSeconds: age, retryAfterSeconds: retry,
-      warning: warning || [savedWarning, coverage].filter(Boolean).join(" ") };
+      stale, cacheAgeSeconds: age, retryAfterSeconds: retry, truncated,
+      warning: [warning || [savedWarning, coverage].filter(Boolean).join(" "), truncated ? "Nguồn OpenStreetMap đạt giới hạn số kết quả; danh sách có thể chưa đầy đủ." : ""].filter(Boolean).join(" ") };
   } catch (error) {
     if (options.signal?.aborted) throw abortError();
     if (controller.signal.aborted) throw new Error("FastAPI chưa trả kết quả OpenStreetMap sau 40 giây. Hãy thử lại.");
@@ -373,7 +377,7 @@ function cleanOsmItems(
   return items
     .map(osmToPlace)
     .filter((p): p is Place => Boolean(p))
-    .filter((p) => distanceKm(location, p) <= requestedRadiusKm + 0.03)
+    .filter((p) => distanceKm(location, p) <= requestedRadiusKm + 1e-7)
     .filter((p) => {
       const dedupeKey = `${normalizeSearch(p.title).trim()}:${Math.round(p.latitude * 1000)}:${Math.round(p.longitude * 1000)}`;
       if (seen.has(dedupeKey)) return false;
@@ -452,10 +456,15 @@ export async function fetchNearbyPlaces(
     options,
   );
   if (!Array.isArray(rows)) throw new Error("API /places/nearby không trả về danh sách.");
-  const places = rows.map(validateBackendPlace).filter((p): p is Place => Boolean(p));
+  const valid = rows.map(validateBackendPlace).filter((p): p is Place => Boolean(p));
+  if (rows.length && !valid.length) throw new Error('API /places/nearby trả địa điểm không hợp lệ.');
+  const identities = new Set<string>();
+  const places = valid.filter(p => distanceKm(location,p) <= distance + 1e-7)
+    .filter(p => { if (identities.has(p.id)) return false; identities.add(p.id); return true; })
+    .sort((a,b) => distanceKm(location,a)-distanceKm(location,b));
   return {
     places,
     source: "live",
-    warning: places.length ? "" : "Chưa có POI chính thức trong bán kính đã chọn.",
+    warning: rows.length >= 100 ? "Đang hiển thị tối đa 100 POI chính thức; danh sách có thể chưa đầy đủ." : places.length ? "" : "Chưa có POI chính thức trong bán kính đã chọn.",
   };
 }

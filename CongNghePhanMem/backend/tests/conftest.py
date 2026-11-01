@@ -1,4 +1,6 @@
 import os
+os.environ['MEDIA_STORAGE_BACKEND'] = 'local'
+os.environ['APP_ENV'] = 'test'
 
 if os.getenv("TEST_POSTGRES") == "1":
     from dotenv import load_dotenv

@@ -14,6 +14,7 @@ class PlaceMetadata(BaseModel):
     source_id: str | None = Field(default=None, min_length=1, max_length=200)
     source_url: str | None = Field(default=None, max_length=1000)
     source_license: str | None = Field(default=None, max_length=200)
+    image_thumbnail_url: str | None = Field(default=None, max_length=1000)
     image_source_url: str | None = Field(default=None, max_length=1000)
     image_attribution: str | None = Field(default=None, max_length=500)
     image_license: str | None = Field(default=None, max_length=200)
@@ -75,6 +76,7 @@ class PlaceResponse(BaseModel):
     source_id: str | None
     source_url: str | None
     source_license: str | None
+    image_thumbnail_url: str | None
     image_source_url: str | None
     image_attribution: str | None
     image_license: str | None

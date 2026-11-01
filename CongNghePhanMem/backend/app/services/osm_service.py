@@ -6,6 +6,7 @@ from email.utils import parsedate_to_datetime
 import json
 import math
 import logging
+import os
 from pathlib import Path
 import tempfile
 import time
@@ -16,6 +17,7 @@ import httpx2 as httpx
 
 from app.schemas.osm import OsmCenter, OsmElement, OsmNearbyResponse
 from app.config import OSM_CACHE_PATH
+from app.services.osm_snapshot_store import PostgresSnapshotStore, SnapshotStoreError
 
 PRIMARY = "https://overpass.private.coffee/api/interpreter"
 BACKUP = "https://overpass-api.de/api/interpreter"
@@ -84,7 +86,7 @@ def _clean_elements(rows: list, latitude: float, longitude: float, radius: float
             continue
         distance = _distance(latitude, longitude, lat, lon)
         identity = (row["type"], osm_id)
-        if identity in seen or distance > radius + 0.03:
+        if identity in seen or distance > radius + 1e-7:
             continue
         seen.add(identity)
         element = OsmElement(type=row["type"], id=osm_id, tags=tags,
@@ -96,13 +98,15 @@ def _clean_elements(rows: list, latitude: float, longitude: float, radius: float
 
 class OsmNearbyService:
     def __init__(self, client_factory: Callable[[], httpx.AsyncClient] | None = None, clock: Callable[[], float] = time.monotonic,
-                 *, allow_network: bool = False, cache_path: str | Path | None = None, wall_clock: Callable[[], float] = time.time):
+                 *, allow_network: bool = False, cache_path: str | Path | None = None, wall_clock: Callable[[], float] = time.time, snapshot_store=None):
         self.client_factory = client_factory or (lambda: httpx.AsyncClient(
             headers={"User-Agent": USER_AGENT, "Accept": "application/json"}, follow_redirects=False,
         ))
         self.clock = clock
         self.wall_clock = wall_clock
         self.allow_network = allow_network
+        self.snapshot_store = snapshot_store
+        self._storage_error = False
         self.cache_path = Path(cache_path) if cache_path else None
         self._disk_signature = None
         self.cache: OrderedDict[tuple, tuple[float, OsmNearbyResponse]] = OrderedDict()
@@ -116,42 +120,64 @@ class OsmNearbyService:
             return
         try:
             stat = self.cache_path.stat()
-            signature = (stat.st_mtime_ns, stat.st_size)
+            # Atomic replacement can preserve size and modification time on Windows.
+            signature = (stat.st_ino, stat.st_ctime_ns, stat.st_mtime_ns, stat.st_size)
             if signature == self._disk_signature:
                 return
             self._disk_signature = signature
             if stat.st_size > MAX_CACHE_FILE_BYTES:
                 raise ValueError("Snapshot too large")
             body = json.loads(self.cache_path.read_text(encoding="utf-8"))
-            if not isinstance(body, dict) or body.get("version") != 2 or not isinstance(body.get("entries"), list) or len(body["entries"]) > MAX_CACHE_ENTRIES:
-                raise ValueError("Invalid snapshot format")
-            loaded = []
-            for entry in body["entries"]:
-                lat, lon, radius = entry["key"]
-                if not _coordinate(lat, 90) or not _coordinate(lon, 180) or not _coordinate(radius, 20) or radius < 1:
-                    raise ValueError("Invalid snapshot location")
-                if [lat, lon, radius] != list(cache_key(lat, lon, radius)):
-                    raise ValueError("Invalid snapshot cell")
-                age = self.wall_clock() - entry["fetched_at"]
-                if not math.isfinite(age) or age < -1:
-                    raise ValueError("Invalid snapshot time")
-                if age >= STALE_CACHE_SECONDS:
-                    continue
-                result = OsmNearbyResponse.model_validate(entry["result"])
-                if result.stale or result.requested_radius_km != radius or not 1 <= result.searched_radius_km <= radius or len(result.elements) > MAX_ELEMENTS:
-                    raise ValueError("Invalid snapshot coverage")
-                result.elements = _clean_elements([p.model_dump(exclude_none=True) for p in result.elements], lat, lon, result.searched_radius_km + QUERY_PADDING_KM)
-                loaded.append((cache_key(lat, lon, radius), (self.clock() - max(0, age), result)))
-            for key, value in loaded:
-                current = self.cache.get(key)
-                if current is None or current[0] <= value[0]:
-                    self.cache[key] = value
-            while len(self.cache) > MAX_CACHE_ENTRIES:
-                self.cache.popitem(last=False)
+            self._restore_snapshot(body)
         except FileNotFoundError:
             pass
         except (OSError, ValueError, KeyError, TypeError):
             logger.warning("Cannot load OSM snapshot; keeping the current cache.")
+
+    def _restore_snapshot(self, body):
+        if not isinstance(body, dict) or body.get("version") != 2 or not isinstance(body.get("entries"), list) or len(body["entries"]) > MAX_CACHE_ENTRIES:
+            raise ValueError("Invalid snapshot format")
+        loaded = []
+        for entry in body["entries"]:
+            lat, lon, radius = entry["key"]
+            if not _coordinate(lat, 90) or not _coordinate(lon, 180) or not _coordinate(radius, 20) or radius < 1:
+                raise ValueError("Invalid snapshot location")
+            if [lat, lon, radius] != list(cache_key(lat, lon, radius)):
+                raise ValueError("Invalid snapshot cell")
+            age = self.wall_clock() - entry["fetched_at"]
+            if not math.isfinite(age) or age < -1:
+                raise ValueError("Invalid snapshot time")
+            if age >= STALE_CACHE_SECONDS:
+                continue
+            result = OsmNearbyResponse.model_validate(entry["result"])
+            if result.stale or result.requested_radius_km != radius or not 1 <= result.searched_radius_km <= radius or len(result.elements) > MAX_ELEMENTS:
+                raise ValueError("Invalid snapshot coverage")
+            result.elements = _clean_elements([p.model_dump(exclude_none=True) for p in result.elements], lat, lon, result.searched_radius_km + QUERY_PADDING_KM)
+            loaded.append((cache_key(lat, lon, radius), (self.clock() - max(0, age), result)))
+        for key, value in loaded:
+            current = self.cache.get(key)
+            if current is None or current[0] <= value[0]:
+                self.cache[key] = value
+        while len(self.cache) > MAX_CACHE_ENTRIES:
+            self.cache.popitem(last=False)
+
+    async def _load_durable(self):
+        try:
+            stored = await asyncio.to_thread(self.snapshot_store.read)
+            self._storage_error = False
+            if stored is None:
+                self.cache.clear()
+                self._disk_signature = None
+            elif stored[0] != self._disk_signature:
+                self._restore_snapshot(stored[1])
+                self._disk_signature = stored[0]
+        except (SnapshotStoreError, ValueError, KeyError, TypeError):
+            self._storage_error = True
+
+    def _snapshot_body(self):
+        return {"version": 2, "entries": [{"key": key, "fetched_at": self.wall_clock() - max(0, self.clock() - timestamp),
+                    "result": result.model_dump(exclude_none=True)} for key, (timestamp, result) in self.cache.items()
+                    if self.clock() - timestamp < STALE_CACHE_SECONDS]}
 
     def _persist_snapshot(self):
         if self.cache_path is None:
@@ -233,11 +259,14 @@ class OsmNearbyService:
             self.cooldowns[endpoint] = (until, OsmUnavailable(str(error), error.status_code, error.retry_after))
 
     async def nearby(self, latitude: float, longitude: float, radius_km: float, force_refresh: bool = False) -> OsmNearbyResponse:
-        self._load_snapshot()
+        if self.snapshot_store is not None:
+            await self._load_durable()
+        else:
+            self._load_snapshot()
         key = cache_key(latitude, longitude, radius_km)
         saved_key = self._select_saved(key, latitude, longitude, radius_km)
         cached = self._cached(saved_key)
-        if cached and not force_refresh:
+        if cached and not force_refresh and not self._storage_error:
             ttl = REDUCED_CACHE_SECONDS if cached[1].searched_radius_km < saved_key[2] else FRESH_CACHE_SECONDS
             if self.clock() - cached[0] < ttl:
                 self.cache.move_to_end(saved_key)
@@ -315,7 +344,7 @@ class OsmNearbyService:
                     # HTTP timeouts cover inactivity; wait_for also bounds the whole streamed request.
                     rows = await asyncio.wait_for(self._query(client, endpoint, latitude, longitude, searched + QUERY_PADDING_KM, budget), timeout=budget)
                     result = OsmNearbyResponse(elements=_clean_elements(rows, latitude, longitude, searched + QUERY_PADDING_KM),
-                        requested_radius_km=radius, searched_radius_km=searched,
+                        requested_radius_km=radius, searched_radius_km=searched, truncated=len(rows) >= MAX_ELEMENTS,
                         warning=f"Chưa hoàn tất tìm OpenStreetMap trong {radius:g} km. Tạm hiển thị dữ liệu trong {searched:g} km gần bạn; hãy thử lại sau để tìm đủ bán kính." if searched < radius else "")
                     # A smaller query succeeding on the primary means that
                     # provider is healthy. Pause only providers that stayed down.
@@ -328,7 +357,10 @@ class OsmNearbyService:
                     self.cache.move_to_end(key)
                     while len(self.cache) > MAX_CACHE_ENTRIES:
                         self.cache.popitem(last=False)
-                    self._persist_snapshot()
+                    if self.snapshot_store is not None:
+                        await asyncio.to_thread(self.snapshot_store.write, self._snapshot_body())
+                    else:
+                        self._persist_snapshot()
                     return result
                 except (TimeoutError, httpx.TimeoutException):
                     error = OsmUnavailable(f"{urlsplit(endpoint).hostname} phản hồi quá {budget} giây.", 504)
@@ -346,7 +378,16 @@ class OsmNearbyService:
         raise OsmUnavailable("Không tải được địa điểm OpenStreetMap. " + " | ".join(str(error) for error in errors), status, retry)
 
 
-_service = OsmNearbyService(allow_network=False, cache_path=OSM_CACHE_PATH)
+def configured_snapshot_store():
+    mode = os.getenv("OSM_SNAPSHOT_STORAGE", "postgres" if os.getenv("APP_ENV") == "production" else "local")
+    if mode not in {"local", "postgres"}:
+        raise RuntimeError("OSM_SNAPSHOT_STORAGE must be local or postgres")
+    if mode == "local" and os.getenv("APP_ENV") == "production":
+        raise RuntimeError("Production OSM snapshots require durable postgres storage")
+    return PostgresSnapshotStore() if mode == "postgres" else None
+
+
+_service = OsmNearbyService(allow_network=False, cache_path=OSM_CACHE_PATH, snapshot_store=configured_snapshot_store())
 
 
 def get_osm_service() -> OsmNearbyService:

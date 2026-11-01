@@ -2,18 +2,27 @@
 from pathlib import Path
 import re
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
+import os
 from app.config import UPLOAD_DIR
 from app.models.place import Place
+from app.models.place_image import PlaceImage
 
 
 def remove_unused_image(db: Session, url: str | None, directory: str | None = None) -> None:
-    if not url or not url.startswith('/media/'):
+    if not url:
+        return
+    if db.query(Place.id).filter(or_(Place.image_url == url, Place.image_thumbnail_url == url)).first() or db.query(PlaceImage.id).filter(or_(PlaceImage.url == url, PlaceImage.thumbnail_url == url)).first():
+        return
+    if not url.startswith('/media/'):
+        if os.getenv('MEDIA_STORAGE_BACKEND') == 'r2':
+            from app.services.r2_storage import discard_unreferenced
+            discard_unreferenced(url)
         return
     name = url.removeprefix('/media/')
-    if not re.fullmatch(r'[a-f0-9]{32}\.jpg', name) or db.query(Place.id).filter(Place.image_url == url).first():
+    if not re.fullmatch(r'[a-f0-9]{32}(?:-thumb)?\.jpg', name):
         return
     try:
         (Path(directory or UPLOAD_DIR).resolve() / name).unlink(missing_ok=True)
     except OSError:
-        # Failed cleanup cannot undo a successfully committed place update.
         pass

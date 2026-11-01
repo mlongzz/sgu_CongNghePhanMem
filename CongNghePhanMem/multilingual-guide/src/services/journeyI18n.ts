@@ -1,0 +1,275 @@
+export const journeyCopy: Record<string, readonly [string, string, string]> = {
+  'Hành trình không tồn tại.': ['Journey not found.', 'Parcours introuvable.', 'コースが見つかりません。'],
+  'Tọa độ được gửi đến máy chủ khi cập nhật GPS. Chế độ hành trình không truy vấn nguồn khám phá cộng đồng.': ['GPS updates send coordinates to the server. Journey mode does not query community discovery sources.', 'Les mises à jour GPS envoient les coordonnées au serveur. Le mode parcours ne consulte pas les sources communautaires.', 'GPS更新時に座標をサーバーに送信します。コースモードでは外部の探索情報を取得しません。'],
+  'Mã hành trình không hợp lệ.': ['Invalid journey ID.', 'Identifiant de parcours invalide.', 'コースIDが無効です。'],
+  'Hành trình chưa có điểm dừng đã xuất bản.': ['This journey has no published stops.', 'Ce parcours n’a aucune étape publiée.', 'このコースには公開済みの地点がありません。'],
+  'Ưu tiên điểm đứng trước khi nhiều điểm cùng gần; bạn có thể nghe theo thứ tự linh hoạt.': ['Earlier stops have priority when several are nearby; you can listen in any order.', 'Les étapes précédentes ont priorité si plusieurs sont proches ; l’ordre reste libre.', '近くに複数ある場合は先の地点を優先します。順序は自由です。'],
+  'AutoGuide đọc điểm dừng chưa nghe trong 80 m khi GPS đủ chính xác; ưu tiên thứ tự hành trình khi nhiều điểm cùng gần.': ['AutoGuide plays unfinished stops within 80 m with accurate GPS, prioritizing route order when several are nearby.', 'AutoGuide lit les étapes non terminées à moins de 80 m avec un GPS précis, en privilégiant l’ordre du parcours.', 'GPSが正確で80m以内の未完了地点を案内します。複数ある場合はコース順を優先します。'],
+  'Chưa đến gần điểm dừng chưa nghe. Bạn có thể nghe thủ công.': ['No unfinished stop is nearby. Manual playback is available.', 'Aucune étape non terminée à proximité. Écoute manuelle disponible.', '近くに未完了の地点がありません。手動再生は利用できます。'],
+  'Đã nghe xong': ['Finished listening', 'Écoute terminée', '再生完了'],
+  'Chưa nghe xong': ['Not finished', 'Écoute non terminée', '未完了'],
+  'Đang tải thuyết minh': ['Loading narration', 'Chargement du commentaire', '案内を読み込み中'],
+  'Đang phát': ['Playing', 'Lecture en cours', '再生中'],
+  'Đã tạm dừng âm thanh': ['Audio paused', 'Audio en pause', '音声一時停止'],
+  'Phát lỗi': ['Playback failed', 'Échec de lecture', '再生エラー'],
+  'Đã hủy phát': ['Playback cancelled', 'Lecture annulée', '再生キャンセル'],
+  'Nghe': ['Listen', 'Écouter', '聞く'],
+  'Thoát hành trình': ['Leave journey', 'Quitter le parcours', 'コースを終了'],
+  'nháp': ['draft', 'brouillon', '下書き'],
+  'nháp — chưa hiển thị cho người dùng': ['draft — not visible to users', 'brouillon — non visible', '下書き — 非公開'],
+  'Điểm đã lưu trữ. Hãy bỏ khỏi hành trình trước khi lưu.': ['This stop is archived. Remove it before saving.', 'Cette étape est archivée. Retirez-la avant d’enregistrer.', 'この地点は保存済みです。保存する前に削除してください。'],
+  'Chọn điểm đã xuất bản hoặc bản nháp; không chọn điểm đã lưu trữ.': ['Choose published or draft stops; archived stops cannot be selected.', 'Choisissez des étapes publiées ou en brouillon ; les étapes archivées sont exclues.', '公開済みまたは下書きの地点を選べます。保存済みの地点は選べません。'],
+  'Hủy tải ảnh': ['Cancel upload', 'Annuler le transfert', 'アップロードを中止'],
+  'Đã đăng xuất trên thiết bị. Chưa thu hồi được phiên trên máy chủ do lỗi kết nối.': ['Signed out on this device. The server session could not be revoked because of a connection error.', 'Déconnexion locale effectuée. La session serveur n’a pas pu être révoquée à cause de la connexion.', '端末からログアウトしました。接続エラーのためサーバーのセッションは失効できませんでした。'],
+  "Chọn hành trình": [
+    "Choose a journey",
+    "Choisir un parcours",
+    "コースを選択",
+  ],
+  "Bắt đầu hành trình": [
+    "Start journey",
+    "Commencer le parcours",
+    "コースを開始",
+  ],
+  "Tạm dừng hành trình": [
+    "Pause journey",
+    "Mettre en pause",
+    "コースを一時停止",
+  ],
+  "Tiếp tục hành trình": [
+    "Continue journey",
+    "Reprendre le parcours",
+    "コースを再開",
+  ],
+  "Kết thúc hành trình": [
+    "End journey",
+    "Terminer le parcours",
+    "コースを終了",
+  ],
+  "Nghe điểm hiện tại": [
+    "Play current stop",
+    "Écouter cette étape",
+    "現在の地点の案内を聞く",
+  ],
+  "Nghe lại điểm vừa hoàn thành": [
+    "Replay previous stop",
+    "Réécouter l’étape terminée",
+    "完了した地点をもう一度聞く",
+  ],
+  "Bỏ qua điểm dừng": ["Skip stop", "Passer cette étape", "この地点をスキップ"],
+  "Xem bản đồ hành trình": [
+    "View journey map",
+    "Voir la carte du parcours",
+    "コースの地図を見る",
+  ],
+  "Hành trình đã hoàn thành": [
+    "Journey completed",
+    "Parcours terminé",
+    "コース完了",
+  ],
+  "Hành trình tạm dừng": [
+    "Journey paused",
+    "Parcours en pause",
+    "コース一時停止中",
+  ],
+  "Hành trình đang thực hiện": [
+    "Journey in progress",
+    "Parcours en cours",
+    "コース進行中",
+  ],
+  "Đã hoàn thành": ["Completed", "Terminé", "完了"],
+  "Đã bỏ qua": ["Skipped", "Passé", "スキップ済み"],
+  "Điểm đang đến": [
+    "Current destination",
+    "Destination actuelle",
+    "現在の目的地",
+  ],
+  "Điểm tiếp theo": ["Next stop", "Étape suivante", "次の地点"],
+  "từ vị trí gần nhất, theo đường chim bay": [
+    "from the last known position, in a straight line",
+    "depuis la dernière position, à vol d’oiseau",
+    "最後に取得した位置からの直線距離",
+  ],
+  "Đường nối minh họa, không phải tuyến đường thực tế.": [
+    "Illustrative connecting line; use directions for an actual route.",
+    "Ligne illustrative ; utilisez l’itinéraire pour le trajet réel.",
+    "点を結ぶ参考線です。実際の経路は道順で確認してください。",
+  ],
+  "AutoGuide chỉ đọc điểm dừng tiếp theo của hành trình đã chọn, trong 80 m và khi GPS đủ chính xác.":
+    [
+      "AutoGuide reads only the next stop of your selected journey, within 80 m and with accurate GPS.",
+      "AutoGuide lit uniquement la prochaine étape du parcours choisi, à moins de 80 m avec un GPS précis.",
+      "AutoGuideは選択したコースの次の地点のみを、GPSが正確で80m以内の場合に読み上げます。",
+    ],
+  "Bắt đầu không tự bật GPS hoặc âm thanh. Bật AutoGuide trên bản đồ khi bạn sẵn sàng.":
+    [
+      "Starting does not enable GPS or audio. Enable AutoGuide on the map when ready.",
+      "Le démarrage n’active ni GPS ni audio. Activez AutoGuide sur la carte lorsque vous êtes prêt.",
+      "開始してもGPSや音声は自動で有効になりません。地図でAutoGuideを有効にしてください。",
+    ],
+  "Một số điểm dừng chưa xuất bản hoặc đã lưu trữ nên không nằm trong tuyến hiện tại.":
+    [
+      "Some stops are unpublished or archived and are unavailable on this route.",
+      "Certaines étapes non publiées ou archivées ne sont pas disponibles.",
+      "未公開または保存済みの地点は現在のコースに表示されません。",
+    ],
+  "Chọn và bắt đầu một hành trình để bật AutoGuide.": [
+    "Choose and start a journey to enable AutoGuide.",
+    "Choisissez et démarrez un parcours pour activer AutoGuide.",
+    "AutoGuideを有効にするにはコースを選択して開始してください。",
+  ],
+  "Hành trình đang tạm dừng hoặc đã hoàn thành.": [
+    "The journey is paused or completed.",
+    "Le parcours est en pause ou terminé.",
+    "コースは一時停止中または完了しています。",
+  ],
+  "AutoGuide chưa bật. Bạn có thể nghe thủ công.": [
+    "AutoGuide is off. Manual playback is available.",
+    "AutoGuide est désactivé. L’écoute manuelle reste disponible.",
+    "AutoGuideは無効です。手動で案内を聞くことができます。",
+  ],
+  "Đang phát một bài khác.": [
+    "Another guide is playing.",
+    "Un autre commentaire est en cours.",
+    "別の案内を再生しています。",
+  ],
+  "GPS đã cũ hoặc chưa sẵn sàng. Hãy định vị lại hoặc nghe thủ công.": [
+    "GPS is outdated or unavailable. Locate again or play manually.",
+    "Position GPS ancienne ou indisponible. Actualisez ou écoutez manuellement.",
+    "GPS情報が古いか利用できません。再取得するか手動で再生してください。",
+  ],
+  "GPS chưa đủ chính xác để tự phát. Bạn có thể nghe thủ công.": [
+    "GPS is not accurate enough for autoplay. Play manually.",
+    "GPS insuffisamment précis pour la lecture automatique. Écoutez manuellement.",
+    "GPSの精度が不足しています。手動で案内を聞いてください。",
+  ],
+  "Chưa đến điểm dừng tiếp theo. Bạn có thể nghe thủ công.": [
+    "You have not reached the next stop. Manual playback is available.",
+    "Vous n’êtes pas encore à la prochaine étape. L’écoute manuelle est disponible.",
+    "次の地点にまだ到着していません。手動で再生できます。",
+  ],
+  "Không có điểm dừng hệ thống tiếp theo.": [
+    "No next published stop is available.",
+    "Aucune prochaine étape publiée n’est disponible.",
+    "次の公開済み地点がありません。",
+  ],
+  "Chỉ chọn địa điểm PostgreSQL đã xuất bản.": [
+    "Choose published catalog places only.",
+    "Choisissez uniquement les lieux publiés du catalogue.",
+    "公開済みの掲載地点のみ選択できます。",
+  ],
+  "Điểm dừng không còn khả dụng": [
+    "Stop unavailable",
+    "Étape indisponible",
+    "地点を利用できません",
+  ],
+  "Điểm này chưa xuất bản hoặc đã lưu trữ. Hãy bỏ khỏi hành trình trước khi lưu.":
+    [
+      "This stop is unpublished or archived. Remove it before saving.",
+      "Cette étape est non publiée ou archivée. Retirez-la avant d’enregistrer.",
+      "この地点は未公開または保存済みです。保存する前に削除してください。",
+    ],
+  "Đề xuất nhập địa danh": [
+    "Suggest a place import",
+    "Proposer l’import d’un lieu",
+    "地点の登録を提案",
+  ],
+  "kết quả": ["results", "résultats", "件"],
+  "Nhập địa danh bằng liên kết": [
+    "Import a place by URL",
+    "Importer un lieu par URL",
+    "URLから地点を登録",
+  ],
+  "Dán Wikipedia (vi/en/fr/ja), OpenStreetMap hoặc Wikidata. Không hỗ trợ link rút gọn và không thu thập Google Maps.":
+    [
+      "Paste a Wikipedia (vi/en/fr/ja), OpenStreetMap or Wikidata link. Short links and Google Maps scraping are unsupported.",
+      "Collez un lien Wikipédia (vi/en/fr/ja), OpenStreetMap ou Wikidata. Liens courts et extraction Google Maps non pris en charge.",
+      "Wikipedia（vi/en/fr/ja）、OpenStreetMap、WikidataのURLを入力してください。短縮URLやGoogle Mapsの収集には対応していません。",
+    ],
+  "Liên kết địa danh": ["Place URL", "URL du lieu", "地点のURL"],
+  "Xem trước liên kết": [
+    "Preview URL",
+    "Prévisualiser le lien",
+    "URLのプレビュー",
+  ],
+  "Lưu địa danh thành bản nháp": [
+    "Save place as draft",
+    "Enregistrer comme brouillon",
+    "地点を下書きで保存",
+  ],
+  "Địa danh đã tồn tại": [
+    "Place already exists",
+    "Lieu déjà présent",
+    "地点は登録済みです",
+  ],
+  "Mở danh mục POI để kiểm tra bản ghi hiện có.": [
+    "Open the catalog to review the existing record.",
+    "Ouvrez le catalogue pour vérifier la fiche existante.",
+    "掲載一覧で既存の情報を確認してください。",
+  ],
+  "Tọa độ nguồn chưa xác minh cổng vào thực địa.": [
+    "Source coordinates do not establish the actual entrance.",
+    "Les coordonnées de la source ne confirment pas l’entrée réelle.",
+    "出典の座標は実際の入口を確認したものではありません。",
+  ],
+  "Mở bài nguồn": [
+    "Open source article",
+    "Ouvrir l’article source",
+    "出典記事を開く",
+  ],
+  "Ảnh cần Admin duyệt riêng.": [
+    "The image requires separate approval.",
+    "L’image nécessite une validation distincte.",
+    "画像は別途承認が必要です。",
+  ],
+  "Ảnh đã được duyệt": ["Approved photos", "Photos validées", "承認済みの写真"],
+  "Chờ duyệt": ["Pending review", "À valider", "承認待ち"],
+  "Đã duyệt": ["Approved", "Validé", "承認済み"],
+  "Đã từ chối": ["Rejected", "Refusé", "却下"],
+  "Duyệt làm ảnh bìa": [
+    "Approve as cover",
+    "Valider comme couverture",
+    "表紙画像として承認",
+  ],
+  "Duyệt ảnh bổ sung": [
+    "Approve gallery image",
+    "Valider la photo supplémentaire",
+    "追加写真を承認",
+  ],
+  "Từ chối ảnh": ["Reject image", "Refuser l’image", "画像を却下"],
+  "Tìm ảnh từ nguồn địa danh": [
+    "Find photos from place source",
+    "Chercher une photo depuis la source",
+    "地点の出典から写真を探す",
+  ],
+  "Tác giả / ghi công ảnh": [
+    "Image author / credit",
+    "Auteur / crédit photo",
+    "撮影者・クレジット",
+  ],
+  "Trang nguồn ảnh": [
+    "Image source page",
+    "Page source de l’image",
+    "画像の出典ページ",
+  ],
+  "Địa danh cho bài thuyết minh": [
+    "Place for this guide",
+    "Lieu du commentaire",
+    "案内対象の地点",
+  ],
+  "Tìm địa danh cho bài thuyết minh": [
+    "Find a place for this guide",
+    "Chercher un lieu pour le commentaire",
+    "案内対象の地点を検索",
+  ],
+  "Đã lưu bản nháp. Kiểm duyệt rồi xuất bản từ danh sách.": [
+    "Draft saved. Review and publish from the list.",
+    "Brouillon enregistré. Validez et publiez depuis la liste.",
+    "下書きを保存しました。一覧で確認して公開してください。",
+  ],
+  "Chưa có ảnh địa điểm": [
+    "No place photo available",
+    "Aucune photo disponible",
+    "写真はまだありません",
+  ],
+};

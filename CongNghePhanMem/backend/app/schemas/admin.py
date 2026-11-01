@@ -22,7 +22,7 @@ class JourneyWrite(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
     name: str = Field(min_length=1, max_length=200)
     description: str = Field(default="", max_length=5000)
-    place_ids: list[int] = Field(default_factory=list, max_length=100)
+    place_ids: list[int] = Field(default_factory=list, max_length=200)
 
     @field_validator("place_ids")
     @classmethod

@@ -7,6 +7,7 @@ export type NarrationContent = {
   title?: string;
   source: 'published' | 'saved' | 'wikipedia' | 'description';
   sourceUrl?: string;
+  sourceLicense?: string;
   licenseUrl?: string;
   attribution?: string;
 };
@@ -16,6 +17,7 @@ export type Place = {
   image: string; duration: number; rating: number; source?: "osm" | "backend" | "demo" | "wikipedia" | "wikidata";
   sourceUrl?: string;
   sourceLicense?: string;
+  imageThumbnail?: string;
   imageSourceUrl?: string;
   imageAttribution?: string;
   imageLicense?: string;

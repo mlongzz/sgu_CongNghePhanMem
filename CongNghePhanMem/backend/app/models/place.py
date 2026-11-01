@@ -21,6 +21,7 @@ class Place(Base):
     source_id = Column(String(200), nullable=True)
     source_url = Column(String(1000), nullable=True)
     source_license = Column(String(200), nullable=True)
+    image_thumbnail_url = Column(String(1000), nullable=True)
     image_source_url = Column(String(1000), nullable=True)
     image_attribution = Column(String(500), nullable=True)
     image_license = Column(String(200), nullable=True)

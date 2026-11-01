@@ -20,6 +20,12 @@ function service(fetch, { fastTimeout = false } = {}) {
   return { ...exports, delays, cleared };
 }
 const response = (value = {}, status = 200) => ({ ok: status < 400, status, json: async () => value });
+test('upload timeout applies to that call alone and leaves other requests at 12 seconds', async () => {
+  const api = service(async () => response());
+  await api.apiFetch('/admin/places/1/image', {method:'POST',timeoutMs:90_000});
+  await api.apiFetch('/places');
+  assert.deepEqual(api.delays, [90000,12000]);
+});
 
 test('a pre-aborted caller starts neither fetch nor a timeout', async () => {
   const api = service(() => assert.fail('Network must not start'));

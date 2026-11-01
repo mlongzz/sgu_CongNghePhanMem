@@ -1,0 +1,41 @@
+# Backend template only. Applying creates a service and requires confirmation.
+# Expo Web is served by Cloudflare Workers: multilingual-guide/wrangler.jsonc.
+services:
+  - type: web
+    name: multilingual-guide-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    autoDeploy: false
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m scripts.start_server
+    healthCheckPath: /health/ready
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: OSM_SNAPSHOT_STORAGE
+        value: postgres
+      - key: MEDIA_STORAGE_BACKEND
+        value: r2
+      - key: DB_POOL_SIZE
+        value: '3'
+      - key: DB_MAX_OVERFLOW
+        value: '2'
+      - key: PRESENCE_RETENTION_DAYS
+        value: '30'
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_BUCKET_NAME
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_PUBLIC_BASE_URL
+        sync: false

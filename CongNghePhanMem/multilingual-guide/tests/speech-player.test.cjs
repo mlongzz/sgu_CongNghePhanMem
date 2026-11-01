@@ -292,3 +292,51 @@ test('a chunk finishing during a rejected pause request resumes the chain instea
   assert.equal(h.state().status, 'playing');
   h.player.dispose();
 });
+
+test('a rejected pause cannot revive a narration whose final chunk already finished', async () => {
+  const paused = deferred();
+  const h = harness({ driver: { pause: () => paused.promise } });
+  await h.player.play('Final chunk.', 'vi', 1, 'db-1');
+  const request = h.player.pause();
+  h.spoken()[0].options.onDone();
+  assert.equal(h.state().status, 'idle');
+  paused.reject(new Error('Pause unavailable'));
+  await request;
+  assert.equal(h.state().status, 'idle');
+  assert.equal(h.state().id, null);
+  assert.equal(h.state().error, '');
+  assert.equal(h.spoken().length, 1);
+  h.player.dispose();
+});
+
+test('a delayed resume cannot restore playing state after the final chunk finishes', async () => {
+  const resumed = deferred();
+  const h = harness({ driver: { resume: () => resumed.promise } });
+  await h.player.play('Final chunk.', 'vi', 1, 'db-1');
+  await h.player.pause();
+  const request = h.player.resume();
+  h.spoken()[0].options.onDone();
+  assert.equal(h.state().status, 'idle');
+  resumed.resolve();
+  await request;
+  assert.equal(h.state().status, 'idle');
+  assert.equal(h.state().id, null);
+  assert.equal(h.spoken().length, 1);
+  h.player.dispose();
+});
+
+test('an externally stopped utterance ignores a pending pause rejection', async () => {
+  const paused = deferred();
+  const h = harness({ driver: { pause: () => paused.promise } });
+  await h.player.play('Interrupted chunk.', 'vi', 1, 'db-1');
+  const request = h.player.pause();
+  h.spoken()[0].options.onResume();
+  h.spoken()[0].options.onStopped();
+  assert.equal(h.state().status, 'idle');
+  paused.reject(new Error('Pause interrupted'));
+  await request;
+  assert.equal(h.state().status, 'idle');
+  assert.equal(h.state().id, null);
+  assert.equal(h.spoken().length, 1);
+  h.player.dispose();
+});

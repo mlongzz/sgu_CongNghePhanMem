@@ -49,6 +49,14 @@ function withNotice(content: NarrationContent, notice: string): NarrationContent
   return { ...content, attribution: [content.attribution, notice].filter(Boolean).join(' ') };
 }
 
+function safeSourceUrl(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  try {
+    const url = new URL(value);
+    return ['http:', 'https:'].includes(url.protocol) && !url.username && !url.password ? url.href : undefined;
+  } catch { return undefined; }
+}
+
 /** Resolve only the selected language; metadata placeholders and Admin drafts are never spoken. */
 export async function resolveNarration(place: Place, language: Language, options: NarrationOptions = {}): Promise<NarrationContent | null> {
   checkAbort(options.signal);
@@ -61,7 +69,8 @@ export async function resolveNarration(place: Place, language: Language, options
       checkAbort(options.signal);
       if ((guide.language_code ?? guide.language ?? language) !== language) throw new Error('Máy chủ trả nội dung khác ngôn ngữ đã chọn.');
       const text = permitted(guide) ? meaningful(guide.content) : '';
-      if (text) return { text, language, source: 'published', attribution: 'Bài thuyết minh do hệ thống xuất bản.' };
+      if (text) return { text, language, source: 'published', attribution: 'Bài thuyết minh do hệ thống xuất bản.',
+        sourceUrl: safeSourceUrl(guide.source_url), sourceLicense: typeof guide.source_license === 'string' ? guide.source_license : undefined };
     } catch (error) {
       checkAbort(options.signal);
       // Keep a real source failure visible, while allowing usable independent content to play.

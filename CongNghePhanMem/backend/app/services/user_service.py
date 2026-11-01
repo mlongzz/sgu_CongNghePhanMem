@@ -2,14 +2,19 @@
 from sqlalchemy.orm import Session
 
 from app.models.user import User
+from app.email_policy import canonical_email
 from pwdlib import PasswordHash
 
 _password_hash = PasswordHash.recommended()
 
 
+def normalize_email(value: str) -> str:
+    return value.strip().lower()
+
+
 def create_user(db: Session, email: str, password: str, full_name: str, language: str) -> User:
     user = User(
-        email=email,
+        email=normalize_email(email),
         password_hash=_password_hash.hash(password),
         full_name=full_name,
         language=language,
@@ -25,7 +30,8 @@ def get_user_by_id(db: Session, user_id: int) -> User | None:
 
 
 def get_user_by_email(db: Session, email: str) -> User | None:
-    return db.query(User).filter(User.email == email).first()
+    # Legacy mixed-case accounts remain usable without rewriting existing records.
+    return db.query(User).filter(canonical_email(User.email) == normalize_email(email)).first()
 
 
 def verify_password(plain: str, hashed: str) -> bool:
@@ -40,7 +46,7 @@ def update_user(
     language: str | None = None,
 ) -> User:
     if email is not None:
-        user.email = email
+        user.email = normalize_email(email)
     if full_name is not None:
         user.full_name = full_name
     if language is not None:

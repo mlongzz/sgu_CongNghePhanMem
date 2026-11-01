@@ -17,7 +17,7 @@ export default function LanguageMenu() {
     <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
       <View style={s.overlay}><View accessibilityViewIsModal style={s.dialog}>
         <View style={s.heading}><Text accessibilityRole="header" style={s.title}>{t('Chọn ngôn ngữ')}</Text><Pressable accessibilityRole="button" accessibilityLabel={t('Đóng')} onPress={() => setOpen(false)} style={s.close}><Ionicons name="close" size={23} color={C.ink} /></Pressable></View>
-        {LANGS.map(lang => <Pressable key={lang.key} accessibilityRole="radio" accessibilityState={{ selected: language === lang.key }} accessibilityLabel={lang.label} onPress={() => { setLanguage(lang.key); setOpen(false); }} style={[s.option, language === lang.key && s.selected]}><Text style={s.label}>{lang.label}</Text>{language === lang.key && <Ionicons name="checkmark" size={22} color={C.primary} />}</Pressable>)}
+        {LANGS.map(lang => <Pressable key={lang.key} accessibilityRole="radio" aria-checked={language === lang.key} accessibilityState={{ checked: language === lang.key }} accessibilityLabel={lang.label} onPress={() => { setLanguage(lang.key); setOpen(false); }} style={[s.option, language === lang.key && s.selected]}><Text style={s.label}>{lang.label}</Text>{language === lang.key && <Ionicons name="checkmark" size={22} color={C.primary} />}</Pressable>)}
       </View></View>
     </Modal>
   </>;

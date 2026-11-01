@@ -13,6 +13,8 @@ from app.schemas.imports import OsmImportPreview
 
 def convert(snapshot: dict) -> tuple[dict, list[dict]]:
     places, rejected, seen = [], [], set()
+    if not isinstance(snapshot, dict):
+        raise ValueError("Expected an Overpass or GeoJSON object")
     elements = snapshot.get("elements", snapshot.get("features", []))
     if not isinstance(elements, list):
         raise ValueError("Expected Overpass elements or GeoJSON features")
@@ -21,6 +23,9 @@ def convert(snapshot: dict) -> tuple[dict, list[dict]]:
             rejected.append({"source_id": "", "reason": "invalid_element"})
             continue
         properties = row.get("properties", {}) or {}
+        if not isinstance(properties, dict):
+            rejected.append({"source_id": "", "reason": "invalid_element"})
+            continue
         tags = row.get("tags", properties.get("tags", properties)) or {}
         identity = str(properties.get("@id", row.get("id", "")))
         if re.fullmatch(r"[nwr][1-9][0-9]*", identity):
@@ -29,6 +34,9 @@ def convert(snapshot: dict) -> tuple[dict, list[dict]]:
             identity = f"{properties['@type']}/{identity}"
         if row.get("type") in ("node", "way", "relation"):
             identity = f"{row['type']}/{row.get('id', '')}"
+        if not isinstance(tags, dict):
+            rejected.append({"source_id": identity, "reason": "invalid_fields_or_coordinates"})
+            continue
         reason = None
         if identity in seen:
             reason = "duplicate_source_identity"
@@ -42,12 +50,17 @@ def convert(snapshot: dict) -> tuple[dict, list[dict]]:
             continue
         if "geometry" in row:
             geometry = row.get("geometry") or {}
-            if geometry.get("type") != "Point" or len(geometry.get("coordinates", [])) < 2:
+            coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
+            if (not isinstance(geometry, dict) or geometry.get("type") != "Point" or
+                    not isinstance(coordinates, (list, tuple)) or len(coordinates) < 2):
                 rejected.append({"source_id": identity, "reason": "point_geometry_required"})
                 continue
-            lon, lat = geometry["coordinates"][:2]
+            lon, lat = coordinates[:2]
         else:
             point = row.get("center", row)
+            if not isinstance(point, dict):
+                rejected.append({"source_id": identity, "reason": "invalid_fields_or_coordinates"})
+                continue
             lat, lon = point.get("lat"), point.get("lon")
         item = {"source_id": identity, "name": tags["name"], "latitude": lat, "longitude": lon,
                 "category": tags.get("tourism") or tags.get("historic") or tags.get("amenity"),

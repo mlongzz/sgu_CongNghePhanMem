@@ -1,6 +1,6 @@
 from alembic import context
 from app.database import Base, engine
-from app.models import admin, audio_session, favorite, guide_content, history, place, review, user  # noqa: F401
+from app.models import admin, audio_session, auth_session, favorite, guide_content, history, place, place_image, presence, review, user  # noqa: F401
 
 if context.is_offline_mode():
     context.configure(url=str(engine.url), target_metadata=Base.metadata, literal_binds=True)

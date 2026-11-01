@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 
 from app.models.guide_content import GuideContent
+from app.services.editorial_service import reviewed_changes
 
 
 def get_guide_content(db: Session, place_id: int, language_code: str, *, published_only: bool = False) -> GuideContent | None:
@@ -45,9 +46,7 @@ def create_guide_content(
 
 
 def update_guide_content(db: Session, guide: GuideContent, changes: dict[str, object]) -> GuideContent:
-    if any(key in changes for key in ("title", "content", "language_code")) and "publication_status" not in changes:
-        guide.publication_status = "draft"
-    for field, value in changes.items():
+    for field, value in reviewed_changes(guide, changes).items():
         if value is not None:
             setattr(guide, field, value.lower() if field == "language_code" else value)
     db.commit()

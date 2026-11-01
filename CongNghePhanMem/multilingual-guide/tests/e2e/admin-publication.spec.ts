@@ -14,7 +14,7 @@ test('admin creates a draft, publishes, archives and restores without losing its
   await page.getByLabel('Vĩ độ (-90…90)', { exact: true }).fill('10.7764');
   await page.getByLabel('Kinh độ (-180…180)', { exact: true }).fill('106.6993');
   await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();
-  await expect(page.getByText('Đã lưu vào cơ sở dữ liệu.', { exact: false })).toBeVisible();
+  await expect(page.getByText('Đã lưu bản nháp. Kiểm duyệt rồi xuất bản từ danh sách.', { exact: true })).toBeVisible();
   const publicPlaces = async () => (await request.get('http://127.0.0.1:8765/places?limit=100')).json() as Promise<{ id: number; name: string }[]>;
   expect((await publicPlaces()).some(row => row.name === name)).toBe(false);
   const row = page.getByText(name, { exact: true }).locator('..');

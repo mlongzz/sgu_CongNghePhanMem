@@ -4,14 +4,16 @@ DATABASE_URL is loaded from the .env file via app.config.
 """
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+import os
 
 from app.config import DATABASE_URL
 
 engine = create_engine(
     DATABASE_URL.replace("postgresql://", "postgresql+psycopg2://", 1),
     pool_pre_ping=True,   # detect stale connections automatically
-    pool_size=10,
-    max_overflow=20,
+    pool_size=max(1,min(20,int(os.getenv('DB_POOL_SIZE','5')))),
+    max_overflow=max(0,min(20,int(os.getenv('DB_MAX_OVERFLOW','5')))),
+    pool_timeout=15,
 )
 
 SessionLocal = sessionmaker(

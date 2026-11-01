@@ -79,7 +79,8 @@ def update_user_api(
 
     # Check new email isn't already taken by someone else
     if user_data.email and user_data.email != user.email:
-        if get_user_by_email(db, user_data.email):
+        existing = get_user_by_email(db, user_data.email)
+        if existing and existing.id != user.id:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail="Email already registered",

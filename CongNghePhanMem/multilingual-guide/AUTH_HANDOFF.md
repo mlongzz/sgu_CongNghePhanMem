@@ -1,6 +1,6 @@
 # Bàn giao phần Authentication
 
-> Báo cáo cập nhật: [COMPLETION_REPORT.md](../COMPLETION_REPORT.md), gồm kiểm thử Chrome và môi trường backend thống nhất.
+> Đây là ghi chép lịch sử phần Auth. Kết quả hiện tại ở [báo cáo nghiệm thu](../docs/REPAIR_ACCEPTANCE_REPORT.md) và [hướng dẫn kiểm thử](../docs/TESTING_GUIDE.md). Đăng xuất nay thu hồi refresh session trên server; access JWT hết hiệu lực theo thời hạn đã cấp.
 
 Đã tiếp tục từ bộ component auth và API có sẵn. Backend giữ nguyên hợp đồng và logic phân quyền.
 

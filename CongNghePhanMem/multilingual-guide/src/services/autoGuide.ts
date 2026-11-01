@@ -1,6 +1,9 @@
 import type { Place } from '../data/places';
 import { distanceKm, type Coordinates } from './nearby';
 
+export { journeyAutoDecision } from './journey';
+// Legacy discovery ranking remains available to older callers; the UI uses only journeyAutoDecision.
+
 export function chooseAutoGuide(location: Coordinates, accuracy: number | null, places: Place[], heard: Set<string>, priority: 'nearest' | 'official' = 'nearest'): Place | null {
   if (!Number.isFinite(location.latitude) || Math.abs(location.latitude) > 90 || !Number.isFinite(location.longitude) || Math.abs(location.longitude) > 180 ||
     accuracy === null || !Number.isFinite(accuracy) || accuracy < 0 || accuracy > 50) return null;

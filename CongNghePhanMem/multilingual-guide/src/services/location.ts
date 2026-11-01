@@ -47,7 +47,7 @@ export async function getCurrentCoordinates({ signal, onProgress }: LocationRequ
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude) || Math.abs(latitude) > 90 || Math.abs(longitude) > 180)
     throw new Error("Thiết bị trả tọa độ GPS không hợp lệ. Hãy thử lại.");
   const timestamp = position.timestamp;
-  if (timestamp !== undefined && (!Number.isFinite(timestamp) || timestamp <= 0 || Date.now() - timestamp > 60_000 || timestamp - Date.now() > 60_000))
+  if (timestamp !== undefined && (!Number.isFinite(timestamp) || timestamp <= 0 || Date.now() - timestamp > 60_000 || timestamp - Date.now() > 5000))
     throw locationError("Thiết bị trả vị trí đã cũ hoặc thời gian GPS không hợp lệ. Hãy lấy GPS lại.", "STALE_POSITION");
   const accuracy = position.coords.accuracy;
   return { latitude, longitude,

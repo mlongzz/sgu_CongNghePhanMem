@@ -1,0 +1,85 @@
+import { test, expect, type Page } from '@playwright/test';
+const api='http://127.0.0.1:8765';
+async function login(page:Page,email:string){
+  await page.goto('/login');await page.getByLabel('Địa chỉ email',{exact:true}).fill(email);await page.getByLabel('Mật khẩu',{exact:true}).fill('TestPassword123!');await page.getByRole('button',{name:'Đăng nhập',exact:true}).click();
+}
+test('real presence across tabs, Admin dashboard, own deletion and persistent opt-out',async({page,context,request})=>{
+  const email=`presence-${Date.now()}@example.com`;
+  await request.post(api+'/users',{data:{email,password:'TestPassword123!',full_name:'Presence browser fixture',language:'vi'}});
+  const member=await (await request.post(api+'/auth/login',{data:{email,password:'TestPassword123!'}})).json();
+  const admin=await (await request.post(api+'/auth/login',{data:{email:'admin@e2e.example.com',password:'TestPassword123!'}})).json();
+  const auth={Authorization:'Bearer '+admin.access_token};
+  const started=page.waitForResponse(response=>response.url().endsWith('/presence/start')&&response.status()===200);
+  await login(page,email);await started;
+  await expect(page.getByText('Ứng dụng ghi nhận thời gian hoạt động, không ghi GPS hay nội dung nhập.')).toBeVisible();
+  const second=await context.newPage();
+  await second.addInitScript(tokens=>{sessionStorage.setItem('mg_access_token_v3',tokens.access_token);sessionStorage.setItem('mg_refresh_token_v3',tokens.refresh_token);},member);
+  const next=second.waitForResponse(response=>response.url().endsWith('/presence/start')&&response.status()===200);
+  await second.goto('/');await next;
+  await expect.poll(async()=>{const data=await(await request.get(api+'/admin/presence?q='+encodeURIComponent(email),{headers:auth})).json();return data.items[0]?.active_sessions;}).toBe(2);
+  const dashboard=await context.newPage();
+  await dashboard.addInitScript(tokens=>{sessionStorage.setItem('mg_access_token_v3',tokens.access_token);sessionStorage.setItem('mg_refresh_token_v3',tokens.refresh_token);},admin);
+  await dashboard.goto('/admin');await dashboard.getByText('Online & hoạt động',{exact:true}).click();
+  await expect(dashboard.getByTestId('presence-dashboard')).toBeVisible();await expect(dashboard.getByTestId('presence-chart')).toBeVisible();
+  await dashboard.getByLabel('Tìm người dùng Presence').fill(email);
+  await expect(dashboard.getByRole('button',{name:'Phiên hoạt động '+email})).toBeVisible();
+  await dashboard.getByRole('button',{name:'Phiên hoạt động '+email}).click();await expect(dashboard.getByRole('button',{name:'Đóng chi tiết phiên'})).toBeVisible();
+  await dashboard.getByRole('button',{name:'7 ngày',exact:true}).click();
+  await dashboard.screenshot({path:'test-results/presence-desktop.png',fullPage:true});
+  await dashboard.setViewportSize({width:390,height:844});
+  await expect.poll(()=>dashboard.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await dashboard.screenshot({path:'test-results/presence-mobile.png',fullPage:true});
+  await page.bringToFront();await page.goto('/account');
+  await page.getByRole('button',{name:'Xóa dữ liệu hoạt động của tôi',exact:true}).click();
+  await page.getByRole('button',{name:'Xác nhận xóa dữ liệu hoạt động',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Bật theo dõi hoạt động',exact:true})).toBeVisible();
+  const pref=await(await request.get(api+'/presence/preferences',{headers:{Authorization:'Bearer '+member.access_token}})).json();expect(pref.enabled).toBe(false);
+  await page.reload();await expect(page.getByRole('button',{name:'Bật theo dõi hoạt động',exact:true})).toBeVisible();
+  const users=await(await request.get(api+'/admin/presence?q='+encodeURIComponent(email),{headers:auth})).json();
+  const detail=await(await request.get(api+'/admin/presence/users/'+users.items[0].id,{headers:auth})).json();expect(detail.total).toBe(0);
+  await second.close();await dashboard.close();
+});
+
+test('Image Manager drag/drop, duplicate detection, URL error, source suggestions and multi-POI navigation',async({page,request})=>{
+  await login(page,'admin@e2e.example.com');await expect(page).toHaveURL(/\/admin$/);
+  await page.getByText('Thư viện ảnh',{exact:true}).click();await expect(page.getByTestId('image-manager')).toBeVisible();
+  await page.getByLabel('Tìm địa danh trong thư viện ảnh').fill('Journey Admin fixture');
+  await page.getByRole('button',{name:/Quản lý ảnh Journey Admin fixture/}).first().click();
+  const image='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+aWQAAAABJRU5ErkJggg==';
+  const transfer=await page.evaluateHandle(value=>{const data=new DataTransfer();const bytes=Uint8Array.from(atob(value),c=>c.charCodeAt(0));data.items.add(new File([bytes],'dropped.png',{type:'image/png'}));return data;},image);
+  await page.getByTestId('image-drop-zone').dispatchEvent('drop',{dataTransfer:transfer});
+  await page.getByRole('button',{name:'Tải 1 ảnh lên thư viện'}).click();
+  await expect(page.getByText('Ảnh đã lưu vào thư viện. Xác nhận tác giả và giấy phép trước khi sử dụng.',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Chọn ảnh từ thiết bị'})).toBeEnabled();
+  // A prior test may have removed this same normalized photo; deduplication
+  // preserves its existing status instead of creating or publishing a copy.
+  await expect(page.getByText(/^(Chưa sử dụng|Không sử dụng)$/).first()).toBeVisible();
+  await page.getByTestId('image-drop-zone').dispatchEvent('drop',{dataTransfer:transfer});await page.getByRole('button',{name:'Tải 1 ảnh lên thư viện'}).click();
+  await expect(page.getByLabel(/Ảnh \d+ attribution/)).toHaveCount(1);
+  await page.getByLabel(/Ảnh \d+ attribution/).fill('Browser drop fixture author');await page.getByLabel(/Ảnh \d+ license/).fill('CC0');
+  const savedCover = page.waitForResponse(response => /\/admin\/places\/\d+\/images\/\d+$/.test(new URL(response.url()).pathname) && response.request().method()==='PUT');
+  await page.getByRole('button',{name:'Đặt làm ảnh bìa',exact:true}).click();await expect(page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm'})).toBeVisible();
+  const cover = await (await savedCover).json();
+  const publicPlace = await request.get(api+'/places/'+cover.image.place_id);
+  expect(publicPlace.status()).toBe(200);
+  expect((await publicPlace.json()).image_url).toBe(cover.image_url);
+  await page.getByLabel('URL ảnh nhập vào thư viện').fill('https://localhost/private.jpg');await page.getByRole('button',{name:'Lưu ảnh từ URL vào thư viện'}).click();
+  await expect(page.getByRole('alert').filter({hasText:/Private, local|public HTTPS/})).toBeVisible();
+  await page.getByRole('button',{name:'Hoàn tác chỉnh sửa ảnh chưa lưu'}).click();
+  await page.getByRole('button',{name:'Tìm theo tên để tự đối chiếu'}).click();
+  await expect(page.getByText('Chưa xác minh đúng địa danh. Hãy kiểm tra trước khi sử dụng.')).toBeVisible();
+  await page.screenshot({path:'test-results/image-manager-desktop.png',fullPage:true});
+  await page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm',exact:true}).click();
+  await page.getByRole('button',{name:'Xác nhận gỡ ảnh',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Gỡ ảnh khỏi địa điểm',exact:true})).toBeHidden();
+  const withoutCover = await request.get(api+'/places/'+cover.image.place_id);
+  expect(withoutCover.status()).toBe(200);
+  expect((await withoutCover.json()).image_url).toBeNull();
+  await page.getByRole('button',{name:'POI tiếp →'}).click();
+  await expect(page.getByLabel(/Ảnh \d+ attribution/)).toHaveCount(0);
+  await page.getByRole('button',{name:'Đóng thư viện ảnh'}).click();
+  await expect(page.getByRole('button',{name:'Đóng thư viện ảnh'})).toBeHidden();
+  await page.getByRole('checkbox',{name:'Địa danh chưa có ảnh bìa'}).check();
+  await page.setViewportSize({width:390,height:844});await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:'test-results/image-manager-mobile.png',fullPage:true});
+});

@@ -12,13 +12,16 @@ test.beforeEach(async ({ page, context }) => {
   await page.route('https://tile.openstreetmap.org/**', route => route.fulfill({ contentType: 'image/png', body: tile }));
   await page.route('**/osm/nearby?**', route => route.fulfill({ status: 504, body: 'upstream unavailable' }));
   await page.route('**/places/nearby?**', route => route.fulfill({ json: [] }));
-  await page.route('https://vi.wikipedia.org/w/api.php?**', route => route.fulfill({ json: wikiData }));
+  await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+return route.fulfill({ json: wikiData }); });
 });
 
 test('fresh page and reload need one GPS click, tolerate malformed settings and automatically show fallback places', async ({ page }) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   let wikiCalls = 0;
-  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?')) wikiCalls++; });
+  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?') && new URL(request.url()).searchParams.get('list') === 'geosearch') wikiCalls++; });
   await page.route('**/settings', route => route.fulfill({ json: {} }));
   await page.addInitScript(() => {
     const state = window as typeof window & { gpsCalls: number };
@@ -69,6 +72,9 @@ test('another GPS click waits for the new position before refreshing fallback pl
     return route.fulfill({ json: osmPayload(route, []) });
   });
   await page.route('https://vi.wikipedia.org/w/api.php?**', route => {
+      // Separate image metadata requests from GPS geosearch assertions.
+      if (new URL(route.request().url()).searchParams.get('prop') === 'pageimages') return route.fulfill({ json: { query: { pages: [] } } });
+
     const coordinate = new URL(route.request().url()).searchParams.get('gscoord')!;
     queries.push(coordinate);
     const [lat, lon] = coordinate.split('|').map(Number);
@@ -128,7 +134,7 @@ test('denied GPS sends no POI request, gives a clear error and another GPS click
 
 test('a GPS callback that never arrives ends loading through the watchdog', async ({ page }) => {
   let wikiCalls = 0;
-  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?')) wikiCalls++; });
+  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?') && new URL(request.url()).searchParams.get('list') === 'geosearch') wikiCalls++; });
   await page.addInitScript(() => {
     navigator.geolocation.getCurrentPosition = () => {};
     const original = window.setTimeout.bind(window);
@@ -214,7 +220,7 @@ test('cancel ignores the old GPS callback and a new click can obtain position', 
 
 test('manual coordinates work without GPS, validate inputs and are labelled honestly', async ({ page }) => {
   let coordinateQuery = '';
-  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?')) coordinateQuery = new URL(request.url()).searchParams.get('gscoord') ?? ''; });
+  page.on('request', request => { if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?') && new URL(request.url()).searchParams.get('list') === 'geosearch') coordinateQuery = new URL(request.url()).searchParams.get('gscoord') ?? ''; });
   await page.addInitScript(() => { navigator.geolocation.getCurrentPosition = () => { throw new Error('GPS must not be used for manual coordinates'); }; });
   await page.goto('/map');
   await page.getByRole('button', { name: 'Developer Diagnostics', exact: true }).click();
@@ -238,7 +244,7 @@ test('late server settings cannot replace the radius the user already selected',
   const held = new Promise<void>(resolve => { release = resolve; });
   let wikiRadius = ''; let backendRadius = '';
   page.on('request', request => {
-    if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?')) wikiRadius = new URL(request.url()).searchParams.get('gsradius') ?? '';
+    if (request.url().startsWith('https://vi.wikipedia.org/w/api.php?') && new URL(request.url()).searchParams.get('list') === 'geosearch') wikiRadius = new URL(request.url()).searchParams.get('gsradius') ?? '';
     if (request.url().includes('/places/nearby?')) backendRadius = new URL(request.url()).searchParams.get('radius_km') ?? '';
   });
   await page.route('**/settings', async route => { await held; await route.fulfill({ json: { nearby_radius_km: 20, default_language: 'vi' } }); });
@@ -253,4 +259,27 @@ test('late server settings cannot replace the radius the user already selected',
     await expect(page.getByText(/Bán kính: 1 km/)).toBeVisible();
     expect(wikiRadius).toBe('1000'); expect(backendRadius).toBe('1');
   } finally { release(); }
+});
+
+test('a future GPS timestamp gives a retryable error without sending coordinates to providers', async ({ page }) => {
+  const requests: string[] = [];
+  page.on('request', request => { if (/\/places\/nearby\?|\/osm\/nearby|vi\.wikipedia\.org\/w\/api/.test(request.url())) requests.push(request.url()); });
+  await page.addInitScript(() => {
+    const original = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+    const state = window as typeof window & { futureGps: boolean };
+    state.futureGps = true;
+    navigator.geolocation.getCurrentPosition = (success, error, options) => state.futureGps
+      ? success({ coords: { latitude: 10.7764, longitude: 106.6993, accuracy: 5, altitude: null, altitudeAccuracy: null, heading: null, speed: null }, timestamp: Date.now() + 20000 } as GeolocationPosition)
+      : original(success, error, options);
+  });
+  await page.goto('/map');
+  await page.getByRole('button', { name: 'Dùng GPS và tìm địa danh', exact: true }).click();
+  await expect(page.getByText(/GPS: Trình duyệt trả vị trí đã cũ hoặc thời gian GPS không hợp lệ/)).toBeVisible();
+  await expect(page.getByTestId('gps-progress')).toHaveCount(0);
+  await expect(page.locator('.user-location-marker')).toHaveCount(0);
+  expect(requests).toEqual([]);
+  await page.evaluate(() => { (window as typeof window & { futureGps: boolean }).futureGps = false; });
+  await page.getByRole('button', { name: 'Dùng GPS và tìm địa danh', exact: true }).click();
+  await expect(page.getByTestId('nearby-place-list').getByText('GPS Entry Museum', { exact: true })).toBeVisible();
+  await expect(page.locator('.user-location-marker')).toHaveCount(1);
 });
