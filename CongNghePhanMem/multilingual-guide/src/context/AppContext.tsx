@@ -20,6 +20,7 @@ import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlac
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
 import { freshGps } from '../services/discoveryStatus';
+import { acceptGpsFix } from '../services/gpsTracking';
 
 const STORE_FAVORITES = "mg_favorites_v2";
 const STORE_LANG = "mg_language_v2";
@@ -58,6 +59,8 @@ type AppState = {
   loginWithTokens: (accessToken: string, refreshToken: string) => Promise<void>;
   places: Place[];
   location: LocationCoordinates | null;
+  searchLocation: Coordinates | null;
+  updateGpsLocation: (fix: LocationCoordinates) => boolean;
   locationSource: "gps" | "manual" | null;
   locationProgress: string;
   cancelLocation: () => void;
@@ -101,6 +104,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [places, setPlaces] = useState<Place[]>([]);
   const [location, setLocation] = useState<LocationCoordinates | null>(null);
   const [locationSource, setLocationSource] = useState<AppState["locationSource"]>(null);
+  const [searchLocation, setSearchLocation] = useState<Coordinates | null>(null);
+  const latestGps = useRef<LocationCoordinates | null>(null);
+  const updateGpsLocation = useCallback((fix: LocationCoordinates) => {
+    if (!acceptGpsFix(fix, latestGps.current)) return false;
+    latestGps.current = fix;
+    setLocation(fix);
+    setLocationSource('gps');
+    return true;
+  }, []);
   const [locationProgress, setLocationProgress] = useState("");
   const locationRequest = useRef<AbortController | null>(null);
   useEffect(() => () => { catalogSeq.current++; locationRequest.current?.abort(); }, []);
@@ -428,7 +440,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         if (coordinates.accuracy !== undefined && (!Number.isFinite(coordinates.accuracy) || coordinates.accuracy < 0)) throw new Error('Độ chính xác GPS không hợp lệ. Hãy định vị lại.');
       }
       if (seq !== catalogSeq.current) return;
-      setLocation(coordinates);
+      if (options.coordinates) {
+        latestGps.current = null;
+        setLocation(coordinates);
+      } else if (!latestGps.current || (coordinates.timestamp ?? 0) >= (latestGps.current.timestamp ?? 0)) {
+        latestGps.current = coordinates;
+        setLocation(coordinates);
+      }
+      setSearchLocation(coordinates);
       setLocationSource(options.coordinates ? "manual" : reusable ? locationSource : "gps");
       setLocationProgress("");
       queryingPlaces = true;
@@ -514,6 +533,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
       places,
       location,
+      searchLocation, updateGpsLocation,
       locationSource,
       locationProgress,
       cancelLocation,
@@ -546,6 +566,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
       places,
       location,
+      searchLocation, updateGpsLocation,
       locationSource,
       locationProgress,
       cancelLocation,

@@ -79,7 +79,7 @@ export default function PlaceImageEditor({placeId,uri,token,onSaved,onDirtyChang
       const result=await apiFetch<{items:Suggestion[];source_name?:string}>(`/admin/places/${placeId}/images/suggestions`,{token,method:'POST',body:JSON.stringify({...(wikiId?{wikipedia_page_id:Number(wikiId)}:{}),...(wikidataId?{wikidata_id:wikidataId.trim()}:{}),search_by_name:byName})});
       setSuggested(result.items);setSourceName(result.source_name??'');setNotice(result.items.length?'Đối chiếu địa danh và giấy phép trước khi thêm ảnh.':'Chưa có ảnh phù hợp. Có thể nhập page ID/Wikidata ID hoặc tìm theo tên rồi tự đối chiếu.');
     }catch(e){
-      if(e instanceof ApiError && e.status===502)setError('Không thể lấy dữ liệu hợp lệ từ nguồn ảnh. Hãy kiểm tra kết nối mạng của máy chủ và thử lại; bạn vẫn có thể nhập URL ảnh có nguồn rõ ràng.');
+      if(e instanceof ApiError && e.status===502 && e.message==='Dịch vụ đang gặp sự cố. Vui lòng thử lại sau.')setError('Không thể lấy dữ liệu hợp lệ từ nguồn ảnh. Hãy kiểm tra kết nối mạng của máy chủ và thử lại; bạn vẫn có thể nhập URL ảnh có nguồn rõ ràng.');
       else fail(e);
     }finally{setBusy(false);}
   };

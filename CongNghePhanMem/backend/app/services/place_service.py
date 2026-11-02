@@ -6,6 +6,7 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.models.place import Place
+from app.models.guide_content import GuideContent
 from app.services.media_service import remove_unused_image
 from app.services.editorial_service import reviewed_changes
 
@@ -16,6 +17,19 @@ DISTANCE_TOLERANCE_KM = 1e-7
 
 def public_places(db: Session):
     return db.query(Place).filter(Place.publication_status == "published", Place.deleted_at.is_(None))
+
+
+def public_place_values(db: Session, rows: list[Place]) -> list[dict]:
+    """Summaries come only from published content in the requested language."""
+    from app.schemas.place import PlaceResponse
+    import re
+    grouped = {row.id: {} for row in rows}
+    if grouped:
+        for guide in db.query(GuideContent).filter(GuideContent.place_id.in_(grouped), GuideContent.publication_status == 'published').all():
+            if guide.language_code in ('vi', 'en', 'fr', 'ja'):
+                first = re.split(r'(?<=[.!?。！？])\s*', guide.content.strip(), maxsplit=1)[0]
+                grouped[guide.place_id][guide.language_code] = first[:300] + ('…' if len(first) > 300 else '')
+    return [{**PlaceResponse.model_validate(row).model_dump(), 'description_translations': grouped[row.id]} for row in rows]
 
 
 # ─── Read ─────────────────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@ function load(path, dependencies = {}) {
   return exports;
 }
 const nearby = load('src/services/nearby.ts');
-const { shouldRefreshTrackedPlaces } = load('src/services/gpsTracking.ts', { './nearby': nearby });
+const { shouldRefreshTrackedPlaces, acceptGpsFix } = load('src/services/gpsTracking.ts', { './nearby': nearby });
 const { clusterMapPlaces } = load('src/services/mapClusters.ts');
 const now = 1000000;
 const fix = { latitude: 10, longitude: 106, accuracy: 5, timestamp: now };
@@ -21,11 +21,19 @@ test('tracking rejects stale, invalid and noisy updates before provider requests
   }
 });
 test('tracking requires elapsed interval and movement beyond the uncertainty envelope', () => {
-  const previous = { ...fix, at: now - 30000 };
+  const previous = { ...fix, timestamp: now - 30000, at: now - 30000 };
   assert.equal(shouldRefreshTrackedPlaces({ ...fix, latitude: 10.0005 }, previous, now), false);
   assert.equal(shouldRefreshTrackedPlaces({ ...fix, latitude: 10.002 }, { ...previous, at: now - 29999 }, now), false);
   assert.equal(shouldRefreshTrackedPlaces({ ...fix, latitude: 10.002 }, previous, now), true);
   assert.equal(shouldRefreshTrackedPlaces({ ...fix, latitude: 10.001, accuracy: 80 }, { ...previous, accuracy: 80 }, now), false);
+});
+
+test('stationary fixes stay fresh after 60 seconds without another provider request', () => {
+  const next = { ...fix, timestamp: now + 61000 };
+  assert.equal(acceptGpsFix(next, fix, now + 61000), true);
+  assert.equal(shouldRefreshTrackedPlaces(next, { ...fix, at: now }, now + 61000), false);
+  for (const timestamp of [now - 1, now, NaN, 0, now + 121001]) assert.equal(acceptGpsFix({ ...fix, timestamp }, fix, now + 61000), false);
+  assert.equal(acceptGpsFix({ ...next, accuracy: 95 }, fix, now + 61000), true, 'coarse fixes update the UI but cannot satisfy AutoGuide');
 });
 test('dense maps cluster display markers without dropping POI or changing list data', () => {
   const places = Array.from({ length: 80 }, (_, id) => ({ id: `db-${id}`, latitude: 10 + id * .000001, longitude: 106 }));

@@ -36,7 +36,7 @@ API tương tác: `http://127.0.0.1:8000/docs`; readiness: `/health/ready`. Khô
 
 ## Cấp Admin
 
-Đăng ký tài khoản, xem ID trong DB phát triển. Thêm ID tin cậy vào `ADMIN_USER_IDS` trong cấu hình backend, khởi động lại và đăng nhập lại. Admin hiện có cũng có thể đổi cột `role` qua màn hình quản lý người dùng. Backend chấp nhận `role=admin` hoặc ID trong `ADMIN_USER_IDS`; người đăng ký không tự cấp quyền qua payload.
+Đăng ký tài khoản, xem ID trong DB phát triển. Thêm ID tin cậy vào `ADMIN_USER_IDS` trong cấu hình backend, khởi động lại và đăng nhập lại. Backend chấp nhận `role=admin` hoặc ID trong `ADMIN_USER_IDS`; người đăng ký không tự cấp quyền qua payload. Bảng người dùng phân biệt vai trò CSDL, quyền Admin thực tế và nguồn cấp quyền. Tài khoản trong `ADMIN_USER_IDS` không thể bị đổi vai trò/xóa qua API; cần quản lý cấu hình máy chủ.
 
 ## Chạy frontend
 
@@ -72,7 +72,7 @@ Thuyết minh dùng giọng có trên thiết bị. Nội dung chính thức ưu
 
 ## Dữ liệu demo sau khi clone
 
-Mười địa điểm có ảnh Commons được cấp phép và bài Việt–Anh trong bộ demo. Xem [kết quả và giới hạn nội dung](docs/DEMO_RELEASE_2026-11-01.md) cùng [ghi công ảnh](docs/DEMO_IMAGE_CREDITS.md). Hai script sửa dữ liệu phát triển chỉ nhận đúng baseline đã kiểm tra và yêu cầu backup đã khôi phục thử; không chạy chúng trên database khác để thử.
+Mười địa điểm có 40 bài Việt–Anh–Pháp–Nhật kèm nguồn và 10 ảnh Commons được cấp phép. Bộ dựng mới còn tạo một hành trình bốn điểm trung tâm; không tạo tài khoản hoặc lịch sử cá nhân. Xem [rà soát ngày 02/11](docs/REVIEW_2026-11-02.md) cùng [ghi công ảnh](docs/DEMO_IMAGE_CREDITS.md). Các script sửa dữ liệu phát triển chỉ nhận đúng baseline đã kiểm tra và yêu cầu backup đã khôi phục thử; không chạy chúng trên database khác để thử.
 
 Để dựng mới, dùng **database PostgreSQL local trống riêng** có tên `mg_demo_*`, cấu hình `DATABASE_URL` cho terminal đó, rồi từ `backend` chạy:
 
@@ -82,7 +82,7 @@ Mười địa điểm có ảnh Commons được cấp phép và bài Việt–
 .\.venv\Scripts\python.exe -m scripts.bootstrap_reviewed_demo --apply
 ```
 
-Bootstrap từ chối database có bất kỳ dữ liệu nghiệp vụ nào, không tạo tài khoản, đánh giá hay lịch sử. Sau đó tạo thư mục `..\.verification` nếu chưa có, dùng `pg_dump` đã cài để sao lưu database demo mới, nhập mật khẩu qua terminal hoặc cơ chế đăng nhập PostgreSQL sẵn có:
+Bootstrap từ chối database có bất kỳ dữ liệu nghiệp vụ nào, không tạo tài khoản, đánh giá hay lịch sử. Tạo Admin theo hướng dẫn phía trên sau khi hoàn tất dựng dữ liệu và ảnh. Sau bootstrap, tạo thư mục `..\.verification` nếu chưa có, dùng `pg_dump` đã cài để sao lưu database demo mới, nhập mật khẩu qua terminal hoặc cơ chế đăng nhập PostgreSQL sẵn có:
 
 ```powershell
 pg_dump --format=custom --host=127.0.0.1 --port=5432 --username=<tai-khoan-local> --file=../.verification/demo-before-images.dump mg_demo_giangvien

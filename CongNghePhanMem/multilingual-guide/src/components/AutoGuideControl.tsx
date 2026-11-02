@@ -13,6 +13,7 @@ import { getCurrentCoordinates } from "../services/location";
 import { watchCoordinates } from "../services/locationWatch";
 import {
   shouldRefreshTrackedPlaces,
+  acceptGpsFix,
   type TrackedSearch,
 } from "../services/gpsTracking";
 import { useI18n } from "../hooks/useI18n";
@@ -32,6 +33,7 @@ export default function AutoGuideControl(_props: { candidates?: Place[] }) {
     pending = useRef(false),
     attempted = useRef(new Map<string, number>()),
     lastSearch = useRef<TrackedSearch | null>(null);
+  const lastFix = useRef<import('../services/locationOptions').LocationCoordinates | null>(null);
   const latest = useRef({ app, journey });
   useEffect(() => {
     latest.current = { app, journey };
@@ -45,6 +47,7 @@ export default function AutoGuideControl(_props: { candidates?: Place[] }) {
     latest.current.journey.setAutomatic(false);
     pending.current = false;
     lastSearch.current = null;
+    lastFix.current = null;
     setEnabled(false);
     setStarting(false);
   }, []);
@@ -92,7 +95,11 @@ export default function AutoGuideControl(_props: { candidates?: Place[] }) {
           timestamp: position.timestamp,
         },
         now = Date.now();
+      if (!acceptGpsFix(fix, lastFix.current, now)) return;
+      lastFix.current = fix;
+      state.updateGpsLocation(fix);
       if (
+        !route.progress &&
         state.nearbyStatus !== "loading" &&
         state.nearbyStatus !== "locating" &&
         shouldRefreshTrackedPlaces(fix, lastSearch.current, now)
@@ -198,6 +205,7 @@ export default function AutoGuideControl(_props: { candidates?: Place[] }) {
           }}
           variant="outline"
         />
+        {journey.progress?.status === 'paused' && <Text style={{ color: C.muted }}>{t('Hành trình đang tạm dừng. Tiếp tục hành trình trước khi bật tự thuyết minh.')}</Text>}
         <PrimaryButton
           title={enabled ? "Dừng theo dõi GPS" : "Theo dõi khi di chuyển"}
           loading={starting}

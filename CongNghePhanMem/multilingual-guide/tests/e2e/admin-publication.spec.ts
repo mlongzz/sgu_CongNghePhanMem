@@ -23,6 +23,24 @@ test('admin creates a draft, publishes, archives and restores without losing its
   await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
   await expect.poll(async () => (await publicPlaces()).some(item => item.name === name)).toBe(true);
   const published = (await publicPlaces()).find(item => item.name === name)!;
+  await row.getByRole('button', { name: 'Sửa', exact: true }).click();
+  await expect(page.getByRole('radio', { name: 'Đã xuất bản', exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();
+  await expect(page.getByText('Không có thay đổi. Trạng thái xuất bản được giữ nguyên.', { exact: true })).toBeVisible();
+  expect((await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(200);
+  await row.getByRole('button', { name: 'Sửa', exact: true }).click();
+  await page.getByLabel('Mô tả', { exact: true }).fill('Updated content must be reviewed before publishing.');
+  await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();
+  await expect(page.getByText(/Lưu nội dung này sẽ gỡ bản đang công khai/)).toBeVisible();
+  expect((await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(200);
+  await page.getByRole('button', { name: 'Hủy', exact: true }).last().click();
+  expect((await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(200);
+  await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();
+  await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
+  await expect.poll(async () => (await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(404);
+  await row.getByRole('button', { name: 'Xuất bản', exact: true }).click();
+  await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
+  await expect.poll(async () => (await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(200);
   await row.getByRole('button', { name: 'Lưu trữ', exact: true }).click();
   await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
   await expect.poll(async () => (await request.get(`http://127.0.0.1:8765/places/${published.id}`)).status()).toBe(404);
@@ -49,7 +67,7 @@ test('OSM import requires a reviewed preview and saves unpublished drafts idempo
   const publicRows = await (await request.get('http://127.0.0.1:8765/places?limit=100')).json();
   expect(publicRows.some((row: { name: string }) => row.name === fixture.places[0].name)).toBe(false);
   await page.getByRole('button', { name: 'Xem trước OSM', exact: true }).click();
-  await expect(page.getByText('existing', { exact: true })).toBeVisible();
+  await expect(page.getByText('Đã có sẵn', { exact: true })).toBeVisible();
 });
 
 test('reviewed Wikipedia discovery excludes conflicts and imports only selected unpublished drafts', async ({ page, request }) => {
@@ -91,5 +109,5 @@ test('reviewed Wikipedia discovery excludes conflicts and imports only selected 
   expect(imported).toHaveLength(selected.rows.length);
   expect(imported.every(row => row.source === 'wikipedia' && row.publication_status === 'draft')).toBe(true);
   await page.getByRole('button', { name: 'Xem trước POI Wikipedia đã xác minh', exact: true }).click();
-  await expect(page.getByText('existing', { exact: true })).toHaveCount(selected.rows.length);
+  await expect(page.getByText('Đã có sẵn', { exact: true })).toHaveCount(selected.rows.length);
 });

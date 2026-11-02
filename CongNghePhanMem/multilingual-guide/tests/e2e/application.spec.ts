@@ -135,6 +135,8 @@ test('admin publishes narration and builds a journey from named places', async (
   const language = await page.getByLabel('Mã ngôn ngữ (vi/en/fr/ja…)').inputValue();
   await page.getByLabel('Nội dung thuyết minh', { exact: true }).fill('Updated narration verified by browser test.');
   await page.getByRole('button', { name: 'Lưu thay đổi', exact: true }).click();
+  await expect(page.getByText(/Lưu nội dung này sẽ gỡ bản đang công khai/)).toBeVisible();
+  await page.getByRole('button', { name: 'Xác nhận', exact: true }).click();
   await expect(page.getByText('Đã lưu bản nháp. Kiểm duyệt rồi xuất bản từ danh sách.', { exact: true })).toBeVisible();
   const guideRow = page.getByText('Test guide', { exact: true }).locator('..').filter({ has: page.getByText(language, { exact: true }) });
   await guideRow.getByRole('button', { name: 'Xuất bản', exact: true }).click();

@@ -91,10 +91,28 @@ def paginate(query, page, page_size):
             "pages": (total + page_size - 1) // page_size}
 
 
+def display_references(db, result):
+    """Resolve labels in bulk, preserving IDs for API clients."""
+    items = result['items']
+    place_ids = {r['place_id'] for r in items if r.get('place_id')}
+    user_ids = {r[k] for r in items for k in ('user_id', 'actor_id') if r.get(k)}
+    places = dict(db.query(Place.id, Place.name).filter(Place.id.in_(place_ids)).all()) if place_ids else {}
+    users = dict(db.query(User.id, User.full_name).filter(User.id.in_(user_ids)).all()) if user_ids else {}
+    for row in items:
+        if 'place_id' in row:
+            row['place_name'] = places.get(row['place_id'])
+        for key in ('user_id', 'actor_id'):
+            if key in row:
+                row[key.replace('_id', '_name')] = users.get(row[key])
+    return result
+
+
 @router.get("/me")
 def get_admin_status(current_user: User = Depends(get_current_admin)) -> dict[str, object]:
     """Expose the authenticated user's admin capability to the app UI."""
-    return {"enabled": True, "user_id": current_user.id}
+    return {"enabled": True, "user_id": current_user.id,
+            "database_role": current_user.role,
+            "access_source": "configuration" if current_user.id in ADMIN_USER_IDS else "database"}
 
 
 @router.get("/catalog/hcmc")
@@ -222,7 +240,7 @@ def service_status(db: Session = Depends(get_db)):
     except SQLAlchemyError:
         db.rollback()
         database = "unreachable"
-    return {"api": "reachable", "database": database,
+    return {"api": "reachable", "database": database, "translation_configured": bool(TRANSLATION_API_URL),
             "translation": "configured (not probed)" if TRANSLATION_API_URL else "not configured",
             "tts": "device speech; availability checked on client"}
 
@@ -233,7 +251,11 @@ def list_users(q: str = Query("", max_length=200), role: Literal["admin", "user"
     query = db.query(User).filter(or_(User.email.ilike(f"%{q}%"), User.full_name.ilike(f"%{q}%")))
     if role:
         query = query.filter(User.role == role)
-    return paginate(query.order_by(User.id.desc()), page, page_size)
+    result = paginate(query.order_by(User.id.desc()), page, page_size)
+    for row in result['items']:
+        row['effective_admin'] = row['role'] == 'admin' or row['id'] in ADMIN_USER_IDS
+        row['admin_access_source'] = 'configuration' if row['id'] in ADMIN_USER_IDS else 'database' if row['role'] == 'admin' else None
+    return result
 
 
 @router.post("/users", response_model=UserResponse, status_code=201)
@@ -355,7 +377,7 @@ def list_guides(q: str = Query("", max_length=200), language: str | None = Query
         query = query.filter(GuideContent.language_code == language.lower())
     if place_id is not None:
         query = query.filter(GuideContent.place_id == place_id)
-    return paginate(query.order_by(GuideContent.id.desc()), page, page_size)
+    return display_references(db, paginate(query.order_by(GuideContent.id.desc()), page, page_size))
 
 
 @router.put("/places/{place_id}/guide-content/{language_code}")
@@ -467,13 +489,13 @@ def playback(language: str | None = Query(None, max_length=10), place_id: int | 
         query = query.filter(AudioGuideSession.place_id == place_id)
     if completed is not None:
         query = query.filter(AudioGuideSession.completed == completed)
-    return paginate(query.order_by(AudioGuideSession.id.desc()), page, page_size)
+    return display_references(db, paginate(query.order_by(AudioGuideSession.id.desc()), page, page_size))
 
 
 @router.get("/audit-logs")
 def audit_logs(q: str = Query("", max_length=80), page: int = Query(1, ge=1),
                page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    return paginate(db.query(AuditLog).filter(AuditLog.resource.ilike(f"%{q}%")).order_by(AuditLog.id.desc()), page, page_size)
+    return display_references(db, paginate(db.query(AuditLog).filter(AuditLog.resource.ilike(f"%{q}%")).order_by(AuditLog.id.desc()), page, page_size))
 
 
 @router.get("/settings")

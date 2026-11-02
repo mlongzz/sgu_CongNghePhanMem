@@ -38,7 +38,7 @@ function loadWeb({ geolocation, secure = true, timers, browser = true, permissio
 function loadNative({ provider = {}, timers } = {}) {
   const exports = {};
   const source = ts.transpileModule(fs.readFileSync('src/services/location.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-  vm.runInNewContext(source, { exports, Error, require: () => ({ Accuracy: { Balanced: 3 },
+  vm.runInNewContext(source, { exports, Error, require: () => ({ Accuracy: { Balanced: 3, High: 4 },
     hasServicesEnabledAsync: async () => true,
     requestForegroundPermissionsAsync: async () => ({ granted: true }),
     getCurrentPositionAsync: async () => ({ coords: here }), ...provider }),
@@ -260,4 +260,47 @@ test('Web and native retain a small permitted GPS clock skew', async () => {
   const web = loadWeb({ geolocation: { getCurrentPosition: success => success(position) } });
   const native = loadNative({ provider: { getCurrentPositionAsync: async () => position } });
   for (const api of [web, native]) assert.equal((await api.getCurrentCoordinates()).timestamp, timestamp);
+});
+
+test('coarse Web fix retries High once and keeps the better real reading when retry is worse or times out', async () => {
+  for (const outcome of ['better', 'worse', 'timeout']) {
+    let calls = 0;
+    const timestamp = Date.now();
+    const options = [];
+    const api = loadWeb({ geolocation: { getCurrentPosition(success, error, config) {
+      options.push(config);
+      if (++calls === 1) success({ coords: { ...here, accuracy: 95 }, timestamp });
+      else if (outcome === 'timeout') error({ code: 3 });
+      else success({ coords: { ...here, accuracy: outcome === 'better' ? 10 : 150 }, timestamp });
+    } } });
+    const fix = await api.getCurrentCoordinates();
+    assert.equal(calls, 2); assert.equal(options[1].enableHighAccuracy, true);
+    assert.equal(fix.accuracy, outcome === 'better' ? 10 : 95); assert.equal(fix.timestamp, timestamp);
+  }
+});
+
+test('native coarse fix retries High, preserves a timed-out coarse reading and supports cancel during retry', async () => {
+  for (const outcome of ['better', 'timeout', 'cancel']) {
+    const timers = clock(), controller = new AbortController();
+    const timestamp = Date.now(); let calls = 0; const options = [];
+    const api = loadNative({ timers, provider: { getCurrentPositionAsync: config => {
+      options.push(config);
+      if (++calls === 1) return Promise.resolve({ coords: { ...here, accuracy: 95 }, timestamp });
+      return outcome === 'better' ? Promise.resolve({ coords: { ...here, accuracy: 10 }, timestamp: timestamp + 1 }) : new Promise(() => {});
+    } } });
+    const promise = api.getCurrentCoordinates({ signal: controller.signal });
+    const cancelled = outcome === 'cancel' ? assert.rejects(promise, e => e.code === 'ABORT_ERR') : null;
+    await flush();
+    if (outcome === 'cancel') { controller.abort(); await cancelled; }
+    else { if (outcome === 'timeout') await timers.advance(35000); const fix = await promise; assert.equal(fix.accuracy, outcome === 'better' ? 10 : 95); assert.equal(fix.timestamp, outcome === 'better' ? timestamp + 1 : timestamp); }
+    assert.equal(calls, 2); assert.equal(options[1].accuracy, 4); assert.equal(timers.count(), 0);
+  }
+});
+
+test('malformed reported accuracy is rejected on both platforms', async () => {
+  for (const accuracy of [-1, NaN, Infinity]) {
+    const position = { coords: { ...here, accuracy }, timestamp: Date.now() };
+    for (const api of [loadWeb({ geolocation: { getCurrentPosition: success => success(position) } }), loadNative({ provider: { getCurrentPositionAsync: async () => position } })])
+      await assert.rejects(api.getCurrentCoordinates(), /độ chính xác GPS không hợp lệ/);
+  }
 });

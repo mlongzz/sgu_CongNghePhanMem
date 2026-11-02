@@ -1,5 +1,7 @@
 # Hướng dẫn kiểm thử
 
+Kết quả ngày 02/11 và giới hạn thực tế nằm trong [báo cáo hiện tại](REVIEW_2026-11-02.md). Các lệnh dưới đây phải chạy lại trên phiên bản cần bàn giao.
+
 ## Môi trường và cô lập
 
 Dùng Python 3.13 với `backend/requirements-dev.txt`, Node ≥22.13.1 với `npm ci`, Chrome và PostgreSQL local riêng. Không seed hoặc chạy migration trên dữ liệu ứng dụng để thử nghiệm. Xem [README](../README.md) để cài đặt.

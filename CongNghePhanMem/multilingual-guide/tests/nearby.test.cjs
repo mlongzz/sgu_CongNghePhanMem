@@ -239,7 +239,11 @@ test('backend adapter preserves valid aliases, URL, address, category and multil
   assert.equal(result.image, 'https://example.com/photo.jpg'); assert.equal(result.duration, 4); assert.equal(result.rating, 4.8);
   assert.equal(result.description.fr, 'Description française'); assert.equal(result.subtitle.en, 'English subtitle');
   const description = validateBackendPlace({ id: 1, name: 'Official', ...here, description: 'A plain description' });
-  for (const language of ['vi', 'en', 'fr', 'ja']) assert.equal(description.description[language], 'A plain description');
+  assert.equal(description.description.vi, 'A plain description');
+  for (const language of ['en', 'fr', 'ja']) assert.notEqual(description.description[language], 'A plain description');
+  const localized = validateBackendPlace({ id: 1, name: 'Official', ...here, description: 'Vietnamese only', description_translations: { ja: '日本語の概要です。', en: 'English summary.' } });
+  assert.equal(localized.description.ja, '日本語の概要です。');
+  assert.equal(localized.description.en, 'English summary.');
 });
 
 test('nearby backend response skips malformed records while retaining valid POI; a non-array remains an error', async () => {

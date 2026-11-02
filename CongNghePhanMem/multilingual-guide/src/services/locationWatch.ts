@@ -30,7 +30,7 @@ export function watchCoordinates(
     const timer = setTimeout(() => fail(Object.assign(new Error('Chưa khởi động được theo dõi GPS sau 30 giây. Hãy thử lại.'), { code: 'WATCH_TIMEOUT' })), 30_000);
     signal?.addEventListener('abort', abort, { once: true });
     try {
-      void Location.watchPositionAsync({ accuracy: Location.Accuracy.High, distanceInterval: 15, timeInterval: 5000 },
+      void Location.watchPositionAsync({ accuracy: Location.Accuracy.High, distanceInterval: 0, timeInterval: 5000 },
         position => { if (active) onPosition(position); },
         message => { if (active) onError(message); },
       ).then(watcher => {

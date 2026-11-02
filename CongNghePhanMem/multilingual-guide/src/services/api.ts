@@ -75,8 +75,12 @@ export async function apiFetch<T>(
         "Image exceeds 16 megapixels": "Ảnh vượt quá 16 megapixel. Hãy giảm kích thước ảnh.",
         "Choose a JPEG, PNG or WebP image": "Vui lòng chọn ảnh JPEG, PNG hoặc WebP.",
         "The file is not a valid image": "Tệp đã chọn không phải ảnh hợp lệ.",
+        "Translation provider is not configured": "Dịch tự động chưa được cấu hình. Nhập bản dịch thủ công hoặc cấu hình LibreTranslate ở máy chủ.",
+        "Source API timed out; retry later or upload a licensed image manually; no draft saved": "Nguồn ảnh phản hồi quá hạn. Thử lại sau hoặc tải ảnh có giấy phép lên thủ công. Chưa lưu dữ liệu.",
+        "Could not connect to source API; check server DNS and network or upload a licensed image manually; no draft saved": "Không kết nối được nguồn ảnh. Kiểm tra DNS và mạng máy chủ hoặc tải ảnh có giấy phép lên thủ công. Chưa lưu dữ liệu.",
       };
-      throw new ApiError(friendly[message] ?? (response.status >= 500 ? "Dịch vụ đang gặp sự cố. Vui lòng thử lại sau." : message), response.status);
+      const providerHttp = /^Source API returned HTTP (\d{3});/.exec(message);
+      throw new ApiError(friendly[message] ?? (providerHttp ? `Nguồn ảnh trả HTTP ${providerHttp[1]}. Nhà cung cấp từ chối hoặc giới hạn yêu cầu; thử lại sau hoặc tải ảnh có giấy phép lên thủ công. Chưa lưu dữ liệu.` : response.status >= 500 ? "Dịch vụ đang gặp sự cố. Vui lòng thử lại sau." : message), response.status);
     }
     return value as T;
   } catch (e) {
