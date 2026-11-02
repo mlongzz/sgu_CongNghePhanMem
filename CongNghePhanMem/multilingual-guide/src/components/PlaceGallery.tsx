@@ -8,6 +8,8 @@ import PlaceImage from "./PlaceImage";
 import ImageCredit from "./ImageCredit";
 import ChipButton from "./ChipButton";
 import { C } from "../theme/colors";
+import { ErrorMessage, LoadingState } from "./Screen";
+import { PrimaryButton } from "./auth";
 
 type Photo = {
   id: number;
@@ -26,15 +28,27 @@ export default function PlaceGallery({ placeId, placeTitle = "" }: { placeId: st
   const { t } = useI18n();
   const { language, speak, stop, playingId, speechStatus } = useApp();
   const [result, setResult] = useState<{ id: string; items: Photo[] } | null>(null);
+  const [retry, setRetry] = useState(0);
+  const [error, setError] = useState<{ id: string; message: string } | null>(null);
+  const isDatabasePlace = /^db-[1-9]\d*$/.test(placeId) && Number.isSafeInteger(Number(placeId.slice(3)));
   useEffect(() => {
-    if (!/^db-[1-9]\d*$/.test(placeId)) return;
+    if (!isDatabasePlace) return;
     const controller = new AbortController();
     void apiFetch<Photo[]>(`/places/${placeId.slice(3)}/images`, { signal: controller.signal })
-      .then((items) => { if (!controller.signal.aborted) setResult({ id: placeId, items }); })
-      .catch(() => {});
+      .then((items) => {
+        if (!Array.isArray(items)) throw new Error('Invalid photo list');
+        if (!controller.signal.aborted) { setResult({ id: placeId, items }); setError(null); }
+      })
+      .catch(() => { if (!controller.signal.aborted) setError({ id: placeId, message: 'Không tải được thư viện ảnh. Vui lòng thử lại.' }); });
     return () => controller.abort();
-  }, [placeId]);
+  }, [placeId, isDatabasePlace, retry]);
   const photos = result?.id === placeId ? result.items : [];
+  if (!isDatabasePlace) return null;
+  if (error?.id === placeId) return <View testID="place-gallery-error" style={s.wrap}>
+    <ErrorMessage message={error.message} />
+    <PrimaryButton title="Thử tải lại thư viện ảnh" variant="outline" onPress={() => { setError(null); setResult(null); setRetry(value => value + 1); }} />
+  </View>;
+  if (result?.id !== placeId) return <View testID="place-gallery-loading" style={s.wrap}><LoadingState /></View>;
   if (!photos.length) return null;
   const withStories = photos.filter((photo) => photo.story?.[language] || photo.story?.vi).length;
   return (

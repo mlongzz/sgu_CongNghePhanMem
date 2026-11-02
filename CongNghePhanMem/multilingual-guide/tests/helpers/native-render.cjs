@@ -34,7 +34,7 @@ function renderNative(file,{props={},state={},app={},params={id:'db-1'},width=12
     if(name.endsWith('/colors'))return {C:{primary:'#0a8',ink:'#123',border:'#ddd'}};
     if(name.endsWith('/places'))return {LANGS:[{key:'vi',label:'Tiếng Việt'}]};
     if(name.endsWith('/auth'))return {PrimaryButton,LanguageSelector:empty};
-    if(name.endsWith('/Screen'))return {ErrorMessage:({message})=>message?React.createElement(Text,null,message):null};
+    if(name.endsWith('/Screen'))return {ErrorMessage:({message})=>message?React.createElement(Text,null,message):null,LoadingState:()=>React.createElement(Text,null,'Loading')};
     if(name.endsWith('/locationOptions'))return {DEFAULT_LOCATION_OPTIONS:{}};
     // Child feature panels are independent; tests load the actual target component.
     if(name.startsWith('.'))return {__esModule:true,default:empty};

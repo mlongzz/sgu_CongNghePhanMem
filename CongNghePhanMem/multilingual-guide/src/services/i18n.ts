@@ -6,6 +6,8 @@ import type { Language } from '../data/places';
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
 // diagnostics and content supplied by a provider retain their original language.
 const copy: Record<string, readonly [string, string, string]> = {
+  'Không tải được thư viện ảnh. Vui lòng thử lại.': ['Could not load the photo gallery. Please retry.', 'Impossible de charger la galerie. Réessayez.', '写真ギャラリーを読み込めません。再試行してください。'],
+  'Thử tải lại thư viện ảnh': ['Retry photo gallery', 'Recharger la galerie', '写真ギャラリーを再読み込み'],
   'Địa điểm đã được xóa': ['This place has been deleted', 'Ce lieu a été supprimé', 'この場所は削除されました'],
   'Lọc thời gian trong trang hiện tại': ['Filter dates on this page', 'Filtrer les dates sur cette page', 'このページの日付で絞り込む'],
   'Tất cả trong trang': ['All on this page', 'Tout sur cette page', 'このページのすべて'],

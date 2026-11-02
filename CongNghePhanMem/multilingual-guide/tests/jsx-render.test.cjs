@@ -28,6 +28,17 @@ test('gallery empty and approved photos with empty or missing source links rende
   render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'}});
   for(const source of [undefined,'','https://commons.wikimedia.org/wiki/File:Fixture.jpg'])render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'},state:{0:{id:'db-1',items:[{id:1,url:'https://images.example.org/fixture.jpg',source_url:source}]}}});
 });
+
+test('gallery distinguishes loading, retryable errors and a successful empty library',()=>{
+  const loading=render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'}});
+  assert.match(loading.markup,/place-gallery-loading/);
+  const failed=render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'},state:{2:{id:'db-1',message:'Không tải được thư viện ảnh. Vui lòng thử lại.'}}});
+  assert.match(failed.markup,/Thử tải lại thư viện ảnh/);
+  assert.match(failed.markup,/Không tải được thư viện ảnh/);
+  const empty=render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'},state:{0:{id:'db-1',items:[]}}});
+  assert.equal(empty.markup,'');
+  assert.equal(render('src/components/PlaceGallery.tsx',{props:{placeId:'wiki-vi-1'}}).markup,'');
+});
 test('dashboard missing and empty tokens stay behind the existing authorization guard',()=>{
   for(const token of [null,''])for(const section of ['overview','presence','images','imports','journeys']){
     const result=render('src/admin/Dashboard.tsx',{app:{token},state:{0:{token,allowed:true},1:section}});
