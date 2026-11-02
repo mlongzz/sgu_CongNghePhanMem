@@ -16,6 +16,7 @@ from app.services.place_service import (
     get_places,
     search_places,
     update_place,
+    public_place_values,
 )
 
 router = APIRouter(prefix="/places", tags=["Places"])
@@ -31,7 +32,7 @@ def search_places_api(
     db: Session = Depends(get_db),
 ):
     """Full-text search on place name and category."""
-    return search_places(db, q, limit, offset)
+    return public_place_values(db, search_places(db, q, limit, offset))
 
 
 @router.get("/nearby", response_model=list[NearbyPlaceResponse])
@@ -44,12 +45,13 @@ def get_nearby_places_api(
 ):
     """Return places within *radius_km* kilometres, sorted by distance."""
     nearby = get_nearby_places(db, latitude, longitude, radius_km, limit)
+    values = public_place_values(db, [place for place, _ in nearby])
     return [
         {
-            **PlaceResponse.model_validate(place).model_dump(),
+            **value,
             "distance_km": round(distance, 6),
         }
-        for place, distance in nearby
+        for value, (_, distance) in zip(values, nearby)
     ]
 
 
@@ -62,7 +64,7 @@ def get_places_api(
     db: Session = Depends(get_db),
 ):
     """Return a paginated list of all places."""
-    return get_places(db, limit, offset)
+    return public_place_values(db, get_places(db, limit, offset))
 
 
 @router.post("", response_model=PlaceResponse, status_code=status.HTTP_201_CREATED)
@@ -88,7 +90,7 @@ def get_place_api(place_id: int, db: Session = Depends(get_db)):
     place = get_place_by_id(db, place_id)
     if not place:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Place not found")
-    return place
+    return public_place_values(db, [place])[0]
 
 
 @router.put("/{place_id}", response_model=PlaceResponse)

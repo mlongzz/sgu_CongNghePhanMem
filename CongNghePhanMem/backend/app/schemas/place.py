@@ -60,6 +60,8 @@ class PlaceUpdate(PlaceMetadata):
 class PlaceResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
+    description_translations: dict[str, str] = Field(default_factory=dict)
+
     id: int
     name: str
     description: str | None

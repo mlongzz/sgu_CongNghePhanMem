@@ -2,8 +2,8 @@
 
 Run Alembic migrations first. Preview is the default. --apply is deliberately
 restricted to local PostgreSQL databases named mg_demo_* or mg_test_*.
-This is a demo snapshot, not a substitute for independent source verification:
-eight existing Vietnamese/English guide pairs lack complete source review.
+The short vi/en/fr/ja introductions were reviewed against linked sources on
+2026-11-02; they do not replace a guide or a full historical research report.
 """
 import argparse
 import json
@@ -16,8 +16,10 @@ from sqlalchemy.orm import Session
 from app.database import engine
 from app.models.place import Place
 from app.models.guide_content import GuideContent
+from app.models.admin import Journey, JourneyStop
 
 MANIFEST = Path(__file__).resolve().parents[1] / 'app' / 'data' / 'verified_demo_bootstrap.json'
+DEMO_STOPS = ('Dinh Độc Lập', 'Bảo tàng Chứng tích Chiến tranh', 'Bưu điện Trung tâm Sài Gòn', 'Chợ Bến Thành')
 
 
 def load_manifest(path: Path = MANIFEST) -> list[dict]:
@@ -27,14 +29,16 @@ def load_manifest(path: Path = MANIFEST) -> list[dict]:
         raise ValueError('Expected the reviewed ten-place demo manifest')
     if {r.get('id') for r in rows} != set(range(1, 11)) or len({r.get('name') for r in rows}) != 10:
         raise ValueError('Invalid or duplicate demo identity')
+    if not set(DEMO_STOPS).issubset({r['name'] for r in rows}):
+        raise ValueError('Missing reviewed demo journey stop')
     for row in rows:
         if not all(isinstance(row.get(k), str) and row[k].strip() for k in ('name', 'description', 'address', 'category')):
             raise ValueError('Missing place details')
         if not isinstance(row.get('latitude'), (int, float)) or not isinstance(row.get('longitude'), (int, float)) or not (-90 <= row['latitude'] <= 90 and -180 <= row['longitude'] <= 180):
             raise ValueError('Invalid coordinates')
         guides = row.get('guides')
-        if not isinstance(guides, list) or not {'vi', 'en'}.issubset({g.get('language_code') for g in guides}):
-            raise ValueError('Each demo place needs Vietnamese and English content')
+        if not isinstance(guides, list) or {g.get('language_code') for g in guides} != {'vi', 'en', 'fr', 'ja'}:
+            raise ValueError('Each demo place needs all four reviewed languages')
         if len({g['language_code'] for g in guides}) != len(guides):
             raise ValueError('Duplicate guide language')
         for guide in guides:
@@ -60,16 +64,22 @@ def bootstrap(session: Session, rows: list[dict], *, mutate: bool) -> dict:
         if name != 'alembic_version' and connection.exec_driver_sql(f'SELECT 1 FROM {quote(name)} LIMIT 1').first():
             raise ValueError(f'Database is not empty: {name}')
     if mutate:
+        identities = {}
         for item in rows:
             place = Place(**{k: item[k] for k in ('id', 'name', 'description', 'address', 'category', 'latitude', 'longitude')},
                           publication_status='published', source='manual')
             session.add(place); session.flush()
+            identities[place.name] = place.id
             for guide in item['guides']:
                 session.add(GuideContent(place_id=place.id, **{k: guide.get(k) for k in ('language_code', 'title', 'content', 'source_url', 'source_license')}, publication_status='published'))
+        journey = Journey(name='Dấu Chân trung tâm Sài Gòn', description='Bốn điểm văn hóa và lịch sử ở trung tâm thành phố. Đường nối chỉ minh họa; chỉ đường thực tế mở Google Maps ngoài ứng dụng.')
+        session.add(journey); session.flush()
+        for position, name in enumerate(DEMO_STOPS):
+            session.add(JourneyStop(journey_id=journey.id, place_id=identities[name], position=position))
         session.flush()
         if connection.dialect.name == 'postgresql':
             connection.execute(text("SELECT setval(pg_get_serial_sequence('places','id'), (SELECT max(id) FROM places), true)"))
-    return {'places': len(rows), 'guides': sum(len(row['guides']) for row in rows)}
+    return {'places': len(rows), 'guides': sum(len(row['guides']) for row in rows), 'journeys': 1}
 
 
 def main() -> None:

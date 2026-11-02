@@ -21,6 +21,7 @@ export function getCurrentCoordinates({ signal, onProgress }: LocationRequestOpt
     let attempt = 0;
     let permission: PermissionStatus | undefined;
     let acquisitionStarted = false;
+    let coarse: LocationCoordinates | undefined;
     let timer: ReturnType<typeof setTimeout> | undefined;
 
     const denied = (browserMessage = "") => locationError(permission?.state === "granted"
@@ -37,9 +38,12 @@ export function getCurrentCoordinates({ signal, onProgress }: LocationRequestOpt
       else resolve(coordinates!);
     };
     const abort = () => finish(undefined, locationError("Đã hủy lấy vị trí.", "ABORT_ERR"));
-    const exhausted = (code: number, browserMessage = "") => finish(undefined, locationError(code === 2
+    const exhausted = (code: number, browserMessage = "") => {
+      if (coarse && typeof coarse.timestamp === 'number' && Date.now() - coarse.timestamp <= 60_000) { finish(coarse); return; }
+      finish(undefined, locationError(code === 2
       ? "Trình duyệt không xác định được vị trí sau hai lần thử (mã GPS 2). Kiểm tra dịch vụ vị trí của thiết bị và kết nối mạng, rồi thử lại."
       : "Chưa nhận được tọa độ sau hai lần thử GPS (mã GPS 3). Kiểm tra dịch vụ vị trí của thiết bị và kết nối mạng, rồi thử lại.", code, browserMessage));
+    };
 
     const armWatchdog = () => {
       clearTimeout(timer);
@@ -86,10 +90,19 @@ export function getCurrentCoordinates({ signal, onProgress }: LocationRequestOpt
             return;
           }
           const accuracy = position.coords.accuracy;
-          finish({ latitude, longitude,
+          if (accuracy != null && (!Number.isFinite(accuracy) || accuracy < 0)) {
+            finish(undefined, new Error('Trình duyệt trả độ chính xác GPS không hợp lệ. Hãy thử lại.'));
+            return;
+          }
+          const coordinates = { latitude, longitude,
             ...(typeof accuracy === "number" && Number.isFinite(accuracy) && accuracy >= 0 ? { accuracy } : {}),
             ...(typeof timestamp === "number" ? { timestamp } : {}),
-          });
+          };
+          if (attempt === 1 && typeof accuracy === 'number' && Number.isFinite(accuracy) && accuracy > 50) {
+            coarse = coordinates;
+            acquisitionStarted = true;
+            startAttempt();
+          } else finish(coarse && typeof accuracy === 'number' && accuracy >= coarse.accuracy! ? coarse : coordinates);
         }, error => {
           if (settled || thisAttempt !== attempt) return;
           if (error.code === 1) { finish(undefined, denied(error.message)); return; }

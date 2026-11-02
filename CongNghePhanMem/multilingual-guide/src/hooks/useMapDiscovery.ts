@@ -71,8 +71,9 @@ export function useMapDiscovery() {
   const [diagnostics, setDiagnostics] = useState(false);
   useEffect(() => { const timer = setTimeout(() => setDebouncedQuery(query), 180); return () => clearTimeout(timer); }, [query]);
 
-  const latitude = location?.latitude;
-  const longitude = location?.longitude;
+  // Provider lookups use the last explicit/throttled search, not every GPS reading.
+  const latitude = app.searchLocation?.latitude;
+  const longitude = app.searchLocation?.longitude;
   const gpsTimestamp = location?.timestamp;
   useEffect(() => {
     const initial = setTimeout(() => observeTime(Date.now()), 0);

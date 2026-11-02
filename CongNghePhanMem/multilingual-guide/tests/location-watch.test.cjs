@@ -73,7 +73,7 @@ test('native watch uses Expo High accuracy without asking for permission and rem
     requestForegroundPermissionsAsync: () => assert.fail('caller already owns permission') });
   const watcher = await api.watchCoordinates(value => events.push(value), message => events.push(message));
   callback(position); errorCallback('native provider error');
-  assert.equal(options.accuracy, 4); assert.equal(options.distanceInterval, 15); assert.equal(options.timeInterval, 5000);
+  assert.equal(options.accuracy, 4); assert.equal(options.distanceInterval, 0); assert.equal(options.timeInterval, 5000);
   assert.equal(events[0], position); assert.equal(events[1], 'native provider error');
   watcher.remove(); watcher.remove(); callback(position); errorCallback('ignored');
   assert.equal(removed, 1); assert.equal(events.length, 2);

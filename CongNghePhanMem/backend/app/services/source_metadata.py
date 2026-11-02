@@ -87,6 +87,10 @@ def fetch_json(endpoint, params):
             },
         ) as client:
             with client.stream("GET", endpoint, params=params) as response:
+                if response.status_code in (403, 429):
+                    raise HTTPException(502, f"Source API returned HTTP {response.status_code}; provider access policy or rate limit. Retry later or upload a licensed image manually; no draft saved")
+                if response.status_code != 200:
+                    raise HTTPException(502, f"Source API returned HTTP {response.status_code}; retry later or upload a licensed image manually; no draft saved")
                 if (
                     response.status_code != 200
                     or int(response.headers.get("content-length", "0")) > MAX_RESPONSE
@@ -105,6 +109,10 @@ def fetch_json(endpoint, params):
                 if not isinstance(result, dict):
                     raise ValueError()
                 return result
+    except httpx.TimeoutException:
+        raise HTTPException(504, "Source API timed out; retry later or upload a licensed image manually; no draft saved") from None
+    except httpx.ConnectError:
+        raise HTTPException(502, "Could not connect to source API; check server DNS and network or upload a licensed image manually; no draft saved") from None
     except (httpx.HTTPError, ValueError, TypeError):
         raise HTTPException(
             502, "Source API unavailable or invalid/oversized response; no draft saved"

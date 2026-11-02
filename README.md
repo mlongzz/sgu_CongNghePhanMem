@@ -1,44 +1,24 @@
-# Dấu Chân · Vietnam Audio Guide
+# Dấu Chân · Thuyết minh tự động đa ngôn ngữ
 
-Ứng dụng React Native/Expo đa ngôn ngữ kết nối tới FastAPI. Hỗ trợ khám phá địa điểm, GPS, nội dung thuyết minh, giọng đọc của thiết bị, đánh giá, yêu thích, lịch sử và màn hình quản trị.
+Ứng dụng Expo/React Native/TypeScript cho Web, Android và iOS, kết nối backend FastAPI/PostgreSQL. Hỗ trợ địa điểm, bản đồ, hành trình, GPS foreground, nghe thủ công/AutoGuide, tài khoản và Admin; nội dung Việt, Anh, Pháp, Nhật.
 
-## Chạy ứng dụng web
-
-```powershell
-cd C:\CongNghePhanMem\multilingual-guide
-npm install
-Copy-Item .env.example .env
-npm run web
-```
-
-Đặt `EXPO_PUBLIC_API_URL` trong `.env` trỏ đến backend:
-
-- Web trên cùng máy: `http://127.0.0.1:8000`
-- Android emulator: `http://10.0.2.2:8000`
-- Điện thoại thật: `http://<IPv4-của-máy-tính>:8000`
-
-## Backend
-
-Backend nằm trong `E:\CongNghePhanMem\CongNghePhanMem\backend` của workspace hiện tại. Tạo `backend/.env` từ `.env.example`, cấu hình database và khóa JWT, sau đó chạy:
+Mã ứng dụng nằm trong **CongNghePhanMem/**. Từ thư mục mới sau khi clone:
 
 ```powershell
-cd E:\CongNghePhanMem\CongNghePhanMem\backend
-uvicorn app.main:app --reload --host 0.0.0.0
+git clone https://github.com/mlongzz/sgu_CongNghePhanMem.git
+cd sgu_CongNghePhanMem/CongNghePhanMem
 ```
 
-API docs ở `http://127.0.0.1:8000/docs`. Để tạo dữ liệu trình diễn (3 địa điểm, thuyết minh tiếng Việt/Anh/Trung), chạy một lần:
+Làm theo [hướng dẫn cài đặt đầy đủ](CongNghePhanMem/README.md) để tạo môi trường Python 3.13, cài Node ≥22.13.1, tạo PostgreSQL phát triển riêng, cấu hình từ `.env.example`, chạy migration và Expo. Giữ nguyên `.env` đang dùng nếu tiếp tục dự án; không commit credential hoặc database thật.
 
-```powershell
-python scripts/seed_demo.py
-```
+Bộ demo tái tạo bằng CLI trên database local trống: 10 địa điểm, 40 bài vi/en/fr/ja có nguồn, một hành trình bốn điểm; 10 ảnh JPEG Commons kèm checksum và giấy phép có trong mã nguồn. Không tạo sẵn tài khoản. Đăng ký rồi cấp Admin theo hướng dẫn backend; script từ chối seed vào database đã có dữ liệu.
 
-Để bật quyền quản trị, thêm ID tài khoản vào `ADMIN_USER_IDS` trong `backend/.env`, khởi động lại backend và đăng nhập lại trong app. Trang hồ sơ sẽ hiện đường dẫn Bàn quản trị.
+- [Báo cáo sửa và kiểm chứng ngày 02/11/2026](CongNghePhanMem/docs/REVIEW_2026-11-02.md)
+- [PRD và tiêu chí nghiệm thu](CongNghePhanMem/docs/PRD.md)
+- [Hướng dẫn kiểm thử](CongNghePhanMem/docs/TESTING_GUIDE.md)
+- [Ghi công ảnh](CongNghePhanMem/docs/DEMO_IMAGE_CREDITS.md)
+- [GitHub Actions](https://github.com/mlongzz/sgu_CongNghePhanMem/actions)
 
-## Kiểm tra
+Admin lưu nội dung mới dưới dạng nháp; sửa bản công khai cần xác nhận gỡ xuất bản. Lưu không đổi và quản lý ảnh giữ trạng thái. AutoGuide cần GPS mới ≤60 giây, sai số ≤50 m và khoảng cách cộng sai số ≤80 m; từ chối GPS vẫn nghe thủ công được. Đường nối trong app là minh họa; chỉ đường thực tế mở Google Maps ngoài. Dịch tự động cần LibreTranslate riêng.
 
-```powershell
-npx tsc --noEmit
-npx expo lint
-```
-
-GPS cần quyền vị trí khi ứng dụng đang mở. Tự phát thuyết minh dò điểm gần ở foreground; Google Maps được mở cho chỉ đường. Giọng TTS dùng voice đã cài trên thiết bị và chất lượng/ngôn ngữ tùy hệ điều hành.
+Android/iOS export hiện tạo bundle JS/Hermes, chưa phải APK/IPA đã cài. Cần cấu hình Maps native và thử quyền GPS, lifecycle, giọng/loa trên điện thoại thật trước nghiệm thu đa nền tảng. Xem báo cáo để phân biệt kiểm thử tự động, web live và các giới hạn provider.

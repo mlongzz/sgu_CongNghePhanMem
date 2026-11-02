@@ -1,6 +1,6 @@
 # Trạng thái triển khai
 
-Cập nhật 01/11/2026. Dữ liệu, kiểm thử và giới hạn mới nằm trong [báo cáo demo](DEMO_RELEASE_2026-11-01.md). [Báo cáo nghiệm thu](REPAIR_ACCEPTANCE_REPORT.md) và các số test ngày 29/10 là lịch sử.
+Cập nhật 02/11/2026. Xem [báo cáo hiện tại](REVIEW_2026-11-02.md) về lưu Admin có xác nhận, GPS mới khi đứng yên, 40 bài bốn ngôn ngữ và bằng chứng kiểm thử. [Báo cáo demo 01/11](DEMO_RELEASE_2026-11-01.md), [nghiệm thu cũ](REPAIR_ACCEPTANCE_REPORT.md) và số test trước đó là lịch sử.
 
 ## Đã triển khai
 

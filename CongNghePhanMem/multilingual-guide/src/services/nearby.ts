@@ -268,12 +268,12 @@ export function validateBackendPlace(value: unknown): Place | null {
   if (id === null || !Number.isSafeInteger(id) || id <= 0) return null;
 
   const desc = v.description;
-  const descriptions = typeof desc === "string" ? translated(desc, desc, desc, desc) : localized(desc);
+  const descriptions = { ...(typeof desc === 'string' ? { vi: desc } : localized(desc)), ...localized(v.description_translations) };
   const description = translated(
     text(descriptions.vi) ?? "Chưa có bài thuyết minh.",
-    text(descriptions.en) ?? "Audio guide pending.",
-    text(descriptions.fr) ?? "Commentaire à venir.",
-    text(descriptions.ja) ?? "音声ガイド準備中。",
+    text(descriptions.en) ?? "English summary unavailable. Check the available guide languages.",
+    text(descriptions.fr) ?? "Résumé en français indisponible. Consultez les langues de l’audioguide.",
+    text(descriptions.ja) ?? "日本語の概要は未公開です。音声ガイドの対応言語をご確認ください。",
   );
   const sub = localized(v.subtitle);
   const wikipedia = backendWikipediaReference(v);

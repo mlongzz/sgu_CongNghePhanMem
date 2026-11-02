@@ -99,7 +99,7 @@ def suggestions(place_id:int,data:Suggestions,db:Session=Depends(get_db)):
         distance=_haversine_km(place.latitude,place.longitude,metadata['latitude'],metadata['longitude'])*1000
         return {'method':'source_identity','distance_m':distance,'source_name':metadata['name'],
                 'items':[{**image,'confidence':'source_identity','identity_matches_coordinates':distance<=200}] if image else [],
-                'notice':'Confirm the identity and image before adding it to the review queue'}
+                'notice':'Confirm the place identity, author and license before saving the image to the library'}
     if not data.search_by_name:
         return {'method':'no_identity','items':[],'notice':'Enter a Wikipedia page ID or Wikidata ID, or explicitly search by name'}
     payload=fetch_json('https://commons.wikimedia.org/w/api.php',{'action':'query','format':'json','generator':'search','gsrsearch':place.name[:150],'gsrnamespace':6,'gsrlimit':6,'prop':'imageinfo','iiprop':'url|extmetadata','iiurlwidth':960})

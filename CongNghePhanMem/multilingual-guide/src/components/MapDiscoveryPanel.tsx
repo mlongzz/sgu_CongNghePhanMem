@@ -53,7 +53,7 @@ export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
         <Text style={s.locateText}>{t(m.isLocating ? 'Đang định vị' : m.location ? 'Định vị lại' : 'Bật GPS')}</Text>
       </Pressable>
     </View>
-    {m.locationSource === 'gps' && (m.location?.accuracy ?? 0) > 100 ? <Text style={s.hint}>{t('GPS chưa chính xác. Khoảng cách chỉ gần đúng; hãy định vị lại ở nơi thoáng hơn.')}</Text> : null}
+    {m.locationSource === 'gps' && (m.location?.accuracy ?? 0) > 50 ? <Text testID="map-gps-accuracy-warning" style={s.hint}>{t('GPS chưa chính xác. Khoảng cách chỉ gần đúng; hãy định vị lại ở nơi thoáng hơn.')}</Text> : null}
     {!m.journeyMode && <View style={s.radiusRow}><Text style={s.radiusLabel}>{t('Bán kính')}</Text><View style={s.radii}>{MAP_RADII.map(km => <Pressable key={km} accessibilityRole="button" accessibilityLabel={`${t('Bán kính')} ${km} km`} accessibilityState={{ selected: m.radiusKm === km }} onPress={() => m.changeRadius(km)} style={[s.radius, m.radiusKm === km && s.radiusActive]}><Text style={[s.radiusText, m.radiusKm === km && s.radiusTextActive]}>{km} km</Text></Pressable>)}</View></View>}
     {m.isLocating ? <View style={s.notice}><ActivityIndicator size="small" color={C.primary}/><Text testID="gps-progress" style={[s.caption, { flex: 1 }]}>{t(m.locationProgress)}</Text><Pressable accessibilityRole="button" accessibilityLabel={t('Hủy lấy GPS')} onPress={m.cancelLocation}><Text style={s.action}>{t('Hủy')}</Text></Pressable></View> : null}
     {m.nearbyStatus === 'location-error' && m.placesError ? <Text style={s.error}>GPS: {m.placesError}</Text> : null}
