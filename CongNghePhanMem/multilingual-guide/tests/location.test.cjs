@@ -27,18 +27,18 @@ function permission(initial) {
   return { state: initial, addEventListener: (_, fn) => listeners.add(fn), removeEventListener: (_, fn) => listeners.delete(fn),
     change(state) { this.state = state; for (const fn of [...listeners]) fn(); }, listeners };
 }
-function loadWeb({ geolocation, secure = true, timers, browser = true, permissions } = {}) {
+function loadWeb({ geolocation, secure = true, timers, browser = true, permissions, getNow } = {}) {
   const exports = {};
   const source = ts.transpileModule(fs.readFileSync('src/services/location.web.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-  vm.runInNewContext(source, { exports, require: () => ({}), Error,
+  vm.runInNewContext(source, { exports, require: () => ({}), Error, Date: getNow ? { now: getNow } : Date,
     ...(browser ? { window: { isSecureContext: secure }, navigator: { geolocation, permissions } } : {}),
     setTimeout: timers?.setTimeout ?? setTimeout, clearTimeout: timers?.clearTimeout ?? clearTimeout });
   return exports;
 }
-function loadNative({ provider = {}, timers } = {}) {
+function loadNative({ provider = {}, timers, getNow } = {}) {
   const exports = {};
   const source = ts.transpileModule(fs.readFileSync('src/services/location.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-  vm.runInNewContext(source, { exports, Error, require: () => ({ Accuracy: { Balanced: 3, High: 4 },
+  vm.runInNewContext(source, { exports, Error, Date: getNow ? { now: getNow } : Date, require: () => ({ Accuracy: { Balanced: 3, High: 4 },
     hasServicesEnabledAsync: async () => true,
     requestForegroundPermissionsAsync: async () => ({ granted: true }),
     getCurrentPositionAsync: async () => ({ coords: here }), ...provider }),
@@ -302,5 +302,23 @@ test('malformed reported accuracy is rejected on both platforms', async () => {
     const position = { coords: { ...here, accuracy }, timestamp: Date.now() };
     for (const api of [loadWeb({ geolocation: { getCurrentPosition: success => success(position) } }), loadNative({ provider: { getCurrentPositionAsync: async () => position } })])
       await assert.rejects(api.getCurrentCoordinates(), /độ chính xác GPS không hợp lệ/);
+  }
+});
+
+test('a high accuracy retry never prefers an expired cached fix over a fresh coarse reading', async () => {
+  for (const platform of ['web', 'native']) {
+    let now = 1_000_000;
+    const old = { coords: { ...here, accuracy: 95 }, timestamp: now - 59_000 };
+    let completeRetry; let calls = 0;
+    const api = platform === 'web'
+      ? loadWeb({ getNow: () => now, geolocation: { getCurrentPosition(success) { if (++calls === 1) success(old); else completeRetry = success; } } })
+      : loadNative({ getNow: () => now, provider: { getCurrentPositionAsync: async () => ++calls === 1 ? old : new Promise(resolve => { completeRetry = resolve; }) } });
+    const result = api.getCurrentCoordinates();
+    await flush(); assert.equal(calls, 2);
+    now += 30_000;
+    completeRetry({ coords: { ...here, accuracy: 150 }, timestamp: now });
+    const fix = await result;
+    assert.equal(fix.timestamp, now, platform + ' must retain the actual fresh sensor timestamp');
+    assert.equal(fix.accuracy, 150, platform + ' must report the real low accuracy instead of returning an expired fix');
   }
 });

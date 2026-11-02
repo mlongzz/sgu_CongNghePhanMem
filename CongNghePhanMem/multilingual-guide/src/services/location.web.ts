@@ -102,7 +102,10 @@ export function getCurrentCoordinates({ signal, onProgress }: LocationRequestOpt
             coarse = coordinates;
             acquisitionStarted = true;
             startAttempt();
-          } else finish(coarse && typeof accuracy === 'number' && accuracy >= coarse.accuracy! ? coarse : coordinates);
+          } else {
+            const coarseFresh = coarse && typeof coarse.timestamp === 'number' && Date.now() - coarse.timestamp <= 60_000 && coarse.timestamp - Date.now() <= 5000;
+            finish(coarse && coarseFresh && typeof accuracy === 'number' && accuracy >= coarse.accuracy! ? coarse : coordinates);
+          }
         }, error => {
           if (settled || thisAttempt !== attempt) return;
           if (error.code === 1) { finish(undefined, denied(error.message)); return; }

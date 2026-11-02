@@ -46,7 +46,8 @@ export async function getCurrentCoordinates({ signal, onProgress }: LocationRequ
     try {
       const precise = await waitForLocation(() => Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.High }), 35_000,
         locationError('Chưa cải thiện được độ chính xác GPS.', 3), signal);
-      if (typeof precise?.coords?.accuracy === 'number' && precise.coords.accuracy >= 0 && precise.coords.accuracy < position.coords.accuracy &&
+      const cachedFresh = Number.isFinite(position.timestamp) && position.timestamp > 0 && Date.now() - position.timestamp <= 60_000 && position.timestamp - Date.now() <= 5000;
+      if (typeof precise?.coords?.accuracy === 'number' && precise.coords.accuracy >= 0 && (!cachedFresh || precise.coords.accuracy < position.coords.accuracy) &&
           Number.isFinite(precise.coords.latitude) && Math.abs(precise.coords.latitude) <= 90 && Number.isFinite(precise.coords.longitude) && Math.abs(precise.coords.longitude) <= 180 &&
           typeof precise.timestamp === 'number' && Number.isFinite(precise.timestamp) && precise.timestamp >= (position.timestamp ?? 0) && Date.now() - precise.timestamp <= 60_000 && precise.timestamp - Date.now() <= 5000) position = precise;
     } catch (error) {
