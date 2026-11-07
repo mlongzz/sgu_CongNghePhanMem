@@ -34,8 +34,14 @@ function renderNative(file,{props={},state={},app={},params={id:'db-1'},width=12
     if(name.endsWith('/colors'))return {C:{primary:'#0a8',ink:'#123',border:'#ddd'}};
     if(name.endsWith('/places'))return {LANGS:[{key:'vi',label:'Tiếng Việt'}]};
     if(name.endsWith('/auth'))return {PrimaryButton,LanguageSelector:empty};
+    if(name.endsWith('/ChipButton'))return {__esModule:true,default:({label})=>React.createElement(Text,null,label)};
     if(name.endsWith('/Screen'))return {ErrorMessage:({message})=>message?React.createElement(Text,null,message):null,LoadingState:()=>React.createElement(Text,null,'Loading')};
     if(name.endsWith('/locationOptions'))return {DEFAULT_LOCATION_OPTIONS:{}};
+    if(name.endsWith('/photoStories')){
+      const actual={};
+      vm.runInNewContext(ts.transpileModule(fs.readFileSync(path.join(root,'src/services/photoStories.ts'),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{exports:actual});
+      return actual;
+    }
     // Child feature panels are independent; tests load the actual target component.
     if(name.startsWith('.'))return {__esModule:true,default:empty};
     throw new Error('Unmocked import '+name);

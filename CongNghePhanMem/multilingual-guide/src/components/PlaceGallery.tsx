@@ -10,6 +10,7 @@ import ChipButton from "./ChipButton";
 import { C } from "../theme/colors";
 import { ErrorMessage, LoadingState } from "./Screen";
 import { PrimaryButton } from "./auth";
+import { selectPhotoStory } from "../services/photoStories";
 
 type Photo = {
   id: number;
@@ -50,18 +51,19 @@ export default function PlaceGallery({ placeId, placeTitle = "" }: { placeId: st
   </View>;
   if (result?.id !== placeId) return <View testID="place-gallery-loading" style={s.wrap}><LoadingState /></View>;
   if (!photos.length) return null;
-  const withStories = photos.filter((photo) => photo.story?.[language] || photo.story?.vi).length;
+  const withStories = photos.filter((photo) => selectPhotoStory(photo.story, language)).length;
   return (
     <View testID="place-gallery" style={s.wrap}>
       <Text style={s.heading}>{t(withStories ? "Câu chuyện qua từng bức ảnh" : "Ảnh địa điểm")}</Text>
       {photos.map((photo, index) => {
-        const story = photo.story?.[language] || "";
+        const selectedStory = selectPhotoStory(photo.story, language);
+        const story = selectedStory?.text ?? "";
         const id = `photo-story-${photo.id}`;
         const playing = playingId === id;
         const listen = () => {
           if (playing) { stop(); return; }
           const place: Place = { id, title: `${placeTitle} · ${index + 1}`, subtitle: blank, description: blank, category: "Khám phá", district: "", latitude: 0, longitude: 0, image: "", duration: 0, rating: 0 };
-          void speak(place, { text: story, language, source: "description" });
+          if (selectedStory) void speak(place, { text: selectedStory.text, language: selectedStory.language, source: "description" });
         };
         return (
           <View key={photo.id} testID="photo-story" style={s.card}>
@@ -69,6 +71,7 @@ export default function PlaceGallery({ placeId, placeTitle = "" }: { placeId: st
             {story ? <View style={s.body}>
               <Text style={s.index}>{t("Ảnh")} {index + 1}/{photos.length}</Text>
               <Text style={s.story}>{story}</Text>
+              {selectedStory?.fallback && <Text style={s.index}>{t('Đang dùng câu chuyện tiếng Việt vì chưa có bản dịch.')}</Text>}
               <ChipButton icon={playing ? "stop-circle-outline" : "headset-outline"} tone={playing ? "solid" : "soft"}
                 label={t(playing ? (speechStatus === "loading" ? "Đang chuẩn bị…" : "Dừng") : "Nghe câu chuyện này")}
                 accessibilityLabel={`${t(playing ? "Dừng" : "Nghe câu chuyện này")} ${index + 1}`} onPress={listen} />

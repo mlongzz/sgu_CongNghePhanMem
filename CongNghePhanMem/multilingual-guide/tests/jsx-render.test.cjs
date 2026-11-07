@@ -39,6 +39,13 @@ test('gallery distinguishes loading, retryable errors and a successful empty lib
   assert.equal(empty.markup,'');
   assert.equal(render('src/components/PlaceGallery.tsx',{props:{placeId:'wiki-vi-1'}}).markup,'');
 });
+
+test('gallery displays and labels the Vietnamese fallback when the selected translation is missing',()=>{
+  const result=render('src/components/PlaceGallery.tsx',{props:{placeId:'db-1'},app:{language:'en'},state:{0:{id:'db-1',items:[{id:1,url:'https://images.example.org/photo.jpg',story:{vi:'Câu chuyện tiếng Việt'}}]}}});
+  assert.match(result.markup,/Câu chuyện tiếng Việt/);
+  assert.match(result.markup,/Đang dùng câu chuyện tiếng Việt vì chưa có bản dịch/);
+  assert.match(result.markup,/Nghe câu chuyện này/);
+});
 test('dashboard missing and empty tokens stay behind the existing authorization guard',()=>{
   for(const token of [null,''])for(const section of ['overview','presence','images','imports','journeys']){
     const result=render('src/admin/Dashboard.tsx',{app:{token},state:{0:{token,allowed:true},1:section}});
