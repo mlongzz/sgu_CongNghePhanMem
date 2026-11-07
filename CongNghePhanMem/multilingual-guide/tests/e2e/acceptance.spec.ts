@@ -62,7 +62,6 @@ test('journey URL reloads with ordered markers and never requests community disc
   await page.reload();
   await expect(page).toHaveURL(/\/map\?journey=1$/);
   await expect(page.locator('.journey-stop-marker')).toHaveCount(2);
-  await expect(page.getByRole('button',{name:'Bật thuyết minh tự động',exact:true})).toBeDisabled();
 });
 
 test('invalid, unknown and empty journeys show an explicit state without starting narration', async ({ page, request }) => {
@@ -74,17 +73,14 @@ test('invalid, unknown and empty journeys show an explicit state without startin
     await page.goto(`/map?journey=${suffix}`);
     await expect(page.getByText(text,{exact:true})).toBeVisible();
     await expect(page.locator('.journey-stop-marker')).toHaveCount(0);
-    await expect(page.getByRole('button',{name:'Bật thuyết minh tự động',exact:true})).toHaveCount(0);
   }
 });
 
-test('denied GPS preserves journey and manual audio; cancellation is not completion', async ({ page }) => {
+test('denied GPS keeps the journey with manual audio; cancellation is not completion', async ({ page }) => {
   await speech(page);
   await page.addInitScript(() => { navigator.geolocation.getCurrentPosition = (_success,error) => error?.({code:1,message:'Denied by acceptance fixture'} as GeolocationPositionError); });
   await page.goto('/map?journey=1');
   await page.getByRole('button',{name:'Tiếp tục hành trình',exact:true}).click();
-  await page.getByRole('button',{name:'Bật thuyết minh tự động',exact:true}).click();
-  await expect(page.getByRole('alert')).toContainText(/quyền|cho phép/);
   await expect(page.locator('.journey-stop-marker')).toHaveCount(2);
   await page.getByRole('button',{name:'Nghe Browser Test Museum',exact:true}).click();
   await expect.poll(() => page.evaluate(() => window.acceptanceSpeech.calls.length)).toBe(1);

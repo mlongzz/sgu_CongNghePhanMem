@@ -132,7 +132,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: C.ink,
     paddingRight: 14,
-  },
+    minWidth: 0,
+    outlineStyle: 'none',
+  } as object,
   eyeButton: {
     paddingHorizontal: 14,
     height: '100%',

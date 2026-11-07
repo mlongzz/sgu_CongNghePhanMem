@@ -21,6 +21,10 @@
     },
     "web": {
       "output": "single",
+      "name": "Quận 1 Audio Guide · TP. Hồ Chí Minh",
+      "shortName": "Quận 1 Guide",
+      "themeColor": "#FFFFFF",
+      "backgroundColor": "#F8FAFC",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [

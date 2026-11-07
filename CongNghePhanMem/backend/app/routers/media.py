@@ -91,7 +91,7 @@ def delete_image(place_id: int, db: Session = Depends(get_db), actor: User = Dep
 
 
 def image_value(row):
-    return {key: getattr(row, key) for key in ('id', 'place_id', 'url', 'source_url', 'attribution', 'license', 'status', 'position', 'created_at', 'reviewed_at', 'thumbnail_url', 'width', 'height', 'health_status', 'health_checked_at', 'health_error')}
+    return {key: getattr(row, key) for key in ('id', 'place_id', 'url', 'source_url', 'attribution', 'license', 'status', 'position', 'created_at', 'reviewed_at', 'thumbnail_url', 'width', 'height', 'health_status', 'health_checked_at', 'health_error', 'story')}
 
 
 @router.get('/places/{place_id}/images')

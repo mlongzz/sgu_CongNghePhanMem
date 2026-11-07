@@ -2,7 +2,7 @@
 
 Expo SDK 58, React Native, TypeScript và Expo Router cho Web/Android/iOS.
 
-Tài liệu chính: [README gốc](../README.md), [PRD](../docs/PRD.md), [hướng dẫn kiểm thử](../docs/TESTING_GUIDE.md), [trạng thái](../docs/IMPLEMENTATION_STATUS.md), [báo cáo nghiệm thu](../docs/REPAIR_ACCEPTANCE_REPORT.md). [AUTH_HANDOFF.md](AUTH_HANDOFF.md) là ghi chép lịch sử.
+Tài liệu chính: [README gốc](../README.md), [PRD](../docs/PRD.md), [hướng dẫn kiểm thử](../docs/TESTING_GUIDE.md), [trạng thái](../docs/IMPLEMENTATION_STATUS.md), [báo cáo nghiệm thu](../docs/REPAIR_ACCEPTANCE_REPORT.md).
 
 Từ thư mục gốc dự án:
 

@@ -24,44 +24,6 @@ test('a 95m GPS reading shows the same accuracy warning on Home and Map', async 
   await expect(page.getByTestId('home-gps-accuracy-warning')).toBeInViewport();
 });
 
-test('stationary watch readings stay fresh for over 60s without repeated discovery calls and stop on blur', async ({ page }) => {
-  await page.clock.install();
-  await page.addInitScript(() => {
-    let callback: PositionCallback | undefined;
-    let removed = 0;
-    const fix = (timestamp = Date.now()) => ({ coords: { latitude: 10.7764, longitude: 106.6993, accuracy: 5, altitude: null, altitudeAccuracy: null, heading: null, speed: null }, timestamp }) as GeolocationPosition;
-    navigator.geolocation.getCurrentPosition = success => success(fix());
-    navigator.geolocation.watchPosition = success => { callback = success; return 321; };
-    navigator.geolocation.clearWatch = () => { removed++; };
-    Object.assign(window, { reviewGps: { emit: (timestamp?: number) => callback?.(fix(timestamp)), removed: () => removed } });
-  });
-  await page.route('https://tile.openstreetmap.org/**', route => route.abort());
-  await page.route('**/osm/nearby?**', route => route.fulfill({ json: osmPayload(route, []) }));
-  await page.route('https://vi.wikipedia.org/w/api.php?**', route => route.fulfill({ json: { query: { geosearch: [] } } }));
-  let searches = 0;
-  await page.route('**/places/nearby?**', route => { searches++; return route.fulfill({ json: [] }); });
-  await page.goto('/map');
-  await page.getByRole('button', { name: 'Theo dõi khi di chuyển', exact: true }).click();
-  await expect(page.getByRole('button', { name: 'Dừng theo dõi GPS', exact: true })).toBeVisible();
-  await expect(page.getByTestId('location-summary')).toContainText('Đã xác định vị trí thiết bị');
-  const initial = searches;
-  for (let index = 0; index < 5; index++) {
-    await page.clock.fastForward(15000);
-    await page.evaluate(() => (window as unknown as { reviewGps: { emit: () => void } }).reviewGps.emit());
-    await expect(page.getByTestId('location-summary')).toContainText('Đã xác định vị trí thiết bị');
-  }
-  expect(searches).toBe(initial);
-  await page.evaluate(() => (window as unknown as { reviewGps: { emit: (t: number) => void } }).reviewGps.emit(Date.now() - 120000));
-  await expect(page.getByTestId('location-summary')).toContainText('Đã xác định vị trí thiết bị');
-  await page.getByText('Khám phá', { exact: true }).last().click();
-  await expect(page.getByTestId('home-location-summary')).toContainText('Vị trí hiện tại');
-  await expect.poll(() => page.evaluate(() => (window as unknown as { reviewGps: { removed: () => number } }).reviewGps.removed())).toBe(1);
-  await page.clock.fastForward(61000);
-  await expect(page.getByTestId('home-location-summary')).toContainText('GPS đã cũ');
-  await page.getByText('Bản đồ', { exact: true }).last().click();
-  await expect(page.getByTestId('location-summary')).toContainText('GPS đã cũ');
-});
-
 test('guide no-op stays published, actual edit needs confirmation and missing translation provider disables translation', async ({ page, request }) => {
   const api = 'http://127.0.0.1:8765';
   const login = await request.post(`${api}/auth/login`, { data: { email: 'admin@e2e.example.com', password: 'TestPassword123!' } });

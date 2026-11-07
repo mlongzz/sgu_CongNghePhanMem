@@ -19,7 +19,7 @@ from sqlalchemy import text
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.config import ALLOWED_ORIGINS
+from app.config import ALLOWED_ORIGINS, LAN_ORIGIN_REGEX
 from app.database import get_db
 from app.models import admin, audio_session, favorite, guide_content, history, place, review, user  # noqa: F401
 from app.routers import auth, users
@@ -82,6 +82,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=LAN_ORIGIN_REGEX,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

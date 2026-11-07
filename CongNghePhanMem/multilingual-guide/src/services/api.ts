@@ -1,7 +1,23 @@
 // FastAPI backend: API được gọi thật khi cấu hình EXPO_PUBLIC_API_URL.
 // Lưu ý: điện thoại chạy Expo Go không kết nối được 127.0.0.1 trên máy tính.
 const configured = process.env.EXPO_PUBLIC_API_URL?.trim();
-export const API_BASE_URL = configured ? configured.replace(/\/$/, "") : "";
+// Khi mở bản web từ thiết bị khác trong LAN (vd. http://192.168.x.x:8081 trên điện thoại),
+// địa chỉ loopback 127.0.0.1/localhost sẽ trỏ về chính thiết bị đó; thay bằng host đang mở trang.
+function resolveApiBase(value: string): string {
+  const base = value.replace(/\/$/, "");
+  try {
+    const page = typeof window !== "undefined" ? window.location : undefined;
+    if (!page?.hostname) return base;
+    const url = new URL(base);
+    const loopback = (host: string) => host === "localhost" || host === "127.0.0.1" || host === "[::1]" || host === "::1";
+    if (loopback(url.hostname) && !loopback(page.hostname)) {
+      url.hostname = page.hostname;
+      return url.toString().replace(/\/$/, "");
+    }
+  } catch { /* keep configured value */ }
+  return base;
+}
+export const API_BASE_URL = configured ? resolveApiBase(configured) : "";
 
 export type LoginResponse = { access_token: string; refresh_token: string; token_type?: string };
 
@@ -57,10 +73,16 @@ export async function apiFetch<T>(
           ? detail
           : Array.isArray(detail)
             ? detail
-                .map((e) =>
-                  typeof e?.msg === "string" ? e.msg : "Dữ liệu không hợp lệ",
-                )
-                .join("; ")
+                .map((e) => {
+                  const field = Array.isArray(e?.loc) ? String(e.loc[e.loc.length - 1] ?? "") : "";
+                  const msg = typeof e?.msg === "string" ? e.msg : "";
+                  if (field === "email" || /email address/i.test(msg)) return "Địa chỉ email không hợp lệ. Hãy kiểm tra lại (ví dụ: ten@gmail.com).";
+                  if (field === "password") return "Mật khẩu chưa đáp ứng yêu cầu (8–128 ký tự).";
+                  if (field === "full_name" || field === "name") return "Vui lòng nhập họ tên hợp lệ.";
+                  return msg && !/[A-Za-z]{4,}/.test(msg) ? msg : "Dữ liệu không hợp lệ. Vui lòng kiểm tra lại các trường đã nhập.";
+                })
+                .filter((m, i, all) => all.indexOf(m) === i)
+                .join(" ")
             : `HTTP ${response.status}`;
       const friendly: Record<string, string> = {
         "Invalid email or password": "Email hoặc mật khẩu không đúng.",

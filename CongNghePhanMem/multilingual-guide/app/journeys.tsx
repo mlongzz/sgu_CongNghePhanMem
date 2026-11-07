@@ -166,19 +166,21 @@ export default function Journeys() {
               </Pressable>
             </View>
           ))}
-          <View style={s.row}>
+          {(page > 0 || items.length >= 20) && <View style={s.row}>
             <PrimaryButton
+              variant="outline"
               title="← Trước"
               disabled={page === 0 || busy}
               onPress={() => setPage((value) => value - 1)}
             />
             <Text style={s.copy}>{page + 1}</Text>
             <PrimaryButton
+              variant="outline"
               title="Sau →"
               disabled={items.length < 20 || busy}
               onPress={() => setPage((value) => value + 1)}
             />
-          </View>
+          </View>}
         </>
       )}
     </Screen>

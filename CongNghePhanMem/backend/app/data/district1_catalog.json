@@ -1,0 +1,1891 @@
+{
+ "version": 1,
+ "area": {
+  "name": "Quận 1, TP. Hồ Chí Minh",
+  "source": "OpenStreetMap relation 2587287 (© OpenStreetMap contributors, ODbL), simplified",
+  "center": {
+   "latitude": 10.77523,
+   "longitude": 106.69844
+  },
+  "polygon": [
+   [
+    10.76543,
+    106.68169
+   ],
+   [
+    10.75598,
+    106.68546
+   ],
+   [
+    10.75352,
+    106.68727
+   ],
+   [
+    10.7576,
+    106.69161
+   ],
+   [
+    10.75922,
+    106.69449
+   ],
+   [
+    10.76037,
+    106.69591
+   ],
+   [
+    10.7633,
+    106.69822
+   ],
+   [
+    10.76535,
+    106.70121
+   ],
+   [
+    10.76803,
+    106.70357
+   ],
+   [
+    10.76892,
+    106.70563
+   ],
+   [
+    10.76976,
+    106.7083
+   ],
+   [
+    10.77224,
+    106.70801
+   ],
+   [
+    10.77518,
+    106.70814
+   ],
+   [
+    10.77729,
+    106.70854
+   ],
+   [
+    10.77934,
+    106.70926
+   ],
+   [
+    10.78151,
+    106.71038
+   ],
+   [
+    10.78276,
+    106.71136
+   ],
+   [
+    10.78428,
+    106.71319
+   ],
+   [
+    10.78534,
+    106.7152
+   ],
+   [
+    10.78667,
+    106.71403
+   ],
+   [
+    10.78748,
+    106.71284
+   ],
+   [
+    10.78771,
+    106.71188
+   ],
+   [
+    10.78751,
+    106.70944
+   ],
+   [
+    10.78775,
+    106.70873
+   ],
+   [
+    10.789,
+    106.70762
+   ],
+   [
+    10.79136,
+    106.70672
+   ],
+   [
+    10.79212,
+    106.70555
+   ],
+   [
+    10.79278,
+    106.70321
+   ],
+   [
+    10.79353,
+    106.69942
+   ],
+   [
+    10.79366,
+    106.69732
+   ],
+   [
+    10.79345,
+    106.69502
+   ],
+   [
+    10.79374,
+    106.6946
+   ],
+   [
+    10.7949,
+    106.69436
+   ],
+   [
+    10.79488,
+    106.69261
+   ],
+   [
+    10.79578,
+    106.69096
+   ],
+   [
+    10.79559,
+    106.68915
+   ],
+   [
+    10.79486,
+    106.68739
+   ],
+   [
+    10.79513,
+    106.68694
+   ],
+   [
+    10.79674,
+    106.68612
+   ],
+   [
+    10.79693,
+    106.68578
+   ],
+   [
+    10.79687,
+    106.68527
+   ],
+   [
+    10.79617,
+    106.68486
+   ],
+   [
+    10.79462,
+    106.68507
+   ],
+   [
+    10.79411,
+    106.68534
+   ],
+   [
+    10.7932,
+    106.68635
+   ],
+   [
+    10.79251,
+    106.68615
+   ],
+   [
+    10.78288,
+    106.69813
+   ]
+  ]
+ },
+ "note": "Guides (vi/en/fr/ja) summarise facts from the linked Wikipedia articles (CC BY-SA 4.0). Each place has three Wikimedia Commons photos with author and licence, each with its own short story.",
+ "journey": {
+  "name": "Dạo bộ trung tâm Quận 1",
+  "description": "Tuyến đi bộ qua các công trình tiêu biểu của Quận 1: dinh thự, nhà thờ, bưu điện, nhà hát và phố đi bộ. Đường nối chỉ minh họa; chỉ đường thực tế mở Google Maps ngoài ứng dụng.",
+  "stops": [
+   "Dinh Độc Lập",
+   "Nhà thờ Đức Bà Sài Gòn",
+   "Bưu điện Trung tâm Sài Gòn",
+   "Trụ sở Ủy ban nhân dân Thành phố",
+   "Nhà hát Thành phố Hồ Chí Minh",
+   "Phố đi bộ Nguyễn Huệ",
+   "Chợ Bến Thành"
+  ]
+ },
+ "places": [
+  {
+   "name": "Nhà thờ Đức Bà Sài Gòn",
+   "aliases": [
+    "Nhà thờ chính tòa Đức Bà Sài Gòn"
+   ],
+   "description": "Nhà thờ chính tòa bằng gạch đỏ xây cuối thế kỷ 19, biểu tượng kiến trúc của trung tâm Sài Gòn.",
+   "address": "01 Công xã Paris, Quận 1, TP. Hồ Chí Minh",
+   "category": "Kiến trúc",
+   "latitude": 10.779722,
+   "longitude": 106.699167,
+   "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n",
+   "image": {
+    "path": "d1-01.jpg",
+    "sha256": "5ccacc081c854c381eb5e13b131ab2f2b0ce70a1321ad78ea74069207b21b809",
+    "bytes": 726941,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Diego Delso",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_05.JPG",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_05.JPG/1280px-Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_05.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "Nhà thờ chính tòa Đức Bà Sài Gòn được người Pháp xây dựng từ năm 1877 đến 1880. Lớp gạch đỏ ở mặt ngoài được chở từ Marseille sang và không trát vữa, nên đến nay vẫn giữ màu tự nhiên. Hai tháp chuông cao gần 58 mét được bổ sung năm 1895. Trước nhà thờ là tượng Đức Mẹ Hòa Bình bằng đá hoa cương dựng năm 1959. Năm 1962, nhà thờ được tôn phong Vương cung thánh đường. Hãy đứng ở quảng trường Công xã Paris để ngắm trọn mặt tiền và các ô cửa kính màu.",
+     "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "Saigon Notre-Dame Cathedral was built by the French between 1877 and 1880. Its red bricks were shipped from Marseille and left unplastered, so the facade still shows their natural colour. The two bell towers, almost 58 metres tall, were added in 1895. In front stands a granite statue of Our Lady of Peace, erected in 1959, and in 1962 the church was named a basilica. Stand in Paris Commune Square to take in the whole facade and its rose window.",
+     "source_url": "https://en.wikipedia.org/wiki/Notre-Dame_Cathedral_Basilica_of_Saigon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "La cathédrale Notre-Dame de Saïgon a été construite par les Français entre 1877 et 1880. Ses briques rouges, venues de Marseille, ne sont pas enduites et gardent leur couleur naturelle. Les deux clochers, hauts de près de 58 mètres, ont été ajoutés en 1895. Devant l’édifice se dresse une statue en granit de Notre-Dame de la Paix, érigée en 1959. En 1962, l’église est devenue basilique. Placez-vous sur la place de la Commune de Paris pour admirer toute la façade.",
+     "source_url": "https://fr.wikipedia.org/wiki/Basilique-cath%C3%A9drale_Notre-Dame_de_Sa%C3%AFgon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "サイゴン大教会は、フランス統治時代の1877年から1880年にかけて建てられました。外壁の赤レンガはマルセイユから運ばれたもので、漆喰を塗っていないため今も自然な色を保っています。高さ約58メートルの二つの鐘楼は1895年に加えられました。正面には1959年に建てられた花崗岩の平和の聖母像が立ち、1962年にはバシリカの称号を受けました。パリ・コミューン広場から正面全体を眺めてみてください。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B5%E3%82%A4%E3%82%B4%E3%83%B3%E5%A4%A7%E6%95%99%E4%BC%9A",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Nhà hát Thành phố Hồ Chí Minh",
+   "aliases": [],
+   "description": "Nhà hát kiểu Pháp khánh thành năm 1900, nơi biểu diễn nghệ thuật tiêu biểu của thành phố.",
+   "address": "07 Công trường Lam Sơn, Quận 1, TP. Hồ Chí Minh",
+   "category": "Văn hóa",
+   "latitude": 10.776752,
+   "longitude": 106.703282,
+   "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-02.jpg",
+    "sha256": "a9f83f6c7c25a82cb7b5885a217525938d4ac5c7b14c91c8956683db9b4d9081",
+    "bytes": 294869,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Diego Delso",
+    "source_url": "https://commons.wikimedia.org/wiki/File:%C3%93pera,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_02.JPG",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/%C3%93pera%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_02.JPG/1280px-%C3%93pera%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_02.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "Nhà hát Thành phố được khởi công năm 1898 và khánh thành năm 1900, theo thiết kế của kiến trúc sư người Pháp Eugène Ferret. Mặt tiền mang phong cách Belle Époque với vòm cổng lớn, tượng và hoa văn trang trí tinh xảo. Từ năm 1955 đến 1975, tòa nhà từng là trụ sở Hạ nghị viện. Ngày nay, nhà hát có khoảng năm trăm chỗ ngồi và thường xuyên tổ chức hòa nhạc, múa và kịch. Buổi tối, mặt tiền được chiếu sáng rất đẹp khi nhìn từ đầu đường Đồng Khởi.",
+     "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "The Municipal Theatre was begun in 1898 and opened in 1900, designed by the French architect Eugène Ferret. Its Belle Époque facade features a grand arched entrance, statues and finely carved ornaments. From 1955 to 1975 the building housed the Lower House of the National Assembly. Today the theatre seats about five hundred people and regularly hosts concerts, dance and drama. In the evening the illuminated facade is especially beautiful seen from the top of Dong Khoi Street.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Opera_House",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "Le Théâtre municipal a été commencé en 1898 et inauguré en 1900, sur des plans de l’architecte français Eugène Ferret. Sa façade Belle Époque se distingue par une grande arche d’entrée, des statues et des ornements finement sculptés. De 1955 à 1975, le bâtiment a accueilli la Chambre basse de l’Assemblée nationale. Aujourd’hui, la salle compte environ cinq cents places et présente concerts, danse et théâtre. Le soir, la façade illuminée est superbe depuis le haut de la rue Dong Khoi.",
+     "source_url": "https://fr.wikipedia.org/wiki/Op%C3%A9ra_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "市劇場は1898年に着工し、1900年に完成しました。設計はフランス人建築家ウジェーヌ・フェレです。大きなアーチの入口や彫像、繊細な装飾が施されたベル・エポック様式の正面が特徴です。1955年から1975年までは下院の議事堂として使われました。現在は約500席を備え、コンサートやダンス、演劇が定期的に上演されています。夜はドンコイ通りの入口からライトアップされた正面を眺めるのがおすすめです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E5%8A%87%E5%A0%B4",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Trụ sở Ủy ban nhân dân Thành phố",
+   "aliases": [
+    "Trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh"
+   ],
+   "description": "Dinh Xã Tây xây đầu thế kỷ 20, nay là trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh.",
+   "address": "86 Lê Thánh Tôn, Quận 1, TP. Hồ Chí Minh",
+   "category": "Kiến trúc",
+   "latitude": 10.776389,
+   "longitude": 106.701111,
+   "source_url": "https://vi.wikipedia.org/wiki/Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-03.jpg",
+    "sha256": "a6ae25dd67d4db402ef8eba7c7e3698f21b9c24f1497f6da75230fe7c54ecffd",
+    "bytes": 224187,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Diego Delso",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ayuntamiento,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_01.JPG",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Ayuntamiento%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_01.JPG/1280px-Ayuntamiento%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "Tòa nhà quen thuộc với tên gọi Dinh Xã Tây được xây dựng từ năm 1898 đến 1909 theo thiết kế của kiến trúc sư Fernand Gardès, lấy cảm hứng từ Tòa thị chính Paris. Mặt tiền màu vàng kem có tháp đồng hồ ở giữa cùng các phù điêu và cột trang trí. Hiện đây là trụ sở Ủy ban nhân dân Thành phố nên du khách không vào bên trong được. Bạn có thể ngắm tòa nhà từ đầu phố đi bộ Nguyễn Huệ, nơi đặt tượng Chủ tịch Hồ Chí Minh, đặc biệt đẹp khi lên đèn.",
+     "source_url": "https://vi.wikipedia.org/wiki/Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "Known as the Hôtel de Ville, this building was constructed from 1898 to 1909 to a design by architect Fernand Gardès, inspired by the Paris city hall. Its cream-yellow facade has a central clock tower, reliefs and decorative columns. It is now the seat of the city People’s Committee, so visitors cannot go inside. Admire it from the top of Nguyen Hue walking street, where the statue of President Ho Chi Minh stands, especially after the lights come on.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Hall",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "Connu sous le nom d’Hôtel de Ville, ce bâtiment a été construit de 1898 à 1909 sur des plans de l’architecte Fernand Gardès, inspirés de l’hôtel de ville de Paris. Sa façade jaune crème possède une tour d’horloge centrale, des reliefs et des colonnes décoratives. Il abrite aujourd’hui le Comité populaire de la ville et ne se visite pas. Admirez-le depuis le haut de la rue piétonne Nguyen Hue, où se dresse la statue du président Hô Chi Minh, surtout une fois illuminé.",
+     "source_url": "https://fr.wikipedia.org/wiki/H%C3%B4tel_de_ville_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "旧サイゴン市庁舎として知られるこの建物は、パリ市庁舎をモデルに建築家フェルナン・ガルデスが設計し、1898年から1909年にかけて建てられました。クリーム色の正面中央に時計塔があり、浮き彫りや装飾柱が美しく並びます。現在はホーチミン市人民委員会の庁舎のため内部には入れません。ホーチミン主席像が立つグエンフエ歩行者通りの入口から、夜のライトアップとともに眺めてみてください。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E4%BA%BA%E6%B0%91%E5%A7%94%E5%93%A1%E4%BC%9A%E5%BA%81%E8%88%8E",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Thành phố Hồ Chí Minh",
+   "aliases": [],
+   "description": "Bảo tàng về lịch sử thành phố đặt trong tòa nhà cổ từng được gọi là Dinh Gia Long.",
+   "address": "65 Lý Tự Trọng, Quận 1, TP. Hồ Chí Minh",
+   "category": "Lịch sử",
+   "latitude": 10.776111,
+   "longitude": 106.699722,
+   "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-04.jpg",
+    "sha256": "e0c7e72fcc62eca7d164f2c557fd03fdee8ed67723110682081633929baf9e37",
+    "bytes": 293732,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Bùi Thụy Đào Nguyên",
+    "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_7.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_7.jpg/1280px-B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "Tòa nhà của Bảo tàng Thành phố Hồ Chí Minh được xây từ năm 1885 đến 1890 theo thiết kế của kiến trúc sư Alfred Foulhoux, mang phong cách tân cổ điển kết hợp Baroque. Công trình từng là dinh của Thống đốc Nam Kỳ, sau đó được gọi là Dinh Gia Long. Ngày nay, các phòng trưng bày giới thiệu thiên nhiên, khảo cổ, nghề thủ công và lịch sử hình thành Sài Gòn. Khuôn viên nhiều cây xanh và cầu thang lớn trong sảnh là nơi chụp ảnh được nhiều người yêu thích.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "The building of the Museum of Ho Chi Minh City was erected between 1885 and 1890 to a design by architect Alfred Foulhoux, blending neoclassical and Baroque styles. It once served as the residence of the Governor of Cochinchina and was later known as Gia Long Palace. Today its galleries present the region’s nature, archaeology, crafts and the story of how Saigon grew. The leafy grounds and the grand staircase in the hall are favourite photo spots.",
+     "source_url": "https://en.wikipedia.org/wiki/Museum_of_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "Le bâtiment du Musée de Hô Chi Minh-Ville a été construit entre 1885 et 1890 sur des plans de l’architecte Alfred Foulhoux, dans un style mêlant néoclassicisme et baroque. Il fut la résidence du gouverneur de Cochinchine, puis devint le palais Gia Long. Aujourd’hui, ses salles présentent la nature, l’archéologie, l’artisanat et l’histoire du développement de Saïgon. Le jardin arboré et le grand escalier du hall sont des lieux de photo très appréciés.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "ホーチミン市博物館の建物は、建築家アルフレッド・フールーの設計で1885年から1890年にかけて建てられ、新古典主義とバロック様式が融合しています。かつてはコーチシナ総督の公邸で、その後ザーロン宮殿と呼ばれました。現在は自然、考古学、手工芸、そしてサイゴン発展の歴史を紹介しています。緑豊かな庭やホールの大階段は人気の撮影スポットです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A4%A8",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+   "aliases": [
+    "Ho Chi Minh City Museum of Fine Arts"
+   ],
+   "description": "Bảo tàng mỹ thuật trong biệt thự Pháp – Hoa đầu thế kỷ 20 của gia đình Hứa Bổn Hòa.",
+   "address": "97A Phó Đức Chính, Quận 1, TP. Hồ Chí Minh",
+   "category": "Văn hóa",
+   "latitude": 10.769444,
+   "longitude": 106.6999,
+   "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-05.jpg",
+    "sha256": "e6f38458607fe0c4975c6cb1ff214150383b41c1f0fc33db4b038fd6f70101c5",
+    "bytes": 534182,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Bùi Thụy Đào Nguyên",
+    "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh.jpg/1280px-B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "Bảo tàng Mỹ thuật nằm trong quần thể biệt thự được xây dựng khoảng năm 1929 đến 1934 cho gia đình thương nhân Hứa Bổn Hòa. Kiến trúc kết hợp phong cách Pháp với các chi tiết phương Đông, nổi bật với cửa kính màu, gạch hoa và thang máy cổ. Bảo tàng được thành lập năm 1987, trưng bày tranh sơn mài, sơn dầu, lụa, điêu khắc và cổ vật từ nhiều thời kỳ. Hãy dành thời gian đi qua các hành lang thoáng mát và ngắm ánh sáng xuyên qua những ô kính màu.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "The Fine Arts Museum occupies villas built around 1929 to 1934 for the family of the merchant Hui Bon Hoa. The architecture blends French style with Eastern details, notably stained glass, patterned tiles and a vintage lift. Founded in 1987, the museum displays lacquer, oil and silk paintings, sculpture and antiques from many periods. Take time to wander the airy corridors and watch the light pour through the coloured windows.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "Le Musée des Beaux-Arts occupe des villas construites vers 1929–1934 pour la famille du négociant Hui Bon Hoa. L’architecture mêle le style français à des détails orientaux : vitraux, carreaux décorés et ascenseur d’époque. Fondé en 1987, le musée expose laques, peintures à l’huile et sur soie, sculptures et objets anciens de nombreuses périodes. Prenez le temps de flâner dans les couloirs aérés et d’admirer la lumière à travers les vitraux.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_des_Beaux-Arts_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "美術館は、商人ホイ・ボン・ホア一族のために1929年から1934年頃に建てられた邸宅群にあります。フランス様式に東洋的な装飾を取り入れた建築で、ステンドグラスや模様タイル、古いエレベーターが見どころです。1987年に設立され、漆絵、油絵、絹絵、彫刻、さまざまな時代の古美術を展示しています。風通しのよい回廊を歩き、色ガラスから差し込む光を楽しんでください。",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+   "aliases": [
+    "Ho Chi Minh City Museum of History"
+   ],
+   "description": "Bảo tàng lịch sử kiến trúc Đông Dương trong khuôn viên Thảo Cầm Viên, mở cửa từ năm 1929.",
+   "address": "2 Nguyễn Bỉnh Khiêm, Quận 1, TP. Hồ Chí Minh",
+   "category": "Lịch sử",
+   "latitude": 10.7878,
+   "longitude": 106.7046,
+   "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-06.jpg",
+    "sha256": "0b60b6f5c299c94d7536ebd0850e3d775efe8a04830a126038ac0231bd5f9211",
+    "bytes": 294082,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Nguyễn Thanh Quang",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Vietnam_History_Museum_HCMC.JPG",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Vietnam_History_Museum_HCMC.JPG/1280px-Vietnam_History_Museum_HCMC.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh nằm cạnh cổng Thảo Cầm Viên. Tòa nhà được xây dựng từ năm 1927 đến 1929 theo thiết kế của kiến trúc sư Auguste Delaval, với mái ngói nhiều tầng mang phong cách Đông Dương, ban đầu mang tên Bảo tàng Blanchard de la Brosse. Các phòng trưng bày đi từ thời tiền sử qua văn hóa Óc Eo, Chăm Pa đến triều Nguyễn, cùng nhiều tượng Phật châu Á. Đừng bỏ lỡ xác ướp Xóm Cải và các tác phẩm điêu khắc Chăm bằng sa thạch.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "The Museum of History stands beside the entrance of the Saigon Zoo. Built from 1927 to 1929 to a design by architect Auguste Delaval, its tiered tiled roofs are typical of Indochinese architecture; it first opened as the Blanchard de la Brosse Museum. Galleries run from prehistory through the Oc Eo and Champa cultures to the Nguyen dynasty, with Buddhist statues from across Asia. Do not miss the Xom Cai mummy and the sandstone Cham sculptures.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_History",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "Le Musée d’histoire se trouve à l’entrée du jardin zoologique de Saïgon. Construit de 1927 à 1929 sur des plans de l’architecte Auguste Delaval, il présente des toits étagés typiques du style indochinois ; il s’appelait à l’origine musée Blanchard de la Brosse. Le parcours va de la préhistoire aux cultures d’Oc Eo et du Champa, puis à la dynastie Nguyen, avec des statues bouddhiques de toute l’Asie. Ne manquez pas la momie de Xom Cai ni les sculptures cham en grès.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_d%E2%80%99histoire_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "歴史博物館はサイゴン動植物園の入口のそばにあります。建築家オーギュスト・ドラヴァルの設計で1927年から1929年に建てられ、重なる瓦屋根がインドシナ様式の特徴です。開館当初はブランシャール・ド・ラ・ブロス博物館と呼ばれていました。先史時代からオケオ文化、チャンパ、グエン朝までの展示に加え、アジア各地の仏像も見られます。ソムカイのミイラや砂岩のチャム彫刻もお見逃しなく。",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_History",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Thảo Cầm Viên Sài Gòn",
+   "aliases": [],
+   "description": "Vườn thú và vườn thực vật thành lập năm 1864, một trong những vườn thú lâu đời nhất thế giới.",
+   "address": "2 Nguyễn Bỉnh Khiêm, Quận 1, TP. Hồ Chí Minh",
+   "category": "Khám phá",
+   "latitude": 10.788056,
+   "longitude": 106.704722,
+   "source_url": "https://vi.wikipedia.org/wiki/Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n",
+   "image": {
+    "path": "d1-07.jpg",
+    "sha256": "bb78eda86254285126db88d12c0172479480f41efcfed8e90474e4f61dc7c9f8",
+    "bytes": 780022,
+    "license": "CC BY 3.0",
+    "attribution": "trungydang",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Th%E1%BA%A3o_C%E1%BA%A7m_vi%C3%AAn,_quan_1,_saigon,_vietnam_-_panoramio.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Th%E1%BA%A3o_C%E1%BA%A7m_vi%C3%AAn%2C_quan_1%2C_saigon%2C_vietnam_-_panoramio.jpg/1280px-Th%E1%BA%A3o_C%E1%BA%A7m_vi%C3%AAn%2C_quan_1%2C_saigon%2C_vietnam_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "Thảo Cầm Viên Sài Gòn được người Pháp thành lập năm 1864, thuộc nhóm những vườn thú lâu đời nhất thế giới còn hoạt động. Ban đầu đây là vườn ươm và nghiên cứu thực vật, sau đó mở rộng thành vườn thú. Khuôn viên rộng có hàng trăm cây cổ thụ, hồ nước, nhà lan và nhiều loài động vật như voi, hổ, hươu cao cổ. Nên đi vào buổi sáng khi trời mát, mang theo nước uống và kết hợp ghé Bảo tàng Lịch sử ngay cạnh cổng chính.",
+     "source_url": "https://vi.wikipedia.org/wiki/Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "The Saigon Zoo and Botanical Gardens were founded by the French in 1864, making them one of the oldest zoos in the world still operating. They began as a plant nursery and research garden before expanding into a zoo. The large grounds hold hundreds of ancient trees, ponds, an orchid house and animals such as elephants, tigers and giraffes. Visit in the cool of the morning, bring water and combine it with the Museum of History next to the main gate.",
+     "source_url": "https://en.wikipedia.org/wiki/Saigon_Zoo_and_Botanical_Gardens",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "Le jardin botanique et zoologique de Saïgon a été fondé par les Français en 1864, ce qui en fait l’un des plus anciens zoos encore ouverts au monde. Il était d’abord une pépinière et un jardin d’étude des plantes avant de devenir un zoo. Le vaste parc abrite des centaines d’arbres centenaires, des étangs, une serre d’orchidées et des animaux comme éléphants, tigres et girafes. Venez le matin à la fraîche et visitez aussi le Musée d’histoire près de l’entrée.",
+     "source_url": "https://fr.wikipedia.org/wiki/Jardin_botanique_et_zoologique_de_Sa%C3%AFgon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "サイゴン動植物園は1864年にフランス人によって開設された、現存する世界でも最も古い動物園の一つです。もとは植物の育苗と研究のための庭園で、その後動物園へと拡張されました。広い園内には数百本の古木や池、蘭園があり、ゾウやトラ、キリンなどの動物も見られます。涼しい朝に訪れ、水を持参し、正門横の歴史博物館と合わせて見学するのがおすすめです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B5%E3%82%A4%E3%82%B4%E3%83%B3%E5%8B%95%E6%A4%8D%E7%89%A9%E5%9C%92",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Chùa Ngọc Hoàng",
+   "aliases": [
+    "Jade Emperor Pagoda",
+    "Phước Hải tự"
+   ],
+   "description": "Ngôi chùa đầu thế kỷ 20 của cộng đồng người Hoa Quảng Đông, thờ Ngọc Hoàng Thượng đế.",
+   "address": "73 Mai Thị Lựu, Quận 1, TP. Hồ Chí Minh",
+   "category": "Văn hóa",
+   "latitude": 10.791711,
+   "longitude": 106.697889,
+   "source_url": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng",
+   "image": {
+    "path": "d1-08.jpg",
+    "sha256": "5bb667c59ba7ed034cf52f5850fe80f0538ca5aff1589512e935e0734810cf5a",
+    "bytes": 605028,
+    "license": "CC BY-SA 4.0",
+    "attribution": "Ymblanter",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Jade_Emperor_Pagoda_Saigon.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Jade_Emperor_Pagoda_Saigon.jpg/1280px-Jade_Emperor_Pagoda_Saigon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "Chùa Ngọc Hoàng, còn gọi là Phước Hải tự, được cộng đồng người Hoa gốc Quảng Đông xây dựng vào đầu thế kỷ 20. Chùa thờ Ngọc Hoàng Thượng đế cùng nhiều vị thần của Đạo giáo và Phật giáo, với hàng chục pho tượng gỗ và giấy bồi được chạm khắc công phu. Không gian bên trong ấm cúng, thơm mùi trầm hương; ngoài sân có hồ rùa nhỏ. Năm 2016, Tổng thống Hoa Kỳ Barack Obama đã đến thăm chùa. Khi tham quan, hãy ăn mặc lịch sự và giữ yên lặng.",
+     "source_url": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "The Jade Emperor Pagoda, also called Phuoc Hai Temple, was built by the Cantonese Chinese community in the early twentieth century. It honours the Jade Emperor along with many Taoist and Buddhist deities, represented by dozens of intricately carved wooden and papier-mâché statues. The interior is warm and fragrant with incense, and the courtyard has a small turtle pond. US President Barack Obama visited in 2016. Please dress modestly and keep your voice low.",
+     "source_url": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "La pagode de l’Empereur de Jade, ou temple Phuoc Hai, a été construite par la communauté chinoise cantonaise au début du XXe siècle. Elle honore l’Empereur de Jade et de nombreuses divinités taoïstes et bouddhistes, représentées par des dizaines de statues en bois et en papier mâché finement sculptées. L’intérieur, chaleureux, embaume l’encens, et la cour abrite un petit bassin aux tortues. Le président américain Barack Obama l’a visitée en 2016. Tenue correcte et silence sont de mise.",
+     "source_url": "https://fr.wikipedia.org/wiki/Pagode_de_l%27Empereur_de_Jade",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "玉皇殿（フオックハイ寺）は、20世紀初めに広東系華人コミュニティによって建てられました。玉皇上帝をはじめ道教と仏教の多くの神々を祀り、精巧に彫られた木像や張り子の像が数十体並びます。堂内は線香の香りに包まれ、中庭には小さな亀の池があります。2016年にはアメリカのオバマ大統領も訪れました。参拝の際は控えめな服装で、静かに見学しましょう。",
+     "source_url": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Đền Bà Mariamman",
+   "aliases": [
+    "Mariamman Temple, Ho Chi Minh City",
+    "Đền Bà Ấn (Thành phố Hồ Chí Minh)"
+   ],
+   "description": "Đền Hindu cuối thế kỷ 19 của cộng đồng người Tamil, thờ nữ thần Mariamman.",
+   "address": "45 Trương Định, Quận 1, TP. Hồ Chí Minh",
+   "category": "Văn hóa",
+   "latitude": 10.7723,
+   "longitude": 106.6956,
+   "source_url": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%C3%A0_%E1%BA%A4n_%28Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh%29",
+   "image": {
+    "path": "d1-09.jpg",
+    "sha256": "7ab25bb5a8bd7c46c5d9721ae6f5e770c39436d444e266b889cfbe74c04fb7c5",
+    "bytes": 71597,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Dragfyre",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Mariamman_Temple,_HCMC.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Mariamman_Temple%2C_HCMC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Đền Bà Mariamman",
+     "content": "Đền Bà Mariamman, người dân quen gọi là Chùa Bà Ấn, được cộng đồng thương nhân Tamil từ Ấn Độ xây dựng vào cuối thế kỷ 19. Đền thờ nữ thần Mariamman, vị thần bảo hộ mưa thuận gió hòa và sức khỏe. Điểm nổi bật là ngọn tháp cổng nhiều tầng đầy tượng thần sặc sỡ theo kiến trúc Nam Ấn. Ngày nay, cả người Việt và người Hoa cũng đến cầu nguyện. Khi vào bên trong, du khách cần cởi giày và ăn mặc kín đáo.",
+     "source_url": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%C3%A0_%E1%BA%A4n_%28Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh%29",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Đền Bà Mariamman",
+     "content": "The Mariamman Temple, locally called the Indian Lady Temple, was built in the late nineteenth century by Tamil merchants from India. It is dedicated to the goddess Mariamman, protector of good rains and health. Its highlight is the many-tiered gateway tower covered in brightly painted deities in South Indian style. Today Vietnamese and Chinese residents also come to pray here. Please remove your shoes and dress modestly before entering.",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Đền Bà Mariamman",
+     "content": "Le temple de Mariamman, que les habitants appellent le temple de la Dame indienne, a été construit à la fin du XIXe siècle par des marchands tamouls venus d’Inde. Il est dédié à la déesse Mariamman, protectrice des pluies et de la santé. Sa tour-porche à plusieurs niveaux, couverte de divinités aux couleurs vives, est typique de l’Inde du Sud. Aujourd’hui, Vietnamiens et Chinois viennent aussi y prier. Retirez vos chaussures et portez une tenue correcte.",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Đền Bà Mariamman",
+     "content": "マリアマン寺院は、地元では「インドの女神の寺」と呼ばれ、19世紀末にインドから来たタミル人商人たちによって建てられました。雨と健康を守る女神マリアマンを祀っています。色鮮やかな神々の像で覆われた多層の門塔は、南インド様式の見どころです。現在はベトナム人や華人も参拝に訪れます。中に入る前には靴を脱ぎ、肌の露出を控えた服装でお参りしましょう。",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Công viên Tao Đàn",
+   "aliases": [],
+   "description": "Công viên cây xanh rộng khoảng 10 ha giữa trung tâm, nổi tiếng với cây cổ thụ và quán cà phê chim.",
+   "address": "Trương Định – Nguyễn Thị Minh Khai, Quận 1, TP. Hồ Chí Minh",
+   "category": "Khám phá",
+   "latitude": 10.774606,
+   "longitude": 106.692484,
+   "source_url": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n",
+   "image": {
+    "path": "d1-10.jpg",
+    "sha256": "1f73ec6e9ba9bc0145f4a275ddbc0d486f078a4117da6ed71eb442c635d8088a",
+    "bytes": 104593,
+    "license": "CC BY-SA 2.0",
+    "attribution": "nosarose",
+    "source_url": "https://commons.wikimedia.org/wiki/File:C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Công viên Tao Đàn",
+     "content": "Công viên Tao Đàn rộng khoảng mười héc-ta, từng là một phần khu vườn phía sau dinh Toàn quyền thời Pháp. Nơi đây có nhiều cây cổ thụ cao lớn như dầu, sao và me tây, tạo nên lá phổi xanh mát giữa trung tâm Quận 1. Buổi sáng sớm, người dân đến tập thể dục, còn những người chơi chim mang lồng đến treo bên quán cà phê, tạo nên tiếng hót rộn ràng. Hãy thử ngồi một ly cà phê và tận hưởng nhịp sống bình yên của người Sài Gòn.",
+     "source_url": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Công viên Tao Đàn",
+     "content": "Tao Dan Park covers about ten hectares and was once part of the garden behind the Governor-General’s palace in the French era. Tall old trees such as dipterocarps, ironwoods and rain trees make it a cool green lung in the heart of District 1. Early in the morning residents exercise here, and bird lovers hang their cages beside the café, filling the air with song. Order a coffee and enjoy the peaceful rhythm of Saigon life.",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Công viên Tao Đàn",
+     "content": "Le parc Tao Dan s’étend sur une dizaine d’hectares et faisait autrefois partie du jardin du palais du Gouverneur général à l’époque française. De grands arbres centenaires en font un poumon vert et frais au cœur du premier arrondissement. Tôt le matin, les habitants y font de l’exercice et les amateurs d’oiseaux accrochent leurs cages près du café, qui se remplit de chants. Commandez un café et profitez du rythme paisible de la vie saïgonnaise.",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Công viên Tao Đàn",
+     "content": "タオダン公園は約10ヘクタールの広さで、フランス統治時代には総督官邸の裏庭の一部でした。背の高い古木が茂り、1区の中心にある涼しい緑のオアシスとなっています。早朝には市民が体操をし、小鳥愛好家たちがカフェの横に鳥かごを吊るすので、さえずりがあふれます。コーヒーを一杯頼んで、サイゴンの穏やかな朝のひとときを味わってみてください。",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Phố đi bộ Nguyễn Huệ",
+   "aliases": [
+    "Nguyễn Huệ Boulevard",
+    "Đường Nguyễn Huệ, Thành phố Hồ Chí Minh"
+   ],
+   "description": "Quảng trường đi bộ từ trụ sở Ủy ban nhân dân Thành phố đến sông Sài Gòn, mở cửa năm 2015.",
+   "address": "Đường Nguyễn Huệ, Quận 1, TP. Hồ Chí Minh",
+   "category": "Khám phá",
+   "latitude": 10.774112,
+   "longitude": 106.703619,
+   "source_url": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_Nguy%E1%BB%85n_Hu%E1%BB%87%2C_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+   "image": {
+    "path": "d1-11.jpg",
+    "sha256": "028224ebb3e62cd574607900de2db6b5e9b68c81caa77b97446d6053191f872a",
+    "bytes": 315206,
+    "license": "CC BY-SA 4.0",
+    "attribution": "Timback",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Nguyen_Hue_Street_2020.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Nguyen_Hue_Street_2020.jpg/1280px-Nguyen_Hue_Street_2020.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "Phố đi bộ Nguyễn Huệ được khánh thành năm 2015, trải dài khoảng 670 mét từ trụ sở Ủy ban nhân dân Thành phố đến gần bờ sông Sài Gòn. Ở đầu phố là tượng đài Chủ tịch Hồ Chí Minh, dọc hai bên là các tòa nhà cũ và mới, quán cà phê và hiệu sách. Quảng trường có đài phun nước và là nơi diễn ra lễ hội, bắn pháo hoa và đường hoa dịp Tết. Buổi tối là thời điểm đông vui nhất, khi gió sông thổi mát và đèn đường lung linh.",
+     "source_url": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_Nguy%E1%BB%85n_Hu%E1%BB%87%2C_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "Nguyen Hue walking street opened in 2015 and runs about 670 metres from City Hall towards the Saigon River. At its head stands the statue of President Ho Chi Minh, and both sides are lined with old and new buildings, cafés and bookshops. The square has musical fountains and hosts festivals, fireworks and the Tet flower street. Evenings are the liveliest time, when the river breeze cools the air and the lights sparkle.",
+     "source_url": "https://en.wikipedia.org/wiki/Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "La rue piétonne Nguyen Hue a été inaugurée en 2015 et s’étend sur environ 670 mètres, de l’Hôtel de Ville vers la rivière de Saïgon. À son extrémité se dresse la statue du président Hô Chi Minh, et ses côtés sont bordés d’immeubles anciens et modernes, de cafés et de librairies. La place accueille fontaines, festivals, feux d’artifice et la rue des fleurs du Têt. Le soir est le moment le plus animé, quand la brise du fleuve rafraîchit l’air.",
+     "source_url": "https://fr.wikipedia.org/wiki/Boulevard_Nguyen_Hue",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "グエンフエ歩行者通りは2015年に開通し、人民委員会庁舎からサイゴン川方面へ約670メートル続きます。通りの起点にはホーチミン主席像が立ち、両側には新旧のビルやカフェ、書店が並びます。噴水のある広場では祭りや花火、テトの花通りなどのイベントが開かれます。川風が涼しく、街の灯りがきらめく夜がいちばんにぎやかです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B0%E3%82%A8%E3%83%B3%E3%83%95%E3%82%A8%E9%80%9A%E3%82%8A",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  },
+  {
+   "name": "Tòa tháp Bitexco Financial",
+   "aliases": [
+    "Bitexco Financial Tower"
+   ],
+   "description": "Tòa tháp 68 tầng hình búp sen hoàn thành năm 2010, có đài quan sát toàn cảnh Saigon Skydeck.",
+   "address": "2 Hải Triều, Quận 1, TP. Hồ Chí Minh",
+   "category": "Kiến trúc",
+   "latitude": 10.771667,
+   "longitude": 106.704444,
+   "source_url": "https://vi.wikipedia.org/wiki/Bitexco_Financial_Tower",
+   "image": {
+    "path": "d1-12.jpg",
+    "sha256": "7f4fb55ee81128c437eec4b1fb122b1a83f94a417a98f5b9731042255688e142",
+    "bytes": 1150972,
+    "license": "CC BY-SA 4.0",
+    "attribution": "Lê Minh Phát",
+    "source_url": "https://commons.wikimedia.org/wiki/File:DJI_0550-HDR-Pano_Bitexco_Financial_Tower.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/DJI_0550-HDR-Pano_Bitexco_Financial_Tower.jpg/1280px-DJI_0550-HDR-Pano_Bitexco_Financial_Tower.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "Tòa tháp Bitexco Financial hoàn thành năm 2010, cao khoảng 262 mét với 68 tầng. Kiến trúc sư Carlos Zapata lấy cảm hứng từ hình búp sen, biểu tượng của Việt Nam, để thiết kế dáng tháp thon cong. Gần đỉnh tháp có sân đỗ trực thăng nhô ra như một chiếc lá. Đài quan sát Saigon Skydeck ở tầng 49 cho tầm nhìn bao quát sông Sài Gòn và các con phố trung tâm. Nên lên vào lúc hoàng hôn để ngắm thành phố chuyển từ nắng chiều sang ánh đèn.",
+     "source_url": "https://vi.wikipedia.org/wiki/Bitexco_Financial_Tower",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "Bitexco Financial Tower was completed in 2010 and rises about 262 metres over 68 floors. Architect Carlos Zapata drew on the lotus bud, a symbol of Vietnam, for its slender curving form. Near the top, a helipad juts out like a leaf. The Saigon Skydeck on the 49th floor offers sweeping views over the Saigon River and the central streets. Go up at sunset to watch the city turn from golden light to glittering lamps.",
+     "source_url": "https://en.wikipedia.org/wiki/Bitexco_Financial_Tower",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "La tour financière Bitexco, achevée en 2010, s’élève à environ 262 mètres sur 68 étages. L’architecte Carlos Zapata s’est inspiré du bouton de lotus, symbole du Vietnam, pour sa silhouette fine et galbée. Près du sommet, une hélisurface s’avance comme une feuille. L’observatoire Saigon Skydeck, au 49e étage, offre une vue panoramique sur la rivière de Saïgon et le centre. Montez au coucher du soleil pour voir la ville s’illuminer.",
+     "source_url": "https://fr.wikipedia.org/wiki/Tour_financi%C3%A8re_Bitexco",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "ビテクスコ・フィナンシャルタワーは2010年に完成した高さ約262メートル、68階建ての超高層ビルです。建築家カルロス・サパタは、ベトナムの象徴である蓮のつぼみから着想を得て、しなやかな曲線の形をデザインしました。頂上近くには葉のように張り出したヘリポートがあります。49階の展望台サイゴン・スカイデッキからは、サイゴン川と中心街を一望できます。夕暮れ時に上れば、街が夕日から夜景へと変わる様子を楽しめます。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%93%E3%83%86%E3%82%AF%E3%82%B9%E3%82%B3%E3%83%BB%E3%83%95%E3%82%A3%E3%83%8A%E3%83%B3%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BF%E3%83%AF%E3%83%BC",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ]
+  }
+ ],
+ "content": [
+  {
+   "name": "Dinh Độc Lập",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Dinh Độc Lập",
+     "content": "Dinh Độc Lập nằm trên khu đất từng là dinh Norodom, dinh Toàn quyền Đông Dương do người Pháp xây dựng từ năm 1868 đến 1873. Sau năm 1954, dinh trở thành nơi ở và làm việc của Tổng thống Việt Nam Cộng hòa. Năm 1962, tòa nhà cũ bị hư hại nặng sau một vụ ném bom nên bị phá bỏ, và công trình hiện nay được dựng lên từ năm 1962 đến 1966 theo thiết kế của kiến trúc sư Ngô Viết Thụ, người từng đoạt giải Khôi nguyên La Mã. Kiến trúc kết hợp tinh thần hiện đại với triết lý phương Đông: mặt tiền là hàng rèm hoa đá mô phỏng đốt trúc, vừa che nắng vừa đón gió, còn các khoảng sân trong giúp tòa nhà luôn thoáng mát. Bên trong có phòng khánh tiết, phòng họp nội các, phòng trình quốc thư, khu nhà ở của gia đình tổng thống và đặc biệt là tầng hầm với phòng chỉ huy, bản đồ tác chiến, máy móc thông tin còn nguyên. Trên sân thượng là sân đỗ trực thăng. Trưa ngày 30 tháng 4 năm 1975, xe tăng quân Giải phóng húc đổ cổng chính, đánh dấu ngày thống nhất đất nước. Ngày nay dinh là di tích quốc gia đặc biệt; bạn nên dành khoảng một tiếng rưỡi để đi hết các tầng, xuống tầng hầm và ra khuôn viên rộng đầy cây xanh.",
+     "source_url": "https://vi.wikipedia.org/wiki/Dinh_%C4%90%E1%BB%99c_L%E1%BA%ADp",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Dinh Độc Lập",
+     "content": "Independence Palace stands on the site of the Norodom Palace, the residence of the Governor-General of French Indochina built between 1868 and 1873. After 1954 it became the home and office of the President of the Republic of Vietnam. In 1962 the old building was badly damaged in a bombing and torn down, and the present palace was built from 1962 to 1966 to a design by architect Ngo Viet Thu, a winner of the Grand Prix de Rome. The architecture blends modernism with Eastern ideas: the facade is screened by stone panels shaped like bamboo sections that shade the rooms and let the breeze through, while inner courtyards keep the building cool. Inside you can visit the reception halls, the cabinet room, the room for presenting credentials, the presidential family quarters and, above all, the basement with its command room, war maps and communication equipment left as they were. A helipad sits on the roof. Around noon on 30 April 1975, liberation army tanks broke through the main gate, marking the reunification of the country. Today the palace is a special national monument; allow about an hour and a half to see every floor, the basement and the leafy grounds.",
+     "source_url": "https://en.wikipedia.org/wiki/Independence_Palace",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Dinh Độc Lập",
+     "content": "Le Palais de l’Indépendance occupe l’emplacement du palais Norodom, résidence du gouverneur général de l’Indochine française construite entre 1868 et 1873. Après 1954, il devint la résidence et le bureau du président de la République du Vietnam. En 1962, l’ancien bâtiment, gravement endommagé par un bombardement, fut démoli, et le palais actuel fut édifié de 1962 à 1966 sur les plans de l’architecte Ngo Viet Thu, lauréat du Grand Prix de Rome. Son architecture marie modernité et pensée orientale : la façade est voilée de panneaux de pierre en forme de tronçons de bambou qui filtrent le soleil et laissent passer l’air, tandis que des cours intérieures gardent le bâtiment frais. On visite les salons de réception, la salle du conseil des ministres, la salle de remise des lettres de créance, les appartements de la famille présidentielle et surtout le sous-sol, avec sa salle de commandement, ses cartes d’état-major et ses équipements de transmission restés en place. Une hélisurface coiffe le toit. Vers midi le 30 avril 1975, les chars de l’armée de libération enfoncèrent le portail principal, marquant la réunification du pays. Classé monument national spécial, le palais demande environ une heure et demie de visite.",
+     "source_url": "https://fr.wikipedia.org/wiki/Palais_de_l%27Ind%C3%A9pendance",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Dinh Độc Lập",
+     "content": "独立宮殿（統一会堂）は、1868年から1873年にかけてフランス領インドシナ総督の官邸として建てられたノロドム宮殿の跡地にあります。1954年以降はベトナム共和国大統領の住居兼執務室となりました。1962年の爆撃で旧建物が大きく損傷したため取り壊され、現在の建物は1962年から1966年にかけて、ローマ大賞を受賞した建築家ゴー・ヴィエト・トゥーの設計で建てられました。竹の節を模した石のスクリーンが正面を覆い、日差しを和らげながら風を通し、中庭が建物を涼しく保つなど、近代建築と東洋の思想が融合しています。内部では応接ホール、閣議室、信任状奉呈の間、大統領一家の居住区、そして作戦地図や通信機器が当時のまま残る地下司令室を見学できます。屋上にはヘリポートもあります。1975年4月30日の正午ごろ、解放軍の戦車が正門を突破し、国の統一を象徴する出来事となりました。現在は特別国家遺跡に指定されています。すべての階と地下、緑豊かな庭を回るには1時間半ほどみておきましょう。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E7%B5%B1%E4%B8%80%E4%BC%9A%E5%A0%82",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền nhìn từ thảm cỏ trước dinh. Hãy chú ý hàng rèm hoa đá chạy suốt các tầng: những ô đá dọc mô phỏng đốt trúc, tạo bóng râm cho hành lang phía sau và khiến tòa nhà trông nhẹ nhàng dù có quy mô rất lớn.",
+    "en": "The facade seen from the front lawn. Notice the stone screen running across every floor: its vertical blocks imitate bamboo sections, shading the corridors behind and making this very large building look light.",
+    "fr": "La façade vue depuis la pelouse. Observez l’écran de pierre qui court sur tous les étages : ses blocs verticaux imitent des tronçons de bambou, ombragent les galeries et allègent ce très grand bâtiment.",
+    "ja": "前庭の芝生から見た正面です。各階を覆う石のスクリーンに注目してください。竹の節を模した縦の石が後ろの回廊に日陰をつくり、巨大な建物を軽やかに見せています。"
+   },
+   "gallery": [
+    {
+     "path": "p01-2.jpg",
+     "sha256": "46bb339253cbae4d7a77e455d99eac001d66c95dcd942b9141d20c77723129e4",
+     "bytes": 215592,
+     "license": "CC BY-SA 4.0",
+     "attribution": "RG72",
+     "source_url": "https://commons.wikimedia.org/wiki/File:A%C5%ADto_Mercedes-Benz_W110_uzita_de_prezidanto_de_Sud-Vjetnamio_Nguy%E1%BB%85n_V%C4%83n_Thi%E1%BB%87u_la_Palaco_de_Sendependeco_(Ho-%C4%88i-Min-urbo).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/A%C5%ADto_Mercedes-Benz_W110_uzita_de_prezidanto_de_Sud-Vjetnamio_Nguy%E1%BB%85n_V%C4%83n_Thi%E1%BB%87u_la_Palaco_de_Sendependeco_%28Ho-%C4%88i-Min-urbo%29.jpg/1280px-A%C5%ADto_Mercedes-Benz_W110_uzita_de_prezidanto_de_Sud-Vjetnamio_Nguy%E1%BB%85n_V%C4%83n_Thi%E1%BB%87u_la_Palaco_de_Sendependeco_%28Ho-%C4%88i-Min-urbo%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Chiếc Mercedes-Benz W110 từng được Tổng thống Nguyễn Văn Thiệu sử dụng, nay trưng bày trong dinh. Những chiếc xe công vụ như thế này kể lại nhịp làm việc hằng ngày của bộ máy chính quyền trước năm 1975.",
+      "en": "The Mercedes-Benz W110 once used by President Nguyen Van Thieu, now on display in the palace. Official cars like this one recall the daily routine of the government before 1975.",
+      "fr": "La Mercedes-Benz W110 qu’utilisait le président Nguyen Van Thieu, exposée aujourd’hui dans le palais. Ces voitures officielles racontent le quotidien du pouvoir avant 1975.",
+      "ja": "グエン・ヴァン・チュー大統領が使っていたメルセデス・ベンツW110。現在は宮殿内に展示され、1975年以前の政府の日常を伝えています。"
+     }
+    },
+    {
+     "path": "p01-3.jpg",
+     "sha256": "441918650763f4703e235301ebf62ae600b9727a680d6bfbb2f3856b6604e598",
+     "bytes": 768918,
+     "license": "CC BY 3.0",
+     "attribution": "Fumihiko Ueno",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%BFn_Th%C3%A0nh,_Qu%E1%BA%ADn_1,_TPHCM,_Vietnam_-_panoramio_(8).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/B%E1%BA%BFn_Th%C3%A0nh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vietnam_-_panoramio_%288%29.jpg/1280px-B%E1%BA%BFn_Th%C3%A0nh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vietnam_-_panoramio_%288%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Đài phun nước giữa thảm cỏ phía trước dinh, nhìn ra trục đại lộ Lê Duẩn rợp bóng cây. Trục đường thẳng này nối khuôn viên dinh với quảng trường nhà thờ Đức Bà, tạo nên một trong những góc nhìn đẹp nhất của trung tâm Sài Gòn.",
+      "en": "The fountain on the lawn in front of the palace, looking down tree-lined Le Duan Boulevard. This straight axis links the palace grounds with the square of Notre-Dame Cathedral, one of the finest views in central Saigon.",
+      "fr": "La fontaine au milieu de la pelouse, face au boulevard Le Duan bordé d’arbres. Cet axe rectiligne relie le parc du palais à la place de la cathédrale Notre-Dame, l’une des plus belles perspectives du centre.",
+      "ja": "宮殿前の芝生にある噴水と、並木の続くレ・ズアン通り。このまっすぐな軸線は宮殿と聖母マリア教会の広場を結び、サイゴン中心部屈指の眺めをつくっています。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Bưu điện Trung tâm Sài Gòn",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "Bưu điện Trung tâm Sài Gòn được xây dựng từ năm 1886 đến 1891, đối diện nhà thờ Đức Bà, theo thiết kế của kiến trúc sư người Pháp Alfred Foulhoux. Tòa nhà mang phong cách châu Âu cuối thế kỷ 19 với mặt tiền màu vàng nhạt, các ô cửa vòm, phù điêu và chiếc đồng hồ lớn đặt ngay trên cổng chính. Bước vào bên trong, bạn sẽ thấy một sảnh lớn với mái vòm cong được đỡ bởi hệ khung thép sơn xanh, ánh sáng tự nhiên tràn qua các ô cửa kính tạo cảm giác như một nhà ga xe lửa thời xưa. Hai bên tường là hai tấm bản đồ cổ được vẽ tay: bản đồ Sài Gòn và vùng phụ cận năm 1892 cùng bản đồ các đường dây điện báo ở Nam Kỳ và Campuchia năm 1936. Cuối sảnh là chân dung Chủ tịch Hồ Chí Minh, dọc hai bên là những buồng điện thoại gỗ kiểu cũ. Điều đặc biệt là bưu điện vẫn hoạt động: bạn có thể mua tem, bưu thiếp và gửi thư về nhà ngay tại quầy. Nơi đây từng gắn với hình ảnh ông Dương Văn Ngộ, người ngồi viết thư thuê và dịch thư cho khách suốt nhiều thập kỷ. Hãy dành chút thời gian ngắm mái vòm, rồi tự gửi cho mình một tấm bưu thiếp làm kỷ niệm.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%C6%B0u_%C4%91i%E1%BB%87n_Trung_t%C3%A2m_S%C3%A0i_G%C3%B2n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "Saigon Central Post Office was built between 1886 and 1891, opposite Notre-Dame Cathedral, to a design by French architect Alfred Foulhoux. The building reflects late nineteenth-century European style, with a pale yellow facade, arched windows, reliefs and a large clock set right above the main entrance. Inside, a great hall opens under a curved vault carried by green-painted iron framework, and daylight pours through the glass, giving the feeling of an old railway station. On the side walls hang two hand-painted maps: Saigon and its surroundings in 1892, and the telegraph lines of southern Vietnam and Cambodia in 1936. A portrait of President Ho Chi Minh closes the hall, flanked by old wooden telephone booths. Best of all, the post office still works: you can buy stamps and postcards and mail them home from the counters. The hall was long associated with Mr Duong Van Ngo, who wrote and translated letters for visitors for decades. Take a moment to admire the vault, then send yourself a postcard as a souvenir.",
+     "source_url": "https://en.wikipedia.org/wiki/Saigon_Central_Post_Office",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "La Poste centrale de Saïgon a été construite de 1886 à 1891, face à la cathédrale Notre-Dame, sur des plans de l’architecte français Alfred Foulhoux. Le bâtiment reflète le style européen de la fin du XIXe siècle : façade jaune pâle, fenêtres cintrées, reliefs et grande horloge au-dessus de l’entrée. À l’intérieur, un vaste hall s’ouvre sous une voûte portée par une charpente métallique peinte en vert, inondée de lumière comme une ancienne gare. Sur les murs latéraux figurent deux cartes peintes à la main : Saïgon et ses environs en 1892, et les lignes télégraphiques de la Cochinchine et du Cambodge en 1936. Un portrait du président Hô Chi Minh ferme le hall, encadré d’anciennes cabines téléphoniques en bois. Surtout, la poste fonctionne toujours : on peut y acheter timbres et cartes postales et les envoyer au guichet. Le lieu reste associé à M. Duong Van Ngo, qui écrivit et traduisit des lettres pour les visiteurs pendant des décennies. Admirez la voûte, puis envoyez-vous une carte en souvenir.",
+     "source_url": "https://en.wikipedia.org/wiki/Saigon_Central_Post_Office",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "サイゴン中央郵便局は、聖母マリア教会の向かいに1886年から1891年にかけて建てられ、フランス人建築家アルフレッド・フールーが設計しました。淡い黄色の外壁、アーチ窓、浮き彫り、正面入口の上の大時計など、19世紀末のヨーロッパ様式を伝えています。中に入ると、緑色の鉄骨に支えられたアーチ天井の大ホールが広がり、窓から差し込む光が昔の駅舎のような雰囲気をつくります。両側の壁には、1892年のサイゴン周辺図と、1936年の南部ベトナム・カンボジアの電信網を描いた手描きの地図が掲げられています。奥にはホー・チ・ミン主席の肖像があり、両脇には古い木製の電話ボックスが並びます。今も現役の郵便局なので、切手や絵はがきを買ってその場で投函できます。ここは何十年も手紙の代筆や翻訳をしていたズオン・ヴァン・ゴー氏でも知られました。天井を眺めたら、記念に自分宛ての絵はがきを送ってみてください。",
+     "source_url": "https://en.wikipedia.org/wiki/Saigon_Central_Post_Office",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền bưu điện nhìn từ công trường Công xã Paris. Chiếc đồng hồ lớn trên cổng chính đã trở thành biểu tượng: suốt hơn một thế kỷ, người Sài Gòn hẹn nhau và gửi thư dưới mặt đồng hồ này.",
+    "en": "The post office facade seen from Paris Commune Square. The big clock above the entrance has become an icon: for more than a century people in Saigon have met and mailed letters beneath it.",
+    "fr": "La façade de la poste vue depuis la place de la Commune de Paris. La grande horloge au-dessus de l’entrée est devenue emblématique : depuis plus d’un siècle, on s’y donne rendez-vous et on y poste ses lettres.",
+    "ja": "パリ・コミューン広場から見た郵便局の正面。入口上の大時計は象徴的な存在で、100年以上にわたり人々がその下で待ち合わせ、手紙を出してきました。"
+   },
+   "gallery": [
+    {
+     "path": "p02-2.jpg",
+     "sha256": "9dc4400eb589c27eede95acbc3ec0c8e3e7b9b81e72d582a984666ec29087ebc",
+     "bytes": 388579,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Ngô Trung",
+     "source_url": "https://commons.wikimedia.org/wiki/File:H%E1%BB%87_th%E1%BB%91ng_lam_%C4%91%E1%BB%A9ng.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/H%E1%BB%87_th%E1%BB%91ng_lam_%C4%91%E1%BB%A9ng.jpg/1280px-H%E1%BB%87_th%E1%BB%91ng_lam_%C4%91%E1%BB%A9ng.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Phía sau đồng hồ là hệ lam đứng làm bằng những lá thép, được chế tạo từ năm 1886 đến 1889. Các lá thép này che nắng gắt và cho gió lùa vào sảnh, một giải pháp làm mát khéo léo khi chưa có máy điều hòa.",
+      "en": "Behind the clock is a set of vertical steel louvres made between 1886 and 1889. They block the harsh sun while letting air flow into the hall, a clever way of cooling the building long before air conditioning.",
+      "fr": "Derrière l’horloge se trouvent des lames verticales en acier fabriquées entre 1886 et 1889. Elles arrêtent le soleil tout en laissant l’air entrer dans le hall : une climatisation ingénieuse avant l’heure.",
+      "ja": "時計の後ろには1886年から1889年に作られた鋼鉄製の縦ルーバーがあります。強い日差しを遮りつつ風をホールに通す、冷房のない時代の巧みな工夫です。"
+     }
+    },
+    {
+     "path": "p02-3.jpg",
+     "sha256": "ce974630c142bfec56a14d4b02821ec0d40e81fb95d33eb5f30646b72741bb59",
+     "bytes": 205788,
+     "license": "Public domain",
+     "attribution": "Salles, André (1860-1929)",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Cochinchine_Sa%C3%AFgon_La_poste_-_(...)Salles_Andr%C3%A9_btv1b530132026.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Cochinchine_Sa%C3%AFgon_La_poste_-_%28...%29Salles_Andr%C3%A9_btv1b530132026.jpg/1280px-Cochinchine_Sa%C3%AFgon_La_poste_-_%28...%29Salles_Andr%C3%A9_btv1b530132026.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Bức ảnh tư liệu chụp bưu điện năm 1895, chỉ vài năm sau khi khánh thành. Khi ấy xung quanh còn thưa thớt, cây non mới trồng; đối chiếu với hôm nay, bạn sẽ thấy mặt tiền gần như được giữ nguyên.",
+      "en": "An archive photograph of the post office in 1895, only a few years after it opened. The surroundings were still sparse and the trees newly planted; compare it with today and you will see the facade has barely changed.",
+      "fr": "Une photographie d’archive de la poste en 1895, quelques années après son inauguration. Les abords sont encore clairsemés et les arbres à peine plantés ; comparez avec aujourd’hui : la façade n’a presque pas changé.",
+      "ja": "開業からわずか数年後、1895年の郵便局を写した記録写真です。周囲はまだ閑散とし、木も植えられたばかり。今と比べると、正面がほとんど変わっていないことがわかります。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Chợ Bến Thành",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Chợ Bến Thành",
+     "content": "Chợ Bến Thành có nguồn gốc từ một khu chợ họp bên bến sông Bến Nghé từ trước khi người Pháp đến. Tòa nhà chợ hiện nay được xây dựng từ năm 1912 và khánh thành ngày 28 tháng 3 năm 1914, trên khu đất đầm lầy được san lấp ở trung tâm thành phố. Biểu tượng của chợ là tháp đồng hồ ở cửa Nam, nhìn ra vòng xoay Quách Thị Trang; ba cửa còn lại là cửa Bắc, cửa Đông và cửa Tây. Bên trong, hàng trăm sạp hàng xếp san sát dưới mái tôn cao: khu vải vóc, quần áo, giày dép; khu đồ lưu niệm với tranh sơn mài, nón lá, đồ thủ công; khu trái cây, cà phê, hạt điều; và khu ẩm thực ở giữa chợ với bún bò, cơm tấm, bánh xèo, chè. Chợ Bến Thành từng nhiều lần được chọn làm biểu tượng của Sài Gòn trên tem thư, sách ảnh và phim. Khi trời tối, các con đường quanh chợ chuyển thành khu chợ đêm nhộn nhịp. Một vài gợi ý cho du khách: nên đi vào buổi sáng để chợ mát và còn nhiều hàng tươi; hỏi giá trước và mặc cả vui vẻ ở các sạp không niêm yết giá; giữ gìn đồ đạc cá nhân ở những lối đi đông người.",
+     "source_url": "https://vi.wikipedia.org/wiki/Ch%E1%BB%A3_B%E1%BA%BFn_Th%C3%A0nh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Chợ Bến Thành",
+     "content": "Ben Thanh Market grew out of a market held on the banks of the Ben Nghe river before the French arrived. The present building was begun in 1912 and opened on 28 March 1914, on reclaimed marshland in the city centre. Its symbol is the clock tower above the south gate, facing the Quach Thi Trang roundabout; the other three entrances are the north, east and west gates. Inside, hundreds of stalls crowd beneath the high roof: fabrics, clothes and shoes; souvenirs such as lacquer paintings, conical hats and handicrafts; fruit, coffee and cashew nuts; and in the middle a food court serving bun bo, broken rice, banh xeo and sweet soups. The market has often stood for Saigon itself on stamps, in photo books and films. After dark, the streets around it turn into a lively night market. A few tips: come in the morning when it is cooler and the produce is fresh; ask prices first and bargain with a smile where nothing is marked; and keep an eye on your belongings in the busy aisles.",
+     "source_url": "https://en.wikipedia.org/wiki/B%E1%BA%BFn_Th%C3%A0nh_Market",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Chợ Bến Thành",
+     "content": "Le marché Ben Thanh est né d’un marché qui se tenait sur les rives de la rivière Ben Nghe avant l’arrivée des Français. Le bâtiment actuel, commencé en 1912, fut inauguré le 28 mars 1914 sur des marais remblayés au cœur de la ville. Son emblème est la tour de l’horloge au-dessus de la porte sud, face au rond-point Quach Thi Trang ; les trois autres entrées sont les portes nord, est et ouest. À l’intérieur, des centaines d’échoppes se serrent sous la haute toiture : tissus, vêtements et chaussures ; souvenirs comme laques, chapeaux coniques et artisanat ; fruits, café et noix de cajou ; et au centre, un espace de restauration avec bun bo, riz brisé, banh xeo et desserts. Le marché a souvent représenté Saïgon sur les timbres, dans les livres et les films. Le soir, les rues alentour se changent en marché de nuit animé. Conseils : venez le matin, quand il fait frais ; demandez les prix et marchandez avec le sourire là où rien n’est affiché ; surveillez vos affaires dans les allées bondées.",
+     "source_url": "https://fr.wikipedia.org/wiki/March%C3%A9_B%E1%BA%BFn_Th%C3%A0nh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Chợ Bến Thành",
+     "content": "ベンタイン市場は、フランス人が来る前からベンゲー川のほとりで開かれていた市場に起源をもちます。現在の建物は1912年に着工し、1914年3月28日、埋め立てられた湿地の上に開業しました。象徴はクアック・ティ・チャン・ロータリーに面した南門の時計塔で、ほかに北門・東門・西門があります。高い屋根の下には数百の店がひしめき、布地や衣料品、靴、漆絵やノンラー（すげ笠）などのお土産、果物やコーヒー、カシューナッツ、そして中央にはブンボーやコムタム、バインセオ、チェーを味わえる屋台街があります。切手や写真集、映画でサイゴンの象徴として何度も描かれてきました。夜になると周囲の通りはにぎやかなナイトマーケットに変わります。涼しく品物が新鮮な午前中に訪れること、値札のない店ではまず値段を聞いて楽しく交渉すること、混雑した通路では持ち物に気をつけることがおすすめです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%99%E3%83%B3%E3%82%BF%E3%82%A4%E3%83%B3%E5%B8%82%E5%A0%B4",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Cửa Nam với tháp đồng hồ, gương mặt quen thuộc nhất của chợ. Hãy đứng ở bên kia vòng xoay để ngắm trọn tháp đồng hồ và dòng xe máy cuộn quanh, nhịp sống đặc trưng của Sài Gòn.",
+    "en": "The south gate with its clock tower, the market’s most familiar face. Stand across the roundabout to take in the tower and the swirl of motorbikes around it, the very rhythm of Saigon.",
+    "fr": "La porte sud et sa tour de l’horloge, le visage le plus connu du marché. Placez-vous de l’autre côté du rond-point pour voir la tour et le ballet des motos, le rythme même de Saïgon.",
+    "ja": "時計塔のある南門は市場の顔です。ロータリーの反対側から、時計塔とその周りを流れるバイクの波を眺めてみてください。まさにサイゴンのリズムです。"
+   },
+   "gallery": [
+    {
+     "path": "p03-2.jpg",
+     "sha256": "7fa544009cfad2372b731bf50dc1057a073422445e7caaaaee59dc35d9c6c2a1",
+     "bytes": 391890,
+     "license": "CC BY 2.0",
+     "attribution": "Terrazzo from Vernon Hills, IL, USA",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market_(36350099003).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Ben_Thanh_Market_%2836350099003%29.jpg/1280px-Ben_Thanh_Market_%2836350099003%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Lối đi chính bên trong chợ dưới hệ mái cao và các cửa sổ mái lấy sáng. Hàng hóa bày kín từ sàn lên đến trần, tiếng mời chào hòa cùng mùi cà phê và trái cây tạo nên không khí rất riêng của chợ.",
+      "en": "A main aisle inside the market beneath the high roof and its skylights. Goods are stacked from floor to ceiling, and the calls of vendors mix with the smell of coffee and fruit to create the market’s unique atmosphere.",
+      "fr": "Une allée principale sous la haute toiture et ses lanterneaux. Les marchandises montent du sol au plafond, et les appels des marchands se mêlent aux parfums de café et de fruits.",
+      "ja": "高い屋根と天窓の下に延びる市場のメイン通路。床から天井まで商品が積まれ、売り子の呼び声とコーヒーや果物の香りが市場ならではの空気をつくります。"
+     }
+    },
+    {
+     "path": "p03-3.jpg",
+     "sha256": "cacba5039b6190cf384be8fae4caa483f7b49eac825ccb9cdbaf611ff91c6b4d",
+     "bytes": 323123,
+     "license": "CC BY 3.0",
+     "attribution": "Jean-Marie Hullot",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market_001.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Ben_Thanh_Market_001.jpg/1280px-Ben_Thanh_Market_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Những chiếc đĩa sơn mài được bày bán ở khu đồ lưu niệm. Sơn mài là nghề truyền thống của Việt Nam: người thợ phủ nhiều lớp sơn ta, khảm vỏ trứng, vỏ trai rồi mài bóng, tạo nên những món quà vừa nhẹ vừa bền.",
+      "en": "Lacquer plates in the souvenir section. Lacquer is a traditional Vietnamese craft: artisans apply many coats of natural resin, inlay eggshell or mother-of-pearl and polish the surface, creating gifts that are light and durable.",
+      "fr": "Des assiettes en laque au rayon des souvenirs. La laque est un artisanat traditionnel : l’artisan superpose de nombreuses couches de résine, incruste coquille d’œuf ou nacre puis polit, pour des cadeaux légers et durables.",
+      "ja": "お土産コーナーに並ぶ漆の皿。漆芸はベトナムの伝統工芸で、何層も漆を塗り重ね、卵殻や螺鈿をはめ込んで磨き上げます。軽くて丈夫な贈り物になります。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Nhà thờ Đức Bà Sài Gòn",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "Nhà thờ chính tòa Đức Bà Sài Gòn là công trình tôn giáo nổi tiếng nhất của thành phố. Trước đó, người Pháp từng dựng một nhà thờ bằng gỗ, nhưng công trình này nhanh chóng xuống cấp vì mối mọt. Nhà thờ hiện nay được đặt viên đá đầu tiên ngày 7 tháng 10 năm 1877 và khánh thành vào lễ Phục sinh năm 1880, theo thiết kế của kiến trúc sư Jules Bourard. Toàn bộ gạch ốp mặt ngoài được chở từ Marseille sang và không trát vữa, nên sau hơn một thế kỷ vẫn giữ màu đỏ hồng tự nhiên. Năm 1895, hai tháp chuông cao gần 58 mét được xây thêm, bên trong treo sáu quả chuông đúc tại Pháp. Các ô cửa kính màu với hình ảnh các thánh được đặt làm tại xưởng Lorin ở Chartres. Trước nhà thờ là tượng Đức Mẹ Hòa Bình bằng đá hoa cương, được dựng năm 1959. Năm 1962, nhà thờ được Tòa Thánh tôn phong Vương cung thánh đường. Từ năm 2017, công trình được trùng tu quy mô lớn để thay ngói, gia cố tháp và phục hồi kính màu, vì vậy có thể có rào chắn quanh nhà thờ. Hãy đứng ở quảng trường Công xã Paris để ngắm mặt tiền, rồi đi vòng ra phía sau để thấy phần hậu cung với những vòm cửa và hàng cột gạch rất đẹp.",
+     "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_th%E1%BB%9D_ch%C3%ADnh_t%C3%B2a_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "Notre-Dame Cathedral Basilica of Saigon is the city’s most famous religious building. The French first built a wooden church, but it soon decayed because of termites. The foundation stone of the present cathedral was laid on 7 October 1877 and it was consecrated at Easter 1880, to a design by architect Jules Bourard. All the facing bricks were shipped from Marseille and left unplastered, so after more than a century they keep their natural pinkish red. In 1895 two bell towers almost 58 metres high were added, housing six bells cast in France. The stained-glass windows showing the saints were made by the Lorin workshop in Chartres. In front stands a granite statue of Our Lady of Peace, erected in 1959, and in 1962 the Holy See named the church a basilica. Since 2017 a major restoration has been replacing tiles, strengthening the towers and repairing the glass, so you may see scaffolding. Stand in Paris Commune Square to admire the facade, then walk round to the back to see the apse with its fine arches and brick columns.",
+     "source_url": "https://en.wikipedia.org/wiki/Notre-Dame_Cathedral_Basilica_of_Saigon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "La basilique-cathédrale Notre-Dame de Saïgon est l’édifice religieux le plus célèbre de la ville. Les Français avaient d’abord bâti une église en bois, vite rongée par les termites. La première pierre de la cathédrale actuelle fut posée le 7 octobre 1877 et l’église consacrée à Pâques 1880, sur des plans de l’architecte Jules Bourard. Toutes les briques de parement, venues de Marseille, sont restées sans enduit et gardent depuis plus d’un siècle leur rouge rosé naturel. En 1895, deux clochers de près de 58 mètres furent ajoutés ; ils abritent six cloches fondues en France. Les vitraux représentant les saints sortent de l’atelier Lorin de Chartres. Devant se dresse une statue en granit de Notre-Dame de la Paix, érigée en 1959, et en 1962 le Saint-Siège éleva l’église au rang de basilique. Depuis 2017, une grande restauration remplace les tuiles, consolide les clochers et répare les vitraux : des échafaudages sont possibles. Admirez la façade depuis la place de la Commune de Paris, puis faites le tour pour voir le chevet, ses arcs et ses colonnes de brique.",
+     "source_url": "https://fr.wikipedia.org/wiki/Basilique-cath%C3%A9drale_Notre-Dame_de_Sa%C3%AFgon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Nhà thờ Đức Bà Sài Gòn",
+     "content": "サイゴン大教会（聖母マリア大聖堂）は、市内で最も有名な宗教建築です。フランス人は最初に木造の教会を建てましたが、シロアリの被害ですぐに傷みました。現在の教会は1877年10月7日に定礎され、1880年の復活祭に献堂されました。設計は建築家ジュール・ブラールです。外壁のレンガはすべてマルセイユから運ばれ、漆喰を塗っていないため、100年以上たった今も自然な赤みを保っています。1895年には高さ約58メートルの二つの鐘楼が加えられ、フランスで鋳造された六つの鐘が吊るされています。聖人を描いたステンドグラスはシャルトルのロラン工房で作られました。正面には1959年に建てられた花崗岩の平和の聖母像が立ち、1962年にはバチカンからバシリカの称号を受けました。2017年からは屋根瓦の交換や鐘楼の補強、ステンドグラスの修復など大規模な改修が続いており、足場が見えることもあります。パリ・コミューン広場から正面を眺めたら、裏手に回ってアーチとレンガの柱が美しい後陣もご覧ください。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B5%E3%82%A4%E3%82%B4%E3%83%B3%E5%A4%A7%E6%95%99%E4%BC%9A",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền nhà thờ với hai tháp chuông và tượng Đức Mẹ Hòa Bình phía trước. Ô cửa hoa hồng tròn ở giữa và các ô cửa nhọn kiểu Gothic khiến khối gạch đỏ trở nên thanh thoát.",
+    "en": "The cathedral facade with its two bell towers and the statue of Our Lady of Peace in front. The round rose window and the pointed Gothic openings make the mass of red brick look graceful.",
+    "fr": "La façade et ses deux clochers, avec devant la statue de Notre-Dame de la Paix. La rosace centrale et les baies gothiques allègent la masse de brique rouge.",
+    "ja": "二つの鐘楼と平和の聖母像が立つ正面。中央の丸いバラ窓と尖ったゴシック風の開口部が、赤レンガの重厚な建物を軽やかに見せています。"
+   },
+   "gallery": [
+    {
+     "path": "p04-2.jpg",
+     "sha256": "0317d09737957bd0a5cec95e2f052ecf332560e7a50a7f032aae1ed4f9149e21",
+     "bytes": 404355,
+     "license": "CC BY 2.0",
+     "attribution": "Tuan Nguyen",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Chu%C3%B4ng_La_Nh%C3%A0_th%E1%BB%9D_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Chu%C3%B4ng_La_Nh%C3%A0_th%E1%BB%9D_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n.jpg/1280px-Chu%C3%B4ng_La_Nh%C3%A0_th%E1%BB%9D_%C4%90%E1%BB%A9c_B%C3%A0_S%C3%A0i_G%C3%B2n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Chuông La trong tháp chuông, nặng 5.931 kg, gần sáu tấn. Cùng với chuông Si treo bên cạnh, chuông này chỉ được đổ vào thứ Năm Tuần Thánh và đêm Giao thừa Tết Nguyên đán, nên rất ít người từng nghe tiếng của nó.",
+      "en": "The La bell in the bell tower, weighing 5,931 kg, nearly six tonnes. Together with the Si bell beside it, it rings only on Holy Thursday and on the eve of the Lunar New Year, so few people have ever heard it.",
+      "fr": "La cloche La, dans le clocher, pèse 5 931 kg, près de six tonnes. Avec la cloche Si voisine, elle ne sonne que le Jeudi saint et la veille du Nouvel An lunaire : rares sont ceux qui l’ont entendue.",
+      "ja": "鐘楼の「ラの鐘」は重さ5,931キロ、約6トンあります。隣の「シの鐘」とともに、聖木曜日と旧正月の大晦日にしか鳴らされないため、その音を聞いた人はごくわずかです。"
+     }
+    },
+    {
+     "path": "p04-3.jpg",
+     "sha256": "0880f04f6afec305762391e3f9bfcddd9fa6790613cd4095c035c36513aad2e0",
+     "bytes": 345196,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Diego Delso",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_01.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_01.JPG/1280px-Bas%C3%ADlica_de_Nuestra_Se%C3%B1ora%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Phần thân và hậu cung nhìn từ phía bên. Từ góc này, bạn thấy rõ những hàng cửa vòm, trụ gạch và mái ngói xếp lớp, cho thấy công trình được xây theo mặt bằng hình chữ thập như các nhà thờ lớn ở châu Âu.",
+      "en": "The nave and apse seen from the side. From here you can clearly see the rows of arched windows, brick buttresses and layered tile roofs, showing that the church follows a cross-shaped plan like the great cathedrals of Europe.",
+      "fr": "La nef et le chevet vus de côté. On distingue les rangées de baies cintrées, les contreforts de brique et les toits de tuiles étagés : l’église suit un plan en croix, comme les grandes cathédrales d’Europe.",
+      "ja": "側面から見た身廊と後陣。アーチ窓の列やレンガの控え壁、重なる瓦屋根がよく見え、ヨーロッパの大聖堂と同じ十字形の平面で建てられていることがわかります。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Nhà hát Thành phố Hồ Chí Minh",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "Nhà hát Thành phố, còn gọi là Nhà hát Lớn, được xây dựng từ năm 1898 đến 1900 theo thiết kế của các kiến trúc sư Pháp Eugène Ferret, Félix Olivier và Ernest Guichard. Mặt tiền mang phong cách Belle Époque, lấy cảm hứng từ bảo tàng Petit Palais ở Paris được xây cùng thời: vòm cổng lớn ở giữa, hai bên là các cột và tượng trang trí, trên đỉnh là những phù điêu thần thoại. Ban đầu nhà hát phục vụ giới thượng lưu Pháp xem các đoàn kịch, nhạc kịch từ châu Âu sang lưu diễn. Năm 1955, tòa nhà trở thành trụ sở Hạ nghị viện của chính quyền Việt Nam Cộng hòa, và sau năm 1975 được trả lại chức năng biểu diễn nghệ thuật. Khán phòng hiện có khoảng năm trăm chỗ ngồi với nhiều tầng ban công, trần vẽ trang trí và đèn chùm lộng lẫy. Ngày nay, nhà hát là nơi biểu diễn của dàn nhạc giao hưởng, nhạc vũ kịch, múa và chương trình xiếc tre nổi tiếng Ạ Ố Show. Quảng trường trước nhà hát nằm giữa đường Đồng Khởi và Lê Lợi, bên cạnh là các khách sạn lâu đời như Continental và Caravelle. Nếu có dịp, hãy mua vé xem một buổi diễn buổi tối: cảm giác ngồi trong khán phòng hơn một trăm năm tuổi là trải nghiệm rất đáng nhớ.",
+     "source_url": "https://vi.wikipedia.org/wiki/Nh%C3%A0_h%C3%A1t_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "The Municipal Theatre, also called the Opera House, was built from 1898 to 1900 to designs by the French architects Eugène Ferret, Félix Olivier and Ernest Guichard. Its Belle Époque facade was inspired by the Petit Palais in Paris, built at the same time: a great central arch, columns and statues on either side, and mythological reliefs on top. At first the theatre entertained the French elite with drama and opera companies touring from Europe. In 1955 the building became the Lower House of the National Assembly of the Republic of Vietnam, and after 1975 it returned to the performing arts. The auditorium seats about five hundred people across several balconies, beneath a painted ceiling and splendid chandeliers. Today it hosts the symphony orchestra, musicals, dance and the celebrated bamboo circus AO Show. The square in front lies between Dong Khoi and Le Loi streets, next to historic hotels such as the Continental and the Caravelle. If you can, book an evening performance: sitting in a hall more than a century old is a memorable experience.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Opera_House",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "Le Théâtre municipal, ou Opéra, fut construit de 1898 à 1900 sur les plans des architectes français Eugène Ferret, Félix Olivier et Ernest Guichard. Sa façade Belle Époque s’inspire du Petit Palais de Paris, bâti à la même époque : grande arche centrale, colonnes et statues de part et d’autre, reliefs mythologiques au sommet. Il accueillit d’abord l’élite française venue applaudir les troupes de théâtre et d’opéra en tournée. En 1955, il devint le siège de la Chambre basse de la République du Vietnam, puis retrouva sa vocation artistique après 1975. La salle compte environ cinq cents places sur plusieurs balcons, sous un plafond peint et de somptueux lustres. On y donne aujourd’hui concerts symphoniques, comédies musicales, danse et le célèbre cirque de bambou AO Show. La place devant le théâtre se situe entre les rues Dong Khoi et Le Loi, près d’hôtels historiques comme le Continental et le Caravelle. Si possible, assistez à un spectacle du soir : s’asseoir dans une salle plus que centenaire est inoubliable.",
+     "source_url": "https://fr.wikipedia.org/wiki/Op%C3%A9ra_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Nhà hát Thành phố Hồ Chí Minh",
+     "content": "市劇場（オペラハウス）は1898年から1900年にかけて、フランス人建築家ウジェーヌ・フェレ、フェリックス・オリヴィエ、エルネスト・ギシャールの設計で建てられました。同じ時期に建てられたパリのプティ・パレに着想を得たベル・エポック様式の正面には、中央の大きなアーチ、両脇の柱や彫像、頂部の神話をモチーフにした浮き彫りがあります。当初はヨーロッパから巡業する劇団やオペラをフランス人上流階級が楽しむ場でした。1955年にはベトナム共和国の下院議事堂となり、1975年以降は再び舞台芸術の場に戻りました。客席は数層のバルコニーを含め約500席で、装飾天井と豪華なシャンデリアが見事です。現在は交響楽団の演奏会やミュージカル、舞踊、竹を使った人気の「アーオー・ショー」が上演されています。正面の広場はドンコイ通りとレロイ通りの間にあり、コンチネンタルやカラベルといった老舗ホテルが並びます。機会があれば夜の公演を予約してみてください。100年以上の歴史をもつ客席に座る体験は忘れられないものになります。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E5%8A%87%E5%A0%B4",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền nhà hát với vòm cổng lớn và những bức tượng trang trí. Màu trắng ngà cùng các đường cong mềm mại là dấu ấn của phong cách Belle Époque, đặc biệt đẹp khi lên đèn vào buổi tối.",
+    "en": "The theatre facade with its great arch and decorative statues. The ivory colour and soft curves are hallmarks of the Belle Époque style, especially lovely when lit up in the evening.",
+    "fr": "La façade du théâtre, sa grande arche et ses statues décoratives. Le blanc ivoire et les courbes souples signent le style Belle Époque, magnifique une fois illuminé le soir.",
+    "ja": "大きなアーチと装飾彫像のある劇場の正面。象牙色と柔らかな曲線はベル・エポック様式の特徴で、夜のライトアップは特に美しいです。"
+   },
+   "gallery": [
+    {
+     "path": "p05-2.jpg",
+     "sha256": "54a9c7de19dcc8fd0560df92ad5d4bdfebf8507fb3b97a543955526767a59023",
+     "bytes": 319000,
+     "license": "CC BY-SA 2.0",
+     "attribution": "Clay Gilliland",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Gilliland_IMG_0825_(12110237904).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Gilliland_IMG_0825_%2812110237904%29.jpg/1280px-Gilliland_IMG_0825_%2812110237904%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Khán phòng bên trong nhà hát với các tầng ban công vòng cung, trần trang trí và hệ đèn sân khấu. Kiểu khán phòng hình móng ngựa này giúp âm thanh vang đều và khán giả ở mọi tầng đều nhìn rõ sân khấu.",
+      "en": "The auditorium with its curved balconies, decorated ceiling and stage lighting. This horseshoe layout spreads the sound evenly and gives every tier a clear view of the stage.",
+      "fr": "La salle, ses balcons en arc de cercle, son plafond décoré et ses éclairages. Ce plan en fer à cheval répartit bien le son et offre à chaque niveau une bonne vue sur la scène.",
+      "ja": "弧を描くバルコニー、装飾天井、舞台照明のある客席。馬蹄形の配置により音が均一に響き、どの階からも舞台がよく見えます。"
+     }
+    },
+    {
+     "path": "p05-3.jpg",
+     "sha256": "80b5320449b7bfe409c59a4fb1730b42d686da2d2785913ac8e9365b77f45a5a",
+     "bytes": 248357,
+     "license": "CC BY-SA 3.0",
+     "attribution": "jetsun",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%BFn_Ngh%C3%A9,_District_1,_Ho_Chi_Minh,_Vietnam_-_panoramio_(1).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/B%E1%BA%BFn_Ngh%C3%A9%2C_District_1%2C_Ho_Chi_Minh%2C_Vietnam_-_panoramio_%281%29.jpg/1280px-B%E1%BA%BFn_Ngh%C3%A9%2C_District_1%2C_Ho_Chi_Minh%2C_Vietnam_-_panoramio_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Pho tượng có cánh trên đỉnh vòm cổng chính, nổi bật trên nền trời. Những tượng thần thoại như thế này tượng trưng cho nghệ thuật và âm nhạc, gợi nhớ các nhà hát lớn ở Paris cuối thế kỷ 19.",
+      "en": "The winged statue crowning the main arch, standing out against the sky. Mythological figures like this symbolise art and music, recalling the great theatres of late nineteenth-century Paris.",
+      "fr": "La statue ailée qui couronne l’arche principale se détache sur le ciel. Ces figures mythologiques symbolisent l’art et la musique et rappellent les grands théâtres parisiens de la fin du XIXe siècle.",
+      "ja": "正面アーチの頂上で空に映える翼のある彫像。こうした神話の像は芸術と音楽を象徴し、19世紀末パリの大劇場を思わせます。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Trụ sở Ủy ban nhân dân Thành phố",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "Trụ sở Ủy ban nhân dân Thành phố Hồ Chí Minh, người Sài Gòn xưa quen gọi là Dinh Xã Tây, được xây dựng từ năm 1898 đến 1909 theo thiết kế của kiến trúc sư Pháp Fernand Gardès. Tòa nhà lấy cảm hứng từ Tòa thị chính Paris, ban đầu là trụ sở của chính quyền thành phố Sài Gòn thời Pháp. Mặt tiền dài màu vàng kem được chia nhịp bởi các hàng cột, cửa vòm và ban công; chính giữa là tháp đồng hồ cao, hai đầu là hai khối nhà có mái dốc ốp ngói đỏ. Trên cao, các phù điêu và tượng trang trí thể hiện những hình tượng phụ nữ và trẻ em, biểu trưng cho sự trù phú và hòa bình. Sau năm 1975, tòa nhà trở thành trụ sở Hội đồng nhân dân và Ủy ban nhân dân thành phố. Vì là cơ quan làm việc nên du khách thường không vào bên trong, trừ một số dịp mở cửa đặc biệt; bên trong nổi tiếng với sảnh lớn, cầu thang và đèn chùm pha lê. Năm 2015, quảng trường phía trước được chỉnh trang cùng với phố đi bộ Nguyễn Huệ, và tượng đài Chủ tịch Hồ Chí Minh bằng đồng được dựng tại đây. Thời điểm đẹp nhất để ngắm là lúc chiều tối, khi tòa nhà lên đèn vàng ấm áp và quảng trường đông vui người dạo bộ.",
+     "source_url": "https://vi.wikipedia.org/wiki/Tr%E1%BB%A5_s%E1%BB%9F_%E1%BB%A6y_ban_nh%C3%A2n_d%C3%A2n_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "The headquarters of the Ho Chi Minh City People’s Committee, long known to Saigon residents as the Hôtel de Ville, was built from 1898 to 1909 to a design by French architect Fernand Gardès. Inspired by the Paris city hall, it first housed the city government of French Saigon. The long cream-yellow facade is punctuated by columns, arched windows and balconies; a tall clock tower rises in the centre, and at either end stand pavilions with steep red-tiled roofs. High up, reliefs and statues of women and children symbolise abundance and peace. After 1975 the building became the seat of the city People’s Council and People’s Committee. As a working government office it is usually closed to visitors except on special open days; its interior is known for a grand hall, staircase and crystal chandeliers. In 2015 the square in front was redesigned together with Nguyen Hue walking street, and a bronze statue of President Ho Chi Minh was erected there. The best time to come is early evening, when the building glows with warm light and the square fills with strollers.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Hall",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "Le siège du Comité populaire de Hô Chi Minh-Ville, que les Saïgonnais appelaient l’Hôtel de Ville, fut construit de 1898 à 1909 sur les plans de l’architecte français Fernand Gardès. Inspiré de l’hôtel de ville de Paris, il abrita d’abord la municipalité de Saïgon. La longue façade jaune crème est rythmée de colonnes, de baies cintrées et de balcons ; au centre s’élève une haute tour d’horloge, et aux extrémités des pavillons coiffés de toits de tuiles rouges. En hauteur, reliefs et statues de femmes et d’enfants symbolisent l’abondance et la paix. Après 1975, le bâtiment devint le siège du Conseil et du Comité populaires de la ville. Bâtiment administratif, il ne se visite qu’à l’occasion de journées portes ouvertes ; on vante son grand hall, son escalier et ses lustres de cristal. En 2015, la place fut réaménagée avec la rue piétonne Nguyen Hue, et une statue en bronze du président Hô Chi Minh y fut érigée. Venez en début de soirée, quand l’édifice s’illumine et que la place s’anime.",
+     "source_url": "https://fr.wikipedia.org/wiki/H%C3%B4tel_de_ville_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Trụ sở Ủy ban nhân dân Thành phố",
+     "content": "ホーチミン市人民委員会庁舎は、かつてのサイゴン市民から「市庁舎」と呼ばれ、1898年から1909年にかけてフランス人建築家フェルナン・ガルデスの設計で建てられました。パリ市庁舎に着想を得ており、当初はフランス統治下のサイゴン市役所でした。クリーム色の長い正面は列柱やアーチ窓、バルコニーでリズムよく区切られ、中央には高い時計塔、両端には赤い瓦の急勾配屋根をもつ棟があります。上部の浮き彫りや女性と子どもの彫像は、豊かさと平和を象徴しています。1975年以降は市人民評議会と人民委員会の庁舎となりました。現役の行政機関のため、特別公開日を除いて内部には入れませんが、大ホールや階段、クリスタルのシャンデリアで知られています。2015年にはグエンフエ歩行者通りとともに前の広場が整備され、ホー・チ・ミン主席の銅像が建てられました。建物が温かな光に包まれ、広場が散策する人でにぎわう夕暮れ時がいちばんの見どころです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E4%BA%BA%E6%B0%91%E5%A7%94%E5%93%A1%E4%BC%9A%E5%BA%81%E8%88%8E",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền tòa nhà vào ban ngày, với tháp đồng hồ ở giữa và hai khối mái ngói đỏ hai bên. Hãy chú ý các phù điêu trên cao và những ô cửa vòm lặp lại đều đặn theo kiểu tòa thị chính châu Âu.",
+    "en": "The facade by day, with the clock tower in the middle and red-tiled pavilions at each end. Look up at the reliefs and the regular rhythm of arched windows typical of a European city hall.",
+    "fr": "La façade de jour, avec la tour de l’horloge au centre et les pavillons aux toits rouges. Levez les yeux vers les reliefs et le rythme régulier des baies, typique d’un hôtel de ville européen.",
+    "ja": "昼間の正面。中央の時計塔と両端の赤い瓦屋根が見えます。上部の浮き彫りや、ヨーロッパの市庁舎らしく規則正しく並ぶアーチ窓に注目してください。"
+   },
+   "gallery": [
+    {
+     "path": "p06-2.jpg",
+     "sha256": "596d79846d8c7011cd9ff5d98dfadf6404a5159a28608e1135da98f27bbdd252",
+     "bytes": 181007,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Diego Delso",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Ayuntamiento,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_10.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3b/Ayuntamiento%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_10.JPG/1280px-Ayuntamiento%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_10.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Tòa nhà rực rỡ ánh đèn khi màn đêm buông xuống. Hệ thống chiếu sáng làm nổi bật từng đường gờ, phù điêu và tháp đồng hồ, biến nơi đây thành phông nền quen thuộc cho ảnh kỷ niệm của người dân và du khách.",
+      "en": "The building aglow after nightfall. The lighting picks out every cornice, relief and the clock tower, making it a favourite backdrop for photos taken by residents and visitors alike.",
+      "fr": "Le bâtiment illuminé à la tombée de la nuit. L’éclairage souligne chaque corniche, chaque relief et la tour de l’horloge : un décor prisé pour les photos des habitants comme des visiteurs.",
+      "ja": "夜に輝く庁舎。ライトアップが軒の装飾や浮き彫り、時計塔を浮かび上がらせ、市民や旅行者の記念撮影の定番の背景になっています。"
+     }
+    },
+    {
+     "path": "p06-3.jpg",
+     "sha256": "9fd5d3126b4c483ce62a6965c3ae9f6326448111fe15d050d9793083294d6f15",
+     "bytes": 270319,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Prenn",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%C3%A1c_H%E1%BB%93_v%E1%BB%9Bi_Thi%E1%BA%BFu_nhi.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/B%C3%A1c_H%E1%BB%93_v%E1%BB%9Bi_Thi%E1%BA%BFu_nhi.jpg/1280px-B%C3%A1c_H%E1%BB%93_v%E1%BB%9Bi_Thi%E1%BA%BFu_nhi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Tượng \"Bác Hồ với thiếu nhi\" của nhà điêu khắc Diệp Minh Châu, trong ảnh chụp năm 2009 tại khu vườn trước trụ sở. Hình ảnh Bác ân cần bên em nhỏ gắn bó với nhiều thế hệ người Sài Gòn trước khi quảng trường được chỉnh trang năm 2015.",
+      "en": "The statue “Uncle Ho with Children” by sculptor Diep Minh Chau, photographed in 2009 in the garden in front of the building. This tender image was familiar to generations of Saigon residents before the square was redesigned in 2015.",
+      "fr": "La statue « L’Oncle Hô et les enfants » du sculpteur Diep Minh Chau, photographiée en 2009 dans le jardin devant le bâtiment. Cette image tendre a accompagné des générations de Saïgonnais avant le réaménagement de la place en 2015.",
+      "ja": "彫刻家ジエップ・ミン・チャウの作品「ホーおじさんと子どもたち」。2009年に庁舎前の庭園で撮影されたもので、2015年に広場が整備されるまで、何世代ものサイゴン市民に親しまれてきました。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Thành phố Hồ Chí Minh",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "Tòa nhà của Bảo tàng Thành phố Hồ Chí Minh được xây dựng từ năm 1885 đến 1890 theo thiết kế của kiến trúc sư Alfred Foulhoux, cũng là người thiết kế Bưu điện Trung tâm. Công trình kết hợp phong cách tân cổ điển với các chi tiết Baroque: mặt tiền đối xứng, hàng cột trắng, mái vòm và cầu thang lớn trong sảnh. Ban đầu tòa nhà được dự định làm bảo tàng thương mại, sau đó trở thành dinh của Thống đốc Nam Kỳ. Từ giữa thế kỷ 20, nơi đây mang tên Dinh Gia Long, từng là nơi làm việc của Tổng thống Ngô Đình Diệm trong những năm Dinh Độc Lập được xây lại, và gắn với cuộc đảo chính tháng 11 năm 1963. Bên dưới tòa nhà có hệ thống đường hầm kiên cố được xây dựng trong thời gian này. Sau năm 1975, tòa nhà trở thành bảo tàng, và từ năm 1999 mang tên Bảo tàng Thành phố Hồ Chí Minh. Các phòng trưng bày kể câu chuyện hình thành vùng đất Sài Gòn – Gia Định: thiên nhiên, khảo cổ, tiền tệ, nghề thủ công, công nghiệp, đời sống thị dân và các giai đoạn lịch sử. Ngoài sân trưng bày máy bay, trực thăng và xe quân sự. Khuôn viên nhiều cây xanh và những bậc cầu thang trắng là địa điểm chụp ảnh cưới được yêu thích bậc nhất thành phố.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "The building of the Museum of Ho Chi Minh City was erected from 1885 to 1890 to a design by Alfred Foulhoux, who also designed the Central Post Office. It combines neoclassicism with Baroque details: a symmetrical facade, white columns, a dome and a grand staircase in the hall. Originally intended as a commercial museum, it soon became the residence of the Governor of Cochinchina. From the mid-twentieth century it was known as Gia Long Palace; President Ngo Dinh Diem worked here while Independence Palace was being rebuilt, and it is linked to the coup of November 1963. Beneath the building lies a network of reinforced tunnels built during that period. After 1975 it became a museum, named the Museum of Ho Chi Minh City since 1999. Its galleries tell how the land of Saigon and Gia Dinh took shape: nature, archaeology, currency, crafts, industry, city life and the historical eras. Aircraft, a helicopter and military vehicles stand in the courtyard. The leafy grounds and white staircases are among the city’s favourite places for wedding photos.",
+     "source_url": "https://en.wikipedia.org/wiki/Museum_of_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "Le bâtiment du Musée de Hô Chi Minh-Ville fut construit de 1885 à 1890 sur les plans d’Alfred Foulhoux, également auteur de la Poste centrale. Il associe néoclassicisme et détails baroques : façade symétrique, colonnes blanches, dôme et grand escalier d’honneur. Prévu d’abord comme musée commercial, il devint vite la résidence du gouverneur de Cochinchine. Au milieu du XXe siècle, sous le nom de palais Gia Long, il accueillit le président Ngo Dinh Diem pendant la reconstruction du Palais de l’Indépendance et reste lié au coup d’État de novembre 1963. Sous l’édifice s’étend un réseau de tunnels renforcés datant de cette époque. Devenu musée après 1975, il porte depuis 1999 le nom de Musée de Hô Chi Minh-Ville. Ses salles racontent la formation de Saïgon et Gia Dinh : nature, archéologie, monnaies, artisanat, industrie, vie urbaine et grandes périodes historiques. Avions, hélicoptère et véhicules militaires occupent la cour. Le parc arboré et les escaliers blancs comptent parmi les lieux préférés des photos de mariage.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Thành phố Hồ Chí Minh",
+     "content": "ホーチミン市博物館の建物は、中央郵便局も手がけたアルフレッド・フールーの設計で1885年から1890年にかけて建てられました。左右対称の正面、白い列柱、ドーム、ホールの大階段など、新古典主義にバロックの装飾を加えた建築です。当初は商業博物館として計画されましたが、まもなくコーチシナ総督の公邸となりました。20世紀半ばには「ザーロン宮殿」と呼ばれ、独立宮殿の再建中にはゴ・ディン・ジエム大統領の執務の場となり、1963年11月のクーデターとも深く関わっています。建物の地下には、この時期に造られた頑丈な地下通路があります。1975年以降は博物館となり、1999年から現在の名称になりました。展示室では自然、考古学、貨幣、手工業、産業、市民の暮らし、そして各時代の歴史を通して、サイゴン・ザーディンの成り立ちを紹介しています。中庭には飛行機やヘリコプター、軍用車両が並びます。緑豊かな庭と白い階段は、市内屈指のウェディングフォトの人気スポットです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%9B%E3%83%BC%E3%83%81%E3%83%9F%E3%83%B3%E5%B8%82%E5%8D%9A%E7%89%A9%E9%A4%A8",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền bảo tàng với hàng cột trắng và mái vòm nhô cao. Phía trước là bậc thềm rộng và hàng rào sắt hoa văn, nơi các cặp đôi thường tạo dáng chụp ảnh cưới vào cuối tuần.",
+    "en": "The museum facade with its white columns and raised dome. In front are wide steps and an ornamental iron fence, where couples often pose for wedding photos at weekends.",
+    "fr": "La façade du musée, ses colonnes blanches et son dôme. Devant, de larges marches et une grille ouvragée où les jeunes mariés posent souvent le week-end.",
+    "ja": "白い列柱と高いドームが印象的な博物館の正面。手前の広い階段と装飾的な鉄柵は、週末になると結婚写真を撮るカップルでにぎわいます。"
+   },
+   "gallery": [
+    {
+     "path": "p07-2.jpg",
+     "sha256": "47348936d65d3902584878f48ddaaebd9bdd75c6aac0a7fbca5dfb44369c7348",
+     "bytes": 263837,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_2.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_2.jpg/1280px-B%E1%BA%A3o_t%C3%A0ng_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Phòng trưng bày về công nghiệp và tiểu thủ công nghiệp Sài Gòn – Thành phố Hồ Chí Minh. Những chiếc máy móc, dụng cụ và sản phẩm thủ công kể lại cách người dân nơi đây buôn bán, sản xuất và làm nên một trung tâm kinh tế sôi động.",
+      "en": "The gallery on industry and handicrafts in Saigon–Ho Chi Minh City. Machines, tools and handmade goods show how people here traded and manufactured, building a lively economic hub.",
+      "fr": "La salle consacrée à l’industrie et à l’artisanat de Saïgon–Hô Chi Minh-Ville. Machines, outils et objets artisanaux montrent comment les habitants ont commercé et fabriqué, faisant de la ville un centre économique dynamique.",
+      "ja": "サイゴン・ホーチミン市の工業と手工業を紹介する展示室。機械や道具、手工芸品から、人々がどのように商いや生産を営み、活気ある経済の中心地を築いてきたかがわかります。"
+     }
+    },
+    {
+     "path": "p07-3.jpg",
+     "sha256": "ed50bf4cdadf9af9d60858ab6c09a4c4859ee076020f8f884aee297001409cf2",
+     "bytes": 384692,
+     "license": "CC0",
+     "attribution": "Gary Todd",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bell_UH-1H-BF_Iroquois_%E2%80%98541%E2%80%99_(39996725755).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Bell_UH-1H-BF_Iroquois_%E2%80%98541%E2%80%99_%2839996725755%29.jpg/1280px-Bell_UH-1H-BF_Iroquois_%E2%80%98541%E2%80%99_%2839996725755%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Chiếc trực thăng UH-1H trưng bày ngoài sân bảo tàng. Sau năm 1975, chiếc máy bay này được Không quân Nhân dân Việt Nam thu giữ và tiếp tục sử dụng, nay trở thành một chứng tích của thời chiến giữa khu vườn yên bình.",
+      "en": "The UH-1H helicopter on display in the museum courtyard. After 1975 it was captured and flown by the Vietnam People’s Air Force; today it is a reminder of wartime in a peaceful garden.",
+      "fr": "L’hélicoptère UH-1H exposé dans la cour du musée. Après 1975, il fut capturé puis utilisé par l’armée de l’air populaire du Vietnam ; il rappelle aujourd’hui la guerre au milieu d’un jardin paisible.",
+      "ja": "博物館の中庭に展示されたUH-1Hヘリコプター。1975年以降にベトナム人民空軍が接収して運用したもので、穏やかな庭の中で戦争の時代を伝えています。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh nằm trong quần thể ba tòa biệt thự được xây dựng khoảng từ năm 1929 đến 1934 cho gia đình Hứa Bổn Hòa, một trong những thương gia người Hoa giàu có nhất Sài Gòn đầu thế kỷ 20, người dân quen gọi là \"chú Hỏa\". Kiến trúc kết hợp phong cách Pháp với các chi tiết phương Đông: mặt tiền vàng tươi, ban công sắt uốn, cửa kính màu, sàn gạch bông nhiều họa tiết, và một chiếc thang máy cổ được xem là một trong những thang máy đầu tiên của thành phố. Bảo tàng được thành lập năm 1987. Tòa nhà chính trưng bày mỹ thuật Việt Nam hiện đại với tranh sơn mài, sơn dầu, lụa, khắc gỗ và điêu khắc, trong đó có nhiều tác phẩm về đề tài chiến tranh và đời sống. Các khu khác giới thiệu cổ vật như điêu khắc Chăm Pa, hiện vật văn hóa Óc Eo, gốm sứ và mỹ thuật ứng dụng. Đi trong bảo tàng, bạn sẽ được ngắm cả tác phẩm lẫn chính tòa nhà: ánh sáng xuyên qua kính màu xuống những hành lang rộng, những khung cửa vòm và giếng trời. Khu vườn phía sau có nhiều tượng điêu khắc ngoài trời. Đây là điểm dừng lý tưởng để tránh nắng buổi trưa, và cũng là một trong những góc chụp ảnh kiến trúc đẹp nhất Quận 1.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "The Ho Chi Minh City Museum of Fine Arts occupies a group of three villas built around 1929 to 1934 for the family of Hui Bon Hoa, one of the richest Chinese merchants in early twentieth-century Saigon, whom locals called “Uncle Hoa”. The architecture blends French style with Eastern details: a bright yellow facade, wrought-iron balconies, stained glass, patterned cement tiles and a vintage lift said to be one of the first in the city. The museum was founded in 1987. The main building shows modern Vietnamese art, with lacquer, oil and silk paintings, woodcuts and sculpture, many on themes of war and everyday life. Other wings present antiquities such as Champa sculpture, objects of the Oc Eo culture, ceramics and applied arts. As you walk around you admire both the works and the house itself: light falls through the coloured glass onto wide corridors, arches and light wells. The garden behind holds outdoor sculptures. It is an ideal stop to escape the midday heat, and one of the best spots for architectural photos in District 1.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "Le Musée des Beaux-Arts de Hô Chi Minh-Ville occupe trois villas construites vers 1929–1934 pour la famille de Hui Bon Hoa, l’un des plus riches négociants chinois de Saïgon au début du XXe siècle, surnommé « l’oncle Hoa ». L’architecture mêle style français et détails orientaux : façade jaune vif, balcons en fer forgé, vitraux, carreaux de ciment à motifs et un ascenseur ancien réputé l’un des premiers de la ville. Le musée fut fondé en 1987. Le bâtiment principal présente l’art vietnamien moderne : laques, huiles, peintures sur soie, gravures sur bois et sculptures, souvent sur la guerre et la vie quotidienne. D’autres ailes exposent des antiquités : sculpture cham, objets de la culture d’Oc Eo, céramiques et arts appliqués. On y admire autant les œuvres que la maison : la lumière tombe des vitraux sur de larges couloirs, des arcades et des puits de lumière. Le jardin arrière accueille des sculptures en plein air. Halte idéale aux heures chaudes, c’est aussi l’un des plus beaux décors architecturaux du 1er arrondissement.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_des_Beaux-Arts_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+     "content": "ホーチミン市美術館は、20世紀初めのサイゴンで最も裕福な華人商人の一人で「ホアおじさん」と呼ばれたホイ・ボン・ホア一族のために、1929年から1934年頃に建てられた三棟の邸宅にあります。鮮やかな黄色の外壁、鉄細工のバルコニー、ステンドグラス、模様入りのセメントタイル、そして市内で最初期のものといわれる古いエレベーターなど、フランス様式に東洋の意匠を取り入れた建築です。美術館は1987年に設立されました。本館ではベトナム近代美術として、漆絵や油絵、絹絵、木版画、彫刻を展示し、戦争や日常生活を描いた作品が多く見られます。別棟ではチャンパの彫刻やオケオ文化の遺物、陶磁器、工芸を紹介しています。館内では作品だけでなく建物そのものも見どころで、色ガラスから差し込む光が広い回廊やアーチ、吹き抜けを照らします。裏庭には屋外彫刻が並びます。日中の暑さを避けるのにぴったりで、1区でも指折りの建築写真スポットです。",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_Fine_Arts",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Mặt tiền tòa biệt thự chính nhìn từ đường Phó Đức Chính. Màu vàng rực, các ban công cong và mái hiên nhỏ tạo nên vẻ sang trọng của một dinh thự thương gia giàu có thời Pháp.",
+    "en": "The main villa seen from Pho Duc Chinh Street. Its vivid yellow, curved balconies and small canopies express the elegance of a wealthy merchant’s mansion in the French era.",
+    "fr": "La villa principale vue de la rue Pho Duc Chinh. Le jaune éclatant, les balcons galbés et les petites marquises disent l’élégance d’une demeure de riche négociant à l’époque française.",
+    "ja": "フォー・ドゥック・チン通りから見た本館。鮮やかな黄色、曲線を描くバルコニー、小さなひさしが、フランス統治時代の豪商の邸宅らしい優雅さを伝えています。"
+   },
+   "gallery": [
+    {
+     "path": "p08-2.jpg",
+     "sha256": "ed76fa0d0784634fb3b64e2c82d8ae833742cbc713e71fc19d88165fc8a1bb8d",
+     "bytes": 440753,
+     "license": "CC BY-SA 4.0",
+     "attribution": "RG72",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bustoj_apud_la_Belarta_Muzeo_de_Ho-%C4%88i-Min-Urbo_01.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Bustoj_apud_la_Belarta_Muzeo_de_Ho-%C4%88i-Min-Urbo_01.jpg/1280px-Bustoj_apud_la_Belarta_Muzeo_de_Ho-%C4%88i-Min-Urbo_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Những tượng bán thân đặt trong khu vườn bên cạnh bảo tàng, dưới bóng cây cổ thụ. Không gian điêu khắc ngoài trời này mời bạn chậm lại, ngắm từng gương mặt và cảm nhận chất liệu đá, đồng dưới ánh sáng tự nhiên.",
+      "en": "Portrait busts in the garden beside the museum, beneath an old tree. This outdoor sculpture space invites you to slow down, look at each face and feel the stone and bronze in natural light.",
+      "fr": "Des bustes dans le jardin voisin du musée, à l’ombre d’un vieil arbre. Cet espace de sculpture en plein air invite à ralentir, à observer chaque visage et la matière de la pierre et du bronze.",
+      "ja": "美術館の隣の庭、古木の陰に並ぶ胸像。屋外の彫刻空間で歩みをゆるめ、一つひとつの表情や、自然光の下での石やブロンズの質感を味わってください。"
+     }
+    },
+    {
+     "path": "p08-3.jpg",
+     "sha256": "b47668ecd0816fe02b95ebe8b98572065be6314d048275e5aee84ea8bc36a0f9",
+     "bytes": 856742,
+     "license": "CC BY-SA 4.0",
+     "attribution": "Phương Huy",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Tp_(Ki%E1%BA%BFn_tr%C3%BAc_t%C3%B2a_nh%C3%A0_v%C3%A0ng)_(1).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Tp_%28Ki%E1%BA%BFn_tr%C3%BAc_t%C3%B2a_nh%C3%A0_v%C3%A0ng%29_%281%29.jpg/1280px-B%E1%BA%A3o_t%C3%A0ng_M%E1%BB%B9_thu%E1%BA%ADt_Tp_%28Ki%E1%BA%BFn_tr%C3%BAc_t%C3%B2a_nh%C3%A0_v%C3%A0ng%29_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Cổng sắt và mặt tiền tòa nhà vàng với ban công sắt uốn tinh xảo. Hãy để ý những họa tiết hoa lá trên lan can và ô cửa: chúng kết hợp phong cách Art Nouveau châu Âu với thẩm mỹ của gia chủ người Hoa.",
+      "en": "The iron gate and the yellow building with its finely wrought balconies. Notice the floral patterns on the railings and windows, which blend European Art Nouveau with the taste of the Chinese owners.",
+      "fr": "Le portail en fer et le bâtiment jaune aux balcons finement forgés. Remarquez les motifs floraux des garde-corps et des fenêtres, mêlant Art nouveau européen et goût des propriétaires chinois.",
+      "ja": "鉄の門と、繊細な鉄細工のバルコニーをもつ黄色い建物。手すりや窓の草花模様には、ヨーロッパのアール・ヌーヴォーと華人の施主の美意識が融合しています。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh nằm ngay cạnh cổng Thảo Cầm Viên, trên đường Nguyễn Bỉnh Khiêm. Tòa nhà được xây dựng từ năm 1927 đến 1929 theo thiết kế của kiến trúc sư Auguste Delaval, mở cửa với tên gọi Bảo tàng Blanchard de la Brosse. Đây là một ví dụ tiêu biểu của phong cách kiến trúc Đông Dương: khung bê tông hiện đại nhưng mang mái ngói nhiều tầng, đầu đao và các chi tiết trang trí phương Đông, bao quanh một sân trong có hồ nước. Sau nhiều lần đổi tên, từ năm 1979 bảo tàng mang tên hiện nay. Các phòng trưng bày dẫn bạn đi theo dòng thời gian: từ thời tiền sử, văn hóa Đông Sơn, văn hóa Óc Eo ở Nam Bộ, nghệ thuật Chăm Pa với những pho tượng sa thạch tinh xảo, cho đến các triều đại phong kiến và triều Nguyễn. Một bộ sưu tập riêng giới thiệu tượng Phật của nhiều nước châu Á. Hiện vật được nhiều người tìm đến là xác ướp Xóm Cải, được phát hiện năm 1994 khi giải tỏa một ngôi mộ cổ ở Sài Gòn. Bảo tàng cũng có sân khấu múa rối nước biểu diễn vào một số khung giờ trong ngày. Bạn có thể kết hợp tham quan bảo tàng với Thảo Cầm Viên trong cùng một buổi sáng.",
+     "source_url": "https://vi.wikipedia.org/wiki/B%E1%BA%A3o_t%C3%A0ng_L%E1%BB%8Bch_s%E1%BB%AD_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "The Museum of History stands right beside the gate of the Saigon Zoo, on Nguyen Binh Khiem Street. It was built from 1927 to 1929 to a design by architect Auguste Delaval and opened as the Blanchard de la Brosse Museum. It is a classic example of Indochinese architecture: a modern concrete frame crowned with tiered tiled roofs, upturned eaves and Eastern ornaments, arranged around a courtyard with a pond. After several changes of name, it has carried its present name since 1979. The galleries lead you through time: prehistory, the Dong Son culture, the Oc Eo culture of the south, Champa art with its exquisite sandstone statues, and on to the feudal dynasties and the Nguyen era. A separate collection presents Buddha statues from across Asia. A favourite exhibit is the Xom Cai mummy, discovered in 1994 when an old tomb in Saigon was cleared. The museum also has a water-puppet stage with shows at set times of day. You can easily combine it with the zoo in a single morning.",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_History",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "Le Musée d’histoire se trouve juste à côté de l’entrée du jardin zoologique, rue Nguyen Binh Khiem. Construit de 1927 à 1929 par l’architecte Auguste Delaval, il ouvrit sous le nom de musée Blanchard de la Brosse. C’est un exemple type du style indochinois : une ossature moderne en béton coiffée de toits de tuiles étagés, d’angles relevés et d’ornements orientaux, autour d’une cour avec bassin. Après plusieurs changements de nom, il porte le nom actuel depuis 1979. Les salles suivent le fil du temps : préhistoire, culture de Dong Son, culture d’Oc Eo du Sud, art cham et ses superbes statues de grès, puis dynasties féodales et époque des Nguyen. Une collection à part présente des bouddhas de toute l’Asie. Pièce très attendue : la momie de Xom Cai, découverte en 1994 lors du déplacement d’une ancienne tombe à Saïgon. Le musée possède aussi une scène de marionnettes sur l’eau, avec des représentations à heures fixes. On l’associe facilement au zoo en une matinée.",
+     "source_url": "https://fr.wikipedia.org/wiki/Mus%C3%A9e_d%E2%80%99histoire_de_H%C3%B4_Chi_Minh-Ville",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Bảo tàng Lịch sử Thành phố Hồ Chí Minh",
+     "content": "歴史博物館は、サイゴン動植物園の入口のすぐ横、グエン・ビン・キエム通りにあります。1927年から1929年にかけて建築家オーギュスト・ドラヴァルの設計で建てられ、ブランシャール・ド・ラ・ブロス博物館として開館しました。近代的なコンクリート構造に重なる瓦屋根や反り上がった軒、東洋の装飾を組み合わせ、池のある中庭を囲む、インドシナ様式の代表的な建築です。何度かの改称を経て、1979年から現在の名称になりました。展示は時代順に、先史時代、ドンソン文化、南部のオケオ文化、精巧な砂岩彫刻で知られるチャンパ美術、そして封建王朝からグエン朝へと続きます。アジア各地の仏像を集めたコーナーもあります。特に人気なのが、1994年にサイゴンの古い墓の移転工事で発見された「ソムカイのミイラ」です。決まった時間に上演される水上人形劇の舞台もあります。動植物園と合わせて午前中に回るのがおすすめです。",
+     "source_url": "https://en.wikipedia.org/wiki/Ho_Chi_Minh_City_Museum_of_History",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Tòa nhà bảo tàng với mái ngói nhiều tầng và tháp bát giác ở giữa, giữa vườn cây xanh. Đường nét này cho thấy cách người Pháp thời ấy tìm cách hòa trộn kỹ thuật xây dựng hiện đại với hình thức kiến trúc Á Đông.",
+    "en": "The museum with its tiered tiled roofs and central octagonal tower amid green gardens. Its lines show how architects of the time tried to blend modern building methods with Asian forms.",
+    "fr": "Le musée, ses toits de tuiles étagés et sa tour octogonale centrale au milieu des jardins. Ses lignes montrent comment les architectes de l’époque cherchaient à unir techniques modernes et formes asiatiques.",
+    "ja": "緑の中に建つ、重なる瓦屋根と中央の八角形の塔をもつ博物館。当時の建築家が近代的な工法とアジアの建築様式を融合させようとしたことがよくわかります。"
+   },
+   "gallery": [
+    {
+     "path": "p09-2.jpg",
+     "sha256": "b5282a18b60ecb7e2e0424864d743f43d2c60180ce918f1b0de2411b957c7b49",
+     "bytes": 462629,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Unknown authorUnknown author.",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Sandstone_Lakshmi_statue_(10th_century),_Museum_of_Vietnamese_History,_Ho_Chi_Minh_City_-_20121014.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Sandstone_Lakshmi_statue_%2810th_century%29%2C_Museum_of_Vietnamese_History%2C_Ho_Chi_Minh_City_-_20121014.JPG/1280px-Sandstone_Lakshmi_statue_%2810th_century%29%2C_Museum_of_Vietnamese_History%2C_Ho_Chi_Minh_City_-_20121014.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Tượng nữ thần Lakshmi bằng sa thạch, có niên đại khoảng thế kỷ 10. Dáng đứng thẳng, nét mặt hiền hòa và đồ trang sức chạm khắc tinh tế cho thấy trình độ điêu khắc rất cao của các nền văn hóa cổ ở phía Nam Việt Nam.",
+      "en": "A sandstone statue of the goddess Lakshmi from around the tenth century. Her upright pose, serene face and finely carved jewellery reveal the remarkable skill of the ancient cultures of southern Vietnam.",
+      "fr": "Une statue en grès de la déesse Lakshmi, datée vers le Xe siècle. Sa posture droite, son visage serein et ses bijoux finement sculptés révèlent le grand talent des cultures anciennes du sud du Vietnam.",
+      "ja": "10世紀頃の砂岩製ラクシュミー女神像。まっすぐな立ち姿、穏やかな表情、繊細に彫られた装身具から、ベトナム南部の古代文化の高い彫刻技術がうかがえます。"
+     }
+    },
+    {
+     "path": "p09-3.jpg",
+     "sha256": "fa4098353f8bd06764ed51a2ee2fb7788f2d4e5c693b4fbaa721b7953f1d2f44",
+     "bytes": 368597,
+     "license": "CC0",
+     "attribution": "Daderot",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Buddha,_Khmer_people,_wood_-_Museum_of_Vietnamese_History_-_Ho_Chi_Minh_City_-_DSC05780.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Buddha%2C_Khmer_people%2C_wood_-_Museum_of_Vietnamese_History_-_Ho_Chi_Minh_City_-_DSC05780.JPG/1280px-Buddha%2C_Khmer_people%2C_wood_-_Museum_of_Vietnamese_History_-_Ho_Chi_Minh_City_-_DSC05780.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Pho tượng Phật bằng gỗ của người Khmer, được thếp vàng và đặt trên bệ cao. Bộ sưu tập tượng Phật của bảo tàng cho thấy sự đa dạng của Phật giáo ở Việt Nam, nơi cộng đồng người Khmer Nam Bộ gìn giữ truyền thống Phật giáo Nam tông.",
+      "en": "A gilded wooden Buddha made by the Khmer people, set on a tall pedestal. The museum’s Buddha collection shows the diversity of Buddhism in Vietnam, where the Khmer community of the south keeps the Theravada tradition alive.",
+      "fr": "Un bouddha en bois doré réalisé par les Khmers, posé sur un haut socle. La collection de bouddhas montre la diversité du bouddhisme au Vietnam, où la communauté khmère du Sud perpétue la tradition theravada.",
+      "ja": "高い台座に置かれた、金箔を施したクメール人の木造仏像。博物館の仏像コレクションは、南部のクメール人社会が上座部仏教の伝統を守るなど、ベトナムの仏教の多様さを伝えています。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Thảo Cầm Viên Sài Gòn",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "Thảo Cầm Viên Sài Gòn được người Pháp thành lập năm 1864, chỉ vài năm sau khi họ đặt chân đến Sài Gòn, và là một trong những vườn thú lâu đời nhất thế giới còn hoạt động. Ban đầu nơi đây là vườn ươm và nghiên cứu cây trồng, do nhà thực vật học Jean-Baptiste Louis Pierre phụ trách. Ông đã đưa về hàng nghìn loài cây từ khắp nơi, đặt nền móng cho bộ sưu tập thực vật quý hiếm. Về sau, vườn mở rộng thêm khu nuôi thú và trở thành điểm vui chơi quen thuộc của nhiều thế hệ người Sài Gòn, với tên gọi dân gian là \"Sở thú\" hay \"vườn Bách thảo\". Ngày nay, khuôn viên rộng hơn mười héc-ta có hàng trăm cây cổ thụ, nhiều cây đã trên một trăm năm tuổi, cùng vườn lan, vườn kiểng, hồ nước và nhiều loài động vật như voi, hổ, sư tử, hươu cao cổ, hà mã và các loài chim. Trong vườn còn có đền thờ các vua Hùng, được xây dựng năm 1926, nơi diễn ra lễ Giỗ Tổ hằng năm. Bảo tàng Lịch sử nằm ngay cạnh cổng chính. Hãy đến vào buổi sáng khi trời còn mát và các con thú hoạt động nhiều, mang theo nước uống và đi giày thoải mái vì khuôn viên khá rộng.",
+     "source_url": "https://vi.wikipedia.org/wiki/Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn_S%C3%A0i_G%C3%B2n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "The Saigon Zoo and Botanical Gardens were founded by the French in 1864, only a few years after they arrived in Saigon, making them one of the oldest zoos in the world still operating. They began as a nursery and research garden run by botanist Jean-Baptiste Louis Pierre, who brought in thousands of plant species from many regions and laid the foundations of a rare botanical collection. Later an animal section was added, and the gardens became a favourite outing for generations of Saigon residents, who simply call them “the zoo” or “the botanical garden”. Today the grounds of more than ten hectares hold hundreds of ancient trees, many over a century old, along with an orchid garden, ornamental plants, ponds and animals such as elephants, tigers, lions, giraffes, hippos and many birds. There is also a temple to the Hung Kings, built in 1926, where the annual commemoration is held. The Museum of History stands right beside the main gate. Come in the morning when it is cool and the animals are active, bring water and wear comfortable shoes, as the grounds are large.",
+     "source_url": "https://en.wikipedia.org/wiki/Saigon_Zoo_and_Botanical_Gardens",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "Le jardin botanique et zoologique de Saïgon fut fondé par les Français en 1864, quelques années seulement après leur arrivée : c’est l’un des plus anciens zoos encore ouverts au monde. Il fut d’abord une pépinière et un jardin d’essais dirigé par le botaniste Jean-Baptiste Louis Pierre, qui y introduisit des milliers d’espèces et posa les bases d’une collection rare. Une section animale s’y ajouta ensuite, et le jardin devint la sortie préférée de générations de Saïgonnais, qui l’appellent simplement « le zoo » ou « le jardin botanique ». Aujourd’hui, plus de dix hectares abritent des centaines d’arbres centenaires, une orchideraie, des plantes ornementales, des étangs et des animaux : éléphants, tigres, lions, girafes, hippopotames et nombreux oiseaux. On y trouve aussi un temple des rois Hung, bâti en 1926, où se tient la commémoration annuelle. Le Musée d’histoire jouxte l’entrée principale. Venez le matin, à la fraîche, quand les animaux sont actifs, avec de l’eau et de bonnes chaussures : le parc est vaste.",
+     "source_url": "https://fr.wikipedia.org/wiki/Jardin_botanique_et_zoologique_de_Sa%C3%AFgon",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Thảo Cầm Viên Sài Gòn",
+     "content": "サイゴン動植物園は、フランス人がサイゴンに来てわずか数年後の1864年に開設された、現存する世界でも最も古い動物園の一つです。当初は植物学者ジャン＝バティスト・ルイ・ピエールが率いる苗木園・試験園で、各地から数千種の植物を集め、貴重な植物コレクションの基礎を築きました。その後動物の展示が加わり、何世代ものサイゴン市民に「動物園」「植物園」の名で親しまれる行楽地となりました。現在は10ヘクタールを超える園内に、樹齢100年を超えるものも多い数百本の古木、蘭園、盆栽園、池があり、ゾウ、トラ、ライオン、キリン、カバ、さまざまな鳥が暮らしています。園内には1926年に建てられたフン王を祀る祠もあり、毎年祭礼が行われます。正門のすぐ横には歴史博物館があります。涼しく動物が活発な午前中に、水と歩きやすい靴を用意して訪れるのがおすすめです。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B5%E3%82%A4%E3%82%B4%E3%83%B3%E5%8B%95%E6%A4%8D%E7%89%A9%E5%9C%92",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Cổng sắt Thảo Cầm Viên với người bán bong bóng chờ khách trước cổng, khung cảnh gắn với tuổi thơ của nhiều người Sài Gòn. Những ngày cuối tuần, các gia đình vẫn đưa con trẻ đến đây như một truyền thống.",
+    "en": "The iron gate of the zoo with a balloon seller waiting outside, a scene tied to many Saigon childhoods. At weekends families still bring their children here as a tradition.",
+    "fr": "Le portail en fer du zoo, avec un vendeur de ballons qui attend devant : une scène liée à l’enfance de nombreux Saïgonnais. Le week-end, les familles y emmènent encore leurs enfants, par tradition.",
+    "ja": "風船売りが客を待つ動植物園の鉄門は、多くのサイゴン市民の子ども時代の思い出の風景です。週末には今も家族連れが伝統のように子どもを連れて訪れます。"
+   },
+   "gallery": [
+    {
+     "path": "p10-2.jpg",
+     "sha256": "e082583d2772c5ac728d9c89298055cdb82b18d6a10c138a7f32e5bd7e0d3478",
+     "bytes": 328312,
+     "license": "Public domain",
+     "attribution": "Unknown author",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Saigon_-_Jardin_Botanique_-_Les_El%C3%A9phants.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Saigon_-_Jardin_Botanique_-_Les_El%C3%A9phants.jpg/1280px-Saigon_-_Jardin_Botanique_-_Les_El%C3%A9phants.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Tấm bưu thiếp đầu thế kỷ 20 chụp đàn voi trong \"Jardin Botanique\", tên tiếng Pháp của Thảo Cầm Viên. Từ hơn một trăm năm trước, voi đã là một trong những cư dân được yêu thích nhất của khu vườn.",
+      "en": "An early twentieth-century postcard of elephants in the “Jardin Botanique”, the French name of the zoo. For more than a hundred years elephants have been among the garden’s best-loved residents.",
+      "fr": "Une carte postale du début du XXe siècle montrant les éléphants du « Jardin botanique ». Depuis plus d’un siècle, les éléphants comptent parmi les pensionnaires les plus aimés du jardin.",
+      "ja": "20世紀初めの絵はがきに写る「ジャルダン・ボタニーク（植物園）」のゾウたち。100年以上前から、ゾウは園で最も愛される住人の一つです。"
+     }
+    },
+    {
+     "path": "p10-3.jpg",
+     "sha256": "6de457105af9bde18c441418c00a710df1bd55329be4d1d757d1bf76139c2e8d",
+     "bytes": 592451,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Hoangvantoanajc",
+     "source_url": "https://commons.wikimedia.org/wiki/File:H%E1%BB%93_n%C6%B0%E1%BB%9Bc_%E1%BB%9F_Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/H%E1%BB%93_n%C6%B0%E1%BB%9Bc_%E1%BB%9F_Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn.JPG/1280px-H%E1%BB%93_n%C6%B0%E1%BB%9Bc_%E1%BB%9F_Th%E1%BA%A3o_C%E1%BA%A7m_Vi%C3%AAn.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Hồ nước giữa Thảo Cầm Viên với đài phun nước và hàng cây rợp bóng. Đây là góc nghỉ chân mát mẻ giữa những lối đi dài, nơi bạn có thể ngồi nghe tiếng chim và tận hưởng không khí trong lành hiếm có giữa lòng thành phố.",
+      "en": "The pond in the middle of the zoo with its fountain and shady trees. It is a cool place to rest between long walks, where you can sit, listen to the birds and enjoy fresh air rare in the heart of the city.",
+      "fr": "L’étang au centre du zoo, sa fontaine et ses arbres ombreux. Un coin frais pour se reposer entre deux promenades, écouter les oiseaux et respirer un air rare au cœur de la ville.",
+      "ja": "噴水と木陰に囲まれた園の中央の池。長い散策の合間に涼める場所で、鳥の声を聞きながら、都会の真ん中では珍しい澄んだ空気を味わえます。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Chùa Ngọc Hoàng",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "Chùa Ngọc Hoàng, nay có tên chính thức là Phước Hải tự, nằm trên đường Mai Thị Lựu, phường Đa Kao. Chùa được cộng đồng người Hoa gốc Quảng Đông xây dựng vào khoảng đầu thế kỷ 20, ban đầu là một điện thờ Đạo giáo thờ Ngọc Hoàng Thượng đế, vị thần tối cao cai quản trời đất. Về sau chùa được giao cho Giáo hội Phật giáo và mang tên Phước Hải tự, nhưng người dân vẫn quen gọi là chùa Ngọc Hoàng hay chùa Đa Kao. Bước qua cổng, bạn sẽ thấy không gian ấm cúng, khói hương nghi ngút và ánh sáng mờ ảo. Điện chính thờ Ngọc Hoàng cùng các vị thần phò tá; hai bên là tượng thần Kim Cương và nhiều vị thần khác được làm bằng giấy bồi, một kỹ thuật thủ công truyền thống. Gian thờ Thập điện Diêm vương có các bức phù điêu gỗ khắc cảnh phán xét dưới âm phủ, nhắc nhở con người sống thiện lương. Đặc biệt, gian thờ Kim Hoa Nương Nương với mười hai bà mụ thường có các cặp vợ chồng đến cầu con. Ngoài sân có hồ rùa phóng sinh. Năm 2016, Tổng thống Hoa Kỳ Barack Obama đã đến thăm chùa. Khi tham quan, hãy ăn mặc kín đáo, đi nhẹ nói khẽ và hỏi trước khi chụp ảnh người đang lễ bái.",
+     "source_url": "https://vi.wikipedia.org/wiki/Ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "The Jade Emperor Pagoda, officially Phuoc Hai Temple, stands on Mai Thi Luu Street in the Da Kao ward. It was built by the Cantonese Chinese community around the beginning of the twentieth century as a Taoist shrine to the Jade Emperor, the supreme deity who rules heaven and earth. It was later entrusted to the Buddhist Sangha and renamed Phuoc Hai Temple, yet locals still call it the Jade Emperor or Da Kao pagoda. Step through the gate into a warm, dim space thick with incense. The main hall honours the Jade Emperor and his attendants; around them stand guardian generals and many other deities made of papier-mâché, a traditional handicraft. The Hall of the Ten Kings of Hell has carved wooden panels showing judgement in the underworld, reminding people to live kindly. In the shrine of Kim Hoa, the goddess of fertility, surrounded by twelve midwife spirits, couples come to pray for children. A pond of released turtles lies in the courtyard. US President Barack Obama visited in 2016. Please dress modestly, move quietly and ask before photographing people at prayer.",
+     "source_url": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "La pagode de l’Empereur de Jade, officiellement temple Phuoc Hai, se trouve rue Mai Thi Luu, quartier Da Kao. Elle fut construite par la communauté chinoise cantonaise vers le début du XXe siècle, comme sanctuaire taoïste dédié à l’Empereur de Jade, divinité suprême régnant sur le ciel et la terre. Confiée plus tard à l’Église bouddhique et rebaptisée Phuoc Hai, elle reste pour les habitants la pagode de l’Empereur de Jade ou de Da Kao. Passé le portail, on entre dans un espace chaleureux et sombre, voilé d’encens. La salle principale honore l’Empereur de Jade et ses assistants, entourés de généraux gardiens et de nombreuses divinités en papier mâché, un artisanat traditionnel. La salle des Dix Rois des Enfers présente des panneaux de bois sculptés figurant le jugement des âmes, invitation à vivre avec bonté. Dans le sanctuaire de Kim Hoa, déesse de la fertilité entourée de douze sages-femmes célestes, les couples viennent prier pour avoir un enfant. Un bassin de tortues libérées occupe la cour. Le président Barack Obama s’y est rendu en 2016. Tenue correcte, discrétion, et demandez avant de photographier les fidèles.",
+     "source_url": "https://fr.wikipedia.org/wiki/Pagode_de_l%27Empereur_de_Jade",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Chùa Ngọc Hoàng",
+     "content": "玉皇殿は正式名をフオックハイ寺といい、ダカオ地区のマイ・ティ・ルウ通りにあります。20世紀初め頃、広東系華人コミュニティが、天地を治める最高神・玉皇上帝を祀る道教の廟として建てました。のちに仏教会に託されてフオックハイ寺と改名されましたが、地元の人々は今も玉皇殿やダカオ寺と呼んでいます。門をくぐると、線香の煙が立ちこめる薄暗く温かな空間が広がります。本殿には玉皇上帝と従神が祀られ、周りには金剛神をはじめ多くの神々の像が並びます。これらは伝統工芸の張り子で作られています。十殿閻羅の間には冥界の裁きを描いた木彫りのレリーフがあり、善く生きることを説いています。十二の産婆神に囲まれた子授けの女神・金花娘娘の祠には、子宝を願う夫婦が訪れます。中庭には放生された亀の池があります。2016年にはアメリカのバラク・オバマ大統領も訪れました。控えめな服装で静かに見学し、参拝中の人を撮影する際は一声かけましょう。",
+     "source_url": "https://en.wikipedia.org/wiki/Jade_Emperor_Pagoda",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Lối vào chùa với mái ngói cong, tường đỏ và hàng câu đối chữ Hán. Những đường mái uốn lượn và màu sắc rực rỡ là dấu ấn kiến trúc của người Hoa Quảng Đông ở Sài Gòn.",
+    "en": "The pagoda entrance with its curved tiled roof, red walls and Chinese couplets. The sweeping rooflines and bright colours are hallmarks of Cantonese architecture in Saigon.",
+    "fr": "L’entrée de la pagode, son toit de tuiles incurvé, ses murs rouges et ses sentences parallèles en caractères chinois. Les toits relevés et les couleurs vives signent l’architecture cantonaise de Saïgon.",
+    "ja": "反り返った瓦屋根、赤い壁、漢字の対聯が並ぶ寺の入口。流れるような屋根の線と鮮やかな色彩は、サイゴンの広東系建築の特徴です。"
+   },
+   "gallery": [
+    {
+     "path": "p11-2.jpg",
+     "sha256": "590dcc7d54a89d6772f04863b8eca6d60f873e741caaff2308bc0ee582a3f0fa",
+     "bytes": 440355,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:R%C3%B9a_%E1%BB%9F_ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/R%C3%B9a_%E1%BB%9F_ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng.jpg/1280px-R%C3%B9a_%E1%BB%9F_ch%C3%B9a_Ng%E1%BB%8Dc_Ho%C3%A0ng.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Những chú rùa được phóng sinh trong hồ nước ở sân chùa. Trong văn hóa Á Đông, rùa tượng trưng cho sự trường thọ và bền bỉ; người đến lễ thường thả rùa để cầu bình an và tích phúc.",
+      "en": "Turtles released into the pond in the pagoda courtyard. In East Asian culture the turtle stands for long life and endurance; worshippers release them to pray for peace and earn merit.",
+      "fr": "Des tortues libérées dans le bassin de la cour. Dans la culture d’Asie de l’Est, la tortue symbolise la longévité et la constance ; les fidèles en relâchent pour prier pour la paix et acquérir des mérites.",
+      "ja": "寺の中庭の池に放された亀たち。東アジアの文化で亀は長寿と忍耐の象徴で、参拝者は平安を願い功徳を積むために亀を放します。"
+     }
+    },
+    {
+     "path": "p11-3.jpg",
+     "sha256": "90c0221cde5fa583662e5f3d0aa71ad7604028b2b16767f74ce7f1371d518f15",
+     "bytes": 269039,
+     "license": "CC0",
+     "attribution": "Gary Todd from Xinzheng, China",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Jade_Emperor_Pagoda_(9982018256).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Jade_Emperor_Pagoda_%289982018256%29.jpg/1280px-Jade_Emperor_Pagoda_%289982018256%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Các tượng gốm men màu trang trí trên mái và tường chùa: rồng uốn lượn, nhân vật và cảnh tích truyện cổ. Nghệ thuật gốm trang trí này phổ biến ở các ngôi chùa, hội quán người Hoa tại Nam Bộ.",
+      "en": "Glazed ceramic figures decorating the roof and walls: coiling dragons, characters and scenes from old tales. This decorative ceramic art is common on Chinese temples and assembly halls in southern Vietnam.",
+      "fr": "Des figures en céramique émaillée ornent le toit et les murs : dragons sinueux, personnages et scènes de contes anciens. Cet art décoratif est courant dans les temples et maisons communautaires chinoises du Sud.",
+      "ja": "屋根や壁を飾る色釉の陶器像。うねる龍や人物、古い物語の場面が表されています。こうした装飾陶芸は、南部の華人の寺や会館でよく見られます。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Đền Bà Mariamman",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Đền Bà Mariamman",
+     "content": "Đền Bà Mariamman, người Sài Gòn quen gọi là chùa Bà Ấn, nằm ở số 45 đường Trương Định, gần chợ Bến Thành. Đền được cộng đồng người Tamil từ miền Nam Ấn Độ xây dựng vào cuối thế kỷ 19, khi nhiều thương nhân Ấn Độ đến Sài Gòn buôn bán vải vóc và đổi tiền. Đền thờ nữ thần Mariamman, vị thần mẹ trong Ấn Độ giáo, được tin là ban mưa thuận gió hòa, che chở cho sức khỏe và xua đuổi bệnh tật. Điểm nổi bật nhất là ngọn tháp cổng gopuram cao khoảng mười hai mét, phủ kín những pho tượng thần nhiều màu sắc theo kiến trúc Nam Ấn. Bên trong, chính điện thờ tượng nữ thần Mariamman, hai bên là các vị thần hộ vệ; xung quanh tường là những bức tượng thần đầy màu sắc như Shiva, Parvati và nhiều hóa thân khác. Ngày nay, cộng đồng người Ấn ở Sài Gòn không còn đông, nhưng ngôi đền vẫn thu hút cả người Việt và người Hoa đến cầu nguyện, dâng hoa nhài, nhang và trái cây. Hằng năm vào khoảng tháng Mười dương lịch, đền tổ chức lễ hội rước tượng nữ thần quanh các con phố lân cận. Khi vào đền, du khách cần cởi giày, ăn mặc kín đáo và giữ yên lặng.",
+     "source_url": "https://vi.wikipedia.org/wiki/%C4%90%E1%BB%81n_B%C3%A0_%E1%BA%A4n_%28Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh%29",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Đền Bà Mariamman",
+     "content": "The Mariamman Temple, which Saigon residents call the Indian Lady Temple, stands at 45 Truong Dinh Street near Ben Thanh Market. It was built in the late nineteenth century by the Tamil community from southern India, when many Indian merchants came to Saigon to trade in textiles and change money. It is dedicated to Mariamman, the mother goddess of Hinduism, believed to bring timely rain, protect health and drive away disease. Its highlight is the gopuram gateway tower, about twelve metres high and covered with brightly painted deities in South Indian style. Inside, the main shrine holds the statue of Mariamman flanked by guardian gods, and the walls are lined with colourful figures such as Shiva, Parvati and many other forms. The Indian community in Saigon is small today, yet the temple still draws Vietnamese and Chinese worshippers who offer jasmine, incense and fruit. Each year, around October, the temple holds a festival in which the goddess is carried through the nearby streets. Visitors should remove their shoes, dress modestly and keep quiet inside.",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Đền Bà Mariamman",
+     "content": "Le temple de Mariamman, que les Saïgonnais appellent le temple de la Dame indienne, se trouve au 45 rue Truong Dinh, près du marché Ben Thanh. Il fut construit à la fin du XIXe siècle par la communauté tamoule du sud de l’Inde, à l’époque où de nombreux marchands indiens venaient à Saïgon commercer les étoffes et changer la monnaie. Il est dédié à Mariamman, déesse mère de l’hindouisme, qui apporterait des pluies favorables, protégerait la santé et chasserait les maladies. Son point fort est le gopuram, tour-porche d’une douzaine de mètres couverte de divinités peintes de couleurs vives, dans le style de l’Inde du Sud. À l’intérieur, le sanctuaire principal abrite la statue de Mariamman entourée de dieux gardiens, et les murs sont bordés de figures colorées comme Shiva, Parvati et d’autres formes divines. La communauté indienne est aujourd’hui réduite, mais Vietnamiens et Chinois viennent toujours y prier et offrir jasmin, encens et fruits. Chaque année, vers octobre, une fête promène la déesse dans les rues voisines. Retirez vos chaussures, portez une tenue correcte et restez discret.",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Đền Bà Mariamman",
+     "content": "マリアマン寺院は、サイゴンの人々から「インドの女神の寺」と呼ばれ、ベンタイン市場に近いチュオン・ディン通り45番地にあります。19世紀末、多くのインド商人が布の取引や両替のためにサイゴンへやって来た時代に、南インド出身のタミル人コミュニティによって建てられました。祀られているのはヒンドゥー教の母神マリアマンで、恵みの雨をもたらし、健康を守り、病を退けると信じられています。最大の見どころは高さ約12メートルの門塔ゴープラムで、南インド様式の色鮮やかな神々の像で覆われています。内部の本殿にはマリアマン女神像と守護神が祀られ、壁際にはシヴァやパールヴァティーなど色彩豊かな神々の像が並びます。現在サイゴンのインド系住民は多くありませんが、ベトナム人や華人も祈りに訪れ、ジャスミンの花や線香、果物を供えています。毎年10月頃には、女神像を担いで近くの通りを練り歩く祭りが行われます。中に入るときは靴を脱ぎ、肌の露出を控え、静かに見学しましょう。",
+     "source_url": "https://en.wikipedia.org/wiki/Mariamman_Temple%2C_Ho_Chi_Minh_City",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Ngọn tháp cổng gopuram nhìn từ đường Trương Định, nổi bật giữa những dãy nhà phố. Giữa khu trung tâm sầm uất, sắc màu rực rỡ của ngôi đền gợi nhắc một thời Sài Gòn là nơi hội tụ của thương nhân từ nhiều vùng đất.",
+    "en": "The gopuram tower seen from Truong Dinh Street, standing out among the shophouses. In the busy centre, the temple’s bright colours recall a time when Saigon drew merchants from many lands.",
+    "fr": "Le gopuram vu de la rue Truong Dinh, se détachant parmi les compartiments. Au cœur animé de la ville, ses couleurs vives rappellent l’époque où Saïgon attirait des marchands de nombreux pays.",
+    "ja": "商店建築の並ぶチュオン・ディン通りから見たゴープラム。にぎやかな中心街で、寺院の鮮やかな色彩が、さまざまな土地の商人が集まったかつてのサイゴンを思い起こさせます。"
+   },
+   "gallery": [
+    {
+     "path": "p12-2.jpg",
+     "sha256": "351ab827fda15d5dae1519336749ebbf748cf7773b669ec14b31d1f021cfd613",
+     "bytes": 345442,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Tr%C3%AAn_n%C3%B3c_th%C3%A1p_%C4%91%E1%BB%81n_B%C3%A0_%E1%BA%A4n.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Tr%C3%AAn_n%C3%B3c_th%C3%A1p_%C4%91%E1%BB%81n_B%C3%A0_%E1%BA%A4n.jpg/1280px-Tr%C3%AAn_n%C3%B3c_th%C3%A1p_%C4%91%E1%BB%81n_B%C3%A0_%E1%BA%A4n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Cận cảnh phần đỉnh tháp gopuram với các tầng tượng thần được tô màu rực rỡ. Mỗi pho tượng thể hiện một vị thần hoặc một câu chuyện trong thần thoại Ấn Độ giáo, cùng nhau tạo thành một bức tranh trời đất thu nhỏ.",
+      "en": "A close look at the top of the gopuram, with tiers of brightly painted deities. Each figure portrays a god or a story from Hindu mythology, together forming a miniature picture of heaven and earth.",
+      "fr": "Gros plan sur le sommet du gopuram et ses étages de divinités aux couleurs vives. Chaque figure représente un dieu ou un récit de la mythologie hindoue : ensemble, elles composent un univers en miniature.",
+      "ja": "色鮮やかな神々が何層にも並ぶゴープラム頂部のクローズアップ。一体一体がヒンドゥー神話の神や物語を表し、全体で天地の縮図をつくっています。"
+     }
+    },
+    {
+     "path": "p12-3.jpg",
+     "sha256": "c67e7744b7aab3ce6ef66c8fe20b08a8fa5503d7608ffaab65348efb693beb7a",
+     "bytes": 445013,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Bùi Thụy Đào Nguyên",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%C3%A0n_th%E1%BB%9D_B%C3%A0_%E1%BA%A4n.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/B%C3%A0n_th%E1%BB%9D_B%C3%A0_%E1%BA%A4n.jpg/1280px-B%C3%A0n_th%E1%BB%9D_B%C3%A0_%E1%BA%A4n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Chính điện thờ nữ thần Mariamman với hoa tươi, đèn dầu và lễ vật. Người đến lễ thường dâng vòng hoa nhài và chanh, những lễ vật quen thuộc trong tín ngưỡng của người Tamil.",
+      "en": "The main shrine of the goddess Mariamman with fresh flowers, oil lamps and offerings. Worshippers often bring jasmine garlands and limes, familiar offerings in Tamil devotion.",
+      "fr": "Le sanctuaire principal de la déesse Mariamman, avec fleurs fraîches, lampes à huile et offrandes. Les fidèles apportent souvent des guirlandes de jasmin et des citrons verts, offrandes habituelles chez les Tamouls.",
+      "ja": "生花や灯明、供物が並ぶマリアマン女神の本殿。参拝者はタミルの信仰でなじみ深いジャスミンの花輪やライムをよく供えます。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Công viên Tao Đàn",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Công viên Tao Đàn",
+     "content": "Công viên Tao Đàn rộng khoảng mười héc-ta, nằm giữa các con đường Trương Định, Nguyễn Du, Huyền Trân Công Chúa và Nguyễn Thị Minh Khai. Thời Pháp, nơi đây là một phần khu vườn phía sau dinh Toàn quyền, sau trở thành công viên công cộng. Tên Tao Đàn gợi nhớ hội thơ Tao Đàn do vua Lê Thánh Tông lập ra, như một lời nhắc về truyền thống văn chương. Công viên nổi tiếng với hàng trăm cây cổ thụ cao vút như dầu, sao, me tây, giáng hương, nhiều cây đã gần trăm năm tuổi, tạo nên một lá phổi xanh giữa trung tâm Quận 1. Mỗi sáng sớm, công viên rộn ràng tiếng nhạc tập dưỡng sinh, cầu lông, võ thuật. Góc đặc biệt nhất là quán cà phê chim: những người chơi chim mang lồng chim họa mi, chào mào đến treo trên giàn, vừa nhâm nhi cà phê vừa nghe chim hót, một nét văn hóa rất Sài Gòn. Vào dịp Tết Nguyên đán, Tao Đàn trở thành nơi tổ chức Hội hoa xuân của thành phố với hàng nghìn chậu hoa, cây kiểng và tiểu cảnh. Công viên cũng thường là nơi diễn ra các hoạt động văn hóa vào dịp Giỗ Tổ Hùng Vương. Hãy đến vào buổi sáng, ngồi một ly cà phê và chậm lại giữa nhịp sống hối hả của thành phố.",
+     "source_url": "https://vi.wikipedia.org/wiki/C%C3%B4ng_vi%C3%AAn_Tao_%C4%90%C3%A0n",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Công viên Tao Đàn",
+     "content": "Tao Dan Park covers about ten hectares between Truong Dinh, Nguyen Du, Huyen Tran Cong Chua and Nguyen Thi Minh Khai streets. In the French era it was part of the garden behind the Governor-General’s palace, and later became a public park. Its name recalls the Tao Dan poetry society founded by King Le Thanh Tong, a nod to the country’s literary tradition. The park is famous for hundreds of towering old trees such as dipterocarps, ironwoods, rain trees and padauk, many nearly a century old, forming a green lung in the heart of District 1. Every early morning the park comes alive with music for tai chi, badminton and martial arts. Its most special corner is the bird café: bird lovers bring cages of songbirds, hang them on racks and sip coffee while listening to them sing, a very Saigon custom. During the Lunar New Year, Tao Dan hosts the city’s Spring Flower Festival with thousands of potted flowers, bonsai and miniature landscapes. Cultural events are often held here for the Hung Kings commemoration as well. Come in the morning, order a coffee and slow down amid the city’s bustle.",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Công viên Tao Đàn",
+     "content": "Le parc Tao Dan s’étend sur une dizaine d’hectares entre les rues Truong Dinh, Nguyen Du, Huyen Tran Cong Chua et Nguyen Thi Minh Khai. À l’époque française, il faisait partie du jardin du palais du Gouverneur général avant de devenir un parc public. Son nom évoque le cercle poétique Tao Dan fondé par le roi Le Thanh Tong, clin d’œil à la tradition littéraire du pays. Le parc est célèbre pour ses centaines de grands arbres anciens, diptérocarpes, arbres de pluie ou padouks, souvent presque centenaires, véritable poumon vert du 1er arrondissement. Chaque matin, il s’anime au son du tai-chi, du badminton et des arts martiaux. Son coin le plus original est le café des oiseaux : les amateurs accrochent les cages de leurs passereaux et sirotent un café en écoutant leurs chants, une coutume très saïgonnaise. Au Nouvel An lunaire, Tao Dan accueille la fête des fleurs du printemps, avec des milliers de pots, de bonsaïs et de paysages miniatures. Des événements culturels s’y tiennent aussi pour la commémoration des rois Hung. Venez le matin, prenez un café et laissez filer le temps.",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Công viên Tao Đàn",
+     "content": "タオダン公園は約10ヘクタールの広さで、チュオン・ディン、グエン・ズー、フエン・チャン・コン・チュア、グエン・ティ・ミン・カイの各通りに囲まれています。フランス統治時代には総督官邸の裏庭の一部で、のちに市民の公園となりました。名前は黎聖宗（レ・タイン・トン）王が設けた詩の会「騒壇（タオダン）」に由来し、文学の伝統を今に伝えています。樹齢100年近いものも多いフタバガキやタガヤサン、アメリカネムノキ、カリンなど数百本の大木がそびえ、1区の中心にある緑の肺となっています。早朝には太極拳やバドミントン、武術の音楽で公園がにぎわいます。いちばんユニークなのは「小鳥カフェ」で、愛好家たちがメジロやヒヨドリの鳥かごを棚に吊るし、さえずりを聞きながらコーヒーを楽しむ、いかにもサイゴンらしい光景です。旧正月には市の春の花祭りの会場となり、数千鉢の花や盆栽、箱庭が並びます。フン王の命日にも文化行事がよく開かれます。朝に訪れてコーヒーを一杯頼み、都会の喧騒の中でひと息ついてみてください。",
+     "source_url": "https://en.wikipedia.org/wiki/Tao_%C4%90%C3%A0n_Park",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Lối đi có giàn gỗ giữa những tán cây xanh trong công viên. Những con đường nhỏ như thế này là nơi người dân đi bộ, trò chuyện và tìm bóng mát vào những trưa nắng gắt của Sài Gòn.",
+    "en": "A pergola walkway among the green trees of the park. Little paths like this are where people stroll, chat and find shade on Saigon’s hot afternoons.",
+    "fr": "Une allée sous pergola parmi les arbres du parc. C’est sur ces petits chemins que l’on se promène, bavarde et cherche l’ombre lors des après-midis brûlants de Saïgon.",
+    "ja": "公園の緑の中に延びる木製パーゴラの小道。こうした小道で人々は散歩やおしゃべりを楽しみ、サイゴンの暑い午後には木陰を求めます。"
+   },
+   "gallery": [
+    {
+     "path": "p13-2.jpg",
+     "sha256": "baa06c35f0cbc616dc7f93ffd938e02fd08aa6a9f185c0bf01c7e6c00267d116",
+     "bytes": 490418,
+     "license": "CC BY 3.0",
+     "attribution": "trungydang",
+     "source_url": "https://commons.wikimedia.org/wiki/File:B%E1%BA%BFn_Th%C3%A0nh,_Qu%E1%BA%ADn_1,_TPHCM,_Vietnam_-_panoramio_(22).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6e/B%E1%BA%BFn_Th%C3%A0nh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vietnam_-_panoramio_%2822%29.jpg/1280px-B%E1%BA%BFn_Th%C3%A0nh%2C_Qu%E1%BA%ADn_1%2C_TPHCM%2C_Vietnam_-_panoramio_%2822%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Cổng Hội hoa xuân Thành phố Hồ Chí Minh tại Tao Đàn dịp Tết năm 2015, với những bông hoa khổng lồ và linh vật đầu năm. Mỗi mùa xuân, hàng vạn người đến đây ngắm hoa, chụp ảnh và cầu chúc một năm mới an lành.",
+      "en": "The gate of the Ho Chi Minh City Spring Flower Festival at Tao Dan for the 2015 Lunar New Year, with giant flowers and the year’s mascot. Each spring tens of thousands come here to admire flowers, take photos and wish for a peaceful new year.",
+      "fr": "Le portail de la fête des fleurs du printemps à Tao Dan pour le Têt 2015, avec ses fleurs géantes et la mascotte de l’année. Chaque printemps, des dizaines de milliers de visiteurs viennent admirer les fleurs et se souhaiter une bonne année.",
+      "ja": "2015年の旧正月、タオダン公園で開かれたホーチミン市春の花祭りの門。巨大な花とその年の干支の飾りが並びます。毎年春には数万人が花を愛で、写真を撮り、穏やかな新年を祈りに訪れます。"
+     }
+    },
+    {
+     "path": "p13-3.jpg",
+     "sha256": "614c70b1c736011ac971b8eeab10ac4a492a6423328452fa963a4a9eaad7d75f",
+     "bytes": 1204408,
+     "license": "CC0",
+     "attribution": "Phương Huy",
+     "source_url": "https://commons.wikimedia.org/wiki/File:CV_Tao_%C4%90%C3%A0n_d%E1%BB%8Bp_Gi%E1%BB%97_t%E1%BB%95_H%C3%B9ng_v%C6%B0%C6%A1ng_2024,_ng18th4n2024_(c%C3%A2y_c%E1%BB%91i_ngo%C3%A0i)_(1).jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/CV_Tao_%C4%90%C3%A0n_d%E1%BB%8Bp_Gi%E1%BB%97_t%E1%BB%95_H%C3%B9ng_v%C6%B0%C6%A1ng_2024%2C_ng18th4n2024_%28c%C3%A2y_c%E1%BB%91i_ngo%C3%A0i%29_%281%29.jpg/1280px-CV_Tao_%C4%90%C3%A0n_d%E1%BB%8Bp_Gi%E1%BB%97_t%E1%BB%95_H%C3%B9ng_v%C6%B0%C6%A1ng_2024%2C_ng18th4n2024_%28c%C3%A2y_c%E1%BB%91i_ngo%C3%A0i%29_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Hàng cây cổ thụ thẳng tắp vươn cao trong công viên, ảnh chụp dịp Giỗ Tổ Hùng Vương năm 2024. Những thân cây dầu, sao cao hàng chục mét đã chứng kiến gần một thế kỷ đổi thay của thành phố.",
+      "en": "Rows of tall, straight old trees in the park, photographed during the Hung Kings commemoration in 2024. These dipterocarps, tens of metres high, have witnessed almost a century of change in the city.",
+      "fr": "Des rangées de grands arbres anciens, très droits, photographiés lors de la commémoration des rois Hung en 2024. Hauts de plusieurs dizaines de mètres, ces diptérocarpes ont vu près d’un siècle de changements.",
+      "ja": "2024年のフン王の命日に撮影された、まっすぐ伸びる古木の並木。高さ数十メートルのフタバガキの木々は、約1世紀にわたる街の移り変わりを見守ってきました。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Phố đi bộ Nguyễn Huệ",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "Đại lộ Nguyễn Huệ có một lịch sử thú vị: vào thế kỷ 19, nơi đây là một con kênh lớn chảy ra sông Sài Gòn, được người Pháp lấp vào cuối những năm 1880 để làm đại lộ mang tên Charner. Từ năm 1955, con đường được đổi tên thành Nguyễn Huệ, theo tên vua Quang Trung. Từ đầu những năm 2000, mỗi dịp Tết Nguyên đán, đường Nguyễn Huệ được biến thành đường hoa rực rỡ, trở thành nét đặc trưng của Tết Sài Gòn. Năm 2015, đại lộ được cải tạo thành quảng trường đi bộ dài khoảng 670 mét, rộng hơn 60 mét, trải dài từ trụ sở Ủy ban nhân dân Thành phố đến gần bờ sông Sài Gòn. Ở đầu phố là tượng đài Chủ tịch Hồ Chí Minh, giữa quảng trường có hệ thống đài phun nước nghệ thuật. Hai bên đường là những công trình mang nhiều dấu ấn thời gian: khách sạn Rex, các tòa văn phòng hiện đại và chung cư cũ số 42 với hàng chục quán cà phê, cửa hàng nhỏ xen trong các căn hộ. Buổi tối và cuối tuần, phố đi bộ trở thành nơi dạo mát, biểu diễn đường phố, tổ chức lễ hội và bắn pháo hoa. Hãy thử lên một quán cà phê trên cao của chung cư 42 để ngắm toàn cảnh con phố về đêm.",
+     "source_url": "https://vi.wikipedia.org/wiki/%C4%90%C6%B0%E1%BB%9Dng_Nguy%E1%BB%85n_Hu%E1%BB%87%2C_Th%C3%A0nh_ph%E1%BB%91_H%E1%BB%93_Ch%C3%AD_Minh",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "Nguyen Hue Boulevard has an intriguing past: in the nineteenth century it was a large canal flowing into the Saigon River, filled in by the French in the late 1880s to create a boulevard named after Admiral Charner. In 1955 it was renamed Nguyen Hue, after Emperor Quang Trung. Since the early 2000s the street has been turned into a dazzling flower street every Lunar New Year, a signature of Tet in Saigon. In 2015 the boulevard was redesigned as a pedestrian square about 670 metres long and more than 60 metres wide, running from the People’s Committee building almost to the river. At its head stands the statue of President Ho Chi Minh, and musical fountains play in the middle. Along both sides are buildings from many eras: the Rex Hotel, modern office towers and the old apartment block at number 42, whose flats now house dozens of cafés and small shops. In the evenings and at weekends the street fills with strollers, street performers, festivals and fireworks. Try a café high up in the 42 apartment block for a view over the street at night.",
+     "source_url": "https://en.wikipedia.org/wiki/Nguy%E1%BB%85n_Hu%E1%BB%87_Boulevard",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "Le boulevard Nguyen Hue a un passé surprenant : au XIXe siècle, c’était un grand canal se jetant dans la rivière de Saïgon, comblé par les Français à la fin des années 1880 pour créer le boulevard Charner. En 1955, il prit le nom de Nguyen Hue, l’empereur Quang Trung. Depuis le début des années 2000, il se transforme chaque Têt en éblouissante rue des fleurs, emblème du Nouvel An saïgonnais. En 2015, le boulevard devint une place piétonne d’environ 670 mètres de long et plus de 60 mètres de large, de l’Hôtel de Ville jusqu’aux abords de la rivière. À son extrémité se dresse la statue du président Hô Chi Minh, et des fontaines musicales jaillissent au centre. Le long des deux côtés se succèdent des bâtiments de toutes les époques : l’hôtel Rex, des tours de bureaux et le vieil immeuble du numéro 42, dont les appartements abritent des dizaines de cafés et de boutiques. Le soir et le week-end, promeneurs, artistes de rue, fêtes et feux d’artifice animent la place. Essayez un café en hauteur au 42 pour la vue nocturne.",
+     "source_url": "https://fr.wikipedia.org/wiki/Boulevard_Nguyen_Hue",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Phố đi bộ Nguyễn Huệ",
+     "content": "グエンフエ通りには興味深い歴史があります。19世紀にはサイゴン川へ流れ込む大きな運河でしたが、1880年代末にフランス人が埋め立て、シャルネ提督にちなむ大通りとしました。1955年には、光中帝（クアン・チュン）として知られる阮恵（グエン・フエ）にちなんで改名されました。2000年代初めからは旧正月ごとに色鮮やかな花通りとなり、サイゴンのテトの風物詩になっています。2015年には、人民委員会庁舎から川の近くまで、長さ約670メートル、幅60メートル以上の歩行者広場に生まれ変わりました。起点にはホー・チ・ミン主席の像が立ち、中央では音楽噴水が水を上げます。両側にはレックスホテルや近代的なオフィスビル、そして部屋ごとに数十のカフェや小さな店が入る古いアパート「グエンフエ42番地」など、さまざまな時代の建物が並びます。夜や週末には散策する人や大道芸、祭り、花火でにぎわいます。42番地のアパートの上階のカフェから、夜の通りを眺めてみてください。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%82%B0%E3%82%A8%E3%83%B3%E3%83%95%E3%82%A8%E9%80%9A%E3%82%8A",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Phố đi bộ Nguyễn Huệ nhìn dọc về phía trụ sở Ủy ban nhân dân Thành phố, với dòng người dạo bộ giữa hai hàng cao ốc. Quảng trường rộng mở này là \"phòng khách\" ngoài trời của người Sài Gòn.",
+    "en": "Nguyen Hue walking street looking towards the People’s Committee building, with people strolling between the towers. This open square is Saigon’s outdoor living room.",
+    "fr": "La rue piétonne Nguyen Hue en direction de l’Hôtel de Ville, avec les promeneurs entre les tours. Cette grande place ouverte est le salon à ciel ouvert des Saïgonnais.",
+    "ja": "人民委員会庁舎の方向を望むグエンフエ歩行者通り。高層ビルの間を人々が散策するこの広場は、サイゴン市民の屋外の「リビングルーム」です。"
+   },
+   "gallery": [
+    {
+     "path": "p14-2.jpg",
+     "sha256": "8df38a859df0314dcf18d5172647ed1334138a2fe63804c1cec8f7dbfc6632ba",
+     "bytes": 338840,
+     "license": "Public domain",
+     "attribution": "Unknown authorUnknown author",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Les_Halles_du_march%C3%A9_Charner.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Les_Halles_du_march%C3%A9_Charner.jpg/1280px-Les_Halles_du_march%C3%A9_Charner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Ảnh tư liệu dãy nhà lồng chợ Charner thời Pháp, gắn với tên gọi cũ của đại lộ là Charner. Bức ảnh nhắc rằng khu vực sầm uất hôm nay từng là bến bãi và chợ búa ven kênh của Sài Gòn xưa.",
+      "en": "An archive photograph of the Charner market halls in the French era, linked to the boulevard’s old name. It reminds us that today’s bustling area was once the canal-side wharves and markets of old Saigon.",
+      "fr": "Une photographie d’archive des halles du marché Charner à l’époque française, liées à l’ancien nom du boulevard. Elle rappelle que ce quartier animé était jadis fait de quais et de marchés au bord du canal.",
+      "ja": "フランス統治時代のシャルネ市場の建物を写した記録写真で、大通りの旧名ともつながっています。今のにぎやかな一帯が、かつては運河沿いの船着き場と市場だったことを思い出させます。"
+     }
+    },
+    {
+     "path": "p14-3.jpg",
+     "sha256": "01644c30fb0158d756e5d11aeda9db2f437aaa042de4138edaaf62cb25ebadc7",
+     "bytes": 288305,
+     "license": "CC BY 3.0",
+     "attribution": "trungydang",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Duong_pho_saigon_,_nguyen_hue,_tp_hcm_vietnam_-_dyt_-_panoramio.jpg",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Duong_pho_saigon_%2C_nguyen_hue%2C_tp_hcm_vietnam_-_dyt_-_panoramio.jpg/1280px-Duong_pho_saigon_%2C_nguyen_hue%2C_tp_hcm_vietnam_-_dyt_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Dòng người đổ về Nguyễn Huệ vào một đêm Tết năm 2013. Từ đường hoa đến lễ hội và pháo hoa, con phố này luôn là nơi người Sài Gòn cùng nhau đón những khoảnh khắc quan trọng nhất trong năm.",
+      "en": "Crowds pouring onto Nguyen Hue on a night during Tet 2013. From the flower street to festivals and fireworks, this is where Saigon gathers to celebrate the most important moments of the year.",
+      "fr": "La foule envahit Nguyen Hue un soir du Têt 2013. Rue des fleurs, fêtes, feux d’artifice : c’est ici que Saïgon se rassemble pour célébrer les grands moments de l’année.",
+      "ja": "2013年のテトの夜、グエンフエ通りに集まる人々。花通りから祭り、花火まで、サイゴンの人々が一年で最も大切な瞬間をともに祝う場所です。"
+     }
+    }
+   ]
+  },
+  {
+   "name": "Tòa tháp Bitexco Financial",
+   "guides": [
+    {
+     "language_code": "vi",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "Tòa tháp Bitexco Financial nằm ở số 2 Hải Triều, chỉ cách bờ sông Sài Gòn vài trăm mét. Công trình được khởi công năm 2007 và hoàn thành năm 2010, cao khoảng 262 mét với 68 tầng, từng là tòa nhà cao nhất Việt Nam trong một thời gian ngắn. Kiến trúc sư Carlos Zapata lấy cảm hứng từ búp sen, quốc hoa của Việt Nam, để tạo nên thân tháp thon dần lên cao với lớp kính phản chiếu bầu trời. Điểm độc đáo nhất là sân đỗ trực thăng ở tầng 52, nhô ra khỏi thân tháp như một cánh hoa, có thể nhìn thấy từ nhiều nơi trong thành phố. Ở tầng 49 là đài quan sát Saigon Skydeck, nơi bạn có thể nhìn bao quát sông Sài Gòn uốn lượn, bán đảo Thủ Thiêm, các con phố trung tâm và những công trình mà bạn vừa tham quan như nhà thờ Đức Bà hay chợ Bến Thành. Các tầng cao khác có nhà hàng, quán bar ngắm cảnh, còn khối đế là trung tâm thương mại. Ngày nay thành phố đã có những tòa nhà cao hơn như Landmark 81, nhưng Bitexco vẫn là biểu tượng của đường chân trời Sài Gòn hiện đại. Thời điểm lý tưởng để lên đài quan sát là khoảng một tiếng trước hoàng hôn, để ngắm cả cảnh ban ngày lẫn lúc thành phố lên đèn.",
+     "source_url": "https://vi.wikipedia.org/wiki/Bitexco_Financial_Tower",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "en",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "Bitexco Financial Tower stands at 2 Hai Trieu Street, just a few hundred metres from the Saigon River. Construction began in 2007 and finished in 2010; about 262 metres tall with 68 floors, it was briefly the tallest building in Vietnam. Architect Carlos Zapata drew on the lotus bud, Vietnam’s national flower, for its tapering shaft clad in glass that mirrors the sky. Its most striking feature is the helipad on the 52nd floor, jutting out like a petal and visible from all over the city. On the 49th floor the Saigon Skydeck observatory looks out over the winding Saigon River, the Thu Thiem peninsula, the central streets and sights you may have just visited, such as Notre-Dame Cathedral and Ben Thanh Market. Other high floors hold restaurants and sky bars, while the podium is a shopping centre. The city now has taller buildings such as Landmark 81, yet Bitexco remains the symbol of modern Saigon’s skyline. The ideal time to go up is about an hour before sunset, to enjoy both the daytime view and the city lighting up.",
+     "source_url": "https://en.wikipedia.org/wiki/Bitexco_Financial_Tower",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "fr",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "La tour financière Bitexco se dresse au 2 rue Hai Trieu, à quelques centaines de mètres de la rivière de Saïgon. Commencée en 2007 et achevée en 2010, haute d’environ 262 mètres pour 68 étages, elle fut brièvement le plus haut bâtiment du Vietnam. L’architecte Carlos Zapata s’est inspiré du bouton de lotus, fleur nationale, pour son fût effilé vêtu de verre qui reflète le ciel. Son élément le plus frappant est l’hélisurface du 52e étage, qui s’avance comme un pétale et se voit de toute la ville. Au 49e étage, l’observatoire Saigon Skydeck domine les méandres de la rivière, la péninsule de Thu Thiem, les rues du centre et les sites peut-être déjà visités, comme Notre-Dame ou le marché Ben Thanh. D’autres étages accueillent restaurants et bars panoramiques, et le socle un centre commercial. La ville compte désormais des tours plus hautes comme Landmark 81, mais Bitexco reste l’emblème de la silhouette moderne de Saïgon. Montez environ une heure avant le coucher du soleil pour voir la ville de jour puis illuminée.",
+     "source_url": "https://fr.wikipedia.org/wiki/Tour_financi%C3%A8re_Bitexco",
+     "source_license": "CC BY-SA 4.0"
+    },
+    {
+     "language_code": "ja",
+     "title": "Tòa tháp Bitexco Financial",
+     "content": "ビテクスコ・フィナンシャルタワーは、サイゴン川から数百メートルのハイ・チエウ通り2番地にあります。2007年に着工して2010年に完成し、高さ約262メートル、68階建てで、一時はベトナム一の高さを誇りました。建築家カルロス・サパタは、ベトナムの国花である蓮のつぼみから着想を得て、空を映すガラスに包まれた、上に向かって細くなる塔をデザインしました。最も印象的なのは52階のヘリポートで、花びらのように塔から張り出し、街のあちこちから見ることができます。49階の展望台「サイゴン・スカイデッキ」からは、蛇行するサイゴン川やトゥーティエム半島、中心街、そして聖母マリア教会やベンタイン市場など訪れたばかりの名所を一望できます。上層階にはレストランや展望バーがあり、低層部はショッピングセンターです。今ではランドマーク81などさらに高いビルもありますが、ビテクスコは今も近代的なサイゴンのスカイラインの象徴です。昼の景色と街が灯りに包まれる様子の両方を楽しめる、日没の約1時間前に上るのが理想的です。",
+     "source_url": "https://ja.wikipedia.org/wiki/%E3%83%93%E3%83%86%E3%82%AF%E3%82%B9%E3%82%B3%E3%83%BB%E3%83%95%E3%82%A3%E3%83%8A%E3%83%B3%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%BF%E3%83%AF%E3%83%BC",
+     "source_license": "CC BY-SA 4.0"
+    }
+   ],
+   "cover_story": {
+    "vi": "Tòa tháp Bitexco nhìn từ trên cao vào lúc chiều muộn, nổi bật giữa các cao ốc trung tâm và dòng sông Sài Gòn phía sau. Từ góc này, bạn thấy rõ dáng búp sen và sân đỗ trực thăng nhô ra như một cánh hoa.",
+    "en": "Bitexco Tower seen from above in the late afternoon, rising among the central towers with the Saigon River behind. From here the lotus-bud shape and the petal-like helipad are clearly visible.",
+    "fr": "La tour Bitexco vue d’en haut en fin d’après-midi, au milieu des tours du centre, la rivière de Saïgon en arrière-plan. On distingue nettement la forme en bouton de lotus et l’hélisurface en pétale.",
+    "ja": "夕方に上空から見たビテクスコタワー。中心街の高層ビルの間にそびえ、後ろにはサイゴン川が流れます。蓮のつぼみの形と花びらのようなヘリポートがよくわかります。"
+   },
+   "gallery": [
+    {
+     "path": "p15-2.jpg",
+     "sha256": "d6972380f78392e5e9e8ad865eaa32e4d175924cc8fd0a977f353d7c1f7e85d2",
+     "bytes": 298580,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Cheong Kok Chun",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bitexco_Financial_Tower.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Bitexco_Financial_Tower.JPG/1280px-Bitexco_Financial_Tower.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Tòa tháp đang được xây dựng vào tháng 11 năm 2009, với cần cẩu trên đỉnh và lớp kính chưa hoàn thiện. Chỉ một năm sau, công trình khánh thành và thay đổi hẳn đường chân trời của Sài Gòn.",
+      "en": "The tower under construction in November 2009, with a crane on top and its glass skin still unfinished. Just a year later it opened and changed Saigon’s skyline for good.",
+      "fr": "La tour en construction en novembre 2009, une grue au sommet et sa peau de verre inachevée. Un an plus tard, elle était inaugurée et transformait pour toujours la silhouette de Saïgon.",
+      "ja": "2009年11月、建設中のタワー。頂上にクレーンがあり、ガラスの外装もまだ途中です。わずか1年後に完成し、サイゴンのスカイラインを一変させました。"
+     }
+    },
+    {
+     "path": "p15-3.jpg",
+     "sha256": "bb3e5dbb29190826ac909952eb38edc4f4dd7774a9efea65aad784ee34a4019f",
+     "bytes": 536393,
+     "license": "CC BY-SA 3.0",
+     "attribution": "Diego Delso",
+     "source_url": "https://commons.wikimedia.org/wiki/File:Bitexco_Financial_Tower,_Ciudad_Ho_Chi_Minh,_Vietnam,_2013-08-14,_DD_06.JPG",
+     "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Bitexco_Financial_Tower%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_06.JPG/1280px-Bitexco_Financial_Tower%2C_Ciudad_Ho_Chi_Minh%2C_Vietnam%2C_2013-08-14%2C_DD_06.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+     "story": {
+      "vi": "Bitexco lung linh ánh đèn khi đêm xuống, những dải sáng chạy dọc thân tháp như gân của một búp sen. Đây là hình ảnh quen thuộc trong những bức ảnh đêm Sài Gòn chụp từ bờ sông hay từ phố đi bộ Nguyễn Huệ.",
+      "en": "Bitexco shimmering with light after dark, the bright lines running up the tower like the veins of a lotus bud. It is a familiar sight in night photos of Saigon taken from the riverbank or Nguyen Hue walking street.",
+      "fr": "Bitexco scintille à la nuit tombée, ses lignes lumineuses courant le long de la tour comme les nervures d’un bouton de lotus. Une image familière des photos nocturnes prises depuis les quais ou la rue Nguyen Hue.",
+      "ja": "夜に光り輝くビテクスコ。塔を縦に走る光の線は、蓮のつぼみの葉脈のようです。川岸やグエンフエ歩行者通りから撮ったサイゴンの夜景写真でおなじみの姿です。"
+     }
+    }
+   ]
+  }
+ ]
+}

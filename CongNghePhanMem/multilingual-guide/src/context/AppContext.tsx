@@ -407,10 +407,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const testSpeech = useCallback(() => {
     stop();
     const greetings: Record<Language, string> = {
-      vi: 'Xin chào. Đây là kiểm tra giọng đọc của ứng dụng Multilingual Guide.',
-      en: 'Hello. This is a voice test for Multilingual Guide.',
-      fr: 'Bonjour. Ceci est un test vocal de Multilingual Guide.',
-      ja: 'こんにちは。マルチリンガルガイドの音声テストです。',
+      vi: 'Xin chào. Đây là kiểm tra giọng đọc của ứng dụng thuyết minh du lịch Quận 1.',
+      en: 'Hello. This is a voice test for the District 1 audio guide.',
+      fr: 'Bonjour. Ceci est un test vocal du guide audio du 1er arrondissement.',
+      ja: 'こんにちは。1区オーディオガイドの音声テストです。',
     };
     void getPlayer().play(greetings[language], language, speechRate, 'speech-test');
   }, [language, speechRate, stop, getPlayer]);
