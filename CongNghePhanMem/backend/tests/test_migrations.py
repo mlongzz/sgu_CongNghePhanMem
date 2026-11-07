@@ -28,7 +28,7 @@ def test_upgrade_fresh_database():
             inspector = inspect(connection)
             assert {'users', 'places', 'journeys', 'journey_stops', 'audit_logs', 'admin_settings'} <= set(inspector.get_table_names())
             assert 'role' in {c['name'] for c in inspector.get_columns('users')}
-            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0007'
+            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0008'
             assert 'place_images' in inspector.get_table_names()
             command.upgrade(config, 'head')  # idempotent
             assert compare_metadata(MigrationContext.configure(connection), Base.metadata) == []

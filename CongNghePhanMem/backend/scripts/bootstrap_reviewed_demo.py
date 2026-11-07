@@ -54,8 +54,8 @@ def bootstrap(session: Session, rows: list[dict], *, mutate: bool) -> dict:
     if not {'places', 'guide_contents', 'alembic_version'}.issubset(names):
         raise ValueError('Run migrations on an empty demo database first')
     version = connection.execute(text('SELECT version_num FROM alembic_version')).scalar()
-    if version != '0007':
-        raise ValueError('Demo bootstrap requires schema migration 0007')
+    if version not in ('0007', '0008'):
+        raise ValueError('Demo bootstrap requires schema migration 0007 or later')
     quote = connection.dialect.identifier_preparer.quote
     if mutate and connection.dialect.name == 'postgresql':
         # This command is permitted only in an explicitly isolated local demo DB.

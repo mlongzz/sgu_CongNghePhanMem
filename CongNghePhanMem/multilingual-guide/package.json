@@ -47,7 +47,6 @@
   },
   "scripts": {
     "start": "expo start",
-    "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -56,7 +55,7 @@
     "build:android": "expo export --platform android --output-dir build-android",
     "lint": "expo lint",
     "build:ios": "expo export --platform ios --output-dir build-ios",
-    "test": "node --test tests/auth.test.cjs tests/nearby.test.cjs tests/wikipedia.test.cjs tests/location.test.cjs tests/wikipedia-content.test.cjs tests/narration.test.cjs tests/speech-player.test.cjs tests/place-registry.test.cjs tests/nearby-merge.test.cjs tests/auto-guide.test.cjs tests/api-cancellation.test.cjs tests/location-watch.test.cjs tests/map-logic.test.cjs tests/directions.test.cjs tests/journey.test.cjs tests/provider-images.test.cjs tests/public-config.test.cjs tests/device-start.test.cjs tests/cloudflare.test.cjs tests/presence.test.cjs tests/jsx-render.test.cjs tests/discovery-consistency.test.cjs tests/map-tiles-credits.test.cjs tests/reviews.test.cjs tests/place-image.test.cjs",
+    "test": "node --test tests/auth.test.cjs tests/nearby.test.cjs tests/wikipedia.test.cjs tests/location.test.cjs tests/wikipedia-content.test.cjs tests/narration.test.cjs tests/speech-player.test.cjs tests/place-registry.test.cjs tests/nearby-merge.test.cjs tests/auto-guide.test.cjs tests/api-cancellation.test.cjs tests/location-watch.test.cjs tests/map-logic.test.cjs tests/directions.test.cjs tests/journey.test.cjs tests/provider-images.test.cjs tests/public-config.test.cjs tests/device-start.test.cjs tests/cloudflare.test.cjs tests/presence.test.cjs tests/jsx-render.test.cjs tests/discovery-consistency.test.cjs tests/map-tiles-credits.test.cjs tests/reviews.test.cjs tests/place-image.test.cjs tests/tourist-filter.test.cjs tests/optimal-route.test.cjs tests/tour-script.test.cjs",
     "test:e2e": "node scripts/run-e2e.cjs",
     "test:release": "node scripts/check-release.cjs",
     "build:public": "node scripts/build-public.cjs",

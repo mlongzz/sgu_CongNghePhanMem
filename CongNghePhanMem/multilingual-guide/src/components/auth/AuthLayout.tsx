@@ -56,8 +56,8 @@ function DecorativePanel() {
         <View style={panelStyles.logoBox}>
           <Ionicons name="earth" size={48} color="#fff" />
         </View>
-        <Text style={panelStyles.appName}>Multilingual Guide</Text>
-        <Text style={panelStyles.tagline}>{t('Khám phá thế giới\nqua từng câu chuyện')}</Text>
+        <Text style={panelStyles.appName}>Quận 1 Audio Guide</Text>
+        <Text style={panelStyles.tagline}>{t('Thuyết minh du lịch\nQuận 1, TP. Hồ Chí Minh')}</Text>
         <View style={panelStyles.divider} />
         <Text style={panelStyles.features}>{t('Bản đồ tương tác · Thuyết minh đa ngôn ngữ')}</Text>
       </View>
@@ -78,8 +78,8 @@ function MobileHeader() {
         <Ionicons name="earth" size={28} color="#fff" />
       </LinearGradient>
       <View style={{ flex: 1 }}>
-        <Text style={mobileStyles.appName}>Multilingual Guide</Text>
-        <Text style={mobileStyles.tagline}>{t('Khám phá thế giới qua từng câu chuyện')}</Text>
+        <Text style={mobileStyles.appName}>Quận 1 Audio Guide</Text>
+        <Text style={mobileStyles.tagline}>{t('Thuyết minh du lịch Quận 1, TP. Hồ Chí Minh')}</Text>
       </View>
     </View>
   );

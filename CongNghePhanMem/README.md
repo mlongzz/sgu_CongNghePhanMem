@@ -1,6 +1,17 @@
-# Dấu Chân · Multilingual Guide
+# Quận 1 Audio Guide · Thuyết minh du lịch Quận 1, TP. Hồ Chí Minh
 
-Ứng dụng hướng dẫn du lịch Việt/Anh/Pháp/Nhật: chọn hành trình, xem các điểm dừng trên bản đồ, nghe thủ công hoặc tự phát theo GPS. Frontend dùng Expo SDK 58/React Native/TypeScript; backend dùng FastAPI/SQLAlchemy/Alembic và PostgreSQL.
+Ứng dụng thuyết minh du lịch Việt/Anh/Pháp/Nhật **chỉ cho Quận 1, TP. Hồ Chí Minh**: chọn hành trình đi bộ, xem các điểm dừng trên bản đồ có ranh giới Quận 1, nghe thủ công hoặc tự phát theo GPS. Frontend dùng Expo SDK 58/React Native/TypeScript; backend dùng FastAPI/SQLAlchemy/Alembic và PostgreSQL.
+
+## Phạm vi Quận 1
+
+- **Ranh giới**: Quận 1 cũ theo OpenStreetMap relation 2587287 (© OpenStreetMap contributors, ODbL), rút gọn còn 47 đỉnh — `multilingual-guide/src/data/district1.ts` và `backend/app/data/district1_catalog.json`.
+- **Dữ liệu**: 15 điểm đã xuất bản, đều có ảnh Wikimedia Commons (ghi tác giả/giấy phép) và thuyết minh 4 ngôn ngữ: Dinh Độc Lập, Nhà thờ Đức Bà, Bưu điện Trung tâm, Trụ sở UBND TP, Nhà hát TP, Phố đi bộ Nguyễn Huệ, Chợ Bến Thành, Bảo tàng TP.HCM, Bảo tàng Mỹ thuật, Bảo tàng Lịch sử, Thảo Cầm Viên, Chùa Ngọc Hoàng, Đền Bà Mariamman, Công viên Tao Đàn, Tòa tháp Bitexco. Hành trình mẫu: "Dạo bộ trung tâm Quận 1" (7 điểm).
+- **Bản đồ**: luôn hiện ranh giới Quận 1 và tự hiển thị toàn bộ quận (không còn chọn bán kính, không còn mục "Trải nghiệm rảnh tay"). Danh sách "Địa điểm Quận 1" chỉ gồm điểm du lịch có ảnh trong ranh giới; điểm tham khảo Wikipedia trùng với điểm chính thức được gộp lại.
+- **Hành trình tối ưu từ GPS**: trên trang Bản đồ, chọn số điểm (4/6/8/Tất cả, hoặc "Khác" để tự nhập — chỉ nhận số nguyên từ 1 đến số điểm tối đa) rồi bấm "Lập hành trình tối ưu". App lấy GPS của bạn (không có GPS thì cho xuất phát từ trung tâm Quận 1) và tính **chính xác** thứ tự đi bộ ngắn nhất qua các điểm chính thức có ảnh trong Quận 1 (quy hoạch động Held–Karp trên ≤16 điểm, `src/services/optimalRoute.ts`). Kết quả hiện quãng đường/thời gian ước tính (đường chim bay × 1,3, 4,5 km/h), tuyến đánh số trên bản đồ, nút nghe thuyết minh từng điểm và nút mở chỉ đường đi bộ trên Google Maps.
+- **Thuyết minh tự động theo hành trình**: sau khi lập tuyến, bấm "Bắt đầu thuyết minh tự động". App đọc lời giới thiệu cả hành trình; trước mỗi điểm luôn hỏi "Bạn chắc chắn đã đến … chưa?" (không kiểm tra GPS), với các lựa chọn: đã đến – bắt đầu thuyết minh, nghe trước khi đến, hoặc xóa điểm khỏi hành trình. Đọc xong một điểm, app đọc lời dẫn sang điểm kế (hướng đi, khoảng cách, thời gian, nối chủ đề lịch sử/văn hóa/kiến trúc) rồi hỏi tiếp; cuối hành trình có lời kết. Lời dẫn được soạn tự động bằng 4 ngôn ngữ (`src/services/tourScript.ts`). Mỗi điểm trong danh sách tuyến cũng có nút "Xóa".
+- **Ảnh kể chuyện**: mỗi địa điểm có 3 ảnh Wikimedia Commons (ghi tác giả/giấy phép), mỗi ảnh có một đoạn câu chuyện riêng 4 ngôn ngữ và nút nghe; bài thuyết minh chính dài khoảng 220–240 chữ tiếng Việt.
+- **Đánh giá Google Maps**: trang địa điểm hiện điểm sao, số lượt và tối đa 5 đánh giá từ Google Places API (ghi nguồn Google, link về Google Maps). Cần đặt `GOOGLE_MAPS_API_KEY` (Places API "New", key chỉ nằm ở server, Google tính phí theo lượt gọi) trong `backend/.env`; kết quả chỉ được giữ tạm trong bộ nhớ 1 giờ. Chưa có key thì trang hiện nút mở đánh giá trên Google Maps. App không cào (scrape) trang Google Maps.
+- **Dựng dữ liệu Quận 1** trên database hiện có (sau khi `pg_dump` sao lưu): từ `backend` chạy `python -m scripts.apply_district1_catalog` để xem trước, rồi thêm `--apply --backup <file.dump>` (cần `alembic upgrade head` trước, migration 0008 thêm câu chuyện cho ảnh). Script xóa hẳn mọi địa điểm ngoài ranh giới (kèm thuyết minh, ảnh, yêu thích, lịch sử, đánh giá), nâng cấp bản nháp trùng thay vì tạo bản sao, thêm điểm mới với ảnh đóng gói sẵn trong `backend/app/data/district1_images` (kiểm SHA-256) và dựng lại hành trình. Chạy lại lần nữa không thay đổi gì. Database mới: chạy bootstrap demo bên dưới trước, rồi chạy script này.
 
 ```text
 backend/                     API, migration, kiểm thử và công cụ quản trị
@@ -9,6 +20,14 @@ docs/                        Yêu cầu, hướng dẫn kiểm thử, báo cáo 
 scripts/prepare_handoff.py    Tạo bộ mã bàn giao sạch kèm manifest SHA-256
 .github/workflows/ci.yml      Kiểm tra backend/frontend/E2E, build Docker, publish khi gắn tag
 ```
+
+## Chạy nhanh (Windows)
+
+Khi backend đã có `.venv`, `.env` và PostgreSQL đang chạy: nhấp đúp `start-app.cmd` ở thư mục gốc. Script mở 2 cửa sổ (FastAPI :8000 và Expo Web :8081) rồi mở trình duyệt.
+
+- Máy tính: `http://localhost:8081`
+- Điện thoại cùng Wi‑Fi: `http://<IPv4-máy-tính>:8081` (script in sẵn các IP). Bản web tự đổi `127.0.0.1` trong `EXPO_PUBLIC_API_URL` sang IP đang mở trang, và `ALLOW_LAN_ORIGINS=true` trong `backend/.env` cho phép mọi IP mạng nội bộ nên đổi Wi‑Fi không cần sửa cấu hình. Cờ này tự bị bỏ qua khi `APP_ENV=production`.
+- GPS trên trình duyệt điện thoại cần HTTPS; để dùng GPS/giọng đọc đầy đủ trên điện thoại, chạy `npm.cmd run dev:device` và mở bằng Expo Go (SDK 58).
 
 Các lệnh dưới đây bắt đầu từ thư mục chứa README này. PowerShell dùng `npm.cmd`; macOS/Linux dùng `npm`, `.venv/bin/python` thay cho `.venv/Scripts/python.exe`.
 
@@ -51,10 +70,10 @@ npm.cmd run web
 
 Đặt `EXPO_PUBLIC_API_URL` theo nền tảng và khởi động lại Expo sau khi đổi:
 
-| Nền tảng | API URL | Cách chạy |
-| --- | --- | --- |
-| Web cùng máy | `http://127.0.0.1:8000` | `npm.cmd run web` |
-| Android emulator | `http://10.0.2.2:8000` | `npm.cmd run android` |
+| Nền tảng            | API URL                           | Cách chạy                                                |
+| ------------------- | --------------------------------- | -------------------------------------------------------- |
+| Web cùng máy        | `http://127.0.0.1:8000`           | `npm.cmd run web`                                        |
+| Android emulator    | `http://10.0.2.2:8000`            | `npm.cmd run android`                                    |
 | Android/iPhone thật | `http://<IPv4-LAN-máy-tính>:8000` | `npm.cmd run check:device`, rồi `npm.cmd run dev:device` |
 
 Điện thoại và máy chủ cần cùng mạng; kiểm tra quyền tường lửa và bản Expo Go/development build tương thích SDK 58. Cấu hình Maps native/key ở `app.config.js`; khi đổi plugin hoặc key native cần build lại. GPS Web cần localhost/HTTPS và quyền vị trí. `build:android`/`build:ios` xuất JS/Hermes bundle; chưa tạo APK/IPA.

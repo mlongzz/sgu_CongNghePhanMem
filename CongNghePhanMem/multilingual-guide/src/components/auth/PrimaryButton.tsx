@@ -54,7 +54,9 @@ export default function PrimaryButton({
 
 const styles = StyleSheet.create({
   button: {
-    height: 54,
+    minHeight: 50,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     borderRadius: 14,
     flexDirection: 'row',
     alignItems: 'center',
@@ -73,6 +75,6 @@ const styles = StyleSheet.create({
   outlinePressed: { backgroundColor: C.primarySoft },
   primaryHover: { backgroundColor: C.primaryDark },
   outlineHover: { backgroundColor: C.primarySoft },
-  text: { fontSize: 15, fontWeight: '800', color: '#fff' },
+  text: { fontSize: 15, fontWeight: '800', color: '#fff', textAlign: 'center' },
   outlineText: { color: C.primary },
 });

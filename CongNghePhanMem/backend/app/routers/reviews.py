@@ -7,6 +7,7 @@ from app.database import get_db
 from app.dependencies import get_current_user
 from app.models.user import User
 from app.services.place_service import get_place_by_id
+from app.services.google_reviews import google_reviews
 from app.schemas.review import (
     PlaceRatingSummary,
     ReviewCreate,
@@ -34,6 +35,15 @@ def _require_place(place_id: int, db: Session) -> None:
 
 
 # ─── Rating summary ───────────────────────────────────────────────────────────
+
+@router.get("/{place_id}/google-reviews")
+def get_google_reviews(place_id: int, language: str = Query("vi", pattern="^(vi|en|fr|ja)$"), db: Session = Depends(get_db)):
+    """Google Maps rating and recent reviews (Places API), with attribution and a link back to Google Maps."""
+    place = get_place_by_id(db, place_id)
+    if not place:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Place not found")
+    return google_reviews(place.id, place.name, place.address, place.latitude, place.longitude, language)
+
 
 @router.get("/{place_id}/reviews/summary", response_model=PlaceRatingSummary)
 def get_rating_summary(place_id: int, db: Session = Depends(get_db)):

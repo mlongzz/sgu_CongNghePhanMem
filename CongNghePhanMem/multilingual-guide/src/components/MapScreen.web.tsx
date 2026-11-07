@@ -24,7 +24,8 @@ import { distanceKm } from "../services/nearby";
 import { mapTiles, OSM_TILES, OSM_ATTRIBUTION } from "../services/mapTiles";
 import { imageLicenseUrl } from "../services/imageCredits";
 
-import AutoGuideControl from "./AutoGuideControl";
+import JourneyProgressCard from "./JourneyProgressCard";
+import OptimalRoutePanel, { useRouteProgress } from "./OptimalRoutePanel";
 import { C } from "../theme/colors";
 import type { Place } from "../data/places";
 import { useMapDiscovery } from '../hooks/useMapDiscovery';
@@ -34,7 +35,8 @@ import { currentJourneyStop, type JourneyProgress } from '../services/journey';
 import JourneyPanel from './JourneyPanel';
 import { mediaUrl } from './PlaceImage';
 import { MapDiagnostics, MapDiscoveryPanel, MapIcon, MapPlaceList, MapSelection, mapSourceLabel, openMapDetail, openMapDirections } from './MapDiscoveryPanel';
-const FALLBACK_CENTER: [number, number] = [10.7764, 106.6993];
+import { DISTRICT1_CENTER, DISTRICT1_POLYGON, isInDistrict1 } from '../data/district1';
+const FALLBACK_CENTER: [number, number] = [DISTRICT1_CENTER.latitude, DISTRICT1_CENTER.longitude];
 
 type Coordinate = { latitude: number; longitude: number };
 
@@ -65,6 +67,7 @@ function PlacesMap({
   onOpenDetail,
   accuracy,
   progress,
+  focusDistrict = true,
 }: {
   location: Coordinate | null;
   places: Place[];
@@ -75,6 +78,7 @@ function PlacesMap({
   onOpenDetail: (place: Place) => void;
   accuracy?: number;
   progress: JourneyProgress | null;
+  focusDistrict?: boolean;
 }) {
   const { t } = useI18n();
   const current = currentJourneyStop(progress);
@@ -83,6 +87,7 @@ function PlacesMap({
   const cameraKey = useRef("");
   const markerGroupRef = useRef<LayerGroup | null>(null);
   const radiusCircleRef = useRef<Circle | null>(null);
+  const districtBoundsRef = useRef<import("leaflet").LatLngBounds | null>(null);
   const leafletRef = useRef<typeof import("leaflet") | null>(null);
   const [ready, setReady] = useState(false);
   const [mapError, setMapError] = useState("");
@@ -100,7 +105,8 @@ function PlacesMap({
       const map = L.map(containerRef.current, {
         zoomControl: true,
         scrollWheelZoom: false,
-      }).setView(FALLBACK_CENTER, 12);
+        zoomSnap: 0.25,
+      }).setView(FALLBACK_CENTER, 14);
       const config = mapTiles(process.env.EXPO_PUBLIC_MAPTILER_KEY, process.env.EXPO_PUBLIC_MAPTILER_STYLE);
       let failures = 0, fallback = config.provider === 'osm';
       // Free MapTiler accounts require their linked logo as well as text credits.
@@ -129,6 +135,10 @@ function PlacesMap({
       leafletRef.current = L;
       mapRef.current = map;
       map.on('zoomend', () => { if (!cancelled) setZoom(map.getZoom()); });
+      // The app covers District 1 only: always show its boundary.
+      const district = L.polygon(DISTRICT1_POLYGON as [number, number][], { color: C.primary, weight: 2, opacity: .85, dashArray: '6 6', fillColor: C.primary, fillOpacity: .05, interactive: false }).addTo(map);
+      districtBoundsRef.current = district.getBounds();
+      map.fitBounds(district.getBounds(), { padding: [12, 12] });
       markerGroupRef.current = L.layerGroup().addTo(map);
       setReady(true);
       frame = window.requestAnimationFrame(() => { if (!cancelled) map.invalidateSize(); });
@@ -171,8 +181,8 @@ function PlacesMap({
     radiusCircleRef.current = null;
 
     if (validCoordinate(location)) {
-      // Vong tron mo the hien pham vi tim kiem, khong phai sai so GPS.
-      radiusCircleRef.current = L.circle(
+      // Vong tron mo the hien pham vi tim kiem, khong phai sai so GPS (khong dung khi app bao ca Quan 1).
+      if (!focusDistrict) radiusCircleRef.current = L.circle(
         [location.latitude, location.longitude],
         {
           radius: radiusKm * 1000,
@@ -256,14 +266,14 @@ function PlacesMap({
     }
 
     map.invalidateSize();
-  }, [ready, location, places, selectedId, radiusKm, locationLabel, onSelectPlace, onOpenDetail, accuracy, zoom, t, progress, current]);
+  }, [ready, location, places, selectedId, radiusKm, locationLabel, onSelectPlace, onOpenDetail, accuracy, zoom, t, progress, current, focusDistrict]);
 
   useEffect(() => {
     const L = leafletRef.current; const map = mapRef.current;
     if (!ready || !L || !map) return;
     const validPlaces = places.filter(validCoordinate);
     const selected = validPlaces.find((p) => p.id === selectedId);
-    const key=JSON.stringify([selected?.id,location?.latitude,location?.longitude,radiusKm,progress?.journey.id, !location && !progress ? validPlaces.map(p=>p.id) : null]);
+    const key=JSON.stringify([selected?.id,location?.latitude,location?.longitude,radiusKm,progress?.journey.id,focusDistrict, !location && !progress && !focusDistrict ? validPlaces.map(p=>p.id) : null]);
     if(cameraKey.current===key)return;
     cameraKey.current=key;
     if (selected) {
@@ -272,6 +282,9 @@ function PlacesMap({
       });
     } else if (progress?.journey.stops.length) {
       map.fitBounds(L.latLngBounds(progress.journey.stops.map(p=>[p.latitude,p.longitude] as [number,number])),{padding:[35,35],maxZoom:15});
+    } else if (focusDistrict && districtBoundsRef.current && (!validCoordinate(location) || !isInDistrict1(location))) {
+      // Outside District 1 (or no GPS yet): frame the whole district rather than the user's position.
+      map.fitBounds(districtBoundsRef.current, { padding: [12, 12] });
     } else if (validCoordinate(location)) {
       const zoom =
         radiusKm <= 1
@@ -293,7 +306,7 @@ function PlacesMap({
       map.fitBounds(bounds, { padding: [30, 30], maxZoom: 14 });
     }
     map.invalidateSize();
-  }, [ready, location, places, selectedId, radiusKm, progress]);
+  }, [ready, location, places, selectedId, radiusKm, progress, focusDistrict]);
 
   return (
     <View>
@@ -321,21 +334,24 @@ function PlacesMap({
 
 export default function MapScreen() {
   const m = useMapDiscovery();
+  // A planned optimal route is drawn exactly like a journey (numbered stops and a line), on its own.
+  const plannedRoute = useRouteProgress();
+  const mapProgress = m.journeyMode ? m.routeProgress : plannedRoute;
   const wide = useWindowDimensions().width >= 1050;
   const { t } = useI18n();
   return <SafeAreaView style={s.safe}><ScrollView contentContainerStyle={s.page}>
-    <View style={s.heading}><View><Text style={s.eyebrow}>{t('HÀNH TRÌNH CỦA BẠN')}</Text><Text style={s.title}>{m.routeProgress?.journey.name ?? t(m.journeyMode ? 'Hành trình khám phá' : 'Khám phá quanh bạn')}</Text></View><View style={s.compass}><MapIcon name="compass-outline" size={27} color={C.primary}/></View></View>
+    <View style={s.heading}><View><Text style={s.eyebrow}>{t(m.journeyMode ? 'HÀNH TRÌNH CỦA BẠN' : 'QUẬN 1 · TP. HỒ CHÍ MINH')}</Text><Text style={s.title}>{m.routeProgress?.journey.name ?? t(m.journeyMode ? 'Hành trình khám phá' : 'Khám phá Quận 1')}</Text></View><View style={s.compass}><MapIcon name="compass-outline" size={27} color={C.primary}/></View></View>
     <View style={{flexDirection:wide ? 'row' : 'column',alignItems:'stretch',gap:16}}>
-    <View style={wide ? {width:330,flexShrink:0} : undefined}><MapDiscoveryPanel model={m}/></View>
+    <View style={wide ? {width:360,flexShrink:0} : undefined}><MapDiscoveryPanel model={m}/>{!m.journeyMode && <OptimalRoutePanel model={m} />}</View>
     <View style={[s.mapCard,wide && {flex:1,minWidth:0}]}>
       <View style={s.mapHeader}><Text style={s.label}>{m.selected ? `${t('Đang chọn:')} ${m.selected.title}` : t('Bản đồ khám phá')}</Text>{m.selected && m.location ? <Pressable accessibilityRole="button" onPress={() => m.selectPlace(null)} style={s.recenter}><MapIcon name="locate" size={17} color={C.primary}/><Text style={s.small}>{t('Vị trí của tôi')}</Text></Pressable> : null}</View>
-      <PlacesMap progress={m.routeProgress} location={m.location} places={m.filteredPlaces} selectedId={m.selectedId} radiusKm={m.radiusKm} locationLabel={t(m.locationSource === 'manual' ? 'Vị trí đã nhập' : 'Vị trí của tôi')} onSelectPlace={m.selectPlace} onOpenDetail={place => openMapDetail(place, m)} accuracy={m.locationSource === 'gps' ? m.location?.accuracy : undefined}/>
+      <PlacesMap progress={mapProgress} location={m.location} places={m.journeyMode || !plannedRoute ? m.filteredPlaces : []} selectedId={m.selectedId} radiusKm={m.radiusKm} locationLabel={t(m.locationSource === 'manual' ? 'Vị trí đã nhập' : 'Vị trí của tôi')} onSelectPlace={m.selectPlace} onOpenDetail={place => openMapDetail(place, m)} accuracy={m.locationSource === 'gps' ? m.location?.accuracy : undefined} focusDistrict={m.district}/>
       <View style={s.legend}><Text style={s.small}>🔵 {t(m.locationSource === 'manual' ? 'Vị trí mô phỏng' : 'Vị trí của tôi')}</Text><Text style={s.small}>🟢 {t('Hệ thống')}</Text><Text style={s.small}>🟣 OpenStreetMap</Text><Text style={s.small}>🟠 Wikipedia</Text></View>
       <MapSelection model={m}/>
     </View>
     </View>
     <JourneyPanel model={m}/>
-    {(!m.journeyMode || !!m.routeProgress?.journey.stops.length) && <AutoGuideControl candidates={m.allPlaces}/>}
+    {m.journeyMode && !!m.routeProgress?.journey.stops.length && <View style={{ marginTop: 16 }}><JourneyProgressCard /></View>}
     {!m.journeyMode && <MapPlaceList model={m}/>}
     <Text style={s.credit}>© OpenStreetMap contributors (ODbL) · Wikipedia contributors. {t('Địa điểm khám phá có nguồn cộng đồng, chưa được Admin kiểm duyệt.')}</Text>
     <MapDiagnostics model={m}/>

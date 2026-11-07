@@ -5,6 +5,7 @@ from sqlalchemy import (
     ForeignKey,
     Index,
     Integer,
+    JSON,
     String,
     UniqueConstraint,
 )
@@ -30,6 +31,8 @@ class PlaceImage(Base):
     source_url = Column(String(1000), nullable=True)
     attribution = Column(String(500), nullable=True)
     license = Column(String(200), nullable=True)
+    # {"vi": ..., "en": ..., "fr": ..., "ja": ...}: what this particular photo shows and its story.
+    story = Column(JSON, nullable=True)
     status = Column(
         String(12), nullable=False, default="pending", server_default="pending"
     )

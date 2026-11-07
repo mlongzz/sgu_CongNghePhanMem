@@ -36,6 +36,17 @@ _raw_origins: str = os.getenv(
 )
 ALLOWED_ORIGINS: list[str] = [origin.strip() for origin in _raw_origins.split(",") if origin.strip()]
 
+# Development only: also accept any private-LAN http origin (phone on the same Wi-Fi),
+# so changing networks does not require editing ALLOWED_ORIGINS. Never allowed in production.
+ALLOW_LAN_ORIGINS: bool = (
+    os.getenv("APP_ENV") != "production"
+    and os.getenv("ALLOW_LAN_ORIGINS", "").strip().lower() in {"1", "true", "yes"}
+)
+LAN_ORIGIN_REGEX: str | None = (
+    r"^http://(10(\.\d{1,3}){3}|192\.168(\.\d{1,3}){2}|172\.(1[6-9]|2\d|3[01])(\.\d{1,3}){2}|localhost|127\.0\.0\.1)(:\d{1,5})?$"
+    if ALLOW_LAN_ORIGINS else None
+)
+
 if os.getenv('APP_ENV') == 'production':
     from urllib.parse import urlsplit
     if len(SECRET_KEY) < 32 or SECRET_KEY.startswith(('replace-', 'change-this')):

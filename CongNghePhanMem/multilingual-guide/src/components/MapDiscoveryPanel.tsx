@@ -6,7 +6,7 @@ import type { Place } from '../data/places';
 import { C } from '../theme/colors';
 import { distanceKm } from '../services/nearby';
 import { API_BASE_URL } from '../services/api';
-import { MAP_CATEGORIES, MAP_RADII, type MapDiscovery } from '../hooks/useMapDiscovery';
+import { MAP_CATEGORIES, type MapDiscovery } from '../hooks/useMapDiscovery';
 import { useI18n } from '../hooks/useI18n';
 import PlaceImage from './PlaceImage';
 import ImageCredit from './ImageCredit';
@@ -29,13 +29,15 @@ export function openMapDirections(place: Place, t: (text: string) => string) {
 export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
   const { t } = useI18n();
   const gpsLabel = m.isLocating ? 'Đang lấy GPS...' : m.loadingPlaces ? 'Đang tìm địa điểm...' : 'Dùng GPS và tìm địa danh';
-  const partialFailure = m.nearbyStatus === 'error' || !!m.osm.error || !!m.wiki.error;
-  const loading = !m.isLocating && (m.loadingPlaces || m.osmLoading || m.wikiLoading);
+  // An OpenStreetMap snapshot that was never synced is a server setting, not a failure the visitor can retry.
+  const osmNotSynced = /chưa được đồng bộ/.test(m.osm.error);
+  const partialFailure = m.nearbyStatus === 'error' || (!!m.osm.error && !osmNotSynced) || !!m.wiki.error;
+  const loading = !m.isLocating && (m.loadingPlaces || m.osmLoading || m.wikiLoading || m.photosLoading);
   return <View style={s.panel}>
     {!m.journeyMode && <>
     <View style={s.search}>
       <MapIcon name="search-outline" size={20} color={C.muted} />
-      <TextInput value={m.query} onChangeText={m.setQuery} accessibilityLabel={t('Tìm địa danh')} placeholder={t('Tìm địa danh quanh bạn')} placeholderTextColor={C.muted} style={s.searchInput} />
+      <TextInput value={m.query} onChangeText={m.setQuery} accessibilityLabel={t('Tìm địa danh')} placeholder={t('Tìm địa điểm ở Quận 1')} placeholderTextColor={C.muted} style={s.searchInput} />
       {m.query ? <Pressable accessibilityRole="button" accessibilityLabel={t('Xóa tìm kiếm')} onPress={() => m.setQuery('')}><MapIcon name="close-circle" size={19} color={C.muted}/></Pressable> : null}
     </View>
     <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.categories}>
@@ -45,8 +47,8 @@ export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
     <View style={s.locationRow}>
       <View style={s.locationIcon}><MapIcon name="location" color={C.primary} size={22}/></View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={s.locationTitle}>{t(m.locationSource === 'manual' ? 'Vị trí mô phỏng' : m.locationStale ? 'Vị trí gần nhất' : 'Vị trí hiện tại')}</Text>
-        <Text testID="location-summary" style={s.caption}>{t(m.locationStale ? 'GPS đã cũ. Định vị lại để cập nhật địa điểm quanh bạn.' : m.location ? m.locationSource === 'manual' ? 'Tọa độ kiểm thử · Không dùng GPS' : 'Đã xác định vị trí thiết bị' : 'Chưa có vị trí · Bật GPS để khám phá')}{m.locationSource === 'gps' && typeof m.location?.accuracy === 'number' ? ` · GPS ±${Math.round(m.location.accuracy)} m` : ''}</Text>
+        <Text style={s.locationTitle}>{t(m.districtFallback ? 'Đang xem toàn bộ Quận 1' : m.locationSource === 'manual' ? 'Vị trí mô phỏng' : m.locationStale ? 'Vị trí gần nhất' : 'Vị trí hiện tại')}</Text>
+        <Text testID="location-summary" style={s.caption}>{m.districtFallback ? t(m.location && !m.locationStale ? 'Bạn đang ở ngoài Quận 1 · Hiển thị các điểm trong quận' : 'Bật GPS khi đến Quận 1 để tìm điểm gần bạn nhất') : t(m.locationStale ? 'GPS đã cũ. Định vị lại để cập nhật địa điểm quanh bạn.' : m.location ? m.locationSource === 'manual' ? 'Tọa độ kiểm thử · Không dùng GPS' : 'Đã xác định vị trí thiết bị' : 'Chưa có vị trí · Bật GPS để khám phá')}{m.locationSource === 'gps' && typeof m.location?.accuracy === 'number' ? ` · GPS ±${Math.round(m.location.accuracy)} m` : ''}</Text>
       </View>
       <Pressable accessibilityRole="button" accessibilityLabel={t(gpsLabel)} disabled={m.loadingPlaces} onPress={() => void m.locate()} style={[s.locate, m.loadingPlaces && { opacity: .65 }]}>
         {m.loadingPlaces ? <ActivityIndicator color="#fff" size="small"/> : <MapIcon name="locate" size={18} color="#fff"/>}
@@ -54,7 +56,8 @@ export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
       </Pressable>
     </View>
     {m.locationSource === 'gps' && (m.location?.accuracy ?? 0) > 50 ? <Text testID="map-gps-accuracy-warning" style={s.hint}>{t('GPS chưa chính xác. Khoảng cách chỉ gần đúng; hãy định vị lại ở nơi thoáng hơn.')}</Text> : null}
-    {!m.journeyMode && <View style={s.radiusRow}><Text style={s.radiusLabel}>{t('Bán kính')}</Text><View style={s.radii}>{MAP_RADII.map(km => <Pressable key={km} accessibilityRole="button" accessibilityLabel={`${t('Bán kính')} ${km} km`} accessibilityState={{ selected: m.radiusKm === km }} onPress={() => m.changeRadius(km)} style={[s.radius, m.radiusKm === km && s.radiusActive]}><Text style={[s.radiusText, m.radiusKm === km && s.radiusTextActive]}>{km} km</Text></Pressable>)}</View></View>}
+    {/* The guide always covers all of District 1; the radius picker remains only for the legacy wide-area test mode. */}
+    {!m.journeyMode && !m.district && <View style={s.radiusRow}><Text style={s.radiusLabel}>{t('Bán kính')}</Text><View style={s.radii}>{m.radii.map(km => <Pressable key={km} accessibilityRole="button" accessibilityLabel={`${t('Bán kính')} ${km} km`} accessibilityState={{ selected: m.radiusKm === km }} onPress={() => m.changeRadius(km)} style={[s.radius, m.radiusKm === km && s.radiusActive]}><Text style={[s.radiusText, m.radiusKm === km && s.radiusTextActive]}>{km} km</Text></Pressable>)}</View></View>}
     {m.isLocating ? <View style={s.notice}><ActivityIndicator size="small" color={C.primary}/><Text testID="gps-progress" style={[s.caption, { flex: 1 }]}>{t(m.locationProgress)}</Text><Pressable accessibilityRole="button" accessibilityLabel={t('Hủy lấy GPS')} onPress={m.cancelLocation}><Text style={s.action}>{t('Hủy')}</Text></Pressable></View> : null}
     {m.nearbyStatus === 'location-error' && m.placesError ? <Text style={s.error}>GPS: {m.placesError}</Text> : null}
     {loading ? <View style={s.notice}><ActivityIndicator size="small" color={C.primary}/><Text testID="map-loading" style={s.caption}>{t('Đang cập nhật địa điểm…')}</Text></View> : null}
@@ -63,7 +66,7 @@ export function MapDiscoveryPanel({ model: m }: { model: MapDiscovery }) {
     {m.osm.warning && !m.osm.stale && /Tạm hiển thị/.test(m.osm.warning) ? <Text style={s.hint}>{t('Một nguồn khám phá chưa bao phủ hết bán kính. Bạn có thể thử cập nhật lại.')}</Text> : null}
     {m.coveragePartial ? <Text testID="coverage-notice" style={s.hint}>{t('Dữ liệu mới bao phủ một phần bán kính đã chọn.')} {typeof m.wiki.searchedRadiusKm === 'number' ? `Wikipedia: ${m.wiki.searchedRadiusKm}/${m.radiusKm} km. ` : ''}{typeof m.osm.searchedRadiusKm === 'number' ? `OpenStreetMap: ${m.osm.searchedRadiusKm}/${m.radiusKm} km.` : ''}</Text> : null}
     {m.wiki.warning && m.radiusKm > 10 ? <Text style={s.hint}>{t('Wikipedia đang tìm trong phạm vi tối đa 10 km.')}</Text> : null}
-    {!m.location && m.nearbyStatus === 'idle' ? <Text style={s.hint}>{t('Chưa bắt đầu tìm kiếm. Bật GPS để xem địa danh gần bạn.')}</Text> : null}
+    {!m.location && !m.districtFallback && m.nearbyStatus === 'idle' ? <Text style={s.hint}>{t('Chưa bắt đầu tìm kiếm. Bật GPS để xem địa danh gần bạn.')}</Text> : null}
     <Text style={s.privacy}>{t(m.journeyMode ? 'Tọa độ được gửi đến máy chủ khi cập nhật GPS. Chế độ hành trình không truy vấn nguồn khám phá cộng đồng.' : m.wikiMode === 'off' ? 'Khi bật GPS, tọa độ và bán kính được gửi đến máy chủ để tìm địa danh. Wikipedia đang tắt.' : 'Khi bật GPS, tọa độ và bán kính được gửi đến máy chủ và Wikipedia để tìm địa danh.')}</Text>
   </View>;
 }
@@ -84,8 +87,8 @@ export function MapPlaceList({ model: m }: { model: MapDiscovery }) {
   const { t } = useI18n();
   const [limit, setLimit] = useState(18);
   return <View>
-    <View style={s.listHeader}><Text style={s.listTitle}>{t('Địa điểm quanh bạn')}</Text><Text style={s.caption}>{m.filteredPlaces.length} {t('địa điểm')}</Text></View>
-    {!m.filteredPlaces.length && (m.loadingPlaces || m.osmLoading || m.wikiLoading) ? <PlaceSkeleton count={2}/> : null}
+    <View style={s.listHeader}><Text style={s.listTitle}>{t(m.district ? 'Địa điểm Quận 1' : 'Địa điểm quanh bạn')}</Text><Text style={s.caption}>{m.filteredPlaces.length} {t('địa điểm')}</Text></View>
+    {!m.filteredPlaces.length && (m.loadingPlaces || m.osmLoading || m.wikiLoading || m.photosLoading) ? <PlaceSkeleton count={2}/> : null}
     <View testID="nearby-place-list" style={s.list}>
       {m.filteredPlaces.slice(0, limit).map(place => <View key={place.id} style={[s.place, m.selectedId === place.id && { borderColor: C.primary }]}>
         <PlaceImage uri={place.image} thumbnailUri={place.imageThumbnail} label={place.title} style={s.thumbnail}/>
@@ -103,7 +106,7 @@ export function MapPlaceList({ model: m }: { model: MapDiscovery }) {
         </View>
       </View>)}
     </View>
-    {!m.filteredPlaces.length && !m.loadingPlaces && !m.osmLoading && !m.wikiLoading ? <View style={s.empty}><MapIcon name="compass-outline" size={30} color={C.primary}/><Text style={s.caption}>{t(m.locationStale ? 'GPS đã cũ. Định vị lại để cập nhật địa điểm quanh bạn.' : !m.location ? 'Bật GPS để bắt đầu hành trình.' : m.allPlaces.length ? 'Không có địa điểm phù hợp. Thử từ khóa hoặc danh mục khác.' : m.outcome === 'source-error' ? 'Chưa tải đủ dữ liệu địa điểm. Hãy thử lại hoặc kiểm tra kết nối.' : m.outcome === 'partial-empty' ? 'Chưa tìm thấy địa điểm trong phần dữ liệu đã có; một phần bán kính chưa được bao phủ.' : 'Chưa tìm thấy địa điểm trong bán kính đã chọn. Bạn có thể thử bán kính lớn hơn.')}</Text></View> : null}
+    {!m.filteredPlaces.length && !m.loadingPlaces && !m.osmLoading && !m.wikiLoading && !m.photosLoading ? <View style={s.empty}><MapIcon name="compass-outline" size={30} color={C.primary}/><Text style={s.caption}>{t(m.locationStale ? 'GPS đã cũ. Định vị lại để cập nhật địa điểm quanh bạn.' : !m.location ? 'Bật GPS để bắt đầu hành trình.' : m.allPlaces.length ? (m.hiddenCount && !m.visiblePlaces.length ? 'Chưa có điểm du lịch có ảnh trong khu vực này. Tắt bớt bộ lọc hoặc thử bán kính lớn hơn.' : 'Không có địa điểm phù hợp. Thử từ khóa hoặc danh mục khác.') : m.outcome === 'source-error' ? 'Chưa tải đủ dữ liệu địa điểm. Hãy thử lại hoặc kiểm tra kết nối.' : m.outcome === 'partial-empty' ? 'Chưa tìm thấy địa điểm trong phần dữ liệu đã có; một phần bán kính chưa được bao phủ.' : 'Chưa tìm thấy địa điểm trong bán kính đã chọn. Bạn có thể thử bán kính lớn hơn.')}</Text></View> : null}
     {m.filteredPlaces.length > limit ? <Pressable accessibilityRole="button" onPress={() => setLimit(value => value + 18)} style={s.more}><Text style={s.action}>{t('Xem thêm địa điểm')}</Text></Pressable> : null}
   </View>;
 }
@@ -132,7 +135,7 @@ function MapDiagnosticsContent({ model: m }: { model: MapDiscovery }) {
     await m.refreshNearby({ coordinates });
   };
   return <View style={s.diagnostics}>
-    <Pressable accessibilityRole="button" accessibilityLabel="Developer Diagnostics" accessibilityState={{ expanded: m.diagnostics }} onPress={() => m.setDiagnostics(!m.diagnostics)} style={s.diagnosticsToggle}><MapIcon name="code-slash-outline" size={15} color={C.muted}/><Text style={s.caption}>Developer Diagnostics</Text><MapIcon name={m.diagnostics ? 'chevron-up' : 'chevron-down'} size={15} color={C.muted}/></Pressable>
+    <Pressable accessibilityRole="button" accessibilityLabel="Developer Diagnostics" accessibilityState={{ expanded: m.diagnostics }} onPress={() => m.setDiagnostics(!m.diagnostics)} style={s.diagnosticsToggle}><MapIcon name="code-slash-outline" size={15} color={C.muted}/><Text style={s.caption}>Công cụ nâng cao · nhập tọa độ thủ công</Text><MapIcon name={m.diagnostics ? 'chevron-up' : 'chevron-down'} size={15} color={C.muted}/></Pressable>
     {m.diagnostics ? <View testID="developer-diagnostics" style={s.diagnosticsBody}>
       <Text style={s.caption}>GPS: {m.location ? m.locationSource === 'manual' ? `Không dùng GPS · Vị trí đã nhập (${m.location.latitude.toFixed(5)}, ${m.location.longitude.toFixed(5)})` : `Đã có vị trí (${m.location.latitude.toFixed(5)}, ${m.location.longitude.toFixed(5)})` : 'Chưa có vị trí'} · Bán kính: {m.radiusKm} km</Text>
       {API_BASE_URL ? <Text testID="backend-poi-status" style={s.caption}>FastAPI: {backendStatus}</Text> : null}

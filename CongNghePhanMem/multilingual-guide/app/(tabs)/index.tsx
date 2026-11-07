@@ -20,6 +20,8 @@ import ImageCredit from "../../src/components/ImageCredit";
 import PlaceSkeleton from "../../src/components/PlaceSkeleton";
 import type { Category } from "../../src/data/places";
 import { filterPlaces } from "../../src/services/nearby";
+import { applyPlaceFilters } from "../../src/services/touristFilter";
+import { usePlaceFilters } from "../../src/hooks/usePlaceFilters";
 import { useApp } from "../../src/context/AppContext";
 import { useI18n } from "../../src/hooks/useI18n";
 import { useGpsFreshness } from '../../src/hooks/useGpsFreshness';
@@ -53,11 +55,13 @@ export default function Home() {
   const deferredQuery = useDeferredValue(query);
   const [visibleCount, setVisibleCount] = useState(40);
   const [category, setCategory] = useState<"Tất cả" | Category>("Tất cả");
+  const [placeFilters] = usePlaceFilters();
+  const visiblePlaces = useMemo(() => applyPlaceFilters(places, placeFilters), [places, placeFilters]);
   const filtered = useMemo(
-    () => filterPlaces(places, deferredQuery, category, language),
-    [places, category, deferredQuery, language],
+    () => filterPlaces(visiblePlaces, deferredQuery, category, language),
+    [visiblePlaces, category, deferredQuery, language],
   );
-  const featured = places.slice(0, 4);
+  const featured = visiblePlaces.slice(0, 4);
   const creditedPlaces = places.filter(place => place.image && place.imageAttribution && place.imageLicense);
   const heroPlace = creditedPlaces.find(place => place.title === 'Dinh Độc Lập') ?? creditedPlaces[0];
   return (
@@ -71,7 +75,7 @@ export default function Home() {
           <View>
             <Text style={s.eyebrow}>{t('XIN CHÀO, NHÀ KHÁM PHÁ ✨')}</Text>
             <Text style={s.greeting}>
-              {t('Sẵn sàng đi đâu?')} <Text style={s.spark}>✦</Text>
+              {t('Khám phá Quận 1')} <Text style={s.spark}>✦</Text>
             </Text>
           </View>
           <Pressable onPress={() => router.push("/profile")} style={s.avatar}>
@@ -91,7 +95,7 @@ export default function Home() {
           />
           <View style={s.heroTop}>
             <Ionicons name="location" size={14} color="#9BF0D5" />
-            <Text style={s.heroCity}>{t('KHÁM PHÁ QUANH BẠN')}</Text>
+            <Text style={s.heroCity}>{t('QUẬN 1 · TP. HỒ CHÍ MINH')}</Text>
             <View style={s.heroPill}>
               <Ionicons name="sparkles" color="#fff" size={12} />
               <Text style={s.heroPillText}>Audio Guide</Text>
@@ -99,11 +103,11 @@ export default function Home() {
           </View>
           <View style={s.heroContent}>
             <Text style={s.heroKicker}>
-              {t('TRẢI NGHIỆM THÀNH PHỐ THEO CÁCH CỦA BẠN')}
+              {t('THUYẾT MINH DU LỊCH ĐA NGÔN NGỮ')}
             </Text>
-            <Text style={s.heroTitle}>{t('Mỗi nơi chốn,\nmột câu chuyện.')}</Text>
+            <Text style={s.heroTitle}>{t('Trái tim Sài Gòn,\nmỗi bước một câu chuyện.')}</Text>
             <Text style={s.heroSubtitle}>
-              {t('Tự do khám phá cùng thuyết minh đa ngôn ngữ.')}
+              {t('Nghe thuyết minh Việt – Anh – Pháp – Nhật tại các điểm đến nổi tiếng của Quận 1.')}
             </Text>
             <Pressable onPress={() => router.push("/map")} style={s.heroButton}>
               <Text style={s.heroButtonText}>{t('Bắt đầu khám phá')}</Text>
@@ -120,7 +124,7 @@ export default function Home() {
             </View>
             <View>
               <Text style={s.statNumber}>{places.length} {t('địa điểm')}</Text>
-              <Text style={s.statText}>{t('Đang chờ bạn')}</Text>
+              <Text style={s.statText}>{t('Điểm đến ở Quận 1')}</Text>
             </View>
           </View>
           <View style={s.verticalDivider} />
@@ -152,7 +156,7 @@ export default function Home() {
               <Ionicons name="close-circle" size={19} color={C.faint} />
             </Pressable>
           ) : (
-            <Ionicons name="options-outline" size={21} color={C.primary} />
+            <Ionicons name="search" size={19} color={C.primary} />
           )}
         </View>
 

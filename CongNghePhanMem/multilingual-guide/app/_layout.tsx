@@ -7,6 +7,9 @@ import {C} from '../src/theme/colors';
 import PresenceBoundary from '../src/components/PresenceBoundary';
 import {useFonts} from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
+import {installWebGlobalStyles} from '../src/theme/webGlobalStyles';
+
+installWebGlobalStyles();
 
 export default function RootLayout(){
   // Register icon glyphs during static rendering, before their first client render.
