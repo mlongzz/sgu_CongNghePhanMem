@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
   ActivityIndicator,
-  Alert,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -16,6 +15,7 @@ import { LANGS } from "../../src/data/places";
 import { useApp } from "../../src/context/AppContext";
 import { API_BASE_URL, checkApi } from "../../src/services/api";
 import { useI18n } from '../../src/hooks/useI18n';
+import { notify } from '../../src/services/notify';
 
 export default function Profile() {
   const { t } = useI18n();
@@ -73,7 +73,7 @@ export default function Profile() {
             onPress={() => {
               logout();
               router.replace("/login");
-              Alert.alert(t('Đã đăng xuất'), t('Phiên đăng nhập đã được xóa.'));
+              notify(t('Đã đăng xuất'), t('Phiên đăng nhập đã được xóa.'));
             }}
             style={s.login}
           >
@@ -185,7 +185,7 @@ export default function Profile() {
               <Text style={s.tryAgain}>{t('Kiểm tra lại')}</Text>
             </Pressable>
           </View>
-          {error ? <Text style={s.error}>{error}</Text> : null}
+          {error ? <Text style={s.error}>{t(error)}</Text> : null}
         </View>
         <View style={s.footnote}>
           <Ionicons

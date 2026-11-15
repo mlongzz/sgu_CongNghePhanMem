@@ -27,6 +27,13 @@ export class ApiError extends Error {
 let recoverSession: ((token: string) => Promise<string | null>) | null = null;
 export function setSessionRecovery(handler: typeof recoverSession) { recoverSession = handler; }
 
+export function buildRequestHeaders(body: unknown, token?: string, extra?: HeadersInit): Record<string, string> {
+  return {
+    ...(body === undefined || body === null ? {} : { "Content-Type": "application/json" }),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(extra as Record<string, string> | undefined),
+  };
+}
 export async function apiFetch<T>(
   path: string,
   options?: RequestInit & { token?: string; timeoutMs?: number },
@@ -45,11 +52,7 @@ export async function apiFetch<T>(
     const response = await fetch(`${API_BASE_URL}${path}`, {
       ...init,
       signal: controller.signal,
-      headers: {
-        "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...headers,
-      },
+      headers: buildRequestHeaders(init.body, token, headers),
     });
     let value: unknown = null;
     try {
