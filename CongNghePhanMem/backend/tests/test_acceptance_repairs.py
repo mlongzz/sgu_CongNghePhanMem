@@ -166,3 +166,27 @@ def test_email_migration_refuses_duplicates_without_changing_accounts():
         assert connection.execute(text('SELECT count(*) FROM users')).scalar() == 2
         assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0005'
     engine.dispose()
+
+
+def test_replayed_refresh_token_revokes_the_whole_session(client):
+    assert register(client).status_code == 201
+    first = login(client).json()
+    second = client.post('/auth/refresh', json={'refresh_token': first['refresh_token']})
+    assert second.status_code == 200
+    assert client.post('/auth/refresh', json={'refresh_token': first['refresh_token']}).status_code == 401
+    assert client.post('/auth/refresh', json={'refresh_token': second.json()['refresh_token']}).status_code == 401
+
+
+def test_sessions_per_user_are_capped_and_oldest_is_dropped(client, db_session):
+    from app.models.auth_session import RefreshSession
+    from app.routers.auth import MAX_SESSIONS_PER_USER
+    assert register(client).status_code == 201
+    tokens = []
+    for index in range(MAX_SESSIONS_PER_USER + 1):
+        tokens.append(login(client).json()['refresh_token'])
+        db_session.query(RefreshSession).filter(RefreshSession.expires_at >= 0).update(
+            {RefreshSession.expires_at: RefreshSession.expires_at - 1}, synchronize_session=False)
+        db_session.commit()
+    assert db_session.query(RefreshSession).count() <= MAX_SESSIONS_PER_USER
+    assert client.post('/auth/refresh', json={'refresh_token': tokens[0]}).status_code == 401
+    assert client.post('/auth/refresh', json={'refresh_token': tokens[-1]}).status_code == 200
