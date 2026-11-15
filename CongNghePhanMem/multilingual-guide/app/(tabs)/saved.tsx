@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useFocusEffect } from 'expo-router';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,8 +6,9 @@ import { PlaceCard, EmptyState } from '../../src/components/UI';
 import { LoadingState, ErrorMessage } from '../../src/components/Screen';
 import { PrimaryButton } from '../../src/components/auth';
 import { useApp } from '../../src/context/AppContext';
-import { apiFetch, ApiError } from '../../src/services/api';
+import { apiFetch } from '../../src/services/api';
 import { validateBackendPlace } from '../../src/services/nearby';
+import { resolveSavedPlaces } from '../../src/services/savedPlaces';
 import type { Place } from '../../src/data/places';
 import { C } from '../../src/theme/colors';
 import { useI18n } from '../../src/hooks/useI18n';
@@ -19,18 +20,22 @@ export default function Saved() {
   const [retry, setRetry] = useState(0);
   const key = favorites.join(',');
   useFocusEffect(useCallback(() => { if (token) void refreshFavorites(); }, [token, refreshFavorites]));
+  const latest = useRef({ favorites, findPlace });
+  useEffect(() => { latest.current = { favorites, findPlace }; });
+  const cache = useRef(new Map<string, Place | null>());
   useEffect(() => {
     let alive = true;
     const controller = new AbortController();
     void Promise.resolve().then(() => { if (alive) { setLoading(true); setError(''); } });
-    void Promise.all(favorites.map(async id => {
-      if (!id.startsWith('db-')) return findPlace(id) ?? null;
-      try { return validateBackendPlace(await apiFetch(`/places/${Number(id.slice(3))}`, { signal: controller.signal })); }
-      catch (e) { if (e instanceof ApiError && e.status === 404) return null; throw e; }
-    })).then(rows => { if (alive) setResult({ key, places: rows.filter((p): p is Place => !!p) }); })
-      .catch(e => { if (alive) setError(e.message); }).finally(() => { if (alive) setLoading(false); });
+    void resolveSavedPlaces({
+      ids: latest.current.favorites,
+      known: latest.current.findPlace,
+      cache: cache.current,
+      fetchPlace: async id => validateBackendPlace(await apiFetch(`/places/${id}`, { signal: controller.signal })),
+    }).then(({ places: rows, failed }) => { if (alive) { setResult({ key, places: rows }); if (failed) setError('Một số địa điểm chưa tải được. Hãy nhấn Tải lại.'); } })
+      .catch(e => { if (alive) setError(e instanceof Error ? e.message : 'Không tải được danh sách yêu thích.'); }).finally(() => { if (alive) setLoading(false); });
     return () => { alive = false; controller.abort(); };
-  }, [key, favorites, findPlace, retry]);
+  }, [key, retry]);
   const places = result?.key === key ? result.places : [];
   return <SafeAreaView style={s.safe}><ScrollView contentContainerStyle={s.page}>
     <View style={s.icon}><Ionicons name="heart" size={21} color={C.primary} /></View>
