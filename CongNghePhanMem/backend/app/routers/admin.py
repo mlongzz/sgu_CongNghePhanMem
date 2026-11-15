@@ -225,7 +225,7 @@ def overview(
         func.count(AudioGuideSession.id).desc(), Place.id).limit(10).all()
     return {"start": start, "end": end, "timezone": "UTC", "period": period,
             "kpis": {"users": db.query(User).count(), "places": db.query(Place).count(),
-                     "guides": db.query(GuideContent).count(), "journeys": db.query(Journey).count(),
+                     "guides": db.query(GuideContent).filter(GuideContent.deleted_at.is_(None)).count(), "journeys": db.query(Journey).count(),
                      "plays": sessions.count(), "completed": sessions.filter(AudioGuideSession.completed.is_(True)).count(),
                      "visits": db.query(History).filter(History.visited_at >= lower, History.visited_at < upper).count()},
             "series": series, "languages": [{"language": key, "count": count} for key, count in languages],
@@ -368,9 +368,12 @@ def restore_place(identifier: int, db: Session = Depends(get_db), actor: User = 
 
 @router.get("/guides")
 def list_guides(q: str = Query("", max_length=200), language: str | None = Query(None, max_length=10),
-                place_id: int | None = None, publication_status: Literal["draft", "published"] | None = None, page: int = Query(1, ge=1),
+                place_id: int | None = None, publication_status: Literal["draft", "published"] | None = None,
+                include_deleted: bool = False, page: int = Query(1, ge=1),
                 page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
     query = db.query(GuideContent).filter(GuideContent.title.ilike(f"%{q}%"))
+    if not include_deleted:
+        query = query.filter(GuideContent.deleted_at.is_(None))
     if publication_status:
         query = query.filter(GuideContent.publication_status == publication_status)
     if language:
@@ -396,6 +399,8 @@ def upsert_guide(place_id: int, language_code: str, data: GuideContentUpdate,
         row = GuideContent(place_id=place_id)
         db.add(row)
     else:
+        if row.deleted_at is not None:
+            raise HTTPException(409, "Restore this guide before editing")
         changes = reviewed_changes(row, changes)
     for key, value in changes.items():
         setattr(row, key, value.lower() if key == "language_code" else value)
@@ -405,9 +410,20 @@ def upsert_guide(place_id: int, language_code: str, data: GuideContentUpdate,
 
 @router.delete("/guides/{identifier}", status_code=204)
 def remove_guide(identifier: int, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
-    db.delete(required(db, GuideContent, identifier))
-    commit(db, actor, "delete", "guides", identifier)
+    row = required(db, GuideContent, identifier)
+    row.deleted_at = row.deleted_at or datetime.now(timezone.utc)
+    row.publication_status = "draft"
+    commit(db, actor, "soft_delete", "guides", identifier)
     return Response(status_code=204)
+
+
+@router.post("/guides/{identifier}/restore")
+def restore_guide(identifier: int, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
+    row = required(db, GuideContent, identifier)
+    row.deleted_at = None
+    row.publication_status = "draft"
+    commit(db, actor, "restore", "guides", identifier)
+    return serialize(row)
 
 
 def journey_values(db, rows, *, public_only=False):
