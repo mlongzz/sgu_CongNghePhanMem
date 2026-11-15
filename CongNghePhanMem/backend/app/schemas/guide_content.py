@@ -44,3 +44,8 @@ class GuideContentResponse(BaseModel):
     publication_status: Literal["draft", "published"]
     source_url: str | None
     source_license: str | None
+
+
+class PublicGuideContentResponse(GuideContentResponse):
+    requested_language: str
+    fallback_language: str | None = None

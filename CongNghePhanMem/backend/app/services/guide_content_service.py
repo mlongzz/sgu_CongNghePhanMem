@@ -18,6 +18,23 @@ def get_guide_content(db: Session, place_id: int, language_code: str, *, publish
     )
 
 
+def get_guide_content_with_fallback(db: Session, place_id: int, language_code: str) -> GuideContent | None:
+    for code in (language_code, "vi", "en"):
+        guide = get_guide_content(db, place_id, code, published_only=True)
+        if guide:
+            return guide
+    return (
+        db.query(GuideContent)
+        .filter(
+            GuideContent.place_id == place_id,
+            GuideContent.publication_status == "published",
+            GuideContent.deleted_at.is_(None),
+        )
+        .order_by(GuideContent.language_code)
+        .first()
+    )
+
+
 def list_guide_languages(db: Session, place_id: int) -> list[str]:
     rows = (
         db.query(GuideContent.language_code)

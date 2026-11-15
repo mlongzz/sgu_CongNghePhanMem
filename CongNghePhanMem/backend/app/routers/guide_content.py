@@ -11,11 +11,13 @@ from app.schemas.guide_content import (
     GuideContentCreate,
     GuideContentResponse,
     GuideContentUpdate,
+    PublicGuideContentResponse,
 )
 from app.schemas.translation import GuideTranslationRequest
 from app.services.guide_content_service import (
     create_guide_content,
     get_guide_content,
+    get_guide_content_with_fallback,
     list_guide_languages,
     update_guide_content,
 )
@@ -33,7 +35,7 @@ def get_available_guide_languages(place_id: int, db: Session = Depends(get_db)):
     return list_guide_languages(db, place_id)
 
 
-@router.get("/{place_id}/guide-content", response_model=GuideContentResponse)
+@router.get("/{place_id}/guide-content", response_model=PublicGuideContentResponse)
 def get_place_guide_content(
     place_id: int,
     language: str = Query(min_length=2, max_length=10),
@@ -41,10 +43,15 @@ def get_place_guide_content(
 ):
     if not get_place_by_id(db, place_id):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Place not found")
-    guide = get_guide_content(db, place_id, language.lower(), published_only=True)
+    requested = language.lower()
+    guide = get_guide_content_with_fallback(db, place_id, requested)
     if not guide:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found for this language")
-    return guide
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found for this place")
+    return PublicGuideContentResponse(
+        **GuideContentResponse.model_validate(guide).model_dump(),
+        requested_language=requested,
+        fallback_language=guide.language_code if guide.language_code != requested else None,
+    )
 
 
 @router.post(
