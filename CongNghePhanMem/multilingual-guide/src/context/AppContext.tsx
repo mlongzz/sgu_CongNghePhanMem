@@ -384,16 +384,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     speechState.current = { id: p.id, status: 'loading', error: '' };
     setPlayingId(p.id); setSpeechStatus('loading'); setSpeechError('');
     try {
-      const content = supplied?.language === language ? supplied : await resolveNarration(p, language, { signal: controller.signal, officialPlaces: places });
+      const content = supplied && (supplied.language === language || supplied.fallbackFrom === language) ? supplied : await resolveNarration(p, language, { signal: controller.signal, officialPlaces: places });
       if (controller.signal.aborted || current !== speechSeq.current) return false;
       if (!content?.text.trim()) throw new Error(NO_NARRATION + ' Hãy chọn ngôn ngữ khác nếu có.');
       audioSession.current = null;
       if (/^db-\d+$/.test(p.id) && content.source === 'published' && token) {
         audioSession.current = { id: p.id, token, progressQueue: Promise.resolve(), session: apiFetch<{id:number}>('/audio-sessions', {
-          token, method: 'POST', body: JSON.stringify({ place_id: Number(p.id.slice(3)), language_code: language }),
+          token, method: 'POST', body: JSON.stringify({ place_id: Number(p.id.slice(3)), language_code: content.language }),
         }).then(result => result.id).catch(() => null) };
       }
-      await getPlayer().play(content.text, language, speechRate, p.id, voiceIdentifier);
+      await getPlayer().play(content.text, content.language, speechRate, p.id, voiceIdentifier);
       return current === speechSeq.current && !speechState.current.error;
     } catch (e) {
       if (current === speechSeq.current && !controller.signal.aborted) {

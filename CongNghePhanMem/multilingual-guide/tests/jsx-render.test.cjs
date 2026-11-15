@@ -53,3 +53,10 @@ test('dashboard guides offer archive for live rows, restore for archived rows an
   assert.equal(result.markup.split('Khôi phục bản nháp</span>').length-1,1);
   assert.match(result.markup,/Hiện bài đã lưu trữ/);
 });
+test('place detail shows the fallback note only when the content came from another language',()=>{
+  for(const fallbackFrom of [undefined,'ja']){
+    const content={text:'Fixture narration',language:'vi',source:'published',...(fallbackFrom?{fallbackFrom}:{})};
+    const result=render('app/place/[id].tsx',{app:{findPlace:()=>place},state:{7:{key:'db-1:vi:0',place,content,error:''}}});
+    assert.equal(result.markup.includes('Chưa có bản'),!!fallbackFrom);
+  }
+});

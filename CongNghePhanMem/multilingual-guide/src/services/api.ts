@@ -192,7 +192,7 @@ export function publishGuide(
     },
   );
 }
-export type GuideResponse = { content?: string; language?: string; language_code?: string; source_url?: string | null; source_license?: string | null };
+export type GuideResponse = { content?: string; language?: string; language_code?: string; source_url?: string | null; source_license?: string | null; requested_language?: string; fallback_language?: string | null };
 export function getGuideContent(placeId: string, language: string, options?: { signal?: AbortSignal }) {
   return apiFetch<GuideResponse>(
     `/places/${encodeURIComponent(placeId)}/guide-content?language=${encodeURIComponent(language)}`,

@@ -134,6 +134,7 @@ const copy: Record<string, readonly [string, string, string]> = {
   'Tìm kiếm': ['Search', 'Rechercher', '検索'],
   'Tìm kiếm…': ['Search…', 'Rechercher…', '検索…'],
   'Bộ lọc': ['Filter', 'Filtre', '絞り込み'],
+  'Chưa có bản {requested}, đang hiển thị bản {actual}': ['No {requested} version yet, showing the {actual} version', 'Pas encore de version {requested}, affichage de la version {actual}', '{requested}版はまだありません。{actual}版を表示しています'],
   'Hiện bài đã lưu trữ': ['Show archived guides', 'Afficher les guides archivés', 'アーカイブ済みのガイドを表示'],
   'Lưu trữ bài thuyết minh này? Bài được giữ lại và có thể khôi phục.': ['Archive this guide? It is kept and can be restored.', 'Archiver ce guide ? Il est conservé et peut être restauré.', 'このガイドをアーカイブしますか？保存され、復元できます。'],
   'Khôi phục bài thuyết minh dưới dạng bản nháp?': ['Restore this guide as a draft?', 'Restaurer ce guide en brouillon ?', 'このガイドを下書きとして復元しますか？'],
