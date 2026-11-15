@@ -19,11 +19,12 @@ import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
+import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
 import { freshGps } from '../services/discoveryStatus';
 import { acceptGpsFix } from '../services/gpsTracking';
 
 const STORE_FAVORITES = "mg_favorites_v2";
-const STORE_LANG = "mg_language_v2";
+const STORE_LANG = LANGUAGE_STORAGE_KEY;
 const STORE_DRAFTS = "mg_guide_drafts_v3";
 const STORE_DISCOVERED = "mg_selected_places_v1";
 type Drafts = Record<string, Partial<Record<Language, string>>>;
