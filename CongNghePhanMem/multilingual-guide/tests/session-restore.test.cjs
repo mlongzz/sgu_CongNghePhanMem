@@ -22,3 +22,9 @@ test('context keeps the session unverified, retries on focus and online, and adm
   const admin=fs.readFileSync('app/admin.tsx','utf8');
   assert.ok(admin.indexOf('sessionUnverified')<admin.indexOf('<Redirect href="/login"'));
 });
+test('every session notice set by the context has vi/en/fr/ja copy',()=>{
+  const ctx=fs.readFileSync('src/context/AppContext.tsx','utf8');
+  const notices=[...ctx.matchAll(/setSessionNotice\('([^']+)'\)/g)].map(m=>m[1]);
+  assert.ok(notices.length>=1);
+  for(const n of notices){assert.ok(screenCopy[n],n);assert.equal(screenCopy[n].length,3);}
+});
