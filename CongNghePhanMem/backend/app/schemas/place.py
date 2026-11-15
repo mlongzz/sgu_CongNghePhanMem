@@ -28,6 +28,21 @@ class PlaceMetadata(BaseModel):
                 raise ValueError("Source URL must be HTTP(S) without credentials")
         return value
 
+    @field_validator("image_url", "image_thumbnail_url", check_fields=False)
+    @classmethod
+    def stored_or_https_image(cls, value):
+        if value is None or value == "":
+            return value
+        if value.startswith("/media/"):
+            name = value[len("/media/"):]
+            if name and "/" not in name and "\\" not in name and ".." not in name and "?" not in name and "#" not in name:
+                return value
+            raise ValueError("Image URL must be /media/<file> or an https URL")
+        parts = urlsplit(value)
+        if parts.scheme != "https" or not parts.hostname or parts.username or parts.password:
+            raise ValueError("Image URL must be /media/<file> or an https URL")
+        return value
+
 
 class PlaceCreate(PlaceMetadata):
     name: str = Field(min_length=1, max_length=200)
