@@ -16,4 +16,6 @@ export const screenCopy: Record<string, readonly [string, string, string]> = {
   'Lỗi kết nối không xác định': ['Unknown connection error', 'Erreur de connexion inconnue', '不明な接続エラー'],
   'Nguồn OpenStreetMap đạt giới hạn số kết quả; danh sách có thể chưa đầy đủ.': ['The OpenStreetMap source hit its result limit; the list may be incomplete.', 'La source OpenStreetMap a atteint sa limite de résultats ; la liste peut être incomplète.', 'OpenStreetMap の結果数が上限に達しました。一覧が不完全な可能性があります。'],
   'Đang hiển thị tối đa 100 POI chính thức; danh sách có thể chưa đầy đủ.': ['Showing at most 100 official POIs; the list may be incomplete.', 'Affichage de 100 lieux officiels au maximum ; la liste peut être incomplète.', '公式の地点は最大100件まで表示します。一覧が不完全な可能性があります。'],
+  'Chưa xác minh được phiên đăng nhập do lỗi kết nối. Hãy kiểm tra mạng và thử lại.': ['Could not verify your session because of a connection error. Check your network and try again.', 'Impossible de vérifier votre session à cause d’une erreur de connexion. Vérifiez votre réseau et réessayez.', '接続エラーのためセッションを確認できません。ネットワークを確認して再試行してください。'],
+  'Đang kiểm tra phiên đăng nhập…': ['Checking your session…', 'Vérification de votre session…', 'セッションを確認しています…'],
 };

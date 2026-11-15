@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Platform } from "react-native";
+import { AppState as NativeAppState, Platform } from "react-native";
 import * as Speech from "expo-speech";
 import { LANGS, type Language, type Place, type NarrationContent } from "../data/places";
 import { type Coordinates, fetchNearbyPlaces, validateBackendPlace } from "../services/nearby";
@@ -19,6 +19,7 @@ import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
+import { restoreOutcome, SESSION_UNVERIFIED_NOTICE } from '../services/sessionRestore';
 import { isCatalogFresh } from '../services/catalogCache';
 import { isSystemFavorite, mergeGuestFavorites } from '../services/favoriteMerge';
 import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
@@ -59,6 +60,8 @@ type AppState = {
   authLoading: boolean;
   logout: () => void;
   sessionNotice: string;
+  sessionUnverified: boolean;
+  retrySession: () => void;
   loginWithTokens: (accessToken: string, refreshToken: string) => Promise<void>;
   places: Place[];
   location: LocationCoordinates | null;
@@ -137,6 +140,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<UserResponse | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [sessionNotice, setSessionNotice] = useState('');
+  const [sessionUnverified, setSessionUnverified] = useState(false);
   const speechSeq = useRef(0);
   const authSeq = useRef(0);
   const tokenRef = useRef<string | null>(null);
@@ -145,7 +149,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const logout = useCallback(() => {
     const refresh = refreshRef.current;
     refreshRef.current = null;
-    setSessionNotice('');
+    setSessionNotice(''); setSessionUnverified(false);
     speechSeq.current++;
     speechRequest.current?.abort();
     player.current?.stop();
@@ -176,7 +180,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
       tokenRef.current = access;
       refreshRef.current = refresh || null;
-      setSessionNotice('');
+      setSessionNotice(''); setSessionUnverified(false);
       saveToken(access); setUser(profile); setAdminToken(admin.enabled ? access : null);
     } finally { if (seq === authSeq.current && !keepLoading) setAuthLoading(false); }
   }, []);
@@ -204,28 +208,37 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     });
     return () => setSessionRecovery(null);
   }, [loginWithTokens, logout]);
-  useEffect(() => {
-    let active = true;
-    void (async () => {
-      try {
-        const access = await getSessionToken();
-        if (!active) return;
-        if (access) {
-          const refresh = (await getRefreshToken()) ?? '';
-          try { await loginWithTokens(access, refresh, true); }
-          catch (e) {
-            if (!(e instanceof ApiError) || e.status !== 401 || !refresh) throw e;
-            const result = await refreshTokens(refresh);
-            if (active) await loginWithTokens(result.access_token, result.refresh_token, true);
-          }
+  const restoreRunning = useRef(false);
+  const restoreSession = useCallback(async () => {
+    if (restoreRunning.current || tokenRef.current) return;
+    restoreRunning.current = true;
+    try {
+      const access = await getSessionToken();
+      if (access) {
+        const refresh = (await getRefreshToken()) ?? '';
+        try { await loginWithTokens(access, refresh, true); }
+        catch (e) {
+          if (!(e instanceof ApiError) || e.status !== 401 || !refresh) throw e;
+          const result = await refreshTokens(refresh);
+          await loginWithTokens(result.access_token, result.refresh_token, true);
         }
-      } catch (e) {
-        if (e instanceof ApiError && e.status === 401) logout();
-        else { tokenRef.current = null; saveToken(null); }
-      } finally { if (active) setAuthLoading(false); }
-    })();
-    return () => { active = false; };
+      }
+      setSessionUnverified(false);
+    } catch (e) {
+      if (restoreOutcome(e) === 'expired') logout();
+      else { setSessionUnverified(true); setSessionNotice(SESSION_UNVERIFIED_NOTICE); }
+    } finally { restoreRunning.current = false; setAuthLoading(false); }
   }, [loginWithTokens, logout]);
+  useEffect(() => { void Promise.resolve().then(restoreSession); }, [restoreSession]);
+  const retrySession = useCallback(() => { setAuthLoading(true); void restoreSession(); }, [restoreSession]);
+  useEffect(() => {
+    if (!sessionUnverified) return;
+    const retry = () => { void restoreSession(); };
+    const subscription = NativeAppState.addEventListener('change', state => { if (state === 'active') retry(); });
+    const target = Platform.OS === 'web' && typeof window !== 'undefined' ? window : null;
+    target?.addEventListener('online', retry);
+    return () => { subscription.remove(); target?.removeEventListener('online', retry); };
+  }, [sessionUnverified, restoreSession]);
 
   useEffect(() => {
     let mounted = true;
@@ -554,7 +567,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       token,
       setToken,
       isAdmin,
-      user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
+      user, updateProfile, authLoading, logout, sessionNotice, sessionUnverified, retrySession, loginWithTokens,
       places,
       location,
       searchLocation, updateGpsLocation,
@@ -587,7 +600,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       token,
       setToken,
       isAdmin,
-      user, updateProfile, authLoading, logout, sessionNotice, loginWithTokens,
+      user, updateProfile, authLoading, logout, sessionNotice, sessionUnverified, retrySession, loginWithTokens,
       places,
       location,
       searchLocation, updateGpsLocation,
