@@ -20,6 +20,7 @@ import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlac
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
 import { isCatalogFresh } from '../services/catalogCache';
+import { isSystemFavorite, mergeGuestFavorites } from '../services/favoriteMerge';
 import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
 import { freshGps } from '../services/discoveryStatus';
 import { acceptGpsFix } from '../services/gpsTracking';
@@ -321,6 +322,25 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     finally { if (seq === authSeq.current) setFavoritesLoading(false); }
   }, []);
   useEffect(() => { if (token) void refreshFavorites(); }, [token, refreshFavorites]);
+  const mergeRunning = useRef(false);
+  useEffect(() => {
+    if (!token || mergeRunning.current) return;
+    const pending = guestFavorites.filter(isSystemFavorite);
+    if (!pending.length) return;
+    mergeRunning.current = true;
+    const seq = authSeq.current;
+    void mergeGuestFavorites(pending, placeId => apiFetch('/favorites', { token, method: 'POST', body: JSON.stringify({ place_id: placeId }) }))
+      .then(({ resolved }) => {
+        if (!resolved.length) return;
+        saveGuestFavorites(current => {
+          const next = current.filter(id => !resolved.includes(id));
+          void AsyncStorage.setItem(STORE_FAVORITES, JSON.stringify(next)).catch(() => {});
+          return next;
+        });
+        if (seq === authSeq.current) void refreshFavorites();
+      })
+      .finally(() => { mergeRunning.current = false; });
+  }, [token, guestFavorites, refreshFavorites]);
   const toggleFavorite = useCallback((id: string) => {
     if (authLoading) return;
     if (!token || !id.startsWith('db-')) {
