@@ -19,7 +19,7 @@ import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
-import { restoreOutcome, SESSION_UNVERIFIED_NOTICE } from '../services/sessionRestore';
+import { restoreOutcome, refreshAndPersist, SESSION_UNVERIFIED_NOTICE } from '../services/sessionRestore';
 import { isCatalogFresh } from '../services/catalogCache';
 import { isSystemFavorite, mergeGuestFavorites } from '../services/favoriteMerge';
 import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
@@ -146,6 +146,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const tokenRef = useRef<string | null>(null);
   const refreshRef = useRef<string | null>(null);
   const recovery = useRef<Promise<string | null> | null>(null);
+  const rotateTokens = useCallback(async (refresh: string) => {
+    const result = await refreshAndPersist(refresh, { refreshTokens, writeSessionToken, writeRefreshToken });
+    refreshRef.current = result.refresh_token;
+    return result;
+  }, []);
   const logout = useCallback(() => {
     const refresh = refreshRef.current;
     refreshRef.current = null;
@@ -194,7 +199,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           try {
             const refresh = await getRefreshToken();
             if (!refresh) { logout(); return null; }
-            const result = await refreshTokens(refresh);
+            const result = await rotateTokens(refresh);
             if (seq !== authSeq.current) return null;
             await loginWithTokens(result.access_token, result.refresh_token);
             return tokenRef.current;
@@ -207,7 +212,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return recovery.current;
     });
     return () => setSessionRecovery(null);
-  }, [loginWithTokens, logout]);
+  }, [loginWithTokens, logout, rotateTokens]);
   const restoreRunning = useRef(false);
   const restoreSession = useCallback(async () => {
     if (restoreRunning.current || tokenRef.current) return;
@@ -219,7 +224,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         try { await loginWithTokens(access, refresh, true); }
         catch (e) {
           if (!(e instanceof ApiError) || e.status !== 401 || !refresh) throw e;
-          const result = await refreshTokens(refresh);
+          const result = await rotateTokens(refresh);
           await loginWithTokens(result.access_token, result.refresh_token, true);
         }
       }
@@ -228,7 +233,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       if (restoreOutcome(e) === 'expired') logout();
       else { setSessionUnverified(true); setSessionNotice(SESSION_UNVERIFIED_NOTICE); }
     } finally { restoreRunning.current = false; setAuthLoading(false); }
-  }, [loginWithTokens, logout]);
+  }, [loginWithTokens, logout, rotateTokens]);
   useEffect(() => { void Promise.resolve().then(restoreSession); }, [restoreSession]);
   const retrySession = useCallback(() => { setAuthLoading(true); void restoreSession(); }, [restoreSession]);
   useEffect(() => {
