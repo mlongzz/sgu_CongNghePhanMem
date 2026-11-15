@@ -1,8 +1,8 @@
-// FastAPI backend: API được gọi thật khi cấu hình EXPO_PUBLIC_API_URL.
-// Lưu ý: điện thoại chạy Expo Go không kết nối được 127.0.0.1 trên máy tính.
+// FastAPI backend: the API is called for real when EXPO_PUBLIC_API_URL is configured.
+// Note: a phone running Expo Go cannot reach 127.0.0.1 on the computer.
 const configured = process.env.EXPO_PUBLIC_API_URL?.trim();
-// Khi mở bản web từ thiết bị khác trong LAN (vd. http://192.168.x.x:8081 trên điện thoại),
-// địa chỉ loopback 127.0.0.1/localhost sẽ trỏ về chính thiết bị đó; thay bằng host đang mở trang.
+// When the web build is opened from another LAN device (e.g. http://192.168.x.x:8081 on a phone),
+// loopback 127.0.0.1/localhost points at that device itself, so it is replaced by the host serving the page.
 function resolveApiBase(value: string): string {
   const base = value.replace(/\/$/, "");
   try {

@@ -16,18 +16,18 @@ type Rule = { re: RegExp; category: Category };
 
 // Order matters: the first match decides the category shown on the card.
 const TOURIST_RULES: Rule[] = [
-  // Lịch sử
+  // History
   { re: / (bao tang|nha trung bay|khu di tich|di tich|dia dao|can cu|tuong dai|dai tuong niem|nghia trang liet si|lang (mo|tam)|hoang cung|co do|thanh co|dinh (doc lap|thong nhat|norodom|xa tay|gia long))\b/, category: 'Lịch sử' },
   { re: / (museum|memorial|monument|mausoleum|tunnels?|citadel|fort|war remnants|heritage site)\b/, category: 'Lịch sử' },
-  // Văn hóa
+  // Culture
   { re: /^ (chua|den|dinh|mieu|am|phu|tinh xa|thien vien|tu vien|van mieu|hoi quan|thanh that|giao duong|thanh duong hoi giao) /, category: 'Văn hóa' },
   { re: / (chua|hoi quan|thanh that|van mieu) /, category: 'Văn hóa' },
   { re: /^ (cho|nha hat|nha van hoa|cung van hoa|pho di bo|pho (sach|tay|am thuc)|khu pho) /, category: 'Văn hóa' },
   { re: / (pagoda|temple|shrine|mosque|market|opera house|theatre|theater|assembly hall|walking street)\b/, category: 'Văn hóa' },
-  // Kiến trúc
+  // Architecture
   { re: /^ (nha tho|thanh duong|giao xu|tu vien|buu dien|thap|cau|toa nha|toa thi chinh|lau dai|biet dien|dinh thu|nha co|cot co) /, category: 'Kiến trúc' },
   { re: / (nha tho|buu dien trung tam|landmark 81|bitexco|tower|cathedral|basilica|church|post office|bridge|palace|castle|city hall|opera)\b/, category: 'Kiến trúc' },
-  // Khám phá
+  // Discovery
   { re: /^ (cong vien|vuon|thao cam vien|quang truong|cong truong|ho|dao|bai bien|bai|thac|suoi|nui|deo|rung|vuon quoc gia|khu du lich|khu bao ton|khu vui choi|thuy cung|ben|mui|vinh|dong|hang|song (sai gon|huong)|hon) /, category: 'Khám phá' },
   { re: / (khu du lich|cong vien|dam sen|suoi tien|thao cam vien|landmark)\b/, category: 'Khám phá' },
   { re: / (park|garden|zoo|square|lake|beach|island|waterfall|falls|mountain|cave|bay|aquarium|viewpoint|national park|amusement)\b/, category: 'Khám phá' },
