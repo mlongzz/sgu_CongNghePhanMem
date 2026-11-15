@@ -63,7 +63,7 @@ def test_draft_published_unpublished_archived_restored_lifecycle(client, admin_h
     assert client.get(f'/places/{pid}').status_code == 404
 
 
-@pytest.mark.parametrize('parameter,value', [('latitude', 'nan'), ('longitude', 'inf'), ('latitude', '91'), ('longitude', '-181'), ('radius_km', 'nan'), ('radius_km', '0'), ('radius_km', '501'), ('limit', '0'), ('limit', '101')])
+@pytest.mark.parametrize('parameter,value', [('latitude', 'nan'), ('longitude', 'inf'), ('latitude', '91'), ('longitude', '-181'), ('radius_km', 'nan'), ('radius_km', '0'), ('radius_km', '51'), ('radius_km', '500'), ('limit', '0'), ('limit', '101')])
 def test_nearby_rejects_invalid_query_values(client, parameter, value):
     params = {'latitude': 10, 'longitude': 106, parameter: value}
     assert client.get('/places/nearby', params=params).status_code == 422
@@ -168,3 +168,15 @@ def test_osmium_point_ids_and_geojson_coordinate_order_are_preserved():
     assert payload['places'][0]['source_id'] == 'node/123'
     assert payload['places'][0]['latitude'] == 10 and payload['places'][0]['longitude'] == 106
     assert rejected[0]['reason'] == 'point_geometry_required'
+
+
+def test_nearby_accepts_the_maximum_public_radius_and_orders_by_distance(client, db_session):
+    db_session.add_all([
+        Place(name='Far', latitude=10.3, longitude=106),
+        Place(name='Near', latitude=10.001, longitude=106),
+        Place(name='Outside', latitude=11.0, longitude=106),
+    ])
+    db_session.commit()
+    response = client.get('/places/nearby', params={'latitude': 10, 'longitude': 106, 'radius_km': 50})
+    assert response.status_code == 200
+    assert [row['name'] for row in response.json()] == ['Near', 'Far']
