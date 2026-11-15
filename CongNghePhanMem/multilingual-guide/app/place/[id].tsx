@@ -116,7 +116,7 @@ export default function PlaceDetail() {
       {Boolean(p.sourceUrl || p.sourceLicense || p.imageAttribution || p.imageLicense) && <View style={{ gap: 7, marginBottom: 20 }}>{Boolean(p.sourceUrl) && <Pressable accessibilityRole="button" onPress={() => void Linking.openURL(p.sourceUrl!).catch(() => {})}><Text style={{ color: C.primary }}>{t('Nguồn địa danh')} ↗</Text></Pressable>}{Boolean(p.sourceLicense) && <Text style={s.voiceSub}>{p.sourceLicense}</Text>}<ImageCredit place={{...p,...photo}}/></View>}
       <LanguageSelector value={language} onChange={value => setLanguage(value as typeof language)}/>
       {!!favoriteError && <Text accessibilityRole="alert" style={{ color: C.danger }}>{favoriteError}</Text>}
-      {!!placeError && <Text accessibilityRole="alert" style={{ color: C.danger }}>{placeError} Đang hiển thị thông tin đã lưu.</Text>}
+      {!!placeError && <Text accessibilityRole="alert" style={{ color: C.danger }}>{t(placeError)} {t('Đang hiển thị thông tin đã lưu.')}</Text>}
       <Text style={s.section}>{t('Câu chuyện của địa điểm')}</Text>
       {contentLoading ? <View><ActivityIndicator color={C.primary}/><Text>{t('Đang tải nội dung thuyết minh…')}</Text></View> : <Text testID="narration-text" style={s.body}>{content?.text || (contentError ? t(contentError) : t(NO_NARRATION))}</Text>}
       {!contentLoading && !content && <View><Text style={s.body}>{t('Chọn ngôn ngữ khác hoặc thử tải lại nội dung.')}</Text><Pressable accessibilityRole="button" onPress={() => setContentRetry(v => v + 1)}><Text style={{ color: C.primary }}>{t('Thử tải lại nội dung')}</Text></Pressable></View>}

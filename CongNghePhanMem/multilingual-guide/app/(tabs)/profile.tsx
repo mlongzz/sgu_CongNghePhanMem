@@ -185,7 +185,7 @@ export default function Profile() {
               <Text style={s.tryAgain}>{t('Kiểm tra lại')}</Text>
             </Pressable>
           </View>
-          {error ? <Text style={s.error}>{error}</Text> : null}
+          {error ? <Text style={s.error}>{t(error)}</Text> : null}
         </View>
         <View style={s.footnote}>
           <Ionicons
