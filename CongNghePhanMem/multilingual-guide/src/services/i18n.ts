@@ -1,6 +1,7 @@
 import { journeyCopy } from './journeyI18n';
 import { presenceCopy } from './presenceI18n';
 import { reviewCopy } from './reviewI18n';
+import { screenCopy } from './screenI18n';
 import type { Language } from '../data/places';
 
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
@@ -9,6 +10,7 @@ const copy: Record<string, readonly [string, string, string]> = {
   ...journeyCopy,
   ...presenceCopy,
   ...reviewCopy,
+  ...screenCopy,
   'Vai trò tài khoản': ['Account role', 'Rôle du compte', 'アカウントの役割'],
   'Quyền quản trị khi đăng nhập': ['Admin access at sign-in', 'Accès administrateur à la connexion', 'ログイン時の管理者権限'],
   'Quản trị viên': ['Administrator', 'Administrateur', '管理者'],
