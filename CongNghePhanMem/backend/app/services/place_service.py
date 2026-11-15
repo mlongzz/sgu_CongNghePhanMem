@@ -6,6 +6,7 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.models.place import Place
+from app.services.search_utils import contains
 from app.models.guide_content import GuideContent
 from app.services.media_service import remove_unused_image
 from app.services.editorial_service import reviewed_changes
@@ -53,7 +54,7 @@ def search_places(db: Session, keyword: str, limit: int = 20, offset: int = 0) -
     return (
         public_places(db)
         .filter(
-            Place.name.ilike(f"%{keyword}%") | Place.category.ilike(f"%{keyword}%")
+            contains(Place.name, keyword) | contains(Place.category, keyword)
         )
         .order_by(Place.name)
         .offset(offset)

@@ -21,6 +21,7 @@ from app.schemas.guide_content import GuideContentCreate, GuideContentUpdate
 from app.schemas.imports import OsmImportApply, OsmImportPreview, WikipediaImportApproval, WikipediaSelection
 from app.schemas.place import PlaceCreate, PlaceUpdate
 from app.services.media_service import remove_unused_image
+from app.services.search_utils import contains
 from app.services.editorial_service import reviewed_changes
 from app.schemas.user import UserResponse, UserUpdate
 from app.schemas.url_import import UrlPreview, UrlImport
@@ -248,7 +249,7 @@ def service_status(db: Session = Depends(get_db)):
 @router.get("/users")
 def list_users(q: str = Query("", max_length=200), role: Literal["admin", "user"] | None = None,
                page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(User).filter(or_(User.email.ilike(f"%{q}%"), User.full_name.ilike(f"%{q}%")))
+    query = db.query(User).filter(or_(contains(User.email, q), contains(User.full_name, q)))
     if role:
         query = query.filter(User.role == role)
     result = paginate(query.order_by(User.id.desc()), page, page_size)
@@ -305,7 +306,7 @@ def remove_user(identifier: int, db: Session = Depends(get_db), actor: User = De
 def list_places(q: str = Query("", max_length=200), category: str | None = Query(None, max_length=100),
                 publication_status: Literal["draft", "published"] | None = None, include_deleted: bool = False,
                 page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(Place).filter(Place.name.ilike(f"%{q}%"))
+    query = db.query(Place).filter(contains(Place.name, q))
     if not include_deleted:
         query = query.filter(Place.deleted_at.is_(None))
     if publication_status:
@@ -371,7 +372,7 @@ def list_guides(q: str = Query("", max_length=200), language: str | None = Query
                 place_id: int | None = None, publication_status: Literal["draft", "published"] | None = None,
                 include_deleted: bool = False, page: int = Query(1, ge=1),
                 page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(GuideContent).filter(GuideContent.title.ilike(f"%{q}%"))
+    query = db.query(GuideContent).filter(contains(GuideContent.title, q))
     if not include_deleted:
         query = query.filter(GuideContent.deleted_at.is_(None))
     if publication_status:
@@ -457,7 +458,7 @@ def journey_value(db, row, *, public_only=False):
 @router.get("/journeys")
 def list_journeys(q: str = Query("", max_length=200), page: int = Query(1, ge=1),
                   page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(Journey).filter(Journey.name.ilike(f"%{q}%")).order_by(Journey.id.desc())
+    query = db.query(Journey).filter(contains(Journey.name, q)).order_by(Journey.id.desc())
     total = query.count()
     rows = query.offset((page - 1) * page_size).limit(page_size).all()
     return {'items': journey_values(db, rows), 'total': total, 'page': page,
@@ -511,7 +512,7 @@ def playback(language: str | None = Query(None, max_length=10), place_id: int | 
 @router.get("/audit-logs")
 def audit_logs(q: str = Query("", max_length=80), page: int = Query(1, ge=1),
                page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    return display_references(db, paginate(db.query(AuditLog).filter(AuditLog.resource.ilike(f"%{q}%")).order_by(AuditLog.id.desc()), page, page_size))
+    return display_references(db, paginate(db.query(AuditLog).filter(contains(AuditLog.resource, q)).order_by(AuditLog.id.desc()), page, page_size))
 
 
 @router.get("/settings")

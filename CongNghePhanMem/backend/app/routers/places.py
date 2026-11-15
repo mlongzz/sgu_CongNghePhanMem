@@ -26,7 +26,7 @@ router = APIRouter(prefix="/places", tags=["Places"])
 
 @router.get("/search", response_model=list[PlaceResponse])
 def search_places_api(
-    q: str = Query(min_length=1, description="Search keyword"),
+    q: str = Query(min_length=1, max_length=100, description="Search keyword"),
     limit: int = Query(default=20, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     db: Session = Depends(get_db),
