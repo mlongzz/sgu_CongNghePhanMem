@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -109,7 +111,7 @@ def edit_place_guide_content(
 )
 def translate_place_guide_content(
     place_id: int,
-    source_language: str,
+    source_language: Annotated[str, Path(min_length=2, max_length=10, pattern=r"^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$")],
     translation_request: GuideTranslationRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_admin),

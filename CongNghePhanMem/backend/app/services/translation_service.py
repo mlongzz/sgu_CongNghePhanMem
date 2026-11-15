@@ -1,11 +1,14 @@
 """Translation service using a configurable LibreTranslate-compatible API."""
 import json
+from http.client import HTTPException as HttpClientError
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
 from fastapi import HTTPException, status
 
 from app.config import TRANSLATION_API_KEY, TRANSLATION_API_URL
+
+MAX_RESPONSE_BYTES = 1_000_000
 
 
 def translate_texts(texts: list[str], source_language: str, target_language: str) -> list[str]:
@@ -39,13 +42,13 @@ def translate_texts(texts: list[str], source_language: str, target_language: str
 
     try:
         with urlopen(request, timeout=30) as response:
-            result = json.loads(response.read().decode("utf-8"))
+            result = json.loads(response.read(MAX_RESPONSE_BYTES).decode("utf-8"))
     except HTTPError as error:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail=f"Translation provider returned HTTP {error.code}",
         ) from error
-    except (URLError, TimeoutError) as error:
+    except (URLError, TimeoutError, OSError, HttpClientError) as error:
         raise HTTPException(
             status_code=status.HTTP_502_BAD_GATEWAY,
             detail="Could not reach translation provider",
