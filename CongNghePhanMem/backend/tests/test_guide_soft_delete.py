@@ -86,3 +86,22 @@ def test_overview_counts_only_live_guides(client, headers, db_session, guide):
     client.delete(f"/admin/guides/{guide.id}", headers=headers)
     assert client.get("/admin/overview", headers=headers).json()["kpis"]["guides"] == 0
     assert db_session.execute(text("SELECT COUNT(*) FROM guide_contents")).scalar() == 1
+
+
+def test_deleted_guide_hidden_from_visitors(client, headers, db_session, guide):
+    place_id = guide.place_id
+    assert client.get(f"/places/{place_id}/guide-content?language=vi").status_code == 200
+    assert client.get(f"/places/{place_id}/guide-content/languages").json() == ["vi"]
+    assert client.get(f"/places/{place_id}").json()["description_translations"] == {"vi": "Noi dung"}
+    client.delete(f"/admin/guides/{guide.id}", headers=headers)
+    assert client.get(f"/places/{place_id}/guide-content?language=vi").status_code == 404
+    assert client.get(f"/places/{place_id}/guide-content/languages").json() == []
+    assert client.get(f"/places/{place_id}").json()["description_translations"] == {}
+    assert client.get("/places").json()[0]["description_translations"] == {}
+
+
+def test_legacy_guide_routes_reject_deleted_guide(client, headers, guide):
+    client.delete(f"/admin/guides/{guide.id}", headers=headers)
+    path = f"/places/{guide.place_id}/guide-content"
+    assert client.put(f"{path}/vi", headers=headers, json={"title": "New"}).status_code == 409
+    assert client.post(f"{path}/vi/translate", headers=headers, json={"target_language": "en"}).status_code == 404

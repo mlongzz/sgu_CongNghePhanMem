@@ -7,7 +7,7 @@ from app.services.editorial_service import reviewed_changes
 def get_guide_content(db: Session, place_id: int, language_code: str, *, published_only: bool = False) -> GuideContent | None:
     query = db.query(GuideContent)
     if published_only:
-        query = query.filter(GuideContent.publication_status == "published")
+        query = query.filter(GuideContent.publication_status == "published", GuideContent.deleted_at.is_(None))
     return (
         query
         .filter(
@@ -22,7 +22,7 @@ def list_guide_languages(db: Session, place_id: int) -> list[str]:
     rows = (
         db.query(GuideContent.language_code)
         .filter(GuideContent.place_id == place_id)
-        .filter(GuideContent.publication_status == "published")
+        .filter(GuideContent.publication_status == "published", GuideContent.deleted_at.is_(None))
         .order_by(GuideContent.language_code)
         .all()
     )

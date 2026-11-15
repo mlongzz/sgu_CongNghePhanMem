@@ -81,6 +81,8 @@ def edit_place_guide_content(
     guide = get_guide_content(db, place_id, language_code.lower())
     if not guide:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found")
+    if guide.deleted_at is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Restore this guide before editing")
     update_data = changes.model_dump(exclude_unset=True)
     if update_data.get("language_code") and update_data["language_code"].lower() != language_code.lower():
         conflict = get_guide_content(db, place_id, update_data["language_code"].lower())
@@ -111,10 +113,12 @@ def translate_place_guide_content(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Source and target languages must differ")
 
     source = get_guide_content(db, place_id, source_language)
-    if not source:
+    if not source or source.deleted_at is not None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Source guide content not found")
 
     target = get_guide_content(db, place_id, target_language)
+    if target and target.deleted_at is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Restore the target guide before translating into it")
     if target and not translation_request.overwrite:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Target language already exists; set overwrite to true to replace it")
 

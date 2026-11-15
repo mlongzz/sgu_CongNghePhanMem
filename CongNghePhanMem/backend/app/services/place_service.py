@@ -25,7 +25,7 @@ def public_place_values(db: Session, rows: list[Place]) -> list[dict]:
     import re
     grouped = {row.id: {} for row in rows}
     if grouped:
-        for guide in db.query(GuideContent).filter(GuideContent.place_id.in_(grouped), GuideContent.publication_status == 'published').all():
+        for guide in db.query(GuideContent).filter(GuideContent.place_id.in_(grouped), GuideContent.publication_status == 'published', GuideContent.deleted_at.is_(None)).all():
             if guide.language_code in ('vi', 'en', 'fr', 'ja'):
                 first = re.split(r'(?<=[.!?。！？])\s*', guide.content.strip(), maxsplit=1)[0]
                 grouped[guide.place_id][guide.language_code] = first[:300] + ('…' if len(first) > 300 else '')
