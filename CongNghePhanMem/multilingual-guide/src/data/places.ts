@@ -10,6 +10,7 @@ export type NarrationContent = {
   sourceLicense?: string;
   licenseUrl?: string;
   attribution?: string;
+  fallbackFrom?: Language;
 };
 export type Place = {
   id: string; title: string; subtitle: Translated; description: Translated;

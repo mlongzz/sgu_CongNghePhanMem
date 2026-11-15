@@ -19,11 +19,13 @@ import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
+import { isCatalogFresh } from '../services/catalogCache';
+import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
 import { freshGps } from '../services/discoveryStatus';
 import { acceptGpsFix } from '../services/gpsTracking';
 
 const STORE_FAVORITES = "mg_favorites_v2";
-const STORE_LANG = "mg_language_v2";
+const STORE_LANG = LANGUAGE_STORAGE_KEY;
 const STORE_DRAFTS = "mg_guide_drafts_v3";
 const STORE_DISCOVERED = "mg_selected_places_v1";
 type Drafts = Record<string, Partial<Record<Language, string>>>;
@@ -72,7 +74,7 @@ type AppState = {
   nearbyStatus: "idle" | "locating" | "loading" | "success" | "error" | "location-error";
   source: "demo" | "live" | "fallback";
   refreshNearby: (options?: { radiusKm?: number; reuseLocation?: boolean; coordinates?: Coordinates; gpsCoordinates?: LocationCoordinates }) => Promise<void>;
-  refreshCatalog: () => Promise<void>;
+  refreshCatalog: (options?: { maxAgeMs?: number }) => Promise<void>;
   findPlace: (id: string) => Place | undefined;
   registerPlace: (place: Place) => void;
   drafts: Drafts;
@@ -266,7 +268,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       mounted = false;
     };
   }, []);
-  const refreshCatalog = useCallback(async () => {
+  const catalogLoadedAt = useRef<number | null>(null);
+  const refreshCatalog = useCallback(async (options: { maxAgeMs?: number } = {}) => {
+    if (options.maxAgeMs !== undefined && isCatalogFresh(catalogLoadedAt.current, Date.now(), options.maxAgeMs)) return;
     const seq = ++catalogSeq.current;
     locationRequest.current?.abort();
     locationRequest.current = null;
@@ -274,7 +278,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setNearbyStatus("idle");
     setPlacesWarning("");
     setLoadingPlaces(true);
-    setPlaces([]);
     try {
       const rows: unknown[] = [];
       for (let offset = 0; ; offset += 100) {
@@ -284,6 +287,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         if (page.length < 100) break;
       }
       setPlaces(rows.map(validateBackendPlace).filter((p): p is Place => Boolean(p)));
+      catalogLoadedAt.current = Date.now();
       setSource("live"); setPlacesError("");
     } catch (e) { if (seq === catalogSeq.current) setPlacesError(e instanceof Error ? e.message : "Không tải được địa điểm."); }
     finally { if (seq === catalogSeq.current) setLoadingPlaces(false); }
@@ -384,16 +388,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     speechState.current = { id: p.id, status: 'loading', error: '' };
     setPlayingId(p.id); setSpeechStatus('loading'); setSpeechError('');
     try {
-      const content = supplied?.language === language ? supplied : await resolveNarration(p, language, { signal: controller.signal, officialPlaces: places });
+      const content = supplied && (supplied.language === language || supplied.fallbackFrom === language) ? supplied : await resolveNarration(p, language, { signal: controller.signal, officialPlaces: places });
       if (controller.signal.aborted || current !== speechSeq.current) return false;
       if (!content?.text.trim()) throw new Error(NO_NARRATION + ' Hãy chọn ngôn ngữ khác nếu có.');
       audioSession.current = null;
       if (/^db-\d+$/.test(p.id) && content.source === 'published' && token) {
         audioSession.current = { id: p.id, token, progressQueue: Promise.resolve(), session: apiFetch<{id:number}>('/audio-sessions', {
-          token, method: 'POST', body: JSON.stringify({ place_id: Number(p.id.slice(3)), language_code: language }),
+          token, method: 'POST', body: JSON.stringify({ place_id: Number(p.id.slice(3)), language_code: content.language }),
         }).then(result => result.id).catch(() => null) };
       }
-      await getPlayer().play(content.text, language, speechRate, p.id, voiceIdentifier);
+      await getPlayer().play(content.text, content.language, speechRate, p.id, voiceIdentifier);
       return current === speechSeq.current && !speechState.current.error;
     } catch (e) {
       if (current === speechSeq.current && !controller.signal.aborted) {
