@@ -46,3 +46,10 @@ test('place detail empty provenance and narration links never escape Text',()=>{
     render('app/place/[id].tsx',{app:{findPlace:()=>p},state:{7:{key:'db-1:vi:0',place:p,content,error:''}}});
   }
 });
+test('dashboard guides offer archive for live rows, restore for archived rows and an archived toggle',()=>{
+  const data={items:[{id:1,place_id:1,language_code:'vi',publication_status:'draft',deleted_at:null},{id:2,place_id:1,language_code:'en',publication_status:'draft',deleted_at:'2026-11-01T00:00:00'}],total:2,pages:1};
+  const result=render('src/admin/Dashboard.tsx',{app:{token:'fixture'},state:{0:{token:'fixture',allowed:true},1:'guides',10:data}});
+  assert.equal(result.markup.split('Lưu trữ</span>').length-1,1);
+  assert.equal(result.markup.split('Khôi phục bản nháp</span>').length-1,1);
+  assert.match(result.markup,/Hiện bài đã lưu trữ/);
+});
