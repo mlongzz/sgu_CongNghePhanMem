@@ -28,7 +28,7 @@ def test_upgrade_fresh_database():
             inspector = inspect(connection)
             assert {'users', 'places', 'journeys', 'journey_stops', 'audit_logs', 'admin_settings'} <= set(inspector.get_table_names())
             assert 'role' in {c['name'] for c in inspector.get_columns('users')}
-            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0008'
+            assert connection.execute(text('SELECT version_num FROM alembic_version')).scalar() == '0009'
             assert 'place_images' in inspector.get_table_names()
             command.upgrade(config, 'head')  # idempotent
             assert compare_metadata(MigrationContext.configure(connection), Base.metadata) == []
@@ -64,3 +64,19 @@ def test_adopt_existing_admin_tables_preserves_data():
         connection.execute(text("INSERT INTO journeys (name, description) VALUES ('Keep journey', 'Existing')"))
         command.upgrade(config, 'head')
         assert connection.execute(text('SELECT name FROM journeys')).scalar() == 'Keep journey'
+
+
+def test_guide_soft_delete_migration_round_trip():
+    engine = create_engine('sqlite://')
+    with engine.connect() as connection:
+        config = Config('alembic.ini')
+        config.attributes['connection'] = connection
+        command.upgrade(config, 'head')
+        inspector = inspect(connection)
+        assert 'deleted_at' in {c['name'] for c in inspector.get_columns('guide_contents')}
+        assert 'ix_audio_guide_sessions_started_at' in {i['name'] for i in inspector.get_indexes('audio_guide_sessions')}
+        assert 'ix_history_user_id_visited_at' in {i['name'] for i in inspector.get_indexes('history')}
+        command.downgrade(config, '0008')
+        inspector = inspect(connection)
+        assert 'deleted_at' not in {c['name'] for c in inspector.get_columns('guide_contents')}
+        assert 'ix_history_user_id_visited_at' not in {i['name'] for i in inspector.get_indexes('history')}

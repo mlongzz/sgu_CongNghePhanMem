@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, DateTime, Float, ForeignKey, Index, Integer, String
 from sqlalchemy.sql import func
 
 from app.database import Base
@@ -15,3 +15,5 @@ class AudioGuideSession(Base):
     completed = Column(Boolean, nullable=False, default=False)
     started_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now())
     updated_at = Column(DateTime(timezone=True), nullable=False, server_default=func.now(), onupdate=func.now())
+
+    __table_args__ = (Index("ix_audio_guide_sessions_started_at", "started_at"),)
