@@ -15,7 +15,8 @@ from scripts.apply_district1_catalog import apply, inside, load_manifest, plan
 def test_manifest_is_complete_and_inside_district1():
     bundle = load_manifest()
     polygon = bundle['area']['polygon']
-    assert len(bundle['places']) == 12
+    assert len(bundle['places']) == 15
+    assert set(bundle['journey']['stops']) <= {row['name'] for row in bundle['places']}
     for row in bundle['places']:
         assert inside(polygon, row['latitude'], row['longitude']), row['name']
         assert {g['language_code'] for g in row['guides']} == {'vi', 'en', 'fr', 'ja'}
@@ -95,4 +96,26 @@ def test_apply_rejects_tampered_photo(db_session, tmp_path):
     bundle = small_bundle()
     bundle['places'][0]['image']['sha256'] = '0' * 64
     with pytest.raises(ValueError, match='checksum'):
+        apply(db_session, bundle, tmp_path)
+
+
+def test_full_catalog_applies_to_an_empty_database_without_warnings(db_session, tmp_path):
+    import warnings
+    bundle = load_manifest()
+    with warnings.catch_warnings():
+        warnings.simplefilter('error')
+        apply(db_session, bundle, tmp_path)
+        db_session.commit()
+        apply(db_session, bundle, tmp_path)
+        db_session.commit()
+    assert db_session.scalar(select(func.count()).select_from(Place)) == 15
+    stops = list(db_session.scalars(select(JourneyStop).order_by(JourneyStop.position)))
+    assert [db_session.get(Place, stop.place_id).name for stop in stops] == bundle['journey']['stops']
+
+
+def test_missing_journey_stop_names_the_place_and_the_fix(db_session, tmp_path):
+    bundle = small_bundle()
+    bundle['places'] = bundle['places'][:1]
+    bundle['journey']['stops'] = ['Không tồn tại']
+    with pytest.raises(ValueError, match='Không tồn tại.*district1_catalog.json'):
         apply(db_session, bundle, tmp_path)

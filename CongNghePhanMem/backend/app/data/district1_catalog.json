@@ -819,6 +819,150 @@
      "source_license": "CC BY-SA 4.0"
     }
    ]
+  },
+  {
+   "name": "Dinh Độc Lập",
+   "description": "Công trình gắn với lịch sử Việt Nam thế kỷ hai mươi, nay là điểm tham quan.",
+   "address": "135 Nam Kỳ Khởi Nghĩa, TP. Hồ Chí Minh",
+   "category": "Lịch sử",
+   "latitude": 10.777108,
+   "longitude": 106.695441,
+   "source_url": "https://dinhdoclap.gov.vn/lich-su-dinh-doc-lap/",
+   "image": {
+    "path": "d1-13.jpg",
+    "sha256": "4ebd73416584bb8ba617db2540dd430156d50c9ca2784978e3dd0e75ef139881",
+    "bytes": 271687,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Amore Mio",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Reunification_Palace_front_view.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Reunification_Palace_front_view.jpg/1280px-Reunification_Palace_front_view.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "en",
+     "title": "Dinh Độc Lập",
+     "content": "Independence Palace is a historic site associated with the events of 30 April 1975. The present building, designed by architect Ngo Viet Thu, opened in 1966. Look at the facade’s stone screen, whose bamboo-inspired forms filter daylight. Reception rooms and offices reveal the palace’s former functions. Read the room captions to place the objects in their historical context, then pause to appreciate the building within its green grounds.",
+     "source_url": "https://dinhdoclap.gov.vn/lich-su-dinh-doc-lap/",
+     "source_license": null
+    },
+    {
+     "language_code": "fr",
+     "title": "Dinh Độc Lập",
+     "content": "Le Palais de l’Indépendance est lié aux événements du 30 avril 1975. Le bâtiment actuel, conçu par l’architecte Ngo Viet Thu, a été inauguré en 1966. Sur la façade, remarquez le claustra de pierre inspiré du bambou, qui filtre la lumière. Les salons et bureaux évoquent les anciennes fonctions du palais. Lisez les légendes pour replacer les objets dans leur contexte historique, puis observez le bâtiment au milieu de son parc.",
+     "source_url": "https://dinhdoclap.gov.vn/lich-su-dinh-doc-lap/",
+     "source_license": null
+    },
+    {
+     "language_code": "ja",
+     "title": "Dinh Độc Lập",
+     "content": "統一会堂は、1975年4月30日の出来事に結びつく史跡です。現在の建物は建築家ゴー・ヴィエト・トゥーが設計し、1966年に完成しました。正面の石のスクリーンは竹を思わせる形で、自然光を和らげています。応接室や執務室から、かつての建物の役割を知ることができます。各室の説明を読み、展示品と歴史の背景を確かめてから、緑に囲まれた建築をゆっくり眺めてみてください。",
+     "source_url": "https://dinhdoclap.gov.vn/lich-su-dinh-doc-lap/",
+     "source_license": null
+    },
+    {
+     "language_code": "vi",
+     "title": "Dinh Độc Lập",
+     "content": "Dinh Độc Lập là di tích gắn với sự kiện ngày 30 tháng 4 năm 1975. Công trình hiện nay do kiến trúc sư Ngô Viết Thụ thiết kế, được khánh thành năm 1966. Khi nhìn mặt tiền, hãy chú ý lớp rèm hoa đá gợi hình đốt trúc: chi tiết này vừa tạo nét riêng vừa điều tiết ánh sáng tự nhiên. Các không gian tiếp khách và làm việc giúp người tham quan hình dung chức năng trước đây của dinh. Hãy đọc chú thích tại từng phòng để phân biệt hiện vật và bối cảnh lịch sử, rồi dành một khoảng lặng quan sát công trình giữa khuôn viên cây xanh.",
+     "source_url": "https://dinhdoclap.gov.vn/lich-su-dinh-doc-lap/",
+     "source_license": null
+    }
+   ]
+  },
+  {
+   "name": "Bưu điện Trung tâm Sài Gòn",
+   "description": "Tòa nhà bưu điện lịch sử với mặt tiền nổi bật và không gian vòm bên trong.",
+   "address": "2 Công trường Công xã Paris, TP. Hồ Chí Minh",
+   "category": "Kiến trúc",
+   "latitude": 10.779884,
+   "longitude": 106.699943,
+   "source_url": "https://vnexpress.net/toa-nha-con-giu-loat-bot-dien-thoai-hon-100-tuoi-o-sai-gon-3849259.html",
+   "image": {
+    "path": "d1-14.jpg",
+    "sha256": "1c934669861e7e80413ccfe6ebad7e73a174dd6726b21abccf4c0223ae04de72",
+    "bytes": 586461,
+    "license": "CC BY-SA 3.0",
+    "attribution": "Ngô Trung",
+    "source_url": "https://commons.wikimedia.org/wiki/File:The_Central_Post_Office.jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/The_Central_Post_Office.jpg/1280px-The_Central_Post_Office.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "en",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "Saigon Central Post Office is one of the city's distinctive historic buildings. Its façade and vaulted interior invite visitors to look closely at the architecture. Notice how the main hall and service counters bring architecture into everyday city life. Leave room for postal customers and ask staff before taking photographs at the counters.",
+     "source_url": "https://vnexpress.net/toa-nha-con-giu-loat-bot-dien-thoai-hon-100-tuoi-o-sai-gon-3849259.html",
+     "source_license": null
+    },
+    {
+     "language_code": "fr",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "La poste centrale de Saigon est un édifice historique caractéristique de la ville. Sa façade et son intérieur voûté invitent à observer son architecture. Observez comment le hall et les guichets associent architecture et vie quotidienne. Laissez de la place aux usagers des services postaux et demandez au personnel avant de photographier les guichets.",
+     "source_url": "https://vnexpress.net/toa-nha-con-giu-loat-bot-dien-thoai-hon-100-tuoi-o-sai-gon-3849259.html",
+     "source_license": null
+    },
+    {
+     "language_code": "ja",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "サイゴン中央郵便局は、この街を代表する歴史的な建築の一つです。正面の外観と内部のアーチ天井に注目してみてください。 ホールや窓口を眺めると、建築が街の日常に溶け込む様子を感じられます。郵便サービスを利用する人のために場所を空け、窓口を撮影する前に職員に確認しましょう。",
+     "source_url": "https://vnexpress.net/toa-nha-con-giu-loat-bot-dien-thoai-hon-100-tuoi-o-sai-gon-3849259.html",
+     "source_license": null
+    },
+    {
+     "language_code": "vi",
+     "title": "Bưu điện Trung tâm Sài Gòn",
+     "content": "Bưu điện Trung tâm Sài Gòn là một công trình kiến trúc tiêu biểu của thành phố. Hãy quan sát mặt tiền và hệ thống vòm bên trong tòa nhà lịch sử này. Bạn có thể quan sát sảnh và các quầy giao dịch để cảm nhận sự gặp gỡ giữa kiến trúc và sinh hoạt đô thị. Hãy dành chỗ cho người đang sử dụng dịch vụ bưu chính và hỏi nhân viên trước khi chụp ảnh ở quầy.",
+     "source_url": "https://vnexpress.net/toa-nha-con-giu-loat-bot-dien-thoai-hon-100-tuoi-o-sai-gon-3849259.html",
+     "source_license": null
+    }
+   ]
+  },
+  {
+   "name": "Chợ Bến Thành",
+   "description": "Khu chợ nổi tiếng ở trung tâm thành phố với kiến trúc tháp đồng hồ đặc trưng.",
+   "address": "Khu vực Lê Lợi, Bến Thành, TP. Hồ Chí Minh",
+   "category": "Văn hóa",
+   "latitude": 10.772521,
+   "longitude": 106.698019,
+   "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+   "image": {
+    "path": "d1-15.jpg",
+    "sha256": "97b1e5dc6c14c724f9a35362f099baf21a56173a47b29b384eb5ae1cb74ff594",
+    "bytes": 230415,
+    "license": "CC BY-SA 2.0",
+    "attribution": "Kevin Rutherford",
+    "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Thanh_Market_(52681377938).jpg",
+    "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Ben_Thanh_Market_%2852681377938%29.jpg/1280px-Ben_Thanh_Market_%2852681377938%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+   },
+   "guides": [
+    {
+     "language_code": "en",
+     "title": "Chợ Bến Thành",
+     "content": "Ben Thanh Market is a well-known destination in the city centre. Its clock tower and market halls form the familiar image of a longstanding urban market. As you walk through the aisles, notice the exchanges and goods that reflect local daily life. If you choose a souvenir, ask about its price and details first, and keep the walkways clear for others.",
+     "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+     "source_license": null
+    },
+    {
+     "language_code": "fr",
+     "title": "Chợ Bến Thành",
+     "content": "Le marché Ben Thanh est un lieu connu du centre-ville. Sa tour de l'horloge et ses halles composent l'image familière de cet ancien marché urbain. Dans les allées, observez les échanges et les produits qui évoquent la vie locale. Pour un souvenir, demandez d’abord le prix et les caractéristiques de l’article, sans bloquer le passage.",
+     "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+     "source_license": null
+    },
+    {
+     "language_code": "ja",
+     "title": "Chợ Bến Thành",
+     "content": "ベンタイン市場は市の中心部にある有名な場所です。時計塔と売り場が、歴史ある都市の市場を象徴する風景を作っています。 売り場を歩きながら、人々のやりとりや暮らしを映す品々に目を向けましょう。お土産を買う際は価格や商品の特徴を先に確認し、ほかの人の通路を空けておきましょう。",
+     "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+     "source_license": null
+    },
+    {
+     "language_code": "vi",
+     "title": "Chợ Bến Thành",
+     "content": "Chợ Bến Thành là một điểm đến quen thuộc ở trung tâm thành phố. Tháp đồng hồ và các dãy hàng tạo nên hình ảnh đặc trưng của khu chợ đô thị lâu đời. Khi đi qua các dãy hàng, hãy chú ý nhịp mua bán và những món hàng gợi nét đời sống địa phương. Nếu muốn mua quà, nên hỏi rõ giá và đặc điểm món hàng trước khi lựa chọn, đồng thời giữ lối đi cho người khác.",
+     "source_url": "https://visithcmc.vn/vi/kham-pha-cho-ben-thanh-tphcm-tu-a-z-5-phut-doc/",
+     "source_license": null
+    }
+   ]
   }
  ],
  "content": [
