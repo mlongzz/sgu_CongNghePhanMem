@@ -19,6 +19,7 @@ import { resolveNarration, NO_NARRATION } from "../services/narration";
 import { validateDiscoveredPlace, parseDiscoveredPlaces, serializeDiscoveredPlaces } from "../services/placeRegistry";
 import { getCurrentCoordinates, type LocationCoordinates } from "../services/location";
 
+import { isCatalogFresh } from '../services/catalogCache';
 import { LANGUAGE_STORAGE_KEY } from '../hooks/useStoredLanguage';
 import { freshGps } from '../services/discoveryStatus';
 import { acceptGpsFix } from '../services/gpsTracking';
@@ -73,7 +74,7 @@ type AppState = {
   nearbyStatus: "idle" | "locating" | "loading" | "success" | "error" | "location-error";
   source: "demo" | "live" | "fallback";
   refreshNearby: (options?: { radiusKm?: number; reuseLocation?: boolean; coordinates?: Coordinates; gpsCoordinates?: LocationCoordinates }) => Promise<void>;
-  refreshCatalog: () => Promise<void>;
+  refreshCatalog: (options?: { maxAgeMs?: number }) => Promise<void>;
   findPlace: (id: string) => Place | undefined;
   registerPlace: (place: Place) => void;
   drafts: Drafts;
@@ -267,7 +268,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       mounted = false;
     };
   }, []);
-  const refreshCatalog = useCallback(async () => {
+  const catalogLoadedAt = useRef<number | null>(null);
+  const refreshCatalog = useCallback(async (options: { maxAgeMs?: number } = {}) => {
+    if (options.maxAgeMs !== undefined && isCatalogFresh(catalogLoadedAt.current, Date.now(), options.maxAgeMs)) return;
     const seq = ++catalogSeq.current;
     locationRequest.current?.abort();
     locationRequest.current = null;
@@ -275,7 +278,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setNearbyStatus("idle");
     setPlacesWarning("");
     setLoadingPlaces(true);
-    setPlaces([]);
     try {
       const rows: unknown[] = [];
       for (let offset = 0; ; offset += 100) {
@@ -285,6 +287,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         if (page.length < 100) break;
       }
       setPlaces(rows.map(validateBackendPlace).filter((p): p is Place => Boolean(p)));
+      catalogLoadedAt.current = Date.now();
       setSource("live"); setPlacesError("");
     } catch (e) { if (seq === catalogSeq.current) setPlacesError(e instanceof Error ? e.message : "Không tải được địa điểm."); }
     finally { if (seq === catalogSeq.current) setLoadingPlaces(false); }

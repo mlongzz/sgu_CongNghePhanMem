@@ -1,3 +1,4 @@
+import { CATALOG_MAX_AGE_MS } from "../../src/services/catalogCache";
 import React, { useCallback, useDeferredValue, useMemo, useState } from "react";
 import {
   FlatList,
@@ -50,7 +51,7 @@ export default function Home() {
   const gpsFresh = useGpsFreshness(location?.timestamp, locationSource);
   const {width} = useWindowDimensions();
   const columns = width >= 1050 ? 3 : width >= 700 ? 2 : 1;
-  useFocusEffect(useCallback(() => { void refreshCatalog(); }, [refreshCatalog]));
+  useFocusEffect(useCallback(() => { void refreshCatalog({ maxAgeMs: CATALOG_MAX_AGE_MS }); }, [refreshCatalog]));
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const [visibleCount, setVisibleCount] = useState(40);
