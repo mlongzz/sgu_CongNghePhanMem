@@ -48,6 +48,8 @@ const copy: Record<string, readonly [string, string, string]> = {
   "Khoảng cách đường chim bay": ["Straight-line distance", "Distance à vol d’oiseau", "直線距離"],
   "Mở nhóm": ["Expand cluster", "Développer le groupe", "グループを拡大"],
   "Đang dùng lớp bản đồ OpenStreetMap dự phòng.": ["Using the OpenStreetMap fallback layer.", "Utilisation du fond de carte OpenStreetMap de secours.", "OpenStreetMapの代替地図を使用しています。"],
+  'Đang dùng lớp bản đồ dự phòng OpenStreetMap France.': ['Using the OpenStreetMap France fallback map.', 'Utilisation du fond de carte de secours OpenStreetMap France.', 'OpenStreetMap Franceの代替地図を使用しています。'],
+  'Thử tải lại bản đồ': ['Retry loading the map', 'Réessayer de charger la carte', '地図を再読み込み'],
   "Lớp MapTiler chưa tải được. Đang dùng bản đồ OpenStreetMap dự phòng.": ["MapTiler could not load. Using the OpenStreetMap fallback.", "MapTiler est indisponible. Utilisation d’OpenStreetMap en secours.", "MapTilerを読み込めません。OpenStreetMapを使用しています。"],
   "Ảnh nền bản đồ chưa tải được. Vị trí, điểm dừng và danh sách vẫn được giữ.": ["Map tiles could not load. Your location, stops and place list remain available.", "Le fond de carte est indisponible. La position, les étapes et la liste restent accessibles.", "地図画像を読み込めません。現在地、立ち寄り先、場所一覧は利用できます。"],
   "Thử từ khóa hoặc danh mục khác. Mở bản đồ để tìm quanh vị trí của bạn.": ["Try another keyword or category. Open the map to search near you.", "Essayez un autre mot-clé ou une catégorie. Ouvrez la carte pour chercher autour de vous.", "別の検索語やカテゴリを試してください。地図で近くの場所を探せます。"],

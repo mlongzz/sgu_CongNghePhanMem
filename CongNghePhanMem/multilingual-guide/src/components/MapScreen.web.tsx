@@ -17,11 +17,11 @@ import {
   Text,
   View,
 } from "react-native";
-import type { Circle, LayerGroup, Map as LeafletMap } from "leaflet";
+import type { Circle, LayerGroup, TileLayer, Map as LeafletMap } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./MapScreen.web.css";
 import { distanceKm } from "../services/nearby";
-import { mapTiles, OSM_TILES, OSM_ATTRIBUTION } from "../services/mapTiles";
+import { mapTileSources } from "../services/mapTiles";
 import { imageLicenseUrl } from "../services/imageCredits";
 
 import JourneyProgressCard from "./JourneyProgressCard";
@@ -93,11 +93,13 @@ function PlacesMap({
   const [mapError, setMapError] = useState("");
   const [zoom, setZoom] = useState(12);
   const [tileNotice, setTileNotice] = useState("");
+  const retryTilesRef = useRef<(() => void) | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     let frame: number | undefined;
     let resizeObserver: ResizeObserver | undefined;
+    let removeTiles: (() => void) | undefined;
     const initialize = async () => {
       const L = await import("leaflet");
       if (cancelled || !containerRef.current) return;
@@ -107,30 +109,56 @@ function PlacesMap({
         scrollWheelZoom: false,
         zoomSnap: 0.25,
       }).setView(FALLBACK_CENTER, 14);
-      const config = mapTiles(process.env.EXPO_PUBLIC_MAPTILER_KEY, process.env.EXPO_PUBLIC_MAPTILER_STYLE);
-      let failures = 0, fallback = config.provider === 'osm';
+      const sources = mapTileSources(process.env.EXPO_PUBLIC_MAPTILER_KEY, process.env.EXPO_PUBLIC_MAPTILER_STYLE);
       // Free MapTiler accounts require their linked logo as well as text credits.
-      const logo=config.provider==='maptiler' ? new L.Control({position:'bottomleft'}) : null;
+      const logo=sources[0].provider==='maptiler' ? new L.Control({position:'bottomleft'}) : null;
       if(logo){logo.onAdd=()=>{
         const link=document.createElement('a');link.href='https://www.maptiler.com/';link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','MapTiler');link.style.cssText='display:block;padding:4px;background:#ffffffdd;border-radius:4px';
         const image=document.createElement('img');image.src='https://api.maptiler.com/resources/logo.svg';image.alt='MapTiler logo';image.style.cssText='display:block;width:100px;height:25px';link.appendChild(image);
         L.DomEvent.disableClickPropagation(link);return link;
-      };logo.addTo(map);}
+      };}
 
-      if (fallback) setTileNotice('Đang dùng lớp bản đồ OpenStreetMap dự phòng.');
-      const tiles = L.tileLayer(config.url, {maxZoom:19, attribution:config.attribution, keepBuffer:2, updateWhenIdle:true}).addTo(map);
-      tiles.on('tileload', () => { failures=0; if (!cancelled) setMapError(''); });
-      tiles.on('tileerror', () => {
-        if (cancelled || ++failures < 4) return;
-        if (!fallback) {
-          fallback=true; failures=0; logo?.remove();
-          map.attributionControl.removeAttribution(config.attribution);
-          tiles.options.attribution=OSM_ATTRIBUTION;
-          map.attributionControl.addAttribution(OSM_ATTRIBUTION);
-          tiles.setUrl(OSM_TILES);
-          setTileNotice('Lớp MapTiler chưa tải được. Đang dùng bản đồ OpenStreetMap dự phòng.');
-        } else setMapError('Ảnh nền bản đồ chưa tải được. Vị trí, điểm dừng và danh sách vẫn được giữ.');
-      });
+      let tiles: TileLayer | undefined;
+      let tileTimer: ReturnType<typeof setTimeout> | undefined;
+      let generation = 0;
+      const showTiles = (index: number) => {
+        const currentGeneration = ++generation;
+        clearTimeout(tileTimer);
+        // Leaflet's remove event detaches its map/zoom handlers; keep it until removal finishes.
+        tiles?.remove(); tiles?.off(); logo?.remove();
+        const config = sources[index];
+        if (config.provider === 'maptiler') logo?.addTo(map);
+        setMapError('');
+        setTileNotice(index === 0 ? '' : config.provider === 'hot'
+          ? 'Đang dùng lớp bản đồ dự phòng OpenStreetMap France.'
+          : 'Lớp MapTiler chưa tải được. Đang dùng bản đồ OpenStreetMap dự phòng.');
+        const layer = L.tileLayer(config.url, { maxZoom:19, attribution:config.attribution, keepBuffer:2, updateWhenIdle:true });
+        tiles = layer;
+        let failures = 0, successes = 0, switching = false;
+        const active = () => !cancelled && currentGeneration === generation;
+        const fail = () => {
+          if (!active() || switching) return;
+          clearTimeout(tileTimer);
+          // Tile events fire inside Leaflet's update. Switch after that update finishes.
+          if (index + 1 < sources.length) {
+            switching = true;
+            tileTimer = setTimeout(() => { if (active()) showTiles(index + 1); }, 0);
+          }
+          else setMapError('Ảnh nền bản đồ chưa tải được. Vị trí, điểm dừng và danh sách vẫn được giữ.');
+        };
+        layer.on('tileload', () => {
+          if (!active() || switching) return;
+          successes++; clearTimeout(tileTimer); setMapError('');
+        });
+        layer.on('tileerror', () => { if (active() && ++failures >= 4) fail(); });
+        // A small viewport may request fewer than four tiles. Also recover from a hung host.
+        layer.on('load', () => { if (active() && failures > 0 && successes === 0) fail(); });
+        tileTimer = setTimeout(() => { if (!successes) fail(); }, 12_000);
+        layer.addTo(map);
+      };
+      retryTilesRef.current = () => showTiles(0);
+      removeTiles = () => { generation++; clearTimeout(tileTimer); tiles?.remove(); tiles?.off(); logo?.remove(); };
+      showTiles(0);
 
       leafletRef.current = L;
       mapRef.current = map;
@@ -157,6 +185,8 @@ function PlacesMap({
       cancelled = true;
       if (frame !== undefined) window.cancelAnimationFrame(frame);
       resizeObserver?.disconnect();
+      retryTilesRef.current = null;
+      removeTiles?.();
       mapRef.current?.remove();
       mapRef.current = null;
       markerGroupRef.current = null;
@@ -248,7 +278,15 @@ function PlacesMap({
       marker.bindTooltip(tooltip);
       const popup = document.createElement('div'); popup.className='mg-popup';
       const photo = mediaUrl(place.imageThumbnail || place.image);
-      if (photo) { const image = document.createElement('img'); image.src = photo; image.alt = place.title; image.loading='lazy'; image.className='mg-popup-photo'; image.referrerPolicy='strict-origin-when-cross-origin'; image.onerror=()=>image.remove(); popup.appendChild(image); }
+      if (photo) {
+        const image = document.createElement('img'); image.src = photo; image.alt = place.title; image.loading='lazy'; image.className='mg-popup-photo'; image.referrerPolicy='strict-origin-when-cross-origin';
+        const fullPhoto = mediaUrl(place.image);
+        image.onerror = () => {
+          if (fullPhoto && image.src !== fullPhoto) image.src = fullPhoto;
+          else image.remove();
+        };
+        popup.appendChild(image);
+      }
       const title = document.createElement('strong'); title.textContent = place.title; popup.appendChild(title);
       const meta = document.createElement('p'); meta.textContent = `${t(place.category)} · ${t(mapSourceLabel(place))}`; popup.appendChild(meta);
       if (validCoordinate(location)) { const distance=document.createElement('p'); distance.className='mg-popup-distance'; distance.textContent=`${distanceKm(location,place).toFixed(2)} km · ${t('Khoảng cách đường chim bay')}`; popup.appendChild(distance); }
@@ -323,7 +361,7 @@ function PlacesMap({
         }}
       />
       {tileNotice ? <Text testID="tile-provider-notice" style={s.small}>{t(tileNotice)}</Text> : null}
-      {mapError ? <Text style={s.error}>{t(mapError)}</Text> : null}
+      {mapError ? <View accessibilityRole="alert"><Text style={s.error}>{t(mapError)}</Text>{ready && <Pressable accessibilityRole="button" onPress={() => retryTilesRef.current?.()} style={s.recenter}><Text style={s.retryTiles}>{t('Thử tải lại bản đồ')}</Text></Pressable>}</View> : null}
       {!!progress && <Text style={s.small}>{t('Đường nối minh họa, không phải tuyến đường thực tế.')} 🟠 {t('Điểm tiếp theo')} · 🟢 {t('Đã hoàn thành')}</Text>}
       {!ready && !mapError ? (
         <Text style={s.small}>{t('Đang tải bản đồ...')}</Text>
@@ -370,5 +408,6 @@ const s = StyleSheet.create({
   recenter: { flexDirection: 'row', gap: 5, alignItems: 'center' },
   legend: { flexDirection: 'row', gap: 12, flexWrap: 'wrap', marginTop: 10 },
   small: { color: C.muted, fontSize: 10, lineHeight: 17 }, error: { color: C.danger, fontSize: 12, lineHeight: 19 },
+  retryTiles: { color: C.primaryDark, fontSize: 12, fontWeight: '700', paddingVertical: 12 },
   credit: { fontSize: 10, color: C.muted, textAlign: 'center', lineHeight: 17, marginTop: 20 },
 });
