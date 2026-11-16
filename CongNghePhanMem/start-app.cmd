@@ -6,6 +6,10 @@ REM Open on a phone (same Wi-Fi): http://<computer-IP>:8081  (the IP is shown on
 
 cd /d "%~dp0"
 
+if not exist "multilingual-guide\.env" (
+  copy "multilingual-guide\.env.example" "multilingual-guide\.env" >nul
+)
+
 if not exist "backend\.venv\Scripts\python.exe" (
   echo [!] Chua co backend\.venv. Xem README.md muc "Cai va chay backend".
   pause
