@@ -8,7 +8,7 @@ class GuideContentCreate(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
     language_code: str = Field(min_length=2, max_length=10, pattern=r"^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$")
     title: str = Field(min_length=1, max_length=200)
-    content: str = Field(min_length=1)
+    content: str = Field(min_length=1, max_length=20000)
     publication_status: Literal["draft", "published"] = "draft"
     source_url: str | None = Field(default=None, max_length=1000)
     source_license: str | None = Field(default=None, max_length=200)
@@ -18,7 +18,7 @@ class GuideContentUpdate(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True, extra="forbid")
     language_code: str | None = Field(default=None, min_length=2, max_length=10, pattern=r"^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$")
     title: str | None = Field(default=None, min_length=1, max_length=200)
-    content: str | None = Field(default=None, min_length=1)
+    content: str | None = Field(default=None, min_length=1, max_length=20000)
     publication_status: Literal["draft", "published"] | None = None
     source_url: str | None = Field(default=None, max_length=1000)
     source_license: str | None = Field(default=None, max_length=200)
@@ -44,3 +44,8 @@ class GuideContentResponse(BaseModel):
     publication_status: Literal["draft", "published"]
     source_url: str | None
     source_license: str | None
+
+
+class PublicGuideContentResponse(GuideContentResponse):
+    requested_language: str
+    fallback_language: str | None = None

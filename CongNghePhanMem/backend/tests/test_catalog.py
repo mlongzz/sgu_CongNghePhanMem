@@ -57,7 +57,9 @@ def test_additive_import_is_atomic_audited_idempotent_and_available_to_public_ne
     assert len(nearby) >= 3 and any(row['name'] == 'Chợ Bình Tây' for row in nearby)
     pid = result.json()['rows'][0]['place_id']
     for language in ['vi', 'en', 'fr', 'ja']:
-        assert client.get(f'/places/{pid}/guide-content?language={language}').status_code == 404
+        before = client.get(f'/places/{pid}/guide-content?language={language}')
+        assert before.status_code == (404 if language == 'vi' else 200)
+        assert language == 'vi' or before.json()['fallback_language'] == 'vi'
         assert client.put(f'/admin/places/{pid}/guide-content/{language}', headers=h, json={'publication_status': 'published'}).status_code == 200
         assert client.get(f'/places/{pid}/guide-content?language={language}').status_code == 200
     repeat = apply_preview(client, h).json()

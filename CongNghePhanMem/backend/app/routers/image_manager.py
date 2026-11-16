@@ -14,6 +14,7 @@ from app.models.place_image import PlaceImage
 from app.models.user import User
 from app.services.safe_image_download import download_image
 from app.services.image_manager_service import add_image
+from app.services.search_utils import contains
 
 router=APIRouter(prefix='/admin',tags=['Image manager'],dependencies=[Depends(get_current_admin)])
 
@@ -117,7 +118,7 @@ def suggestions(place_id:int,data:Suggestions,db:Session=Depends(get_db)):
 @router.get('/images/places')
 def places(q:str=Query('',max_length=100),missing:bool=False,page:int=Query(1,ge=1),page_size:int=Query(18,ge=1,le=48),db:Session=Depends(get_db)):
     query=db.query(Place).filter(Place.deleted_at.is_(None))
-    if q:query=query.filter(Place.name.ilike(f'%{q.strip()}%'))
+    if q:query=query.filter(contains(Place.name,q.strip()))
     if missing:query=query.filter(or_(Place.image_url.is_(None),Place.image_url==''))
     total=query.count();rows=query.order_by(Place.id.desc()).offset((page-1)*page_size).limit(page_size).all()
     counts={}

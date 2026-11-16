@@ -21,6 +21,7 @@ from app.schemas.guide_content import GuideContentCreate, GuideContentUpdate
 from app.schemas.imports import OsmImportApply, OsmImportPreview, WikipediaImportApproval, WikipediaSelection
 from app.schemas.place import PlaceCreate, PlaceUpdate
 from app.services.media_service import remove_unused_image
+from app.services.search_utils import contains
 from app.services.editorial_service import reviewed_changes
 from app.schemas.user import UserResponse, UserUpdate
 from app.schemas.url_import import UrlPreview, UrlImport
@@ -225,7 +226,7 @@ def overview(
         func.count(AudioGuideSession.id).desc(), Place.id).limit(10).all()
     return {"start": start, "end": end, "timezone": "UTC", "period": period,
             "kpis": {"users": db.query(User).count(), "places": db.query(Place).count(),
-                     "guides": db.query(GuideContent).count(), "journeys": db.query(Journey).count(),
+                     "guides": db.query(GuideContent).filter(GuideContent.deleted_at.is_(None)).count(), "journeys": db.query(Journey).count(),
                      "plays": sessions.count(), "completed": sessions.filter(AudioGuideSession.completed.is_(True)).count(),
                      "visits": db.query(History).filter(History.visited_at >= lower, History.visited_at < upper).count()},
             "series": series, "languages": [{"language": key, "count": count} for key, count in languages],
@@ -248,7 +249,7 @@ def service_status(db: Session = Depends(get_db)):
 @router.get("/users")
 def list_users(q: str = Query("", max_length=200), role: Literal["admin", "user"] | None = None,
                page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(User).filter(or_(User.email.ilike(f"%{q}%"), User.full_name.ilike(f"%{q}%")))
+    query = db.query(User).filter(or_(contains(User.email, q), contains(User.full_name, q)))
     if role:
         query = query.filter(User.role == role)
     result = paginate(query.order_by(User.id.desc()), page, page_size)
@@ -305,7 +306,7 @@ def remove_user(identifier: int, db: Session = Depends(get_db), actor: User = De
 def list_places(q: str = Query("", max_length=200), category: str | None = Query(None, max_length=100),
                 publication_status: Literal["draft", "published"] | None = None, include_deleted: bool = False,
                 page: int = Query(1, ge=1), page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(Place).filter(Place.name.ilike(f"%{q}%"))
+    query = db.query(Place).filter(contains(Place.name, q))
     if not include_deleted:
         query = query.filter(Place.deleted_at.is_(None))
     if publication_status:
@@ -368,9 +369,12 @@ def restore_place(identifier: int, db: Session = Depends(get_db), actor: User = 
 
 @router.get("/guides")
 def list_guides(q: str = Query("", max_length=200), language: str | None = Query(None, max_length=10),
-                place_id: int | None = None, publication_status: Literal["draft", "published"] | None = None, page: int = Query(1, ge=1),
+                place_id: int | None = None, publication_status: Literal["draft", "published"] | None = None,
+                include_deleted: bool = False, page: int = Query(1, ge=1),
                 page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(GuideContent).filter(GuideContent.title.ilike(f"%{q}%"))
+    query = db.query(GuideContent).filter(contains(GuideContent.title, q))
+    if not include_deleted:
+        query = query.filter(GuideContent.deleted_at.is_(None))
     if publication_status:
         query = query.filter(GuideContent.publication_status == publication_status)
     if language:
@@ -396,6 +400,8 @@ def upsert_guide(place_id: int, language_code: str, data: GuideContentUpdate,
         row = GuideContent(place_id=place_id)
         db.add(row)
     else:
+        if row.deleted_at is not None:
+            raise HTTPException(409, "Restore this guide before editing")
         changes = reviewed_changes(row, changes)
     for key, value in changes.items():
         setattr(row, key, value.lower() if key == "language_code" else value)
@@ -405,9 +411,20 @@ def upsert_guide(place_id: int, language_code: str, data: GuideContentUpdate,
 
 @router.delete("/guides/{identifier}", status_code=204)
 def remove_guide(identifier: int, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
-    db.delete(required(db, GuideContent, identifier))
-    commit(db, actor, "delete", "guides", identifier)
+    row = required(db, GuideContent, identifier)
+    row.deleted_at = row.deleted_at or datetime.now(timezone.utc)
+    row.publication_status = "draft"
+    commit(db, actor, "soft_delete", "guides", identifier)
     return Response(status_code=204)
+
+
+@router.post("/guides/{identifier}/restore")
+def restore_guide(identifier: int, db: Session = Depends(get_db), actor: User = Depends(get_current_admin)):
+    row = required(db, GuideContent, identifier)
+    row.deleted_at = None
+    row.publication_status = "draft"
+    commit(db, actor, "restore", "guides", identifier)
+    return serialize(row)
 
 
 def journey_values(db, rows, *, public_only=False):
@@ -441,7 +458,7 @@ def journey_value(db, row, *, public_only=False):
 @router.get("/journeys")
 def list_journeys(q: str = Query("", max_length=200), page: int = Query(1, ge=1),
                   page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    query = db.query(Journey).filter(Journey.name.ilike(f"%{q}%")).order_by(Journey.id.desc())
+    query = db.query(Journey).filter(contains(Journey.name, q)).order_by(Journey.id.desc())
     total = query.count()
     rows = query.offset((page - 1) * page_size).limit(page_size).all()
     return {'items': journey_values(db, rows), 'total': total, 'page': page,
@@ -495,7 +512,7 @@ def playback(language: str | None = Query(None, max_length=10), place_id: int | 
 @router.get("/audit-logs")
 def audit_logs(q: str = Query("", max_length=80), page: int = Query(1, ge=1),
                page_size: int = Query(20, ge=1, le=100), db: Session = Depends(get_db)):
-    return display_references(db, paginate(db.query(AuditLog).filter(AuditLog.resource.ilike(f"%{q}%")).order_by(AuditLog.id.desc()), page, page_size))
+    return display_references(db, paginate(db.query(AuditLog).filter(contains(AuditLog.resource, q)).order_by(AuditLog.id.desc()), page, page_size))
 
 
 @router.get("/settings")

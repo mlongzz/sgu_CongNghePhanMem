@@ -9,6 +9,7 @@ from app.models.user import User
 from app.models.presence import UserPresenceSession
 from app.schemas.presence import PresenceEnd, PresenceHeartbeat, PresencePreference, PresenceStart
 from app.services import presence_service as service
+from app.services.search_utils import contains
 
 router = APIRouter(tags=['Presence'])
 
@@ -59,8 +60,8 @@ def users(q: str = Query('', max_length=100), status: Literal['all', 'online', '
     now = service.utcnow()
     query = db.query(User)
     if q:
-        term = f'%{q.strip()}%'
-        query = query.filter(or_(User.email.ilike(term), User.full_name.ilike(term)))
+        term = q.strip()
+        query = query.filter(or_(contains(User.email, term), contains(User.full_name, term)))
     active = db.query(UserPresenceSession.user_id).filter(*service.online_filter(now))
     if status != 'all':
         query = query.filter(User.id.in_(active) if status == 'online' else ~User.id.in_(active))

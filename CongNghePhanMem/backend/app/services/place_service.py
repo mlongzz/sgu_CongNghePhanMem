@@ -6,6 +6,7 @@ from sqlalchemy import or_
 from sqlalchemy.orm import Session
 
 from app.models.place import Place
+from app.services.search_utils import contains
 from app.models.guide_content import GuideContent
 from app.services.media_service import remove_unused_image
 from app.services.editorial_service import reviewed_changes
@@ -25,7 +26,7 @@ def public_place_values(db: Session, rows: list[Place]) -> list[dict]:
     import re
     grouped = {row.id: {} for row in rows}
     if grouped:
-        for guide in db.query(GuideContent).filter(GuideContent.place_id.in_(grouped), GuideContent.publication_status == 'published').all():
+        for guide in db.query(GuideContent).filter(GuideContent.place_id.in_(grouped), GuideContent.publication_status == 'published', GuideContent.deleted_at.is_(None)).all():
             if guide.language_code in ('vi', 'en', 'fr', 'ja'):
                 first = re.split(r'(?<=[.!?。！？])\s*', guide.content.strip(), maxsplit=1)[0]
                 grouped[guide.place_id][guide.language_code] = first[:300] + ('…' if len(first) > 300 else '')
@@ -53,7 +54,7 @@ def search_places(db: Session, keyword: str, limit: int = 20, offset: int = 0) -
     return (
         public_places(db)
         .filter(
-            Place.name.ilike(f"%{keyword}%") | Place.category.ilike(f"%{keyword}%")
+            contains(Place.name, keyword) | contains(Place.category, keyword)
         )
         .order_by(Place.name)
         .offset(offset)

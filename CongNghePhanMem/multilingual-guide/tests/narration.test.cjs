@@ -169,3 +169,27 @@ test('offline fallback never trusts unlicensed excerpts, foreign article languag
     { sourceUrl: 'https://vi.wikipedia.org/' }, { language: 'en' }, { publication_status: 'draft' },
   ]) await assert.rejects(api.resolveNarration(place({ narration: { vi: { ...safe, ...invalid } } }), 'vi'), /offline/);
 });
+
+test('guide fallback keeps the real language of the text and records the requested one', async () => {
+  const api = service({ guide: async () => ({ content: text, language_code: 'vi', requested_language: 'ja', fallback_language: 'vi' }) });
+  const result = await api.resolveNarration(place({ id: 'db-1' }), 'ja');
+  assert.equal(result.language, 'vi');
+  assert.equal(result.fallbackFrom, 'ja');
+  assert.equal(result.source, 'published');
+});
+
+test('guide without fallback_language, or with null, behaves as before', async () => {
+  for (const extra of [{}, { fallback_language: null, requested_language: 'vi' }]) {
+    const api = service({ guide: async () => ({ content: text, language_code: 'vi', ...extra }) });
+    const result = await api.resolveNarration(place({ id: 'db-1' }), 'vi');
+    assert.equal(result.language, 'vi');
+    assert.equal(result.fallbackFrom, undefined);
+  }
+});
+
+test('guide fallback with an unknown or inconsistent language is rejected', async () => {
+  for (const body of [{ language_code: 'de', fallback_language: 'de' }, { language_code: 'en', fallback_language: 'vi' }, { language_code: 'en' }]) {
+    const api = service({ guide: async () => ({ content: text, ...body }) });
+    await assert.rejects(() => api.resolveNarration(place({ id: 'db-1' }), 'ja'));
+  }
+});

@@ -224,14 +224,17 @@ def apply(session: Session, bundle: dict, upload_dir: Path, asset_dir: Path = AS
     ids = {p.name: p.id for p in session.scalars(select(Place).where(Place.deleted_at.is_(None)))}
     missing = [name for name in bundle['journey']['stops'] if name not in ids]
     if missing:
-        raise ValueError(f'Journey stops not found: {missing}')
+        raise ValueError(
+            f'Journey stops not found: {missing}. Add each missing place to "places" in '
+            f'app/data/district1_catalog.json (coordinates, vi/en/fr/ja guides, credited cover photo) or load it into the database first.')
     journey = session.scalars(select(Journey).order_by(Journey.id)).first()
     if journey is None:
         journey = Journey(name=bundle['journey']['name'], description=bundle['journey']['description'])
         session.add(journey)
         session.flush()
     journey.name, journey.description = bundle['journey']['name'], bundle['journey']['description']
-    session.query(JourneyStop).filter(JourneyStop.journey_id == journey.id).delete(synchronize_session=False)
+    for stop in session.scalars(select(JourneyStop).where(JourneyStop.journey_id == journey.id)).all():
+        session.delete(stop)
     session.flush()
     for position, name in enumerate(bundle['journey']['stops']):
         session.add(JourneyStop(journey_id=journey.id, place_id=ids[name], position=position))

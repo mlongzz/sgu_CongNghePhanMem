@@ -5,6 +5,7 @@ import type { NarrationContent, Place } from '../data/places';
 import { useApp } from '../context/AppContext';
 import { useOptimalRoute, type TourState } from '../hooks/useOptimalRoute';
 import { useI18n } from '../hooks/useI18n';
+import { useStopOnBlur } from '../hooks/useStopOnBlur';
 import { closingScript, introScript, transitionScript } from '../services/tourScript';
 import { C } from '../theme/colors';
 import { PrimaryButton } from './auth';
@@ -49,6 +50,9 @@ export default function TourPlayer() {
     } else if (from.phase === 'transition') setTour({ ...from, phase: 'confirm', index: from.index + 1 });
     else if (from.phase === 'closing') setTour({ ...from, phase: 'done' });
   }, [legs, setTour]);
+
+  const stopOnBlur = useCallback(() => { expected.current = null; stop(); }, [stop]);
+  useStopOnBlur(stopOnBlur);
 
   // Start the narration that belongs to the current phase exactly once.
   useEffect(() => {

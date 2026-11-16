@@ -167,3 +167,37 @@ def test_cors_preflight_for_frontend_origin(api_client: TestClient) -> None:
     )
     assert response.status_code == 200
     assert response.headers["access-control-allow-origin"] == "http://localhost:8081"
+
+
+def test_history_items_include_place_name_and_null_for_soft_deleted_place(
+    api_client: TestClient,
+    db_session: Session,
+) -> None:
+    kept = Place(name="History Kept", latitude=10.1, longitude=106.1)
+    gone = Place(name="History Gone", latitude=10.2, longitude=106.2)
+    db_session.add_all([kept, gone])
+    db_session.commit()
+    _user_id, access_token, _refresh = register_and_login(api_client)
+    headers = {"Authorization": f"Bearer {access_token}"}
+
+    created = api_client.post(f"/history/{kept.id}", headers=headers)
+    assert created.json()["place_name"] == "History Kept"
+    api_client.post(f"/history/{gone.id}", headers=headers)
+    gone.deleted_at = datetime.now(timezone.utc)
+    db_session.commit()
+
+    items = api_client.get("/history", headers=headers).json()
+    assert [item["place_name"] for item in items] == [None, "History Kept"]
+    assert {"id", "user_id", "place_id", "visited_at"} <= set(items[0])
+
+    statements: list[str] = []
+    from sqlalchemy import event
+    engine = db_session.get_bind()
+    listener = lambda conn, cur, stmt, *a: statements.append(stmt)
+    event.listen(engine, "before_cursor_execute", listener)
+    try:
+        api_client.get("/history", headers=headers)
+    finally:
+        event.remove(engine, "before_cursor_execute", listener)
+    assert sum("FROM history" in s for s in statements) == 1
+    assert not any(s.lstrip().upper().startswith("SELECT") and "FROM places" in s and "history" not in s for s in statements)

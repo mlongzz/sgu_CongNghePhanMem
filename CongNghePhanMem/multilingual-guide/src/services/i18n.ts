@@ -1,6 +1,7 @@
 import { journeyCopy } from './journeyI18n';
 import { presenceCopy } from './presenceI18n';
 import { reviewCopy } from './reviewI18n';
+import { screenCopy } from './screenI18n';
 import type { Language } from '../data/places';
 
 // Vietnamese keys keep existing copy and accessibility labels stable. Technical
@@ -9,6 +10,7 @@ const copy: Record<string, readonly [string, string, string]> = {
   ...journeyCopy,
   ...presenceCopy,
   ...reviewCopy,
+  ...screenCopy,
   'Vai trò tài khoản': ['Account role', 'Rôle du compte', 'アカウントの役割'],
   'Quyền quản trị khi đăng nhập': ['Admin access at sign-in', 'Accès administrateur à la connexion', 'ログイン時の管理者権限'],
   'Quản trị viên': ['Administrator', 'Administrateur', '管理者'],
@@ -46,6 +48,8 @@ const copy: Record<string, readonly [string, string, string]> = {
   "Khoảng cách đường chim bay": ["Straight-line distance", "Distance à vol d’oiseau", "直線距離"],
   "Mở nhóm": ["Expand cluster", "Développer le groupe", "グループを拡大"],
   "Đang dùng lớp bản đồ OpenStreetMap dự phòng.": ["Using the OpenStreetMap fallback layer.", "Utilisation du fond de carte OpenStreetMap de secours.", "OpenStreetMapの代替地図を使用しています。"],
+  'Đang dùng lớp bản đồ dự phòng OpenStreetMap France.': ['Using the OpenStreetMap France fallback map.', 'Utilisation du fond de carte de secours OpenStreetMap France.', 'OpenStreetMap Franceの代替地図を使用しています。'],
+  'Thử tải lại bản đồ': ['Retry loading the map', 'Réessayer de charger la carte', '地図を再読み込み'],
   "Lớp MapTiler chưa tải được. Đang dùng bản đồ OpenStreetMap dự phòng.": ["MapTiler could not load. Using the OpenStreetMap fallback.", "MapTiler est indisponible. Utilisation d’OpenStreetMap en secours.", "MapTilerを読み込めません。OpenStreetMapを使用しています。"],
   "Ảnh nền bản đồ chưa tải được. Vị trí, điểm dừng và danh sách vẫn được giữ.": ["Map tiles could not load. Your location, stops and place list remain available.", "Le fond de carte est indisponible. La position, les étapes et la liste restent accessibles.", "地図画像を読み込めません。現在地、立ち寄り先、場所一覧は利用できます。"],
   "Thử từ khóa hoặc danh mục khác. Mở bản đồ để tìm quanh vị trí của bạn.": ["Try another keyword or category. Open the map to search near you.", "Essayez un autre mot-clé ou une catégorie. Ouvrez la carte pour chercher autour de vous.", "別の検索語やカテゴリを試してください。地図で近くの場所を探せます。"],
@@ -134,6 +138,15 @@ const copy: Record<string, readonly [string, string, string]> = {
   'Tìm kiếm': ['Search', 'Rechercher', '検索'],
   'Tìm kiếm…': ['Search…', 'Rechercher…', '検索…'],
   'Bộ lọc': ['Filter', 'Filtre', '絞り込み'],
+  'Chưa có bản {requested}, đang hiển thị bản {actual}': ['No {requested} version yet, showing the {actual} version', 'Pas encore de version {requested}, affichage de la version {actual}', '{requested}版はまだありません。{actual}版を表示しています'],
+  'Đã xảy ra lỗi': ['Something went wrong', 'Une erreur est survenue', 'エラーが発生しました'],
+  'Ứng dụng gặp sự cố không mong muốn. Hãy thử lại.': ['The app hit an unexpected problem. Please try again.', 'L’application a rencontré un problème inattendu. Veuillez réessayer.', 'アプリで予期しない問題が発生しました。もう一度お試しください。'],
+  'Không tìm thấy trang': ['Page not found', 'Page introuvable', 'ページが見つかりません'],
+  'Trang bạn mở không tồn tại hoặc đã được di chuyển.': ['The page you opened does not exist or has moved.', 'La page demandée n’existe pas ou a été déplacée.', '開いたページは存在しないか、移動されました。'],
+  'Về Trang chủ': ['Go to Home', 'Retour à l’accueil', 'ホームへ戻る'],
+  'Hiện bài đã lưu trữ': ['Show archived guides', 'Afficher les guides archivés', 'アーカイブ済みのガイドを表示'],
+  'Lưu trữ bài thuyết minh này? Bài được giữ lại và có thể khôi phục.': ['Archive this guide? It is kept and can be restored.', 'Archiver ce guide ? Il est conservé et peut être restauré.', 'このガイドをアーカイブしますか？保存され、復元できます。'],
+  'Khôi phục bài thuyết minh dưới dạng bản nháp?': ['Restore this guide as a draft?', 'Restaurer ce guide en brouillon ?', 'このガイドを下書きとして復元しますか？'],
   'Hiện địa điểm đã lưu trữ': ['Show archived places', 'Afficher les lieux archivés', 'アーカイブ済みの場所を表示'],
   'Chỉnh sửa cài đặt': ['Edit settings', 'Modifier les réglages', '設定を編集'],
   'Lưu thay đổi': ['Save changes', 'Enregistrer les modifications', '変更を保存'],

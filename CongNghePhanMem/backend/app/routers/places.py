@@ -19,6 +19,8 @@ from app.services.place_service import (
     public_place_values,
 )
 
+MAX_PUBLIC_RADIUS_KM = 50
+
 router = APIRouter(prefix="/places", tags=["Places"])
 
 
@@ -26,7 +28,7 @@ router = APIRouter(prefix="/places", tags=["Places"])
 
 @router.get("/search", response_model=list[PlaceResponse])
 def search_places_api(
-    q: str = Query(min_length=1, description="Search keyword"),
+    q: str = Query(min_length=1, max_length=100, description="Search keyword"),
     limit: int = Query(default=20, ge=1, le=100),
     offset: int = Query(default=0, ge=0),
     db: Session = Depends(get_db),
@@ -39,7 +41,7 @@ def search_places_api(
 def get_nearby_places_api(
     latitude: float = Query(..., ge=-90, le=90, allow_inf_nan=False),
     longitude: float = Query(..., ge=-180, le=180, allow_inf_nan=False),
-    radius_km: float = Query(default=10, gt=0, le=500, allow_inf_nan=False),
+    radius_km: float = Query(default=10, gt=0, le=MAX_PUBLIC_RADIUS_KM, allow_inf_nan=False),
     limit: int = Query(default=20, ge=1, le=100),
     db: Session = Depends(get_db),
 ):

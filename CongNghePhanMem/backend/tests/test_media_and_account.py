@@ -136,3 +136,23 @@ def test_shared_image_is_kept_until_last_place_releases_it(client, db_session, t
     client.delete(f'/admin/places/{ids[0]}/image', headers=admin)
     assert client.get(url).status_code == 200
     assert list(tmp_path.iterdir())  # Gallery audit retains image files after detaching covers.
+
+
+def test_upload_processes_the_image_off_the_event_loop_thread(client, db_session, monkeypatch):
+    import asyncio
+    admin = headers(db_session, "admin", "threads@example.com")
+    place = client.post('/admin/places', headers=admin, json={"name": "Threads", "latitude": 1, "longitude": 2}).json()
+    on_loop = []
+    original = media.normalized_image
+
+    def recording(data):
+        try:
+            asyncio.get_running_loop()
+            on_loop.append(True)
+        except RuntimeError:
+            on_loop.append(False)
+        return original(data)
+
+    monkeypatch.setattr(media, "normalized_image", recording)
+    assert client.post(f'/admin/places/{place["id"]}/image', headers=admin, content=png()).status_code == 200
+    assert on_loop == [False]

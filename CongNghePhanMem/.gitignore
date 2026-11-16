@@ -23,3 +23,9 @@
 **/.tools/
 **/cache/
 **/*.tgz
+
+# Environment files with secrets
+.env
+.env.*
+!.env.example
+!.env.*.example

@@ -1,8 +1,8 @@
-// FastAPI backend: API được gọi thật khi cấu hình EXPO_PUBLIC_API_URL.
-// Lưu ý: điện thoại chạy Expo Go không kết nối được 127.0.0.1 trên máy tính.
+// FastAPI backend: the API is called for real when EXPO_PUBLIC_API_URL is configured.
+// Note: a phone running Expo Go cannot reach 127.0.0.1 on the computer.
 const configured = process.env.EXPO_PUBLIC_API_URL?.trim();
-// Khi mở bản web từ thiết bị khác trong LAN (vd. http://192.168.x.x:8081 trên điện thoại),
-// địa chỉ loopback 127.0.0.1/localhost sẽ trỏ về chính thiết bị đó; thay bằng host đang mở trang.
+// When the web build is opened from another LAN device (e.g. http://192.168.x.x:8081 on a phone),
+// loopback 127.0.0.1/localhost points at that device itself, so it is replaced by the host serving the page.
 function resolveApiBase(value: string): string {
   const base = value.replace(/\/$/, "");
   try {
@@ -27,6 +27,13 @@ export class ApiError extends Error {
 let recoverSession: ((token: string) => Promise<string | null>) | null = null;
 export function setSessionRecovery(handler: typeof recoverSession) { recoverSession = handler; }
 
+export function buildRequestHeaders(body: unknown, token?: string, extra?: HeadersInit): Record<string, string> {
+  return {
+    ...(body === undefined || body === null ? {} : { "Content-Type": "application/json" }),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(extra as Record<string, string> | undefined),
+  };
+}
 export async function apiFetch<T>(
   path: string,
   options?: RequestInit & { token?: string; timeoutMs?: number },
@@ -45,11 +52,7 @@ export async function apiFetch<T>(
     const response = await fetch(`${API_BASE_URL}${path}`, {
       ...init,
       signal: controller.signal,
-      headers: {
-        "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...headers,
-      },
+      headers: buildRequestHeaders(init.body, token, headers),
     });
     let value: unknown = null;
     try {
@@ -192,7 +195,7 @@ export function publishGuide(
     },
   );
 }
-export type GuideResponse = { content?: string; language?: string; language_code?: string; source_url?: string | null; source_license?: string | null };
+export type GuideResponse = { content?: string; language?: string; language_code?: string; source_url?: string | null; source_license?: string | null; requested_language?: string; fallback_language?: string | null };
 export function getGuideContent(placeId: string, language: string, options?: { signal?: AbortSignal }) {
   return apiFetch<GuideResponse>(
     `/places/${encodeURIComponent(placeId)}/guide-content?language=${encodeURIComponent(language)}`,

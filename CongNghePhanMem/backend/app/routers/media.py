@@ -1,4 +1,5 @@
 """Admin place images, bounded uploads, and public immutable image delivery."""
+import asyncio
 from io import BytesIO
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,7 +66,11 @@ async def upload_image(place_id: int, request: Request, db: Session = Depends(ge
             raise HTTPException(413, "Image must be at most 5 MB")
         data.extend(chunk)
     from app.services.image_manager_service import add_image
-    add_image(db, place.id, normalized_image(bytes(data)), actor.id, UPLOAD_DIR, already_normalized=True)
+
+    def process_and_store() -> None:
+        add_image(db, place.id, normalized_image(bytes(data)), actor.id, UPLOAD_DIR, already_normalized=True)
+
+    await asyncio.to_thread(process_and_store)
     db.refresh(place)
     return place
 

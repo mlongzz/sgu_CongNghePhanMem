@@ -20,6 +20,7 @@ class GuideContent(Base):
     publication_status = Column(String(12), nullable=False, default="published", server_default="published")
     source_url = Column(String(1000), nullable=True)
     source_license = Column(String(200), nullable=True)
+    deleted_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
     updated_at = Column(
         DateTime(timezone=True),

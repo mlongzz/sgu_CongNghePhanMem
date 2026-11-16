@@ -1,3 +1,4 @@
+import { CATALOG_MAX_AGE_MS } from "../../src/services/catalogCache";
 import React, { useCallback, useDeferredValue, useMemo, useState } from "react";
 import {
   FlatList,
@@ -50,7 +51,7 @@ export default function Home() {
   const gpsFresh = useGpsFreshness(location?.timestamp, locationSource);
   const {width} = useWindowDimensions();
   const columns = width >= 1050 ? 3 : width >= 700 ? 2 : 1;
-  useFocusEffect(useCallback(() => { void refreshCatalog(); }, [refreshCatalog]));
+  useFocusEffect(useCallback(() => { void refreshCatalog({ maxAgeMs: CATALOG_MAX_AGE_MS }); }, [refreshCatalog]));
   const [query, setQuery] = useState("");
   const deferredQuery = useDeferredValue(query);
   const [visibleCount, setVisibleCount] = useState(40);
@@ -164,8 +165,8 @@ export default function Home() {
           <View style={s.gpsHeading}><Ionicons name="navigate-circle" size={30} color={C.primary} /><View style={{ flex: 1 }}><Text style={s.gpsTitle}>{t('Tìm địa danh quanh vị trí của tôi')}</Text><Text testID="home-location-summary" style={s.gpsCaption}>{t(!location ? 'Cho phép vị trí để tìm địa danh quanh bạn.' : locationSource === 'manual' ? 'Vị trí mô phỏng' : !gpsFresh ? 'GPS đã cũ. Định vị lại để cập nhật địa điểm quanh bạn.' : 'Vị trí hiện tại')}{locationSource === 'gps' && typeof location?.accuracy === 'number' ? ` · GPS ±${Math.round(location.accuracy)} m` : ''}</Text></View><Ionicons name="arrow-forward" size={20} color={C.primary} /></View>
         </Pressable>
         {locationSource === 'gps' && gpsFresh && (location?.accuracy ?? 0) > 50 && <Text testID="home-gps-accuracy-warning" style={s.sourceText}>{t('GPS chưa chính xác. Khoảng cách chỉ gần đúng; hãy định vị lại ở nơi thoáng hơn.')}</Text>}
-        {placesError ? <View style={{padding:14,borderRadius:14,backgroundColor:C.dangerSoft,marginBottom:12,gap:8}}><Text accessibilityRole="alert" style={s.gpsError}>{placesError}</Text><Pressable accessibilityRole="button" onPress={()=>void refreshCatalog()}><Text style={{color:C.primaryDark,fontWeight:'700'}}>{t('Thử lại')}</Text></Pressable></View> : null}
-        {placesWarning ? <Text style={s.sourceText}>{placesWarning}</Text> : null}
+        {placesError ? <View style={{padding:14,borderRadius:14,backgroundColor:C.dangerSoft,marginBottom:12,gap:8}}><Text accessibilityRole="alert" style={s.gpsError}>{t(placesError)}</Text><Pressable accessibilityRole="button" onPress={()=>void refreshCatalog()}><Text style={{color:C.primaryDark,fontWeight:'700'}}>{t('Thử lại')}</Text></Pressable></View> : null}
+        {placesWarning ? <Text style={s.sourceText}>{t(placesWarning)}</Text> : null}
         {loadingPlaces && !places.length ? <PlaceSkeleton count={2}/> : null}
         {!query && category === "Tất cả" ? (
           <>

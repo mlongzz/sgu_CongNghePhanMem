@@ -1,10 +1,14 @@
 @echo off
 chcp 65001 >nul
-REM Khởi động backend FastAPI + frontend Expo Web trong 2 cửa sổ riêng.
-REM Mở trên máy tính:  http://localhost:8081
-REM Mở trên điện thoại (cùng Wi-Fi): http://<IP-máy-tính>:8081  (IP hiện ở dòng "Wi-Fi" bên dưới)
+REM Starts the FastAPI backend and the Expo Web frontend in two separate windows.
+REM Open on this computer:  http://localhost:8081
+REM Open on a phone (same Wi-Fi): http://<computer-IP>:8081  (the IP is shown on the "Wi-Fi" line below)
 
 cd /d "%~dp0"
+
+if not exist "multilingual-guide\.env" (
+  copy "multilingual-guide\.env.example" "multilingual-guide\.env" >nul
+)
 
 if not exist "backend\.venv\Scripts\python.exe" (
   echo [!] Chua co backend\.venv. Xem README.md muc "Cai va chay backend".

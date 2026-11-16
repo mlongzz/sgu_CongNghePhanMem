@@ -1,5 +1,5 @@
 import type { Language, NarrationContent, Place } from '../data/places';
-import { ApiError, getGuideContent } from './api';
+import { ApiError, getGuideContent, type GuideResponse } from './api';
 import { distanceKm, normalizeSearch } from './nearby';
 import { cleanNarrationText, fetchWikipediaContent } from './wikipediaContent';
 
@@ -57,6 +57,19 @@ function safeSourceUrl(value: unknown): string | undefined {
   } catch { return undefined; }
 }
 
+const LANGUAGES: readonly Language[] = ['vi', 'en', 'fr', 'ja'];
+
+function fallbackLanguage(guide: GuideResponse, requested: Language): Language {
+  const returned = guide.language_code ?? guide.language;
+  const fallback = guide.fallback_language;
+  if (typeof fallback === 'string' && fallback !== requested) {
+    if (!LANGUAGES.includes(fallback as Language) || (returned !== undefined && returned !== fallback)) throw new Error('Máy chủ trả nội dung khác ngôn ngữ đã chọn.');
+    return fallback as Language;
+  }
+  if ((returned ?? requested) !== requested) throw new Error('Máy chủ trả nội dung khác ngôn ngữ đã chọn.');
+  return requested;
+}
+
 /** Resolve only the selected language; metadata placeholders and Admin drafts are never spoken. */
 export async function resolveNarration(place: Place, language: Language, options: NarrationOptions = {}): Promise<NarrationContent | null> {
   checkAbort(options.signal);
@@ -67,9 +80,9 @@ export async function resolveNarration(place: Place, language: Language, options
     try {
       const guide = await getGuideContent(official.id.slice(3), language, { signal: options.signal });
       checkAbort(options.signal);
-      if ((guide.language_code ?? guide.language ?? language) !== language) throw new Error('Máy chủ trả nội dung khác ngôn ngữ đã chọn.');
+      const actual = fallbackLanguage(guide, language);
       const text = permitted(guide) ? meaningful(guide.content) : '';
-      if (text) return { text, language, source: 'published', attribution: 'Bài thuyết minh do hệ thống xuất bản.',
+      if (text) return { text, language: actual, ...(actual === language ? {} : { fallbackFrom: language }), source: 'published', attribution: 'Bài thuyết minh do hệ thống xuất bản.',
         sourceUrl: safeSourceUrl(guide.source_url), sourceLicense: typeof guide.source_license === 'string' ? guide.source_license : undefined };
     } catch (error) {
       checkAbort(options.signal);

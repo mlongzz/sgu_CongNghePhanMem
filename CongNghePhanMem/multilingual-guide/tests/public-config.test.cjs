@@ -14,3 +14,8 @@ test('production env files load in Expo precedence and never import server setti
     assert.throws(()=>validatePublicConfig({EXPO_PUBLIC_API_URL:'https://your-api.example.invalid'}));
   } finally {for(const name of ['.env','.env.production.local'])fs.unlinkSync(path.join(directory,name));fs.rmdirSync(directory);}
 });
+test('production env example sets a timeout long enough for a cold backend',()=>{
+  const match=require('node:fs').readFileSync(require('node:path').resolve(__dirname,'../.env.production.example'),'utf8').match(/^EXPO_PUBLIC_API_TIMEOUT_MS=(\d+)\s*$/m);
+  assert.ok(match);
+  assert.ok(Number(match[1])>=60000);
+});

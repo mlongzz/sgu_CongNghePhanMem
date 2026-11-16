@@ -15,3 +15,4 @@ class HistoryResponse(BaseModel):
     user_id: int
     place_id: int
     visited_at: datetime
+    place_name: str | None = None

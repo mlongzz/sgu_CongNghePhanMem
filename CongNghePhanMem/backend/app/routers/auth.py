@@ -9,7 +9,7 @@ import uuid
 
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
-from sqlalchemy import delete, update
+from sqlalchemy import delete, select, update
 from sqlalchemy.orm import Session
 
 from app.config import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, REFRESH_TOKEN_EXPIRE_DAYS, SECRET_KEY
@@ -20,6 +20,7 @@ from app.services.user_service import _password_hash
 from app.services.login_throttle import consume_login_attempt
 from app.models.auth_session import RefreshSession
 
+MAX_SESSIONS_PER_USER = 10
 _DUMMY_HASH = _password_hash.hash(uuid.uuid4().hex)
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
@@ -80,6 +81,11 @@ def login(login_data: LoginRequest, request: Request, db: Session = Depends(get_
     db.execute(delete(RefreshSession).where(RefreshSession.expires_at <= int(time.time())))
     db.add(RefreshSession(id=session_id, user_id=user.id, token_hash=digest,
                           expires_at=int(time.time()) + REFRESH_TOKEN_EXPIRE_DAYS * 86400))
+    db.flush()
+    stale = db.scalars(select(RefreshSession.id).where(RefreshSession.user_id == user.id)
+                       .order_by(RefreshSession.expires_at.desc(), RefreshSession.id).offset(MAX_SESSIONS_PER_USER)).all()
+    if stale:
+        db.execute(delete(RefreshSession).where(RefreshSession.id.in_(stale)))
     db.commit()
     return {
         "access_token": create_access_token(user.id),
@@ -102,7 +108,10 @@ def refresh_tokens(request: RefreshRequest, db: Session = Depends(get_db)):
         RefreshSession.expires_at > int(time.time()),
     ).values(token_hash=digest, expires_at=int(time.time()) + REFRESH_TOKEN_EXPIRE_DAYS * 86400))
     if changed.rowcount != 1:
-        db.rollback()
+        # A signed token that is no longer current means it was replayed: revoke the whole session.
+        db.execute(delete(RefreshSession).where(RefreshSession.id == payload['sid'],
+                                                 RefreshSession.user_id == user_id))
+        db.commit()
         raise HTTPException(401, 'Invalid refresh token')
     db.commit()
     return {

@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from typing import Annotated
+
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, status
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -11,11 +13,13 @@ from app.schemas.guide_content import (
     GuideContentCreate,
     GuideContentResponse,
     GuideContentUpdate,
+    PublicGuideContentResponse,
 )
 from app.schemas.translation import GuideTranslationRequest
 from app.services.guide_content_service import (
     create_guide_content,
     get_guide_content,
+    get_guide_content_with_fallback,
     list_guide_languages,
     update_guide_content,
 )
@@ -33,7 +37,7 @@ def get_available_guide_languages(place_id: int, db: Session = Depends(get_db)):
     return list_guide_languages(db, place_id)
 
 
-@router.get("/{place_id}/guide-content", response_model=GuideContentResponse)
+@router.get("/{place_id}/guide-content", response_model=PublicGuideContentResponse)
 def get_place_guide_content(
     place_id: int,
     language: str = Query(min_length=2, max_length=10),
@@ -41,10 +45,15 @@ def get_place_guide_content(
 ):
     if not get_place_by_id(db, place_id):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Place not found")
-    guide = get_guide_content(db, place_id, language.lower(), published_only=True)
+    requested = language.lower()
+    guide = get_guide_content_with_fallback(db, place_id, requested)
     if not guide:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found for this language")
-    return guide
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found for this place")
+    return PublicGuideContentResponse(
+        **GuideContentResponse.model_validate(guide).model_dump(),
+        requested_language=requested,
+        fallback_language=guide.language_code if guide.language_code != requested else None,
+    )
 
 
 @router.post(
@@ -81,6 +90,8 @@ def edit_place_guide_content(
     guide = get_guide_content(db, place_id, language_code.lower())
     if not guide:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Guide content not found")
+    if guide.deleted_at is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Restore this guide before editing")
     update_data = changes.model_dump(exclude_unset=True)
     if update_data.get("language_code") and update_data["language_code"].lower() != language_code.lower():
         conflict = get_guide_content(db, place_id, update_data["language_code"].lower())
@@ -100,7 +111,7 @@ def edit_place_guide_content(
 )
 def translate_place_guide_content(
     place_id: int,
-    source_language: str,
+    source_language: Annotated[str, Path(min_length=2, max_length=10, pattern=r"^[a-zA-Z]+(?:-[a-zA-Z0-9]+)*$")],
     translation_request: GuideTranslationRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_admin),
@@ -111,10 +122,12 @@ def translate_place_guide_content(
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Source and target languages must differ")
 
     source = get_guide_content(db, place_id, source_language)
-    if not source:
+    if not source or source.deleted_at is not None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Source guide content not found")
 
     target = get_guide_content(db, place_id, target_language)
+    if target and target.deleted_at is not None:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Restore the target guide before translating into it")
     if target and not translation_request.overwrite:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Target language already exists; set overwrite to true to replace it")
 
